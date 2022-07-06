@@ -21,6 +21,15 @@
    "validate": "Validate",
    "review": "Review",
    "pay": "Pay",
+   "cash_in": "Cash In",
+   "cash_out": "Cash Out",
+   "cancel": "Cancel",
+   "confirm": "Confirm",
+   "$": "$",
+
+
+
+
 
   "tab_home": "Home",
   "tab_cloud_pos": "CloudPOS",

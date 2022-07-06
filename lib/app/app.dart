@@ -1,3 +1,5 @@
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
+import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +56,8 @@ class _AppState extends State<App> {
         title: F.title,
         //hide badge debug
         debugShowCheckedModeBanner: false,
-        home: SplashPage(),
+       // home: SplashPage(),
+       home: DetailShopPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),
