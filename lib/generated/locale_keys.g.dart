@@ -26,6 +26,11 @@ abstract class  LocaleKeys {
   static const review = 'review';
   static const pay = 'pay';
   static const payment = 'payment';
+  static const cash_in = 'cash_in';
+  static const cash_out = 'cash_out';
+  static const cancel = 'cancel';
+  static const confirm = 'confirm';
+  static const $ = '\$';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';
   static const tab_inventory = 'tab_inventory';

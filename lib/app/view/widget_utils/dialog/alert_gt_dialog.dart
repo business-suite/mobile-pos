@@ -32,7 +32,7 @@ class AlertGTDialog extends StatelessWidget {
   AlertGTDialog(
       {Key? key,
       this.message = txt_msg_error_login_twitter,
-      this.actionString = txt_ok,
+      this.actionString = txt_cancel,
       this.defaultAction})
       : super(key: key);
 

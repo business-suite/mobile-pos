@@ -27,6 +27,15 @@
    "pay": "Pay",
    "payment": "Payment",
 
+   "cash_in": "Cash In",
+   "cash_out": "Cash Out",
+   "cancel": "Cancel",
+   "confirm": "Confirm",
+   "$": "$",
+
+
+
+
 
   "tab_home": "Home",
   "tab_cloud_pos": "CloudPOS",

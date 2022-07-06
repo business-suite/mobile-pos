@@ -65,7 +65,7 @@ class _ReviewContentState extends State<ReviewContent> {
                     padding: EdgeInsets.only(right: size_10_w),
                     child: Text(
                       LocaleKeys.this_order_is_empty.tr(),
-                      style: TextStyle(color: kColoricon, fontSize: text_20),
+                      style: TextStyle(color: kColorDDDDDD, fontSize: text_20),
                     ),
                   ),
                 ],
