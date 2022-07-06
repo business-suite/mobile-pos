@@ -20,6 +20,7 @@
    "invoice": "Invoice",
    "validate": "Validate",
    "review": "Review",
+   "pay": "Pay",
 
   "tab_home": "Home",
   "tab_cloud_pos": "CloudPOS",

@@ -268,7 +268,7 @@ class _PayContentState extends State<PayContent> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsets.symmetric(horizontal: size_10_w),
+                                EdgeInsets.only(left: size_10_w, right: size_10_w, bottom: size_10_w),
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.black12,
@@ -335,10 +335,13 @@ class _PayContentState extends State<PayContent> {
                   ],
                 ),
               ),
+
+
+              //Button Validate + Review
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  color: Color(0xffCACACA),
+                  color: kColorCACACA,
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -361,7 +364,7 @@ class _PayContentState extends State<PayContent> {
                                 child: Text(
                                   LocaleKeys.validate.tr(),
                                   style: TextStyle(
-                                    fontSize: text_35,
+                                    fontSize: text_24,
                                     color: kColor6EC89B,
                                   ),
                                 ),
@@ -383,7 +386,7 @@ class _PayContentState extends State<PayContent> {
                               child: Text(
                                 LocaleKeys.review.tr(),
                                 style: TextStyle(
-                                  fontSize: text_35,
+                                  fontSize: text_24,
                                   color: kColor6EC89B,
                                 ),
                               ),
