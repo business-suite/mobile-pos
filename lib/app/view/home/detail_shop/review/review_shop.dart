@@ -55,7 +55,7 @@ class _ReviewContentState extends State<ReviewContent> {
                     child: IconButton(
                       icon: Icon(
                         Icons.shopping_cart,
-                        color: kColoricon,
+                        color: kColorDDDDDD,
                       ),
                       iconSize: size_90_w,
                       onPressed: () {},
