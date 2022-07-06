@@ -17,9 +17,16 @@
    "bank": "Bank",
    "customer_account":  "Customer Account",
    "customer": "Customer",
+   "info": "Info",
+   "quotation_order": "Quotation/Order",
+   "refund": "Refund",
+   "back": "<< Back",
    "invoice": "Invoice",
    "validate": "Validate",
    "review": "Review",
+   "pay": "Pay",
+   "payment": "Payment",
+
 
   "tab_home": "Home",
   "tab_cloud_pos": "CloudPOS",

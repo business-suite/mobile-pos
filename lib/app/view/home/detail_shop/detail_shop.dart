@@ -55,11 +55,12 @@ class _DetailShopState extends State<_DetailShopContent> {
             children: [
               Column(
                 children: [
+                  //List tab title product
                   Container(
                     width: double.infinity,
                     height: size_50_w,
                   color: kColorD3D3D3,
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: size_10_w),
                    child:  Row(
                       children: <Widget>[
                         SvgPicture.asset(
@@ -92,8 +93,10 @@ class _DetailShopState extends State<_DetailShopContent> {
                       ],
                     ),
                   ),
+
+                  //Divider green below tab title product
                   Container(
-                    height: 3,
+                    height: size_2_w,
                     color: Colors.green,
                   ),
 
@@ -111,7 +114,7 @@ class _DetailShopState extends State<_DetailShopContent> {
                             crossAxisCount: 2,
                             crossAxisSpacing: size_6_w,
                             mainAxisSpacing: size_6_w,
-                            height: 150
+                            height: size_150_w
                           ),
                           delegate: SliverChildBuilderDelegate(
                                 (context, index) => ItemCategory(
@@ -127,27 +130,10 @@ class _DetailShopState extends State<_DetailShopContent> {
                       ),
                     ],
                   ),
-
-                 /* SingleChildScrollView(
-                    child: GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: value.products.length,
-                      shrinkWrap: true,
-                      padding: EdgeInsets.all(5),
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          childAspectRatio: 1,
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 5,
-                          maxCrossAxisExtent: 150),
-                      itemBuilder: (BuildContext context, int index) => ItemCategory(
-                        product: value.products[index],
-                        data: value.products[index],
-                      ),
-                    ),
-                  ),*/
-
                 ],
               ),
+
+              //Button PAY + REVIEW
               Container(
                 alignment: Alignment.bottomLeft,
                 child: Row(
@@ -155,21 +141,20 @@ class _DetailShopState extends State<_DetailShopContent> {
                     Expanded(
                       flex:1,
                       child: SizedBox(
-                        width: size.width / 2,
-                        height: 100,
+                        height: size_100_w,
                         child: FlatButton(
-                          color: Color(0xFF6EC89B),
+                          color: kColor6EC89B,
                           onPressed: () {
                             value.openPayPage();
                           },
                           child: Padding(
-                            padding: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.only(top: size_20_w),
                             child: Column(
                               children: [
                                 Text(
-                                  'Pay',
+                                  LocaleKeys.pay.tr(),
                                   style:
-                                  TextStyle(fontSize: 30, color: Colors.white),
+                                  TextStyle(fontSize: text_24, color: Colors.white),
                                 ),
                                 Text(
                                   '\$143.39',
@@ -184,22 +169,24 @@ class _DetailShopState extends State<_DetailShopContent> {
                     Expanded(
                       flex:1,
                       child: SizedBox(
-                        height: 100,
+                        height: size_100_w,
                         child: FlatButton(
                           color: Colors.white,
-                          onPressed: () {},
+                          onPressed: () {
+                            value.openReviewPage();
+                          },
                           child: Padding(
-                            padding: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.only(top: size_20_w),
                             child: Column(
                               children: [
                                 Text(
-                                  'Review',
+                                  LocaleKeys.review.tr(),
                                   style: TextStyle(
-                                      fontSize: 30, color: Color(0xFF6EC89B)),
+                                      fontSize: text_24, color: kColor6EC89B),
                                 ),
                                 Text(
                                   '4 items',
-                                  style: TextStyle(color: Color(0xFF6EC89B)),
+                                  style: TextStyle(color: kColor6EC89B),
                                 )
                               ],
                             ),

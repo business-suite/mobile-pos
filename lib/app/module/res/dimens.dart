@@ -137,6 +137,7 @@ final size_450_h = 450.0.h;
 final size_550_h = 550.0.h;
 final size_570_h = 570.0.h;
 final size_600_h = 600.0.h;
+final size_700_h = 700.0.h;
 
 final size_1_r = 1.0.r;
 final size_2_r = 2.0.r;

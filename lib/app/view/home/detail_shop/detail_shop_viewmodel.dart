@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_shop.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 
 import '../../../di/injection.dart';
@@ -62,6 +63,10 @@ class DetailShopViewModel extends BaseViewModel {
 
   void openPayPage(){
     _navigationService.pushEnterFadeExitDown(PayPage());
+  }
+
+  void openReviewPage(){
+    _navigationService.pushEnterFadeExitDown(ReviewPage());
   }
 
 }
