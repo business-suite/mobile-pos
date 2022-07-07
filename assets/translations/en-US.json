@@ -1,46 +1,4 @@
-<<<<<<< Updated upstream
- {
-   "on_boarding_title_1": "Phần mềm ưu việt",
-   "on_boarding_title_2": "Không còn nỗi lo tích hợp",
-   "on_boarding_title_3": "Định hướng giá trị riêng biệt",
-   "on_boarding_desc_1": "Vận hành doanh nghiệp chỉ cần một nền tảng duy nhất.",
-   "on_boarding_desc_2": "Ứng dụng được tích hợp, dễ sử dụng và được hàng triệu người dùng yêu thích.",
-   "on_boarding_desc_3": "Mọi thứ bạn cần cùng với trải nghiệm người dùng đẳng cấp.",
-   "on_boarding_btn_get_started": "GET STARTED",
-   "on_boarding_btn_already_have_an_account": "I ALREADY HAVE AN ACCOUNT",
 
-
-
-   "cash_in_out": "Cash In/Out",
-   "chairs": "Chairs",
-   "please_select_a_payment_method": "Please select a payment method.",
-   "cash": "Cash",
-   "bank": "Bank",
-   "customer_account":  "Customer Account",
-   "customer": "Customer",
-   "info": "Info",
-   "quotation_order": "Quotation/Order",
-   "refund": "Refund",
-   "back": "Back",
-   "invoice": "Invoice",
-   "validate": "Validate",
-   "review": "Review",
-   "pay": "Pay",
-   "payment": "Payment",
-
-   "cash_in": "Cash In",
-   "cash_out": "Cash Out",
-   "cancel": "Cancel",
-   "confirm": "Confirm",
-   "$": "$",
-   "select_either_cash_in_or_cash_out_before_confirming": "Select either Cash In or Cash Out before confirming.",
-   "this_order_is_empty": "This order is empty",
-
-
-
-
-
-=======
 {
   "on_boarding_title_1": "Phần mềm ưu việt",
   "on_boarding_title_2": "Không còn nỗi lo tích hợp",
@@ -50,18 +8,32 @@
   "on_boarding_desc_3": "Mọi thứ bạn cần cùng với trải nghiệm người dùng đẳng cấp.",
   "on_boarding_btn_get_started": "GET STARTED",
   "on_boarding_btn_already_have_an_account": "I ALREADY HAVE AN ACCOUNT",
+
+
+
   "cash_in_out": "Cash In/Out",
   "chairs": "Chairs",
   "please_select_a_payment_method": "Please select a payment method.",
   "cash": "Cash",
   "bank": "Bank",
-  "customer_account": "Customer Account",
+   "customer_account":  "Customer Account",
   "customer": "Customer",
+   "info": "Info",
+   "quotation_order": "Quotation/Order",
+   "refund": "Refund",
+   "back": "Back",
   "invoice": "Invoice",
   "validate": "Validate",
   "review": "Review",
   "pay": "Pay",
->>>>>>> Stashed changes
+  "payment": "Payment",
+  "cash_in": "Cash In",
+  "cash_out": "Cash Out",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "$": "$",
+  "select_either_cash_in_or_cash_out_before_confirming": "Select either Cash In or Cash Out before confirming.",
+  "this_order_is_empty": "This order is empty",
   "tab_home": "Home",
   "tab_cloud_pos": "CloudPOS",
   "tab_inventory": "Inventory",

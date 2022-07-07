@@ -7,11 +7,8 @@ import '../module/common/navigator_screen.dart';
 import '../module/local_storage/shared_pref_manager.dart';
 import '../module/network/request/auth_request.dart';
 import '../module/repository/data_repository.dart';
-<<<<<<< Updated upstream
 import '../view/home/detail_shop/review/review_viewmodel.dart';
-=======
 import '../view/forgot_pass/forgot_pass_viewmodel.dart';
->>>>>>> Stashed changes
 import '../view/home/pay/pay_viewmodel.dart';
 import '../view/intro/intro_viewmodel.dart';
 import '../view/sign_in/sign_in_viewmodel.dart';
