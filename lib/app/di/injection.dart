@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/view/authentication/authentication_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/sign_up/sign_up_viewmodel.dart';
@@ -49,6 +50,9 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<ForgotPassViewModel>(
           () => ForgotPassViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<AuthenticationViewModel>(
+          () => AuthenticationViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<HomeViewModel>(
       () => HomeViewModel(getIt<DataRepository>()));

@@ -20,6 +20,20 @@ class NavigationService {
     );
   }
 
+  //replace with anim slide left in right out
+  Future<dynamic>? pushReplacementScreenWithSlideLeftIn(Widget widget) {
+    return navigatorKey.currentState?.pushReplacement(
+      PageTransition(type: PageTransitionType.leftToRight, child: widget),
+    );
+  }
+
+  //replace with anim slide left in right out
+  Future<dynamic>? pushReplacementScreenWithSlideRightIn(Widget widget) {
+    return navigatorKey.currentState?.pushReplacement(
+      PageTransition(type: PageTransitionType.rightToLeft, child: widget),
+    );
+  }
+
   Future<dynamic>? pushEnterFadeExitDown(Widget widget) {
     return navigatorKey.currentState?.push(
       PageRouteBuilder(

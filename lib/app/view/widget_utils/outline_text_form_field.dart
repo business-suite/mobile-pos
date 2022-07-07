@@ -94,10 +94,7 @@ class _OutlineTextFormFieldState extends State<OutlineTextFormField> {
                           color: kColor89000000,
                         ),
                       )
-                    : Container(
-                        height: 0,
-                        width: 0,
-                      ),
+                    : null,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: size_14_h,
                   horizontal: size_10_w,

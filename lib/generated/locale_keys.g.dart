@@ -29,7 +29,7 @@ abstract class  LocaleKeys {
   static const cash_out = 'cash_out';
   static const cancel = 'cancel';
   static const confirm = 'confirm';
-  static const $ = '\$';
+  static const dollars = 'dollars';
   static const select_either_cash_in_or_cash_out_before_confirming = 'select_either_cash_in_or_cash_out_before_confirming';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
@@ -118,7 +118,15 @@ abstract class  LocaleKeys {
   static const msg_is_required = 'msg_is_required';
   static const forgot_password = 'forgot_password';
   static const msg_instruction = 'msg_instruction';
+  static const sent_email_reset = 'sent_email_reset';
   static const email_address = 'email_address';
   static const txt_continue = 'txt_continue';
+  static const two_factor_authentication = 'two_factor_authentication';
+  static const msg_enter_six_digit_code = 'msg_enter_six_digit_code';
+  static const don_t_ask_again_on_this_device = 'don_t_ask_again_on_this_device';
+  static const authentication_code = 'authentication_code';
+  static const learn_more = 'learn_more';
+  static const invalid_authen_code = 'invalid_authen_code';
+  static const authentication_failed_please_try_again = 'authentication_failed_please_try_again';
 
 }

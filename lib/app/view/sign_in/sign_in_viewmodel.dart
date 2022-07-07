@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:business_suite_mobile_pos/app/view/authentication/authentication_page.dart';
 import 'package:business_suite_mobile_pos/app/view/forgot_pass/forgot_pass_page.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -13,6 +14,8 @@ import '../../module/network/response/login_response.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
 import '../home/detail_shop/detail_shop.dart';
+import '../home/home_page.dart';
+import '../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 
 class SignInViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
@@ -23,18 +26,21 @@ class SignInViewModel extends BaseViewModel {
   final passwordFC = FocusNode();
   String email = '';
   String password = '';
+  var emailController = TextEditingController();
+  var passController = TextEditingController();
 
   SignInViewModel(this._dataRepo);
 
-  bool get validate => Utils.isEmail(email.trim()) && password.isNotEmpty && password.length > 5;
+  bool get validate =>
+      Utils.isEmail(email.trim()) && password.isNotEmpty && password.length > 5;
 
-  onChangeEmail(String value){
+  onChangeEmail(String value) {
     this.email = value;
     validate;
     notifyListeners();
   }
 
-  onChangePassword(String value){
+  onChangePassword(String value) {
     this.password = value;
     validate;
     notifyListeners();
@@ -79,12 +85,27 @@ class SignInViewModel extends BaseViewModel {
 
   setloginType(int loginType) => _userSharePref.saveLoginType(loginType);
 
-  void signIn() async {
+  void signIn(BuildContext context) async {
+    removeFocus(context);
+    EasyLoading.show();
+    Future.delayed(
+      Duration(milliseconds: 3000),
+      () {
+        EasyLoading.dismiss();
+        //if (email != 'lyquangbinh@gmail.com' && password != 'v6%*uvVG%k2D!b65')
+        if (email != 'lyquangbinh@gmail.com' && password != '123456')
+          return;
+        if (_userSharePref.isLogin())
+          _navigationService.pushReplacementScreenWithFade(HomePage());
+        else
+          _navigationService.pushReplacementScreenWithSlideRightIn(AuthenticationPage());
 
+      },
+    );
   }
 
   void gotoForgotPassPage() async {
-    _navigationService.pushScreenWithSlideLeftRight(ForgotPasswordPage());
+    _navigationService.pushReplacementScreenWithSlideRightIn(ForgotPasswordPage());
   }
 
   /*Observable sign_in(Map<String, dynamic> params) => _dataRepo

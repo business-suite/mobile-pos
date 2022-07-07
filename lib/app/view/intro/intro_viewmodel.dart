@@ -12,7 +12,7 @@ class IntroViewModel extends BaseViewModel {
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool termOfService = false;
-  bool policy = false;
+  bool dontAskAgain = false;
 
   IntroViewModel(this._dataRepo);
 
@@ -22,7 +22,7 @@ class IntroViewModel extends BaseViewModel {
   }
 
   void changePolicy() {
-    policy = !policy;
+    dontAskAgain = !dontAskAgain;
     notifyListeners();
   }
 

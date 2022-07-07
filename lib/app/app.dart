@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
+import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,8 +60,8 @@ class _AppState extends State<App> {
         debugShowCheckedModeBanner: false,
        // home: SplashPage(),
        //home: ValidatePage(),
-        //home: SplashPage(),
-        home: SignInPage(),
+        home: SplashPage(),
+        //home: SignInPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

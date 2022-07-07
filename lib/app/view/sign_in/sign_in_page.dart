@@ -66,6 +66,8 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
                 child: Column(
                   children: [
                     OutlineTextFormField(
+                      controller: signInViewModel.emailController,
+                      keyboardType: TextInputType.emailAddress,
                       focusNode: signInViewModel.emailFC,
                       hintText: LocaleKeys.email.tr(),
                       onChanged: (value) =>
@@ -77,6 +79,8 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
                       height: size_28_h,
                     ),
                     OutlineTextFormField(
+                      controller: signInViewModel.passController,
+                      keyboardType: TextInputType.visiblePassword,
                       focusNode: signInViewModel.passwordFC,
                       hintText: LocaleKeys.password.tr(),
                       obscureText: true,
@@ -85,7 +89,7 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
                       validator: (value) => signInViewModel.passwordValidator(
                           value, LocaleKeys.password.tr()),
                       textInputAction: TextInputAction.done,
-                      onFieldSubmitted: (_) => signInViewModel.signIn(),
+                      onFieldSubmitted: (_) => signInViewModel.signIn(context),
                     ),
                   ],
                 ),
@@ -115,7 +119,7 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
                       return FilledButton(
                         text: LocaleKeys.sign_in.tr().toUpperCase(),
                         enable: value.validate,
-                        onPress: () => signInViewModel.signIn(),
+                        onPress: () => signInViewModel.signIn(context),
                       );
                     },
                   )

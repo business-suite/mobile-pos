@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_page.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -9,9 +10,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
+import '../../../di/injection.dart';
+import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../detail_shop/appbar_shop.dart';
+import '../detail_shop/review/review_shop.dart';
 import 'item_keyboard.dart';
 import 'pay_viewmodel.dart';
 
@@ -341,6 +345,7 @@ class _PayContentState extends State<PayContent> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
+                  height: size_100_w,
                   color: kColorCACACA,
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -356,7 +361,9 @@ class _PayContentState extends State<PayContent> {
                           padding: EdgeInsets.symmetric(horizontal: size_2_w),
                           child: FlatButton(
                             color: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              getIt<NavigationService>().pushEnterFadeExitDown(ValidatePage());
+                            },
                             child: Center(
                               child: Text(
                                 LocaleKeys.validate.tr(),
@@ -374,7 +381,7 @@ class _PayContentState extends State<PayContent> {
                         child: FlatButton(
                           color: Colors.white,
                           onPressed: () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (context)=> Item()));
+                            getIt<NavigationService>().pushEnterFadeExitDown(ReviewPage());
                           },
                           child: Center(
                             child: Text(

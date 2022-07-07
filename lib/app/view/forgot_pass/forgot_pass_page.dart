@@ -49,8 +49,8 @@ class _ForgotPassContentState extends LifecycleState<_ForgotPasswordContentPage>
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return BaseScaffold(
+      onBackPress: () => forgotPassViewModel.cancel(context),
       title: LocaleKeys.forgot_password.tr(),
-
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size_26_w),
         child: Column(
@@ -67,10 +67,11 @@ class _ForgotPassContentState extends LifecycleState<_ForgotPasswordContentPage>
             ),
             buildSizeBox(),
             OutlineTextFormField(
+              keyboardType: TextInputType.emailAddress,
               onChanged: (value) => forgotPassViewModel.onChangeEmail(value),
               hintText: LocaleKeys.email_address.tr(),
               validator: (value) => forgotPassViewModel.invalidEmail(value),
-              onFieldSubmitted: (_) => forgotPassViewModel.submit(),
+              onFieldSubmitted: (_) => forgotPassViewModel.submit(context),
             ),
             buildSizeBox(),
             Consumer<ForgotPassViewModel>(
@@ -78,7 +79,7 @@ class _ForgotPassContentState extends LifecycleState<_ForgotPasswordContentPage>
                 return FilledButton(
                   enable: forgotPassViewModel.validate,
                   text: LocaleKeys.txt_continue.tr(),
-                  onPress: () => forgotPassViewModel.submit(),
+                  onPress: () => forgotPassViewModel.submit(context),
                 );
               },
             )

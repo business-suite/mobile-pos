@@ -132,7 +132,7 @@ class _CashInOutPageState extends State<CashInOutPage> {
                   padding: EdgeInsets.only(right: size_80_w),
                   alignment: Alignment.topRight,
                   child: Text(
-                    LocaleKeys.$,
+                    LocaleKeys.dollars.tr(),
                     style: TextStyle(
                       fontSize: text_16,
                       color: kColor555555,

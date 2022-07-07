@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:business_suite_mobile_pos/app/module/common/toast_util.dart';
-import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,36 +7,41 @@ import 'package:flutter/cupertino.dart';
 import '../../di/injection.dart';
 import '../../module/common/extension.dart';
 import '../../module/common/navigator_screen.dart';
+import '../../module/common/toast_util.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
 import '../../module/network/response/login_response.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
 import '../home/detail_shop/detail_shop.dart';
+import '../home/home_page.dart';
+import '../sign_in/sign_in_page.dart';
 import '../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 
-class ForgotPassViewModel extends BaseViewModel {
+class AuthenticationViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   late LoginResponse _response;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   final emailFC = FocusNode();
-  String email = '';
+  String authenCode = '';
   final subList = <StreamSubscription>[];
+  bool dontAskAgain = false;
 
-  ForgotPassViewModel(this._dataRepo);
 
-  bool get validate => Utils.isEmail(email.trim());
+  AuthenticationViewModel(this._dataRepo);
 
-  onChangeEmail(String value){
-    this.email = value;
+  bool get validate => authenCode.isNotEmpty && authenCode.length <= 6;
+
+  onChangeAuthenCode(String value){
+    this.authenCode = value;
     validate;
     notifyListeners();
   }
 
 
-  String? invalidEmail(String? value) {
-    return value == null || !Utils.isEmail(value.trim())
-        ? LocaleKeys.invalid_email.tr()
+  String? invalidAuthenCode(String? value) {
+    return value == null || !validate
+        ? LocaleKeys.invalid_authen_code.tr()
         : null;
   }
 
@@ -65,6 +68,11 @@ class ForgotPassViewModel extends BaseViewModel {
         : null;
   }
 
+  void changeDontAskAgain() {
+    dontAskAgain = !dontAskAgain;
+    notifyListeners();
+  }
+
   set response(LoginResponse response) {
     _response = response;
     notifyListeners();
@@ -82,8 +90,11 @@ class ForgotPassViewModel extends BaseViewModel {
       Duration(milliseconds: 3000),
           () {
         EasyLoading.dismiss();
-        ToastUtil.showToast(LocaleKeys.sent_email_reset.tr());
-        _navigationService.pushReplacementScreenWithFade(SignInPage());
+        if(validate && authenCode == "123456") {
+          _navigationService.pushReplacementScreenWithSlideRightIn(HomePage());
+          _userSharePref.setIsLogin(true);
+        } else ToastUtil.showToast(LocaleKeys.authentication_failed_please_try_again.tr());
+
       },
     );
   }
