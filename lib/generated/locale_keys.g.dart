@@ -25,6 +25,7 @@ abstract class  LocaleKeys {
   static const cancel = 'cancel';
   static const confirm = 'confirm';
   static const $ = '\$';
+  static const Select_either_Cash_In_or_Cash_Out_before_confirming = 'Select_either_Cash_In_or_Cash_Out_before_confirming.';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';
   static const tab_inventory = 'tab_inventory';

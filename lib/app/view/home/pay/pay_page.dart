@@ -357,16 +357,12 @@ class _PayContentState extends State<PayContent> {
                           child: FlatButton(
                             color: Colors.white,
                             onPressed: () {},
-                            child: Padding(
-                              padding:
-                                  EdgeInsets.symmetric(vertical: size_25_w),
-                              child: Center(
-                                child: Text(
-                                  LocaleKeys.validate.tr(),
-                                  style: TextStyle(
-                                    fontSize: text_24,
-                                    color: kColor6EC89B,
-                                  ),
+                            child: Center(
+                              child: Text(
+                                LocaleKeys.validate.tr(),
+                                style: TextStyle(
+                                  fontSize: text_24,
+                                  color: kColor6EC89B,
                                 ),
                               ),
                             ),
@@ -380,15 +376,12 @@ class _PayContentState extends State<PayContent> {
                           onPressed: () {
                             // Navigator.push(context, MaterialPageRoute(builder: (context)=> Item()));
                           },
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: size_25_w),
-                            child: Center(
-                              child: Text(
-                                LocaleKeys.review.tr(),
-                                style: TextStyle(
-                                  fontSize: text_24,
-                                  color: kColor6EC89B,
-                                ),
+                          child: Center(
+                            child: Text(
+                              LocaleKeys.review.tr(),
+                              style: TextStyle(
+                                fontSize: text_24,
+                                color: kColor6EC89B,
                               ),
                             ),
                           ),

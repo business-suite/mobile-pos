@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../di/injection.dart';
+import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 
 class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
@@ -56,7 +58,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                     padding: EdgeInsets.only(left: size_10_w),
                     child: InkWell(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>CashInOutPage()));
+                        getIt<NavigationService>().pushScreenWithFade(CashInOutPage());
                       },
                       child: Text(
                         LocaleKeys.cash_in_out.tr(),

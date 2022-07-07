@@ -1,13 +1,14 @@
-import 'package:bouncing_widget/bouncing_widget.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../di/injection.dart';
+import '../../../../module/common/extension.dart';
 import '../../../../module/common/navigator_screen.dart';
 import '../../../../module/res/colors.dart';
 import '../../../../module/res/dimens.dart';
-import '../../../../module/res/string.dart';
 import '../../../../module/res/text.dart';
 
 void acceptScoreInputDialog() {
@@ -16,6 +17,7 @@ void acceptScoreInputDialog() {
   showDialog(
       context: context,
       builder: (BuildContext builderContext) {
+        removeFocus(context);
         return CashInOutPage();
       });
 }
@@ -28,22 +30,30 @@ class CashInOutPage extends StatefulWidget {
 }
 
 class _CashInOutPageState extends State<CashInOutPage> {
-  bool cashIn = false;
-  bool cashOut = false;
+  TextEditingController _reasonController = new TextEditingController();
+  var _reasonErr = LocaleKeys.Select_either_Cash_In_or_Cash_Out_before_confirming.tr();
+  var _reasonInvalid = false;
+
+  int index = -1; //index: 0: cash in, 1: cash out, -1: none
+
   @override
   void initState() {
     super.initState();
   }
-  switchColor() {
-    setState((){
-      cashIn = !cashIn;
 
+  changeFocusCash(int index) {
+    setState(() {
+      this.index = index;
     });
   }
 
-  switchCashOut(){
-    setState((){
-      cashOut = !cashOut;
+  ReasonOnclick() {
+    setState(() {
+      if (_reasonController.text.length < 6) {
+        _reasonInvalid = true;
+      } else {
+        _reasonInvalid = false;
+      }
     });
   }
 
@@ -56,7 +66,7 @@ class _CashInOutPageState extends State<CashInOutPage> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: kColorBackground,
+              color: kColorE0E0E0,
               borderRadius: BorderRadius.circular(size_10_w),
             ),
             margin: EdgeInsets.symmetric(
@@ -71,70 +81,49 @@ class _CashInOutPageState extends State<CashInOutPage> {
                 SizedBox(
                   height: size_5_w,
                 ),
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        switchColor();
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(color: cashIn ? Color(0xFF64AF8A):Color(0xFFCACACA)),
-                        padding: EdgeInsets.only(left: size_5_w),
-                        height: size_50_w,
-                        width: size_85_w,
-                        child: Center(
-                          child: Text(
-                            LocaleKeys.cash_in.tr(),
-                            style: TextStyle(
-                              fontSize: text_12,
-                              color: kColor555555,
-                            ),
-                          ),
-                        ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, size_2_w, 0, size_2_w),
+                  child: Row(
+                    children: [
+                      _buildBtnCash(LocaleKeys.cash_in.tr(), 0),
+                      SizedBox(
+                        width: size_5_w,
                       ),
-                    ),
-                    Ink(
-                      child: InkWell(
-                        onTap: (){
-                       print('kieuthang');
-                        },
+                      _buildBtnCash(LocaleKeys.cash_out.tr(), 1),
+                      SizedBox(
+                        width: size_5_w,
+                      ),
+                      Expanded(
+                        flex: 1,
                         child: Container(
-                          decoration: BoxDecoration(color: cashOut ? Color(0xFF64AF8A):Color(0xFFCACACA)),
-                          padding: EdgeInsets.only(left: size_5_w),
                           height: size_50_w,
-                          width: size_85_w,
-                          child: FlatButton(
-                            onPressed: () {},
-                            child: Text(
-                              LocaleKeys.cash_out.tr(),
-                              style: TextStyle(
-                                fontSize: text_12,
-                                color: kColor555555,
+                          child: Material(
+                            color: kColorf0eeee,
+                            child: TextField(
+                              minLines: 1,
+                              maxLines: 2,
+                              cursorHeight: size_25_w,
+                              cursorColor: Colors.black87,
+                              textAlign: TextAlign.right,
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: kColorf0eeee, width: 0.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: kColor64AF8A, width: size_2_w,),
+                                ),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(size_6_r),
+                                    ),
                               ),
                             ),
-                            color: kColorCACACA,
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: kColorf0eeee,
-                            borderRadius: BorderRadius.circular(size_10_r)),
-                        padding: EdgeInsets.symmetric(horizontal: size_2_w),
-                        height: size_50_w,
-                        width: size_160_w,
-                        child: TextField(
-                          textAlign: TextAlign.right,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: size_5_h,
@@ -153,14 +142,33 @@ class _CashInOutPageState extends State<CashInOutPage> {
                 SizedBox(
                   height: size_15_h,
                 ),
-                TextField(
-                  minLines: 1,
-                  maxLines: 3,
-                  textInputAction: TextInputAction.newline,
-                  keyboardType: TextInputType.multiline,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Reason'
+                Material(
+                  color: kColorf0eeee,
+                  child: TextField(
+                    cursorHeight: size_25_w,
+                    cursorColor: Colors.black87,
+                    controller: _reasonController,
+
+                    minLines: 2,
+                    maxLines: 3,
+                    textInputAction: TextInputAction.newline,
+                    keyboardType: TextInputType.multiline,
+                    decoration:  InputDecoration(
+                      errorText: _reasonInvalid ? _reasonErr : null,
+                      focusColor: kColorf0eeee,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color: kColorf0eeee, width: 0.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color: kColor64AF8A, width: size_2_w),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(size_6_r),
+                      ),
+                      hintText: 'Reason'
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -173,50 +181,105 @@ class _CashInOutPageState extends State<CashInOutPage> {
                 SizedBox(
                   height: size_15_h,
                 ),
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.end,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(size_1_w)),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: size_1_w, vertical: size_1_w),
+                      child: Container(
+                        height: size_50_w,
+                        width: size_100_w,
+                        child: FlatButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            LocaleKeys.cancel.tr(),
+                            style: TextStyle(
+                              fontSize: text_12,
+                              color: kColor555555,
+                            ),
+                          ),
+                          color: kColorE4E2E2,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: size_5_w,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(size_1_w)),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: size_1_w, vertical: size_1_w),
+                      child: Container(
+                        height: size_50_w,
+                        width: size_100_w,
+                        child: FlatButton(
+                          onPressed: () {
+                            if(_reasonInvalid == false ){
+                              _reasonErr;
+                            }else{
+                              Navigator.pop(context);
+                            }
 
-                 children: [
-                   Container(
-                     padding: EdgeInsets.only(left: size_5_w),
-                     height: size_50_w,
-                     width: size_100_w,
-                     child: FlatButton(
-                       onPressed: () {
-                         Navigator.pop(context);
-                       },
-                       child: Text(
-                         LocaleKeys.cancel.tr(),
-                         style: TextStyle(
-                           fontSize: text_12,
-                           color: kColor555555,
-                         ),
-                       ),
-                       color: kColorCACACA,
-                     ),
-                   ),
-                   Container(
-                     padding: EdgeInsets.only(left: size_5_w),
-                     height: size_50_w,
-                     width: size_100_w,
-                     child: FlatButton(
-                       onPressed: () {},
-                       child: Text(
-                         LocaleKeys.confirm.tr(),
-                         style: TextStyle(
-                           fontSize: text_12,
-                           color: kColor555555,
-                         ),
-                       ),
-                       color: kColorCACACA,
-                     ),
-                   ),
-                 ],
-               )
+                            //TO DO: Logic confirm
+                              ReasonOnclick();
+
+                          },
+                          child: Text(
+                            LocaleKeys.confirm.tr(),
+                            style: TextStyle(
+                              fontSize: text_12,
+                              color: kColor555555,
+                            ),
+                          ),
+                          color: kColorE4E2E2,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildBtnCash(String title, int indexSelect) {
+    return Ink(
+      child: InkWell(
+        onTap: () => changeFocusCash(indexSelect),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(size_3_w)),
+          padding:
+              EdgeInsets.symmetric(horizontal: size_1_w, vertical: size_1_w),
+          child: Container(
+            color: index == indexSelect ? kColor64AF8A : kColorE4E2E2,
+            height: size_50_w,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: size_12_w),
+              child: Center(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: text_12,
+                    color: kColor555555,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
