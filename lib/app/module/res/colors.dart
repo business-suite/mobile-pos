@@ -98,6 +98,7 @@ const kColor7F82AC = Color(0xFF7F82AC);
 const kColorBackground = Color(0xFFF0EEEE);
 const kColorf0eeee = Color(0xFFf0eeee);
 const kColorE2E2E2 = Color(0xFFE2E2E2);
+const kColor626482 = Color(0xFF626482);
 const kColor555555 = Color(0xFF555555);
 const kColorBFBFBF = Color(0xFFBFBFBF);
 const kColor43996E = Color(0xFF43996E);
@@ -105,7 +106,13 @@ const kColor6EC89B = Color(0xFF6EC89B);
 const kColorCACACA = Color(0xFFCACACA);
 const kColorDDDDDD = Color(0xFFDDDDDD);
 const kColor64AF8A = Color(0xFF64AF8A);
+<<<<<<< Updated upstream
 const kColorC8C8C8 = Color(0xFFC8C8C8);
 const kColorE4E2E2 = Color(0xFFE4E2E2);
 const kColorE0E0E0 = Color(0xFFE0E0E0);
 const kColorA8A8A8 = Color(0xFFA8A8A8);
+=======
+const kColor565656 = Color(0xFF565656);
+const kColor755555 = Color(0xFF755555);
+const kColor9E7659 = Color(0xFF9E7659);
+>>>>>>> Stashed changes

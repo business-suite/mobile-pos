@@ -18,6 +18,7 @@ class ReviewViewModel extends BaseViewModel {
 
 
   final computers = [
+    KeyBoard(number: 'Customer'),
     KeyBoard(number: '1'),
     KeyBoard(number: '2'),
     KeyBoard(number: '3'),
@@ -29,7 +30,7 @@ class ReviewViewModel extends BaseViewModel {
     KeyBoard(number: '7'),
     KeyBoard(number: '8'),
     KeyBoard(number: '9'),
-    KeyBoard(number: 'Prince',sizeStyle: SizeStyle.SMALL),
+    KeyBoard(number: 'Price',sizeStyle: SizeStyle.SMALL),
     KeyBoard(number: '+/-'),
     KeyBoard(number: '0'),
     KeyBoard(number: '.'),
