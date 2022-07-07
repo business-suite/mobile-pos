@@ -16,10 +16,16 @@ abstract class  LocaleKeys {
   static const bank = 'bank';
   static const customer_account = 'customer_account';
   static const customer = 'customer';
+  static const info = 'info';
+  static const this_order_is_empty = 'This order is empty';
+  static const quotation_order = 'quotation_order';
+  static const refund = 'refund';
+  static const back = 'back';
   static const invoice = 'invoice';
   static const validate = 'validate';
   static const review = 'review';
   static const pay = 'pay';
+  static const payment = 'payment';
   static const cash_in = 'cash_in';
   static const cash_out = 'cash_out';
   static const cancel = 'cancel';

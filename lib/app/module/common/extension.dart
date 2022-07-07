@@ -159,7 +159,7 @@ Future<String> getDeviceID() async {
 
 extension ContextEx on BuildContext {
   void hideKeyboardIfShowed() {
-    if (WidgetsBinding.instance!.window.viewInsets.bottom > 0.0) {
+    if (WidgetsBinding.instance.window.viewInsets.bottom > 0.0) {
       FocusManager.instance.primaryFocus?.unfocus();
     }
   }

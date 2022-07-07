@@ -172,7 +172,9 @@ class _DetailShopState extends State<_DetailShopContent> {
                         height: size_100_w,
                         child: FlatButton(
                           color: Colors.white,
-                          onPressed: () {},
+                          onPressed: () {
+                            value.openReviewPage();
+                          },
                           child: Padding(
                             padding: EdgeInsets.only(top: size_20_w),
                             child: Column(
