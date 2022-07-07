@@ -31,7 +31,7 @@ class CashInOutPage extends StatefulWidget {
 
 class _CashInOutPageState extends State<CashInOutPage> {
   TextEditingController _reasonController = new TextEditingController();
-  var _reasonErr = LocaleKeys.Select_either_Cash_In_or_Cash_Out_before_confirming.tr();
+  var _reasonErr = LocaleKeys.select_either_cash_in_or_cash_out_before_confirming.tr();
   var _reasonInvalid = false;
 
   int index = -1; //index: 0: cash in, 1: cash out, -1: none

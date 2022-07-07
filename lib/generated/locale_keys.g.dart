@@ -17,7 +17,6 @@ abstract class  LocaleKeys {
   static const customer_account = 'customer_account';
   static const customer = 'customer';
   static const info = 'info';
-  static const this_order_is_empty = 'This order is empty';
   static const quotation_order = 'quotation_order';
   static const refund = 'refund';
   static const back = 'back';
@@ -31,7 +30,8 @@ abstract class  LocaleKeys {
   static const cancel = 'cancel';
   static const confirm = 'confirm';
   static const $ = '\$';
-  static const Select_either_Cash_In_or_Cash_Out_before_confirming = 'Select_either_Cash_In_or_Cash_Out_before_confirming.';
+  static const select_either_cash_in_or_cash_out_before_confirming = 'select_either_cash_in_or_cash_out_before_confirming';
+  static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';
   static const tab_inventory = 'tab_inventory';
