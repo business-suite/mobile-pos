@@ -69,6 +69,13 @@ class NavigationService {
     );
   }
 
+  //push with anim fade
+  Future<dynamic>? pushScreenWithSlideLeftRight(Widget widget) {
+    return navigatorKey.currentState?.push(
+      PageTransition(type: PageTransitionType.rightToLeft, child: widget),
+    );
+  }
+
   //push no anim
   Future<dynamic>? pushScreenNoAnim(Widget widget) {
     return navigatorKey.currentState?.push(

@@ -26,13 +26,12 @@ class IntroViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-
   void gotoSignIn() {
-   // _navigationService.pushEnterFadeExitDown(SignInPage());
-    _navigationService.pushEnterFadeExitDown(DetailShopPage());
-
+    // _navigationService.pushEnterFadeExitDown(SignInPage());
+    _navigationService.pushScreenNoAnim(DetailShopPage());
   }
 
-  void gotoSignUp() {_navigationService.pushEnterFadeExitDown(SignUpPage());
+  void gotoSignUp() {
+    _navigationService.pushScreenNoAnim(SignUpPage());
   }
 }

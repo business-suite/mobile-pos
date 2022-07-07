@@ -1,8 +1,12 @@
-import 'package:dio/dio.dart';
-import 'package:rxdart/rxdart.dart';
+import 'dart:async';
 
+import 'package:business_suite_mobile_pos/app/view/forgot_pass/forgot_pass_page.dart';
+import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../di/injection.dart';
+import '../../module/common/extension.dart';
 import '../../module/common/navigator_screen.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
 import '../../module/network/response/login_response.dart';
@@ -15,8 +19,56 @@ class SignInViewModel extends BaseViewModel {
   late LoginResponse _response;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
+  final emailFC = FocusNode();
+  final passwordFC = FocusNode();
+  String email = '';
+  String password = '';
 
   SignInViewModel(this._dataRepo);
+
+  bool get validate => Utils.isEmail(email.trim()) && password.isNotEmpty && password.length > 5;
+
+  onChangeEmail(String value){
+    this.email = value;
+    validate;
+    notifyListeners();
+  }
+
+  onChangePassword(String value){
+    this.password = value;
+    validate;
+    notifyListeners();
+  }
+
+
+  String? invalidEmail(String? value) {
+    return value == null || !Utils.isEmail(value.trim())
+        ? LocaleKeys.invalid_email.tr()
+        : null;
+  }
+
+  String? passwordValidator(String? value, String fieldName) {
+    return requiredField(value, fieldName) ??
+        minimum6Characters(value ?? '', fieldName);
+  }
+
+  String? minimum6Characters(String value, String fieldName) => value.length < 6
+      ? LocaleKeys.msg_is_at_least_6_characters.tr(
+          namedArgs: {
+            'field': fieldName,
+          },
+        )
+      : null;
+
+  String? requiredField(String? value, String fieldName) {
+    return value == null || value.isEmpty
+        ? LocaleKeys.msg_is_required.tr(
+            namedArgs: {
+              'field': fieldName,
+            },
+          )
+        : null;
+  }
 
   set response(LoginResponse response) {
     _response = response;
@@ -26,6 +78,14 @@ class SignInViewModel extends BaseViewModel {
   LoginResponse get response => _response;
 
   setloginType(int loginType) => _userSharePref.saveLoginType(loginType);
+
+  void signIn() async {
+
+  }
+
+  void gotoForgotPassPage() async {
+    _navigationService.pushScreenWithSlideLeftRight(ForgotPasswordPage());
+  }
 
   /*Observable sign_in(Map<String, dynamic> params) => _dataRepo
       .sign_in(params)
@@ -44,7 +104,7 @@ class SignInViewModel extends BaseViewModel {
     Map<String, dynamic> params = new Map<String, dynamic>();
     params.putIfAbsent('login_type', () => 1);
     params.putIfAbsent('twitter_id', () => twitterId);
-    _navigationService.pushReplacementScreenWithFade(DetailShopPage());
+    _navigationService.pushScreenWithFade(DetailShopPage());
     /*final subscript = this.sign_in(params).listen((_) {
       if (response.success) {
         _userSharePref.saveUser(response);
@@ -64,13 +124,10 @@ class SignInViewModel extends BaseViewModel {
     this.addSubscription(subscript);*/
   }
 
-
-  Future<void> signOut() async{
+  Future<void> signOut() async {
     // _userSharePref.saveUser(null);
     // _userSharePref.saveTwitterId(null);
     // _userSharePref.saveAppToken(null);
     // _userSharePref.saveFirebaseToken(null);
   }
-
-
 }

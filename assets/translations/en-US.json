@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
  {
    "on_boarding_title_1": "Phần mềm ưu việt",
    "on_boarding_title_2": "Không còn nỗi lo tích hợp",
@@ -39,6 +40,28 @@
 
 
 
+=======
+{
+  "on_boarding_title_1": "Phần mềm ưu việt",
+  "on_boarding_title_2": "Không còn nỗi lo tích hợp",
+  "on_boarding_title_3": "Định hướng giá trị riêng biệt",
+  "on_boarding_desc_1": "Vận hành doanh nghiệp chỉ cần một nền tảng duy nhất.",
+  "on_boarding_desc_2": "Ứng dụng được tích hợp, dễ sử dụng và được hàng triệu người dùng yêu thích.",
+  "on_boarding_desc_3": "Mọi thứ bạn cần cùng với trải nghiệm người dùng đẳng cấp.",
+  "on_boarding_btn_get_started": "GET STARTED",
+  "on_boarding_btn_already_have_an_account": "I ALREADY HAVE AN ACCOUNT",
+  "cash_in_out": "Cash In/Out",
+  "chairs": "Chairs",
+  "please_select_a_payment_method": "Please select a payment method.",
+  "cash": "Cash",
+  "bank": "Bank",
+  "customer_account": "Customer Account",
+  "customer": "Customer",
+  "invoice": "Invoice",
+  "validate": "Validate",
+  "review": "Review",
+  "pay": "Pay",
+>>>>>>> Stashed changes
   "tab_home": "Home",
   "tab_cloud_pos": "CloudPOS",
   "tab_inventory": "Inventory",
@@ -115,5 +138,19 @@
   "product_reminder": "Reminder",
   "product_checked": "Checked",
   "product_unchecked": "Unchecked",
-  "product_relate_product": "Related Products"
+  "product_relate_product": "Related Products",
+
+
+
+  "sign_in": "Sign in",
+  "email": "Email",
+  "password": "Password",
+  "forgot_password_question": "Forgot Password?",
+  "invalid_email": "Invalid email",
+  "msg_is_at_least_6_characters": "{field} is at least 6 characters",
+  "msg_is_required": "{field} is required",
+  "forgot_password": "Forgot Password",
+  "msg_instruction": "You need to enter your register email address.\nWe will send the recovery code to your email.",
+  "email_address": "Email Address",
+  "txt_continue": "CONTINUE"
 }

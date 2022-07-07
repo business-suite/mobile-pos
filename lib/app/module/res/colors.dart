@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 const kCWhite = Colors.white;
 const kCBlue = Colors.blue;
-const kCBlue79Disable = Color(0xFF7fa7ff);
-const kCBlue79 = Color(0xFF004fff);
 const kCBlue191 = Color(0xFFbfccec);
 const kCGrey136 = Color(0xFF888892);
 const kCGrey165 = Color(0xFFA5A4A6);
@@ -104,6 +102,7 @@ const kColorBFBFBF = Color(0xFFBFBFBF);
 const kColor43996E = Color(0xFF43996E);
 const kColor6EC89B = Color(0xFF6EC89B);
 const kColorCACACA = Color(0xFFCACACA);
+<<<<<<< Updated upstream
 const kColorDDDDDD = Color(0xFFDDDDDD);
 const kColor64AF8A = Color(0xFF64AF8A);
 <<<<<<< Updated upstream
@@ -115,4 +114,10 @@ const kColorA8A8A8 = Color(0xFFA8A8A8);
 const kColor565656 = Color(0xFF565656);
 const kColor755555 = Color(0xFF755555);
 const kColor9E7659 = Color(0xFF9E7659);
+>>>>>>> Stashed changes
+=======
+const kColor89000000 = Color(0x89000000);
+
+const kColorPrimary = Color(0xFF35979c);
+const kColorPrimaryDisable = Color(0xff86c9cd);
 >>>>>>> Stashed changes

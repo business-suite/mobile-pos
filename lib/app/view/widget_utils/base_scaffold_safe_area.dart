@@ -41,7 +41,7 @@ class BaseScaffoldSafeArea extends StatelessWidget {
     void _onBackPress() {
       Navigator.of(context).pop();
     }
-    SystemUtils.setupStatusBar(0.2);
+    //SystemUtils.setupStatusBar(0.2);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: customAppBar ??
@@ -74,7 +74,7 @@ class BaseScaffoldSafeArea extends StatelessWidget {
                 : IconButton(
                     icon: Icon(
                       CupertinoIcons.back,
-                      color: kCBlue79,
+                      color: kColorPrimary,
                     ),
                     onPressed: onBackPress ?? _onBackPress,
                   ),

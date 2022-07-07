@@ -1,5 +1,6 @@
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:business_suite_mobile_pos/app/view/intro/intro_page.dart';
+import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
 
 import '../../di/injection.dart';
 import '../../module/common/config.dart';
@@ -23,7 +24,7 @@ class SplashViewModel extends BaseViewModel {
         if (_userSharePref.isLogin())
           _navigationService.pushReplacementScreenWithFade(HomePage());
         else
-          _navigationService.pushReplacementScreenWithFade(DetailShopPage());
+          _navigationService.pushReplacementScreenWithFade(SignInPage());
       },
     );
   }

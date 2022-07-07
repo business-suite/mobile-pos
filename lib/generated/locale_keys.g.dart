@@ -109,5 +109,16 @@ abstract class  LocaleKeys {
   static const product_checked = 'product_checked';
   static const product_unchecked = 'product_unchecked';
   static const product_relate_product = 'product_relate_product';
+  static const sign_in = 'sign_in';
+  static const email = 'email';
+  static const password = 'password';
+  static const forgot_password_question = 'forgot_password_question';
+  static const invalid_email = 'invalid_email';
+  static const msg_is_at_least_6_characters = 'msg_is_at_least_6_characters';
+  static const msg_is_required = 'msg_is_required';
+  static const forgot_password = 'forgot_password';
+  static const msg_instruction = 'msg_instruction';
+  static const email_address = 'email_address';
+  static const txt_continue = 'txt_continue';
 
 }
