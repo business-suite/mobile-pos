@@ -148,7 +148,6 @@ class _CashInOutPageState extends State<CashInOutPage> {
                     cursorHeight: size_25_w,
                     cursorColor: Colors.black87,
                     controller: _reasonController,
-
                     minLines: 2,
                     maxLines: 3,
                     textInputAction: TextInputAction.newline,
@@ -227,7 +226,6 @@ class _CashInOutPageState extends State<CashInOutPage> {
                             }else{
                               Navigator.pop(context);
                             }
-
                             //TO DO: Logic confirm
                               ReasonOnclick();
 
