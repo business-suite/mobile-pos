@@ -45,6 +45,7 @@ class _ReviewContentState extends State<ReviewContent> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    //appbar
     return BaseScaffoldSafeArea(
       backgroundColor: kColorf0eeee,
       customAppBar: AppBarShop(
@@ -55,34 +56,45 @@ class _ReviewContentState extends State<ReviewContent> {
         return Column(
           children: <Widget>[
             //List order
-            SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.only(
-                    left: size_16_w,
-                    right: size_16_w,
-                    top: size_8_w,
-                    bottom: size_16_w),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(right: size_5_w),
-                      child: SvgPicture.asset(
-                        'assets/icons/ic_shopping_cart.svg',
-                        color: kColorDDDDDD,
-                        height: size_90_h,
-                      ),
+            Container(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: size_16_w,
+                      right: size_16_w,
+                      top: size_30_w,
+                      bottom: size_16_w),
+                  child: Container(
+                    child: Column(
+                    //  mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(bottom: size_5_w),
+                          child: SvgPicture.asset(
+                            'assets/icons/ic_shopping_cart.svg',
+                            color: kColorDDDDDD,
+                            height: size_90_w,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(bottom: size_5_w),
+                          child: Padding(
+                            padding: EdgeInsets.only(right: size_10_w),
+                            child: Text(
+                              LocaleKeys.this_order_is_empty.tr(),
+                              style:
+                                  TextStyle(color: kColorDDDDDD, fontSize: text_20),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: size_10_w),
-                      child: Text(
-                        LocaleKeys.this_order_is_empty.tr(),
-                        style:
-                            TextStyle(color: kColorDDDDDD, fontSize: text_20),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 110,
             ),
             //Keyboard
             Container(
@@ -110,7 +122,8 @@ class _ReviewContentState extends State<ReviewContent> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: size_10_w),
+                                padding:
+                                    EdgeInsets.symmetric(vertical: size_10_w),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
@@ -118,13 +131,15 @@ class _ReviewContentState extends State<ReviewContent> {
                                     Icon(
                                       Icons.info_outlined,
                                       size: size_20_w,
-                                      color: Colors.grey,
+                                      color: kColor555555,
                                     ),
-                                    SizedBox(width: size_6_w,),
+                                    SizedBox(
+                                      width: size_6_w,
+                                    ),
                                     Text(
                                       LocaleKeys.info.tr(),
                                       style: TextStyle(
-                                        color: Colors.grey,
+                                        color: kColor555555,
                                         fontSize: text_20,
                                       ),
                                     ), // text
@@ -147,21 +162,24 @@ class _ReviewContentState extends State<ReviewContent> {
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: size_10_w),
+                                padding:
+                                    EdgeInsets.symmetric(vertical: size_10_w),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Icon(
                                       Icons.refresh,
                                       size: size_20_w,
-                                      color: Colors.grey,
+                                        color: kColor555555,
                                     ),
-                                    SizedBox(width: size_6_w,),
+                                    SizedBox(
+                                      width: size_6_w,
+                                    ),
                                     // icon
                                     Text(
                                       LocaleKeys.refund.tr(),
                                       style: TextStyle(
-                                        color: Colors.grey,
+                                        color: kColor555555,
                                         fontSize: text_20,
                                       ),
                                     ), // text
@@ -212,58 +230,282 @@ class _ReviewContentState extends State<ReviewContent> {
 
                     //smallkeybroad
                     Expanded(
-                      child: CustomCard(
-                        borderRadiusValue: 0,
-                        shadow: Shadow.none,
-                        padding: EdgeInsets.zero,
-                        backgroundColor: kColorBFBFBF,
-                        child: StaggeredGrid.count(
-                          crossAxisCount: 5,
-                          mainAxisSpacing: 5,
-                          crossAxisSpacing: 4,
-                          children:  [
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 2,
-                              mainAxisCellCount: 1,
-                              child:  ItemReviewKeyBoard(
-                                                 item: value.computers[0],
-                                                 onClickItem: () => value.onClickItem,
-                                               ),
-                            ),
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: ItemReviewKeyBoard(
-                                item: value.computers[1],
-                                onClickItem: () => value.onClickItem,
-                              ),
-                            ),
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: ItemReviewKeyBoard(
-                                item: value.computers[2],
-                                onClickItem: () => value.onClickItem,
-                              ),
-                            ),
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: ItemReviewKeyBoard(
-                                item: value.computers[3],
-                                onClickItem: () => value.onClickItem,
-                              ),
-                            ),
-                            StaggeredGridTile.count(
-                              crossAxisCellCount: 1,
-                              mainAxisCellCount: 1,
-                              child: ItemReviewKeyBoard(
-                                item: value.computers[4],
-                                onClickItem: () => value.onClickItem,
-                              ),
-                            ),
-                          ],
-                        )
+                      child:Padding(
+                        padding: EdgeInsets.all(size_15_r),
+                        child: CustomCard(
+                            borderRadiusValue: 0,
+                            shadow: Shadow.none,
+                            padding: EdgeInsets.all(size_1_r),
+                            backgroundColor: kColorBFBFBF,
+                            child: StaggeredGrid.count(
+                              crossAxisCount: 6,
+                              mainAxisSpacing: 1,
+                              crossAxisSpacing: 1,
+                              children: [
+                                //customer
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 2,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[0],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+                                //1
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[1],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+                                //2
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[2],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+                                //3
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[3],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+                                //Qty
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[4],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //payment chiếm 2 hàng 2 cột
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 2,
+                                  mainAxisCellCount: 2,
+                                  child: Ink(
+                                    child: InkWell(
+                                      onTap: () => value.onClickItem,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: kColorE2E2E2),
+                                        child: SizedBox(
+                                          width: size.width / 2,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              ClipOval(
+                                                child: Material(
+                                                  color: kColor565656,
+                                                  child: InkWell(
+                                                    onTap: () {},
+                                                    child: SizedBox(
+                                                      width: size_56_w,
+                                                      height: size_56_w,
+                                                      child: Icon(
+                                                        Icons.arrow_forward_ios,
+                                                        color: kCWhite,
+                                                        size: size_36_w,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ), // icon
+                                              Text(
+                                                LocaleKeys.payment.tr(),
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: kColor555555,
+                                                  fontSize: text_15,
+                                                ),
+                                              ), // text
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                //4
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[5],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //5
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[6],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //6
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[7],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //Disc
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[8],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //7
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[9],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //8
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[10],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //9
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[11],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //Price
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[12],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //back and icon
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 2,
+                                  mainAxisCellCount: 1,
+                                  child: Ink(
+                                    child: InkWell(
+                                      onTap: ()=>  Navigator.of(context).pop(),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: kColorE2E2E2),
+                                        child: SizedBox(
+                                          width: size.width / 2,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.keyboard_double_arrow_left,
+                                                color: kColor626482,
+                                                size: size_15_w,
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  getIt<NavigationService>()
+                                                      .pushScreenWithSlideUp(
+                                                      HomePage());
+                                                },
+                                                child: Text(
+                                                  LocaleKeys.back.tr(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kColor555555,
+                                                    fontSize: text_15,
+                                                  ),
+                                                ),
+                                              ), // text
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                //+/-
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[13],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //0
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[14],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //.
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[15],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+                                //clear x
+                                StaggeredGridTile.count(
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 1,
+                                  child: ItemReviewKeyBoard(
+                                    item: value.computers[16],
+                                    onClickItem: () => value.onClickItem,
+                                  ),
+                                ),
+
+
+                              ],
+                            ))),
                       ),
                       // child: Padding(
                       //   padding: EdgeInsets.only(bottom: size_10_h),
@@ -449,7 +691,6 @@ class _ReviewContentState extends State<ReviewContent> {
                       //     ),
                       //   ),
                       // ),
-                    ),
                   ],
                 ),
               ),

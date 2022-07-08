@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_shop.dart';
 import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
 import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -59,7 +60,7 @@ class _AppState extends State<App> {
         //hide badge debug
         debugShowCheckedModeBanner: false,
        // home: SplashPage(),
-       home: ValidatePage(),
+       home: ReviewPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

@@ -18,7 +18,7 @@ class ReviewViewModel extends BaseViewModel {
 
 
   final computers = [
-    KeyBoard(number: 'Customer'),
+    KeyBoard(number: 'Customer',sizeStyle: SizeStyle.SMALL),
     KeyBoard(number: '1'),
     KeyBoard(number: '2'),
     KeyBoard(number: '3'),
