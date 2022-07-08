@@ -9,7 +9,7 @@ const int WRITE_TIMEOUT = 30000;
 const int READ_TIMEOUT = 30000;
 
 //time navigate to sign_in page
-const int DELAY_SPLASH_PAGE = 300;
+const int DELAY_SPLASH_PAGE = 500;
 
 //get image url
 String getImageUrl(String path) => path;
@@ -85,7 +85,7 @@ const String API_INTRODUCTION_POST = '/mypage/introduction';
 const String URL_TERMS_OF_SERVICE =
     'https://docs.google.com/document/d/1rBVXIJD26e_YLSDU4gV_y1HAxVjpT3yD67GaQzrHbBM/edit?usp=sharing';
 
-// privacy policy URL
+// privacy dontAskAgain URL
 const String URL_PRIVACY_POLICY =
     'https://docs.google.com/document/d/1L-scSpxvizttDtdEFbtL0r-DB95lpHShgLCR_gCMD48/edit';
 

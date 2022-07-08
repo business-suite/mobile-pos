@@ -1,8 +1,10 @@
 import 'package:business_suite_mobile_pos/app/view/widget_utils/touchable_opacity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../module/res/colors.dart';
 import '../../module/res/dimens.dart';
+import '../../module/res/style.dart';
 
 class OutlineTextFormField extends StatefulWidget {
   final String? hintText;
@@ -50,8 +52,14 @@ class _OutlineTextFormFieldState extends State<OutlineTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    final hintTextStyle = Theme.of(context).textTheme.subtitle1;
-    final textStyle = Theme.of(context).textTheme.bodyText1;
+    final hintTextStyle = Theme.of(context)
+        .textTheme
+        .bodyText1
+        ?.copyWith(fontSize: text_16, fontWeight: FontWeight.normal, color: Colors.black.withOpacity(0.6));
+    final textStyle = Theme.of(context)
+        .textTheme
+        .bodyText1
+        ?.copyWith(fontSize: text_16, fontWeight: FontWeight.normal, );
     return Stack(
       children: [
         Container(
@@ -60,8 +68,12 @@ class _OutlineTextFormFieldState extends State<OutlineTextFormField> {
             child: TextFormField(
               decoration: InputDecoration(
                 hintText: widget.hintText,
+                labelStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: kCGrey136),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: kColorPrimary),
                 ),
                 hintStyle: hintTextStyle,
                 labelText: widget.hintText,
@@ -73,12 +85,16 @@ class _OutlineTextFormFieldState extends State<OutlineTextFormField> {
                             isShowPassword = !isShowPassword;
                           });
                         },
-                        child: Image.asset('assets/images/ic_eye.png'),
+                        child: SvgPicture.asset(
+                          isShowPassword
+                              ? 'assets/icons/ic_eye.svg'
+                              : 'assets/icons/ic_eye_off.svg',
+                          width: size_22_w,
+                          height: size_22_w,
+                          color: kColor89000000,
+                        ),
                       )
-                    : Container(
-                        height: 0,
-                        width: 0,
-                      ),
+                    : null,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: size_14_h,
                   horizontal: size_10_w,

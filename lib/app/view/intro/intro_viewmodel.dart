@@ -12,7 +12,7 @@ class IntroViewModel extends BaseViewModel {
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool termOfService = false;
-  bool policy = false;
+  bool dontAskAgain = false;
 
   IntroViewModel(this._dataRepo);
 
@@ -22,17 +22,16 @@ class IntroViewModel extends BaseViewModel {
   }
 
   void changePolicy() {
-    policy = !policy;
+    dontAskAgain = !dontAskAgain;
     notifyListeners();
   }
 
-
   void gotoSignIn() {
-   // _navigationService.pushEnterFadeExitDown(SignInPage());
-    _navigationService.pushEnterFadeExitDown(DetailShopPage());
-
+    // _navigationService.pushEnterFadeExitDown(SignInPage());
+    _navigationService.pushScreenNoAnim(DetailShopPage());
   }
 
-  void gotoSignUp() {_navigationService.pushEnterFadeExitDown(SignUpPage());
+  void gotoSignUp() {
+    _navigationService.pushScreenNoAnim(SignUpPage());
   }
 }

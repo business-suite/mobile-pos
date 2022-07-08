@@ -27,7 +27,7 @@ class FilledButton extends StatelessWidget {
       child: Ink(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0.r),
-          color: !enable ? kCBlue79Disable : color ?? kCBlue79,
+          color: !enable ? kColorPrimaryDisable : color ?? kColorPrimary,
         ),
         child: Container(
           height: size_48_h,

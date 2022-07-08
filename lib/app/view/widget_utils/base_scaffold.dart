@@ -40,7 +40,7 @@ class BaseScaffold extends StatelessWidget {
     void _onBackPress() {
       Navigator.of(context).pop();
     }
-    SystemUtils.setupStatusBar(0.2);
+    //SystemUtils.setupStatusBar(0.2);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -52,7 +52,7 @@ class BaseScaffold extends StatelessWidget {
                   Text(
                     title,
                     // style: Theme.of(context).appBarTheme.titleTextStyle,
-                    style: TextStyle( fontSize: 16,
+                    style: TextStyle( fontSize: text_16,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,)
                   ),
@@ -72,7 +72,7 @@ class BaseScaffold extends StatelessWidget {
             : IconButton(
                 icon: Icon(
                   CupertinoIcons.back,
-                  color: kCBlue79,
+                  color: kColorPrimary,
                 ),
                 onPressed: onBackPress ?? _onBackPress,
               ),

@@ -75,7 +75,7 @@ class PulseWidgetState extends State<PulseWidget>
       height: radius,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: kCBlue79.withOpacity(1 - _controller.value),
+        color: kColorPrimary.withOpacity(1 - _controller.value),
       ),
     );
   }
