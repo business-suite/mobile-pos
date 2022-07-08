@@ -33,6 +33,12 @@
   "confirm": "Confirm",
   "dollars": "$",
   "select_either_cash_in_or_cash_out_before_confirming": "Select either Cash In or Cash Out before confirming.",
+  "new_order": "New Order",
+  "how_would_like_to_receive_your_receipt": "How would you like to receive your receipt?",
+  "print_receipt": "Print Receipt",
+  "email_receipt": "Email Receipt",
+
+
   "this_order_is_empty": "This order is empty",
   "tab_home": "Home",
   "tab_cloud_pos": "CloudPOS",

@@ -31,6 +31,10 @@ abstract class  LocaleKeys {
   static const confirm = 'confirm';
   static const dollars = 'dollars';
   static const select_either_cash_in_or_cash_out_before_confirming = 'select_either_cash_in_or_cash_out_before_confirming';
+  static const new_order = 'new_order';
+  static const how_would_like_to_receive_your_receipt = 'how_would_like_to_receive_your_receipt';
+  static const print_receipt = 'print_receipt';
+  static const email_receipt = 'email_receipt';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';
