@@ -228,7 +228,6 @@ class _CashInOutPageState extends State<CashInOutPage> {
                             }
                             //TO DO: Logic confirm
                               ReasonOnclick();
-
                           },
                           child: Text(
                             LocaleKeys.confirm.tr(),
