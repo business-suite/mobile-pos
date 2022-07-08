@@ -214,14 +214,18 @@ class _ReviewContentState extends State<ReviewContent> {
                                 height: size_18_w,
                               ),
                               SizedBox(width: size_6_w),
-                              Text(
-                                LocaleKeys.quotation_order.tr(),
-                                style: TextStyle(
-                                  color: kColor555555,
-                                  fontSize: text_20,
+                              InkWell(
+                                // onTap: (){
+                                //   getIt<NavigationService>().pushScreenWithSlideUp(),
+                                // },
+                                child: Text(
+                                  LocaleKeys.quotation_order.tr(),
+                                  style: TextStyle(
+                                    color: kColor555555,
+                                    fontSize: text_20,
+                                  ),
                                 ),
                               ),
-                              // text
                             ],
                           ),
                         ),
@@ -502,195 +506,9 @@ class _ReviewContentState extends State<ReviewContent> {
                                     onClickItem: () => value.onClickItem,
                                   ),
                                 ),
-
-
                               ],
                             ))),
                       ),
-                      // child: Padding(
-                      //   padding: EdgeInsets.only(bottom: size_10_h),
-                      //   child: CustomCard(
-                      //     borderRadiusValue: 6,
-                      //     shadow: Shadow.none,
-                      //     padding: EdgeInsets.symmetric(horizontal: size_10_w),
-                      //     backgroundColor: transparent,
-                      //     child: Row(
-                      //       children: [
-                      //         Flexible(
-                      //           child: Padding(
-                      //             padding:
-                      //                 EdgeInsets.symmetric(vertical: size_8_w),
-                      //             child: Column(
-                      //               children: [
-                      //                 //customer
-                      //                 Expanded(
-                      //                   flex: 1,
-                      //                   child: Container(
-                      //                     decoration: BoxDecoration(
-                      //                         border: Border(
-                      //                           top: BorderSide(
-                      //                               width: 1.0,
-                      //                               color: kColorBFBFBF),
-                      //                           left: BorderSide(
-                      //                               width: 1.0,
-                      //                               color: kColorBFBFBF),
-                      //                           bottom: BorderSide(
-                      //                               width: 1.0,
-                      //                               color: kColorBFBFBF),
-                      //                         ),
-                      //                         color: Color(0xffE2E2E2)),
-                      //                     child: SizedBox(
-                      //                       width: size.width / 2,
-                      //                       child: Align(
-                      //                         alignment: Alignment.center,
-                      //                         child: Text(
-                      //                           LocaleKeys.customer.tr(),
-                      //                           style: TextStyle(
-                      //                             fontWeight: FontWeight.bold,
-                      //                             color: kColor555555,
-                      //                             fontSize: text_15,
-                      //                           ),
-                      //                         ),
-                      //                       ),
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //                 //payment and icon
-                      //                 Expanded(
-                      //                   flex: 2,
-                      //                   child: Container(
-                      //                     decoration: BoxDecoration(
-                      //                         border: Border(
-                      //                           left: BorderSide(
-                      //                               width: 1.0,
-                      //                               color: kColorBFBFBF),
-                      //                         ),
-                      //                         color: kColorE2E2E2),
-                      //                     child: SizedBox(
-                      //                       width: size.width / 2,
-                      //                       child: Column(
-                      //                         mainAxisAlignment:
-                      //                             MainAxisAlignment.center,
-                      //                         children: <Widget>[
-                      //                           ClipOval(
-                      //                             child: Material(
-                      //                               color: kColor565656,
-                      //                               child: InkWell(
-                      //                                 onTap: () {},
-                      //                                 child: SizedBox(
-                      //                                   width: size_56_w,
-                      //                                   height: size_56_w,
-                      //                                   child: Icon(
-                      //                                     Icons
-                      //                                         .arrow_forward_ios,
-                      //                                     color: kCWhite,
-                      //                                     size: size_36_w,
-                      //                                   ),
-                      //                                 ),
-                      //                               ),
-                      //                             ),
-                      //                           ), // icon
-                      //                           Text(
-                      //                             LocaleKeys.payment.tr(),
-                      //                             textAlign: TextAlign.center,
-                      //                             style: TextStyle(
-                      //                               fontWeight: FontWeight.bold,
-                      //                               color: kColor555555,
-                      //                               fontSize: text_15,
-                      //                             ),
-                      //                           ), // text
-                      //                         ],
-                      //                       ),
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //                 //back and icon
-                      //                 Expanded(
-                      //                   flex: 1,
-                      //                   child: Container(
-                      //                     decoration: BoxDecoration(
-                      //                         border: Border(
-                      //                           top: BorderSide(
-                      //                               width: 1.0,
-                      //                               color: kColorBFBFBF),
-                      //                           left: BorderSide(
-                      //                               width: 1.0,
-                      //                               color: kColorBFBFBF),
-                      //                           bottom: BorderSide(
-                      //                               width: 1.0,
-                      //                               color: kColorBFBFBF),
-                      //                         ),
-                      //                         color: kColorE2E2E2),
-                      //                     child: SizedBox(
-                      //                       width: size.width / 2,
-                      //                       child: Row(
-                      //                         mainAxisAlignment:
-                      //                             MainAxisAlignment.center,
-                      //                         children: <Widget>[
-                      //                           Icon(
-                      //                             Icons
-                      //                                 .keyboard_double_arrow_left,
-                      //                             color: kColor626482,
-                      //                             size: size_15_w,
-                      //                           ),
-                      //                           InkWell(
-                      //                             onTap: () {
-                      //                               getIt<NavigationService>()
-                      //                                   .pushScreenWithSlideUp(
-                      //                                       HomePage());
-                      //                             },
-                      //                             child: Text(
-                      //                               LocaleKeys.back.tr(),
-                      //                               textAlign: TextAlign.center,
-                      //                               style: TextStyle(
-                      //                                 fontWeight:
-                      //                                     FontWeight.bold,
-                      //                                 color: kColor555555,
-                      //                                 fontSize: text_15,
-                      //                               ),
-                      //                             ),
-                      //                           ), // text
-                      //                         ],
-                      //                       ),
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         ),
-                      //         //numberkeybroad
-                      //         Flexible(
-                      //           child: CustomCard(
-                      //             borderRadiusValue: 0,
-                      //             shadow: Shadow.none,
-                      //             padding: EdgeInsets.zero,
-                      //             backgroundColor: kColorBFBFBF,
-                      //             child: GridView.builder(
-                      //               physics: NeverScrollableScrollPhysics(),
-                      //               itemCount: value.computers.length,
-                      //               shrinkWrap: true,
-                      //               padding: EdgeInsets.all(1),
-                      //               gridDelegate:
-                      //                   SliverGridDelegateWithFixedCrossAxisCount(
-                      //                 childAspectRatio: 1,
-                      //                 crossAxisSpacing: 1,
-                      //                 mainAxisSpacing: 1,
-                      //                 crossAxisCount: 4,
-                      //               ),
-                      //               itemBuilder:
-                      //                   (BuildContext context, int index) =>
-                      //                       ItemReviewKeyBoard(
-                      //                 item: value.computers[index],
-                      //                 onClickItem: () => value.onClickItem,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
                   ],
                 ),
               ),
