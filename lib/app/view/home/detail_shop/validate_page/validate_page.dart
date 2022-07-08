@@ -231,19 +231,16 @@ class _ValidatePageState extends State<ValidatePage> {
                                         height: size_30_w,
                                       ),
                                       Container(
-                                        height: 500,
+
                                         color: Colors.white,
                                         child: Column(
                                           children: [
                                             Center(
                                               child: Container(
-                                                child: Image.network(
-                                                  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwA…MDv114sa7gLn8tdqX/xf9bfSzgbu+cQAAAABJRU5ErkJggg==',
-                                                  height: size_50_w,
-                                                  width: size_70_w,
+                                                child: Image.asset(
+                                                  'assets/images/logoooo.png',
                                                 ),
-                                                height: size_50_w,
-                                                width: size_70_w,
+                                               
                                               ),
                                             ),
                                             SizedBox(
@@ -330,7 +327,7 @@ class _ValidatePageState extends State<ValidatePage> {
                                                       LocaleKeys.cash.tr(),
                                                       style: TextStyle(
                                                           color: kColor555555,
-                                                          fontSize: size_25_w),
+                                                          fontSize: size_15_w),
                                                     ),
                                                   ),
                                                 ),
@@ -360,10 +357,10 @@ class _ValidatePageState extends State<ValidatePage> {
                                             ),
                                             Row(
                                               children: [
-                                                Expanded(
+                                                Expanded( 
                                                   flex: 2,
                                                   child: Container(
-                                                    padding: EdgeInsets.only(right: size_10_w,top:size_20_w),
+                                                    padding: EdgeInsets.only(left: size_15_w,top:size_10_w,bottom: size_10_w),
                                                     alignment: Alignment.centerRight,
                                                     child: Text(
                                                       LocaleKeys.change.tr(),
@@ -381,13 +378,68 @@ class _ValidatePageState extends State<ValidatePage> {
                                                       mainAxisAlignment: MainAxisAlignment.end,
                                                       crossAxisAlignment: CrossAxisAlignment.end,
                                                       children: [
-                                                        Text('--------',style: TextStyle(color: kColor555555,fontSize: size_20_w),),
-                                                        Text('\$ 0.00',style: TextStyle(color: kColor555555,fontSize: size_20_w),),
+                                                        Text('\$ 2.00',style: TextStyle(color: kColor555555,fontSize: size_20_w),),
                                                       ],
                                                     ),
                                                   ),
                                                 ),
                                               ],
+                                            ),
+                                            SizedBox(
+                                              height: size_25_w,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                    padding: EdgeInsets.only(left: size_10_w),
+                                                    child: Text(
+                                                      LocaleKeys.total_taxes.tr(),
+                                                      style: TextStyle(
+                                                          color: kColor555555,
+                                                          fontSize: size_15_w),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex:1,
+                                                  child: Container(
+
+                                                  ),),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(right: size_10_w),
+                                                    child: Column(
+
+                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                                      children: [
+                                                        Text('\$ 0.00',style: TextStyle(color: kColor555555,),),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: size_25_w,
+                                            ),
+                                            Container(
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    'Order 00004-095-0006',
+                                                    style: TextStyle(
+                                                        color: kColor555555),
+                                                  ),
+                                                  Text(
+                                                      '07/08/2022 14:21:59', 
+                                                      style: TextStyle(
+                                                          color: kColor555555)),
+                                                ],
+                                              ),
                                             ),
                                           ],
                                         ),
