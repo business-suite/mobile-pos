@@ -10,6 +10,7 @@ import 'module/common/navigator_screen.dart';
 import 'module/common/system_utils.dart';
 import 'module/res/colors.dart';
 import 'module/res/themes.dart';
+import 'view/home/detail_shop/validate_page/validate_page.dart';
 import 'view/widget_utils/custom/flutter_easyloading/flutter_easyloading.dart';
 
 class App extends StatefulWidget {
