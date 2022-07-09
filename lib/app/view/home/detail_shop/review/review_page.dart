@@ -53,27 +53,27 @@ class _ReviewContentState extends State<ReviewContent> {
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
       ),
       body: Consumer<ReviewViewModel>(builder: (context, value, child) {
-        return Column(
-          children: <Widget>[
+        return Stack(
+          children: [
             //List order
-            Container(
-              child: SingleChildScrollView(
+            SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsets.only(
                       left: size_16_w,
                       right: size_16_w,
                       top: size_30_w,
-                      bottom: size_16_w),
-                  child: Container(
+                ),
+                child: Center(
                     child: Column(
-                    //  mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.only(bottom: size_5_w),
                           child: SvgPicture.asset(
                             'assets/icons/ic_shopping_cart.svg',
                             color: kColorDDDDDD,
-                            height: size_90_w,
+                          height: size_80_w,
                           ),
                         ),
                         Container(
@@ -82,8 +82,8 @@ class _ReviewContentState extends State<ReviewContent> {
                             padding: EdgeInsets.only(right: size_10_w),
                             child: Text(
                               LocaleKeys.this_order_is_empty.tr(),
-                              style:
-                                  TextStyle(color: kColorDDDDDD, fontSize: text_20),
+                            style: TextStyle(
+                                color: kColorDDDDDD, fontSize: text_20),
                             ),
                           ),
                         ),
@@ -509,7 +509,6 @@ class _ReviewContentState extends State<ReviewContent> {
                 ),
               ),
             ],
-          ),
         );
       }),
     );
