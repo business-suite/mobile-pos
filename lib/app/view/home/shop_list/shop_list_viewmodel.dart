@@ -1,11 +1,13 @@
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
-import '../../../../di/injection.dart';
-import '../../../../model/keyboard.dart';
-import '../../../../module/common/navigator_screen.dart';
-import '../../../../module/common/toast_util.dart';
-import '../../../../module/local_storage/shared_pref_manager.dart';
-import '../../../../module/repository/data_repository.dart';
-import '../../../../viewmodel/base_viewmodel.dart';
+
+import '../../../di/injection.dart';
+import '../../../model/keyboard.dart';
+import '../../../model/product.dart';
+import '../../../module/common/navigator_screen.dart';
+import '../../../module/common/toast_util.dart';
+import '../../../module/local_storage/shared_pref_manager.dart';
+import '../../../module/repository/data_repository.dart';
+import '../../../viewmodel/base_viewmodel.dart';
 class PayViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
@@ -17,15 +19,15 @@ class PayViewModel extends BaseViewModel {
     KeyBoard(number: '1'),
     KeyBoard(number: '2'),
     KeyBoard(number: '3'),
-    KeyBoard(number: 'Qty', sizeStyle: SizeStyle.SMALL),
+    KeyBoard(number: '+10', sizeStyle: SizeStyle.SMALL),
     KeyBoard(number: '4'),
     KeyBoard(number: '5'),
     KeyBoard(number: '6'),
-    KeyBoard(number: 'Disc',sizeStyle: SizeStyle.SMALL),
+    KeyBoard(number: '+20',sizeStyle: SizeStyle.SMALL),
     KeyBoard(number: '7'),
     KeyBoard(number: '8'),
     KeyBoard(number: '9'),
-    KeyBoard(number: 'Prince',sizeStyle: SizeStyle.SMALL),
+    KeyBoard(number: '+50',sizeStyle: SizeStyle.SMALL),
     KeyBoard(number: '+/-'),
     KeyBoard(number: '0'),
     KeyBoard(number: '.'),

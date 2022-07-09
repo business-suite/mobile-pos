@@ -1,5 +1,4 @@
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
-
 import '../../../../di/injection.dart';
 import '../../../../model/keyboard.dart';
 import '../../../../module/common/navigator_screen.dart';
@@ -7,18 +6,14 @@ import '../../../../module/common/toast_util.dart';
 import '../../../../module/local_storage/shared_pref_manager.dart';
 import '../../../../module/repository/data_repository.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
-
-class ReviewViewModel extends BaseViewModel {
+class PayViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
   String _response = "";
-
-
   final computers = [
-    KeyBoard(number: 'Customer',sizeStyle: SizeStyle.SMALL),
     KeyBoard(number: '1'),
     KeyBoard(number: '2'),
     KeyBoard(number: '3'),
@@ -30,7 +25,7 @@ class ReviewViewModel extends BaseViewModel {
     KeyBoard(number: '7'),
     KeyBoard(number: '8'),
     KeyBoard(number: '9'),
-    KeyBoard(number: 'Price',sizeStyle: SizeStyle.SMALL),
+    KeyBoard(number: 'Prince',sizeStyle: SizeStyle.SMALL),
     KeyBoard(number: '+/-'),
     KeyBoard(number: '0'),
     KeyBoard(number: '.'),
@@ -38,12 +33,11 @@ class ReviewViewModel extends BaseViewModel {
   ];
 
 
-  ReviewViewModel(this._repo);
+  PayViewModel(this._repo);
 
 
 
   String get response => _response;
-
 
   set response(String response) {
     _response = response;
