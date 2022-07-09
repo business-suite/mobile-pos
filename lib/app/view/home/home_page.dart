@@ -1,13 +1,8 @@
+import 'package:business_suite_mobile_pos/app/view/home/shop_list/shop_list_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../module/res/colors.dart';
-import '../../module/res/dimens.dart';
-import '../../module/res/string.dart';
-import '../../module/res/text.dart';
 import '../../viewmodel/base_viewmodel.dart';
 import '../widget_utils/bottom_sheet/entry_bottom_sheet.dart';
-import 'detail_shop/detail_shop.dart';
 import 'home_viewmodel.dart';
 
 class HomePage extends PageProvideNode<HomeViewModel> {
@@ -32,11 +27,10 @@ class _HomeScreen extends State<_HomePage> {
   int _currentIndex = 3;
   bool flgBadgeOn = false;
 
-  HomeViewModel get homeViewModel =>
-      widget._homeViewModel;
+  HomeViewModel get homeViewModel => widget._homeViewModel;
 
   List<Widget> _children = [
-   /* HomeMainPage(),
+    /* HomeMainPage(),
     AllNotificationPage(),
     MyPage(),*/
   ];
@@ -46,11 +40,9 @@ class _HomeScreen extends State<_HomePage> {
     super.initState();
   }
 
-
   void showEntryBottomSheet(params) {
     entryBottomSheet(url: "");
   }
-
 
   @override
   void dispose() {
@@ -66,8 +58,9 @@ class _HomeScreen extends State<_HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DetailShopPage(),
-      backgroundColor: kColor202330,
+      body: SafeArea(
+        child: ShopListPage(),
+      ),
     );
   }
 }

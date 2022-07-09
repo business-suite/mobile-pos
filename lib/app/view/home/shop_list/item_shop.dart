@@ -1,87 +1,137 @@
 import 'package:flutter/material.dart';
-import 'package:hcn_call_center/odoo/model/shop.dart';
+
+import '../../../model/shop.dart';
+import '../../../module/res/style.dart';
 
 class ItemShop extends StatelessWidget {
   Shop shop;
+  VoidCallback onClickItem;
 
   ItemShop({
     Key? key,
     required this.shop,
+    required this.onClickItem,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
+    return Card(
+      color: Colors.white,
+      child: Ink(
+        child: InkWell(
+          onTap: () => onClickItem.call(),
+          child: Container(
+            padding: EdgeInsets.symmetric( vertical: size_10_w),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(
-                  width: 10.0,
-                  height: 10.0,
-                ),
                 Container(
-                  height: 50,
+                  margin: EdgeInsets.symmetric(horizontal: size_10_w),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        shop.shopeName,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
+                      Align(
+                        child: Text(
+                          shop.shopeName,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                          ),
                         ),
+                        alignment: Alignment.centerLeft,
                       ),
-                      SizedBox(
-                        width: 300.0,
-                      ),
-                      Icon(
-                        Icons.more_vert,
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Icon(
+                          Icons.more_vert,
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
                 SizedBox(
-                  width: 10.0,
-                  height: 10.0,
+                  height: 8.0,
                 ),
-                Container(
-                  width: 50.0,
-                  height: 30.0,
-                  child:Card(
-                  color: Colors.purple,
-                  child: Center(
-                    child: Text(
-                      'close',
-                      style: TextStyle(
-                        color: Colors.white,fontSize:10,
+                Row(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 10.0,
+                      height: 10.0,
+                    ),
+                    Card(
+                    color: kColor71639E,
+                    child: Center(
+                      child: Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: size_8_w, vertical: size_6_w),
+                        child: Text(
+                          'Continue Selling',
+                          style: TextStyle(
+                            color: Colors.white,fontSize:text_11,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                ),
-                SizedBox(
-                  width: 50.0,
-                  height: 10.0,
-                ),
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Column(
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                      height: 10.0,
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Last Closing Date',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                              ),
+                            ),
+                            Text(
+                              'Last Closing Cash',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                              ),
+                            ),
+                            Text(
+                              'Balance',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 50.0,
+                      height: 10.0,
+                    ),
+                    Column(
                       children: <Widget>[
+                        Text(
+                          shop.lastDate,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 10,
+                          ),
+                        ),
                         Padding(
-                          padding: EdgeInsets.only(right: 40),
+                          padding: EdgeInsets.only(right: 23),
                           child: Text(
-                            'Last Closing Date',
+                            shop.lastCash,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black,
@@ -90,66 +140,20 @@ class ItemShop extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Last Closing Cash Balance',
+                          '',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 10,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 81),
-                          child: Text(
-                            'Balance',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
                       ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 50.0,
-                  height: 10.0,
-                ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      shop.lastDate,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 23),
-                      child: Text(
-                        shop.lastCash,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                      ),
                     ),
                   ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );

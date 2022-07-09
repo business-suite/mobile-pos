@@ -115,3 +115,4 @@ const kColor89000000 = Color(0x89000000);
 const kColorPrimary = Color(0xFF35979c);
 const kColorPrimaryDisable = Color(0xff86c9cd);
 const kColorE6E6E6 = Color(0xffE6E6E6);
+const kColor71639E = Color(0xff71639E);

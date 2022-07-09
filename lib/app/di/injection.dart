@@ -11,6 +11,7 @@ import '../module/repository/data_repository.dart';
 import '../view/home/detail_shop/review/review_viewmodel.dart';
 import '../view/forgot_pass/forgot_pass_viewmodel.dart';
 import '../view/home/pay/pay_viewmodel.dart';
+import '../view/home/shop_list/shop_list_viewmodel.dart';
 import '../view/intro/intro_viewmodel.dart';
 import '../view/sign_in/sign_in_viewmodel.dart';
 import '../view/splash/splash_viewmodel.dart';
@@ -56,6 +57,9 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<HomeViewModel>(
       () => HomeViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<ShopListViewModel>(
+          () => ShopListViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<DetailShopViewModel>(
       () => DetailShopViewModel(getIt<DataRepository>()));

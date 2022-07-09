@@ -9,7 +9,7 @@ import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 
-class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
+class AppBarShopList extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
   final bool enableCopyPaste;
   final int badgeCount;
@@ -17,7 +17,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   final Function? leftIconOnPress;
   final Function? rightIconOnPress;
 
-  AppBarShop({
+  AppBarShopList({
     Key? key,
     this.iconLeft,
     this.iconRight,
@@ -36,94 +36,55 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
       child: Container(
         height: appBarSize,
         width: double.infinity,
-        color: kColor875a7b,
+        color: kColor71639E,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: size_14_w),
+          padding: EdgeInsets.only(right: size_14_w, ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SvgPicture.asset(
-                    'assets/icons/ic_money.svg',
-                    width: size_16_w,
-                    height: size_16_w,
-                    color: kCWhite,
+                  IconButton(
+                    icon: const Icon(Icons.window),
+                    color: Colors.white,
+                    iconSize: 20,
+                    onPressed: () {},
                   ),
-
                   Padding(
-                    padding: EdgeInsets.only(left: size_10_w),
-                    child: InkWell(
-                      onTap: (){
-                        getIt<NavigationService>().pushScreenWithFade(CashInOutPage());
-                      },
-                      child: Text(
-                        LocaleKeys.cash_in_out.tr(),
-                        style: TextStyle(
-                            fontSize: text_18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
-                      ),
+                    padding: EdgeInsets.only(right: 10),
+                    child: Text(
+                      'Point of Sale',
+                      style: TextStyle(color: Colors.white, fontSize: text_16),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    child: Text(
+                      'Dashboard',
+                      style: TextStyle(color: Colors.white, fontSize: text_10),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Text(
+                      'Orders',
+                      style: TextStyle(color: Colors.white, fontSize: text_10),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Text(
+                      'Products',
+                      style: TextStyle(color: Colors.white, fontSize: text_10),
                     ),
                   ),
                 ],
               ),
 
-              Container(
-                height: double.infinity,
-                child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: <Widget>[
-                      RotationTransition(
-                        turns: AlwaysStoppedAnimation(-45 / 360),
-                        child: Padding(
-                          padding: EdgeInsets.only(right: size_10_w, bottom: size_10_w),
-                          child: SvgPicture.asset(
-                            'assets/icons/ic_ticket.svg',
-                            width: size_16_w,
-                            height: size_16_w,
-                            color: kCWhite,
-                          ),
-                        ),
-                      ),
-                      if (badgeCount > 0)
-                        Positioned(
-                          // draw a red marble
-                          top: size_10_w,
-                          right: size_2_w,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 4.0, horizontal: 8.0),
-                            decoration: BoxDecoration(
-                              color: kColor01A09D,
-                              borderRadius: BorderRadius.circular(size_10_r),
-                            ),
-                            child: Text(
-                              badgeCount.toString(),
-                              style: TextStyle(
-                                  fontSize: text_12,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal),
-                            ),
-                          ),
-                        )
-                      else
-                        Container()
-                    ]),
-              ),
-              Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-              SvgPicture.asset(
-                'assets/icons/ic_wifi.svg',
-                width: size_16_w,
-                height: size_16_w,
-                color: kColor5EB937,
-              ),
+
               ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(100.0)),
                 clipBehavior: Clip.hardEdge,

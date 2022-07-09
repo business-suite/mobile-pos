@@ -6,7 +6,7 @@ import '../../../../module/common/toast_util.dart';
 import '../../../../module/local_storage/shared_pref_manager.dart';
 import '../../../../module/repository/data_repository.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
-class PayViewModel extends BaseViewModel {
+class ReviewViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
@@ -14,6 +14,7 @@ class PayViewModel extends BaseViewModel {
   bool _loading = false;
   String _response = "";
   final computers = [
+    KeyBoard(number: 'Customer', sizeStyle: SizeStyle.SMALL),
     KeyBoard(number: '1'),
     KeyBoard(number: '2'),
     KeyBoard(number: '3'),
@@ -33,7 +34,7 @@ class PayViewModel extends BaseViewModel {
   ];
 
 
-  PayViewModel(this._repo);
+  ReviewViewModel(this._repo);
 
 
 
