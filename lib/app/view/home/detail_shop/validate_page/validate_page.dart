@@ -22,6 +22,7 @@ class _ValidatePageState extends State<ValidatePage> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffoldSafeArea(
+      transparentStatusBar: 0.2,
       backgroundColor: kColorf0eeee,
       customAppBar: AppBarShop(
         badgeCount: 1,

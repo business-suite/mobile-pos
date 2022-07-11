@@ -49,9 +49,8 @@ class _AuthenticationContentState
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return BaseScaffold(
+      transparentStatusBar: 0.0,
       onBackPress:  () => authenticationViewModel.cancel(context),
       title: LocaleKeys.two_factor_authentication.tr(),
       body: Padding(

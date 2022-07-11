@@ -1,13 +1,11 @@
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/home_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
+
 import '../../../../../flavors.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../../../../di/injection.dart';
@@ -16,10 +14,8 @@ import '../../../../module/res/style.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
 import '../../../widget_utils/base_scaffold_safe_area.dart';
 import '../../../widget_utils/custom/custom_card.dart';
-import '../../pay/item_keyboard.dart';
 import '../appbar_shop.dart';
 import 'review_item_keyboard.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class ReviewPage extends PageProvideNode<ReviewViewModel> {
   ReviewPage({Key? key}) : super(key: key, params: []);
@@ -47,6 +43,7 @@ class _ReviewContentState extends State<ReviewContent> {
     Size size = MediaQuery.of(context).size;
     //appbar
     return BaseScaffoldSafeArea(
+      transparentStatusBar: 0.2,
       backgroundColor: kColorf0eeee,
       customAppBar: AppBarShop(
         badgeCount: 1,

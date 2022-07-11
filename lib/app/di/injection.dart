@@ -10,6 +10,7 @@ import '../module/network/request/auth_request.dart';
 import '../module/repository/data_repository.dart';
 import '../view/home/detail_shop/review/review_viewmodel.dart';
 import '../view/forgot_pass/forgot_pass_viewmodel.dart';
+import '../view/home/order_list/order_list_viewmodel.dart';
 import '../view/home/pay/pay_viewmodel.dart';
 import '../view/home/shop_list/shop_list_viewmodel.dart';
 import '../view/intro/intro_viewmodel.dart';
@@ -69,6 +70,9 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<ReviewViewModel>(
       () => ReviewViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<OrderListViewModel>(
+      () => OrderListViewModel(getIt<DataRepository>()));
 
 
   getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, String>(

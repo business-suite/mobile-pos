@@ -46,9 +46,8 @@ class _ForgotPassContentState extends LifecycleState<_ForgotPasswordContentPage>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return BaseScaffold(
+      transparentStatusBar: 0.0,
       onBackPress: () => forgotPassViewModel.cancel(context),
       title: LocaleKeys.forgot_password.tr(),
       body: Padding(

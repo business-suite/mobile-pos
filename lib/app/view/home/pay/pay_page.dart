@@ -44,6 +44,7 @@ class _PayContentState extends State<PayContent> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BaseScaffoldSafeArea(
+      transparentStatusBar: 0.2,
       backgroundColor: kColorf0eeee,
       customAppBar: AppBarShop(
         badgeCount: 1,

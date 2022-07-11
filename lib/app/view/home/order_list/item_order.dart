@@ -1,154 +1,64 @@
 import 'package:business_suite_mobile_pos/app/model/order.dart';
 import 'package:flutter/material.dart';
+
+import '../../../module/res/dimens.dart';
+import '../../../module/res/style.dart';
+
 class ItemOrder extends StatelessWidget {
   Order item;
+  VoidCallback onClickItem;
 
   ItemOrder({
     Key? key,
     required this.item,
+    required this.onClickItem,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Row(
+    return Card(
+      color: Colors.white,
+      child: Ink(
+        child: InkWell(
+          onTap: () => onClickItem.call(),
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: size_10_w),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SizedBox(
-                  width: 10.0,
-                  height: 10.0,
-                ),
                 Container(
-                  height: 50,
+                  margin: EdgeInsets.symmetric(horizontal: size_10_w),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        item.itemName,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
+                      Align(
+                        child: Text(
+                          item.name,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                          ),
                         ),
+                        alignment: Alignment.centerLeft,
                       ),
-                      SizedBox(
-                        width: 300.0,
-                      ),
-                      Icon(
-                        Icons.more_vert,
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Icon(
+                          Icons.more_vert,
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
                 SizedBox(
-                  width: 10.0,
-                  height: 10.0,
-                ),
-                Container(
-                  width: 50.0,
-                  height: 30.0,
-                  child:Card(
-                    color: Colors.purple,
-                    child: Center(
-                      child: Text(
-                        'close',
-                        style: TextStyle(
-                          color: Colors.white,fontSize:10,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 50.0,
-                  height: 10.0,
-                ),
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(right: 40),
-                          child: Text(
-                            'Last Closing Date',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          'Last Closing Cash Balance',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 81),
-                          child: Text(
-                            'Balance',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 50.0,
-                  height: 10.0,
-                ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      item.date,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 23),
-                      child: Text(
-                        item.customer,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
+                  height: 8.0,
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
