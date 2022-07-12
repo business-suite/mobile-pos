@@ -18,7 +18,7 @@ class CustomCard extends StatelessWidget {
     required this.child,
     this.padding,
     this.onPressed,
-    this.rippleBrightness = Brightness.light,
+      this.rippleBrightness = Brightness.light,
     this.borderRadiusValue = 8.0,
     this.backgroundColor = Colors.white,
     this.backgroundGradient,

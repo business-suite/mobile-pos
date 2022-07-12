@@ -61,9 +61,7 @@ class _ReviewContentState extends State<ReviewContent> {
                 child: Padding(
                   padding: EdgeInsets.only(
                       left: size_16_w,
-                      right: size_16_w,
-                      top: size_30_w,
-                      bottom: size_16_w),
+                      right: size_16_w,),
                   child: Container(
                     child: Column(
                     //  mainAxisAlignment: MainAxisAlignment.start,
@@ -72,8 +70,7 @@ class _ReviewContentState extends State<ReviewContent> {
                           padding: EdgeInsets.only(bottom: size_5_w),
                           child: SvgPicture.asset(
                             'assets/icons/ic_shopping_cart.svg',
-                            color: kColorDDDDDD,
-                            height: size_90_w,
+                            color: kColorDDDDDD
                           ),
                         ),
                         Container(
@@ -92,9 +89,6 @@ class _ReviewContentState extends State<ReviewContent> {
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 110,
             ),
             //Keyboard
             Container(
@@ -509,6 +503,9 @@ class _ReviewContentState extends State<ReviewContent> {
                               ],
                             ))),
                       ),
+                    SizedBox(
+                      height: 1000,
+                    ),
                   ],
                 ),
               ),

@@ -1,5 +1,8 @@
 import 'package:business_suite_mobile_pos/app/model/order.dart';
+import 'package:business_suite_mobile_pos/app/module/res/style.dart';
+import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:flutter/material.dart';
+
 class ItemOrder extends StatelessWidget {
   Order item;
 
@@ -10,143 +13,154 @@ class ItemOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Card(
-        color: Colors.white,
+    return Card(
+      child: Padding(
+        padding:  EdgeInsets.only(left: size_10_w,right: size_10_w),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
+            //order
+            Padding(
+              padding: EdgeInsets.only(top:size_10_w),
+              // Oder-item name
+              child: Row(
+                children: [
+                  Text(
+                    'Order',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor555555,
+                      fontSize: text_20,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    item.itemName,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor555555,
+                      fontSize: text_20,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: size_5_w,),
+            //Date - item date
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(
-                  width: 10.0,
-                  height: 10.0,
+              children: [
+                Text(
+                  'Date',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kColor555555,
+                    fontSize: text_20,
+                  ),
                 ),
-                Container(
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        item.itemName,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 300.0,
-                      ),
-                      Icon(
-                        Icons.more_vert,
-                      ),
-                    ],
+                Spacer(),
+                Text(
+                  item.date,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kColor555555,
+                    fontSize: text_20,
                   ),
                 ),
               ],
             ),
+            SizedBox(height: size_5_w,),
+            //Customer - item customer
             Row(
-              children: <Widget>[
-                SizedBox(
-                  width: 10.0,
-                  height: 10.0,
-                ),
-                Container(
-                  width: 50.0,
-                  height: 30.0,
-                  child:Card(
-                    color: Colors.purple,
-                    child: Center(
-                      child: Text(
-                        'close',
-                        style: TextStyle(
-                          color: Colors.white,fontSize:10,
-                        ),
-                      ),
-                    ),
+              children: [
+                Text(
+                  'Customer',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kColor555555,
+                    fontSize: text_20,
                   ),
                 ),
-                SizedBox(
-                  width: 50.0,
-                  height: 10.0,
-                ),
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(right: 40),
-                          child: Text(
-                            'Last Closing Date',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          'Last Closing Cash Balance',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 81),
-                          child: Text(
-                            'Balance',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                Spacer(),
+                Text(
+                  item.customer,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kColor555555,
+                    fontSize: text_20,
                   ),
-                ),
-                SizedBox(
-                  width: 50.0,
-                  height: 10.0,
-                ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      item.date,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 23),
-                      child: Text(
-                        item.customer,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
                 ),
               ],
+            ),
+            SizedBox(height: size_5_w,),
+            //Salesman -  item salesMan
+            Row(
+              children: [
+                Text(
+                  'Salesman',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kColor555555,
+                    fontSize: text_20,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  item.salesMan,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kColor555555,
+                    fontSize: text_20,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: size_5_w,),
+            //Total
+            Row(
+              children: [
+                Text(
+                  'Total',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kColor555555,
+                    fontSize: text_20,
+                  ),
+                ),
+                Spacer(),
+                Text(
+                  item.total,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: kColor555555,
+                    fontSize: text_20,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: size_5_w,),
+            //State
+            Padding(
+              padding: EdgeInsets.only(bottom: size_10_w),
+              child: Row(
+                children: [
+                  Text(
+                    'State',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor555555,
+                      fontSize: text_20,
+                    ),
+                  ),
+                  Spacer(),
+                  Text(
+                    item.state,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor555555,
+                      fontSize: text_20,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
