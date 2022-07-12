@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
+import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
 import '../../../../di/injection.dart';
 import '../../../../model/keyboard.dart';
 import '../../../../module/common/navigator_screen.dart';
@@ -55,6 +56,11 @@ class ReviewViewModel extends BaseViewModel {
 
   void onClickItem(){
     ToastUtil.showToast('Test');
+  }
+
+
+  gotoOrderListpage(){
+    _navigationService.pushScreenWithFade(OrderListPage());
   }
 
 }
