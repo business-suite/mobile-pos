@@ -48,9 +48,8 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return BaseScaffold(
+      transparentStatusBar: 0.0,
       title: LocaleKeys.sign_in.tr(),
       hideBackButton: false,
       body: SingleChildScrollView(

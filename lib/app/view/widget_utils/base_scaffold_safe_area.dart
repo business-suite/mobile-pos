@@ -18,6 +18,7 @@ class BaseScaffoldSafeArea extends StatelessWidget {
   final bool? isTitleCenter;
   final Widget? widgetCustomTitle;
   final PreferredSizeWidget? customAppBar;
+  final double transparentStatusBar;
 
   const BaseScaffoldSafeArea({
     Key? key,
@@ -33,6 +34,7 @@ class BaseScaffoldSafeArea extends StatelessWidget {
     this.isTitleCenter = true,
     this.widgetCustomTitle = null,
     this.customAppBar = null,
+    this.transparentStatusBar = 1.0,
   }) : super(key: key);
 
   @override
@@ -41,7 +43,7 @@ class BaseScaffoldSafeArea extends StatelessWidget {
     void _onBackPress() {
       Navigator.of(context).pop();
     }
-    //SystemUtils.setupStatusBar(0.2);
+    SystemUtils.setupStatusBar(transparentStatusBar);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: customAppBar ??

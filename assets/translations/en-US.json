@@ -37,6 +37,12 @@
   "how_would_like_to_receive_your_receipt": "How would you like to receive your receipt?",
   "print_receipt": "Print Receipt",
   "email_receipt": "Email Receipt",
+  "my_company_san_francisco": "My Company (San Francisco)",
+  "tel_16505550111": "Tel:+1 (650) 555-0111",
+  "served_by_mitchell_admin": "Served by Mitchell Admin",
+  "total": "TOTAL",
+  "change": "CHANGE",
+  "total_taxes": "Total Taxes",
 
 
   "this_order_is_empty": "This order is empty",

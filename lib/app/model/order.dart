@@ -1,12 +1,12 @@
 class Order{
-  String itemName = '';
+  String name = '';
   String date = '';
   String customer = '';
   String salesMan = '';
   String total = '';
   String state = '';
 
-  Order({required this.itemName,
+  Order({required this.name,
     required this.date,
     required this.customer,
     required this.salesMan,

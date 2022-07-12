@@ -35,6 +35,12 @@ abstract class  LocaleKeys {
   static const how_would_like_to_receive_your_receipt = 'how_would_like_to_receive_your_receipt';
   static const print_receipt = 'print_receipt';
   static const email_receipt = 'email_receipt';
+  static const my_company_san_francisco = 'my_company_san_francisco';
+  static const tel_16505550111 = 'tel_16505550111';
+  static const served_by_mitchell_admin = 'served_by_mitchell_admin';
+  static const total = 'total';
+  static const change = 'change';
+  static const total_taxes = 'total_taxes';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';

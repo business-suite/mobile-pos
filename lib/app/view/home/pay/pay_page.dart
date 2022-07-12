@@ -15,7 +15,7 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../detail_shop/appbar_shop.dart';
-import '../detail_shop/review/review_shop.dart';
+import '../detail_shop/review/review_page.dart';
 import 'item_keyboard.dart';
 import 'pay_viewmodel.dart';
 
@@ -44,6 +44,7 @@ class _PayContentState extends State<PayContent> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BaseScaffoldSafeArea(
+      transparentStatusBar: 0.2,
       backgroundColor: kColorf0eeee,
       customAppBar: AppBarShop(
         badgeCount: 1,

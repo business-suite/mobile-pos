@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 
 class ItemOrder extends StatelessWidget {
   Order item;
+  VoidCallback onClickItem;
 
   ItemOrder({
     Key? key,
     required this.item,
+    required this.onClickItem,
   }) : super(key: key);
 
   @override
@@ -34,7 +36,7 @@ class ItemOrder extends StatelessWidget {
                   ),
                   Spacer(),
                   Text(
-                    item.itemName,
+                    item.name,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: kColor555555,
