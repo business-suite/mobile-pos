@@ -26,6 +26,7 @@ abstract class  LocaleKeys {
   static const validate = 'validate';
   static const review = 'review';
   static const pay = 'pay';
+  static const total_item_order = 'total_item_order';
   static const state = 'state';
   static const date = 'date';
   static const payment = 'payment';

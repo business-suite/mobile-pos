@@ -28,12 +28,15 @@ class ItemOrder extends StatelessWidget {
               // Oder-item name
               child: Row(
                 children: [
-                  Text(
-                    LocaleKeys.order.tr(),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: kColor555555,
-                      fontSize: text_20,
+                  Padding(
+                    padding: EdgeInsets.only(bottom: size_5_w,),
+                    child: Text(
+                      LocaleKeys.order.tr(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: kColor666666,
+                        fontSize: text_15,
+                      ),
                     ),
                   ),
                   Spacer(),
@@ -41,8 +44,9 @@ class ItemOrder extends StatelessWidget {
                     item.name,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: kColor555555,
-                      fontSize: text_20,
+                      color:kColor6F6F6F,
+                      fontWeight: FontWeight.w400,
+                      fontSize: text_15,
                     ),
                   ),
                 ],
@@ -52,12 +56,15 @@ class ItemOrder extends StatelessWidget {
             //Date - item date
             Row(
               children: [
-                Text(
-                LocaleKeys.product_date.tr(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: kColor555555,
-                    fontSize: text_20,
+                Padding(
+                  padding: EdgeInsets.only(bottom: size_5_w,),
+                  child: Text(
+                  LocaleKeys.product_date.tr(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor666666,
+                      fontSize: text_15,
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -65,8 +72,9 @@ class ItemOrder extends StatelessWidget {
                   item.date,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: kColor555555,
-                    fontSize: text_20,
+                    color: kColor6F6F6F,
+                    fontWeight: FontWeight.w400,
+                    fontSize: text_15,
                   ),
                 ),
               ],
@@ -75,12 +83,15 @@ class ItemOrder extends StatelessWidget {
             //Customer - item customer
             Row(
               children: [
-                Text(
-                LocaleKeys.customer.tr(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: kColor555555,
-                    fontSize: text_20,
+                Padding(
+                  padding: EdgeInsets.only(bottom: size_5_w,),
+                  child: Text(
+                  LocaleKeys.customer.tr(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor666666,
+                      fontSize: text_15,
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -88,8 +99,9 @@ class ItemOrder extends StatelessWidget {
                   item.customer,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: kColor555555,
-                    fontSize: text_20,
+                    color: kColor6F6F6F,
+                    fontSize: text_15,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
@@ -98,12 +110,15 @@ class ItemOrder extends StatelessWidget {
             //Salesman -  item salesMan
             Row(
               children: [
-                Text(
-                  LocaleKeys.salesman.tr(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: kColor555555,
-                    fontSize: text_20,
+                Padding(
+                  padding: EdgeInsets.only(bottom: size_5_w,),
+                  child: Text(
+                    LocaleKeys.salesman.tr(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor666666,
+                      fontSize: text_15,
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -111,8 +126,9 @@ class ItemOrder extends StatelessWidget {
                   item.salesMan,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: kColor555555,
-                    fontSize: text_20,
+                    color: kColor6F6F6F,
+                    fontSize: text_15,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
@@ -121,12 +137,15 @@ class ItemOrder extends StatelessWidget {
             //Total
             Row(
               children: [
-                Text(
-                  LocaleKeys.total.tr(),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: kColor555555,
-                    fontSize: text_20,
+                Padding(
+                  padding: EdgeInsets.only(bottom: size_5_w,),
+                  child: Text(
+                    LocaleKeys.total_item_order.tr(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor666666,
+                      fontSize: text_15,
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -134,8 +153,9 @@ class ItemOrder extends StatelessWidget {
                   item.total,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: kColor555555,
-                    fontSize: text_20,
+                    color: kColor6F6F6F,
+                    fontSize: text_15,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
@@ -150,8 +170,8 @@ class ItemOrder extends StatelessWidget {
                     LocaleKeys.state.tr(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: kColor555555,
-                      fontSize: text_20,
+                      color: kColor666666,
+                      fontSize: text_15,
                     ),
                   ),
                   Spacer(),
@@ -159,8 +179,9 @@ class ItemOrder extends StatelessWidget {
                     item.state,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: kColor555555,
-                      fontSize: text_20,
+                      color: kColor6F6F6F,
+                      fontSize: text_15,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],

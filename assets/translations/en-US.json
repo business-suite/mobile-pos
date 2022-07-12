@@ -28,6 +28,7 @@
   "validate": "Validate",
   "review": "Review",
   "pay": "Pay",
+  "total_item_order": "Total",
   "state": "State",
   "date": "Date",
   "payment": "Payment",
