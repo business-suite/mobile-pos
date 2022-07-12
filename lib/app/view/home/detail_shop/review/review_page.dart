@@ -199,27 +199,33 @@ class _ReviewContentState extends State<ReviewContent> {
                                   color: kColorBFBFBF,
                                 ),
                               ),
-                              child: SizedBox(
-                                width: double.infinity,
-                                height: size_40_w,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    SvgPicture.asset(
-                                      'assets/icons/ic_chain.svg',
-                                      color: kColor555555,
-                                      height: size_18_w,
+                              child: Ink(
+                                child: InkWell(
+                                  //goto order list page
+                                  onTap: () => reviewViewModel.gotoOrderListpage(),
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    height: size_40_w,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        SvgPicture.asset(
+                                          'assets/icons/ic_chain.svg',
+                                          color: kColor555555,
+                                          height: size_18_w,
+                                        ),
+                                        SizedBox(width: size_6_w),
+                                        Text(
+                                          LocaleKeys.quotation_order.tr(),
+                                          style: TextStyle(
+                                            color: kColor555555,
+                                            fontSize: text_20,
+                                          ),
+                                        ),
+                                        // text
+                                      ],
                                     ),
-                                    SizedBox(width: size_6_w),
-                                    Text(
-                                      LocaleKeys.quotation_order.tr(),
-                                      style: TextStyle(
-                                        color: kColor555555,
-                                        fontSize: text_20,
-                                      ),
-                                    ),
-                                    // text
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),

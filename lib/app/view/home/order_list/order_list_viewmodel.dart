@@ -43,6 +43,34 @@ class OrderListViewModel extends BaseViewModel {
         salesMan: 'Marc Demo',
         total: '\$ 1,799.00',
         state: 'Sales Order'),
+    Order(
+        name: 'S00031',
+        date: '2022-06-20 02:43PM',
+        customer: 'Gemini Furniture',
+        salesMan: 'Marc Demo',
+        total: '\$ 1,799.00',
+        state: 'Sales Order'),
+    Order(
+        name: 'S00031',
+        date: '2022-06-20 02:43PM',
+        customer: 'Gemini Furniture',
+        salesMan: 'Marc Demo',
+        total: '\$ 1,799.00',
+        state: 'Sales Order'),
+    Order(
+        name: 'S00031',
+        date: '2022-06-20 02:43PM',
+        customer: 'Gemini Furniture',
+        salesMan: 'Marc Demo',
+        total: '\$ 1,799.00',
+        state: 'Sales Order'),
+    Order(
+        name: 'S00031',
+        date: '2022-06-20 02:43PM',
+        customer: 'Gemini Furniture',
+        salesMan: 'Marc Demo',
+        total: '\$ 1,799.00',
+        state: 'Sales Order'),
   ];
 
   OrderListViewModel(this._repo);

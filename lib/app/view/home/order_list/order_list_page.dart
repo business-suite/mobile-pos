@@ -47,7 +47,7 @@ class _OrderListContentState extends State<OrderListContent> {
       body: Consumer<OrderListViewModel>(builder: (context, value, child) {
         return Container(
           color: kColorBackground,
-          child: Column(
+          child: Wrap(
             children: <Widget>[
               //appbar2
               Padding(
@@ -58,9 +58,7 @@ class _OrderListContentState extends State<OrderListContent> {
                     // back button
                     InkWell(
                       onTap: () {
-                        getIt<NavigationService>()
-                            .pushScreenWithSlideUp(
-                            ReviewPage());
+                        getIt<NavigationService>().back();
                       },
                       child: Container(
                         height: size_40_w,
@@ -131,12 +129,16 @@ class _OrderListContentState extends State<OrderListContent> {
                   ],
                 ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: value.orders.length,
-                itemBuilder: (context, index) => ItemOrder(
-                  item: value.orders[index],
-                  onClickItem: () {},
+              SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: value.orders.length,
+                  itemBuilder: (context, index) => ItemOrder(
+                    item: value.orders[index],
+                    onClickItem: () {},
+                  ),
                 ),
               ),
             ],

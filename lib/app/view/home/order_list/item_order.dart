@@ -1,6 +1,5 @@
 import 'package:business_suite_mobile_pos/app/model/order.dart';
 import 'package:business_suite_mobile_pos/app/module/res/style.dart';
-import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:flutter/material.dart';
 
 class ItemOrder extends StatelessWidget {
