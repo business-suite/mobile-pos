@@ -121,3 +121,4 @@ const kColor7C7C7C = Color(0xff7C7C7C);
 const kColor666666 = Color(0xff666666);
 const kColor808080 = Color(0xff808080);
 const kColor9999FF = Color(0xff9999ff);
+const kColorF7F7F7 = Color(0xffF7F7F7);

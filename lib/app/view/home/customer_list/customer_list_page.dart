@@ -2,18 +2,19 @@ import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/appbar_customer_list.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/item_order.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/item_customer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
+import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
-import '../detail_shop/review/review_page.dart';
 import 'customer_list_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
 
@@ -92,55 +93,146 @@ class _CustomerListContentState extends State<CustomerListContent> {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(left:10 ),
+                      child: InkWell(
+                        // onTap: () {
+                        //   getIt<NavigationService>().back();
+                        // },
+                        child: Container(
+                          height: size_40_w,
+                          width: size_40_w,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: size_1_w,
+                              color: kColorBFBFBF,
+                            ),
+                            color: kColorE6E6E6,
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.add,
+
+                              color: kColor626482,
+                              size: size_20_w,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     // textfield
                     Padding(
                       padding:
-                          EdgeInsets.only(left: size_50_w, bottom: size_7_w),
-                      child: Material(
-                        elevation: 20.0,
-                        shadowColor: node1.hasFocus ? Colors.red: Colors.transparent,
-                        child: Container(
-                          height: size_35_w,
-                          width: size_200_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: TextField(
-                            focusNode: node1,
-                            cursorColor: Colors.black,
-                            autocorrect: false,
-                            textAlignVertical: TextAlignVertical.center,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100.0),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.search,
-                                color: kColor808080,
-                              ),
-                              suffixIcon: Padding(
-                                padding: EdgeInsets.only(right: size_10_w),
-                                child: SvgPicture.asset(
-                                  'assets/icons/vector.svg',
-                                  fit: BoxFit.fill,
-                                  color: kColor808080,
-                                ),
-                              ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100.0),
-                                borderSide: BorderSide(
-                                  color: kColor2947C3,
-                                ),
-                              ),
-                              hintText:
-                                  'E.g. customer: Steward, date: 2020-05-09',
-                              hintStyle: TextStyle(fontSize: size_14_w),
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                          EdgeInsets.only(left: size_10_w, bottom: size_7_w),
+                      child: Container(
+                        height: size_35_w,
+                        width: size_180_w,
+                        decoration: BoxDecoration(
+                          color: kCWhite,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: TextField(
+                          cursorColor: Colors.black,
+                          autocorrect: false,
+                          textAlignVertical: TextAlignVertical.center,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100.0),
                             ),
+                            suffixIconConstraints: BoxConstraints(
+                                maxWidth: size_25_w, maxHeight: size_15_w),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100.0),
+                              borderSide: BorderSide(
+                                color: kColor2947C3,
+                              ),
+                            ),
+                            hintText:
+                                'Search Customers',
+                            hintStyle: TextStyle(fontSize: size_14_w),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(12.0, 15.0, 20.0, 10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: InkWell(
+                        // onTap: () {
+                        //   getIt<NavigationService>().back();
+                        // },
+                        child: Container(
+                          height: size_40_w,
+                          width: size_40_w,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: size_1_w,
+                              color: kColorBFBFBF,
+                            ),
+                            color: kColorE6E6E6,
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.add,
+
+                              color: kColor626482,
+                              size: size_20_w,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                color: kColorF7F7F7,
+                height: size_40_w,
+                width: size_400_w,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: size_10_w),
+                          child: Text(
+                            LocaleKeys.pos_name.tr(),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: kColor666666,
+                              fontSize: text_15,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: size_40_w),
+                        child: Text(
+                          LocaleKeys.zip.tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kColor666666,
+                            fontSize: text_15,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: size_100_w),
+                        child: Text(
+                          LocaleKeys.email.tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kColor666666,
+                            fontSize: text_15,
                           ),
                         ),
                       ),
@@ -155,7 +247,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: value.customers.length,
-                    itemBuilder: (context, index) => ItemOrder(
+                    itemBuilder: (context, index) => ItemCustomer(
                       item: value.customers[index],
                       onClickItem: () {},
                     ),

@@ -44,6 +44,7 @@ abstract class  LocaleKeys {
   static const tel_16505550111 = 'tel_16505550111';
   static const served_by_mitchell_admin = 'served_by_mitchell_admin';
   static const total = 'total';
+  static const zip = 'zip';
   static const change = 'change';
   static const total_taxes = 'total_taxes';
   static const this_order_is_empty = 'this_order_is_empty';
