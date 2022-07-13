@@ -41,6 +41,7 @@ abstract class  LocaleKeys {
   static const total = 'total';
   static const change = 'change';
   static const total_taxes = 'total_taxes';
+  static const order_000040950006 = 'order_000040950006';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';

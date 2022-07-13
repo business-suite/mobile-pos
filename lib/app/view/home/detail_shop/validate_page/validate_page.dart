@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../../flavors.dart';
 import '../../../../../generated/locale_keys.g.dart';
+import '../../../../di/injection.dart';
+import '../../../../module/common/navigator_screen.dart';
 import '../../../../module/res/colors.dart';
 import '../../../../module/res/dimens.dart';
 import '../../../../module/res/text.dart';
 import '../appbar_shop.dart';
+import '../detail_shop.dart';
 
 class ValidatePage extends StatefulWidget {
   const ValidatePage({Key? key}) : super(key: key);
@@ -62,25 +65,30 @@ class _ValidatePageState extends State<ValidatePage> {
                                 child: Row(
                                   children: [
                                     FlatButton(
-                                      onPressed: () {},
-                                      child: Text(
-                                        LocaleKeys.new_order.tr(),
-                                        style: TextStyle(
-                                          fontSize: text_22,
-                                          color: kColorf0eeee,
-                                        ),
-                                      ),
+                                      onPressed: () {
+                                        getIt<NavigationService>().pushEnterFadeExitDown(DetailShopPage());
+                                      },
+                                      child:Row(
+                                        children: [
+                                          Text(
+                                            LocaleKeys.new_order.tr(),
+                                            style: TextStyle(
+                                              fontSize: text_22,
+                                              color: kColorf0eeee,
+                                            ),
+                                          ),
+                                          SizedBox(width: size_5_w,),
+                                          SvgPicture.asset(
+                                            'assets/icons/ic_angles_right.svg',
+                                            height: size_18_w,
+                                            width: size_18_w,
+                                            color: kColorf0eeee,
+                                          )
+                                        ],
+                                      )
+
                                     ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.only(right: size_10_w),
-                                      child: SvgPicture.asset(
-                                        'assets/icons/ic_angles_right.svg',
-                                        height: size_18_w,
-                                        width: size_18_w,
-                                        color: kColorf0eeee,
-                                      ),
-                                    )
+                                    
                                   ],
                                 ),
                               ),
@@ -130,39 +138,43 @@ class _ValidatePageState extends State<ValidatePage> {
                                         height: size_25_w,
                                       ),
                                       Container(
+                                        decoration: BoxDecoration(
+                                            color: kColorE6E6E6 ,
+                                            borderRadius:
+                                            BorderRadius.circular(
+                                                size_4_w)),
                                         child: Container(
                                           decoration: BoxDecoration(
-                                              color: Colors.black12,
+                                              color: Colors.black12 ,
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       size_4_w)),
                                           padding: EdgeInsets.symmetric(
-                                              vertical: size_1_w),
+                                              vertical: size_1_w, ),
                                           child: SizedBox(
                                             width: double.infinity,
                                             height: size_60_w,
                                             child: FlatButton(
                                               onPressed: () {},
-                                              child: Center(
-                                                child: Row(
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                      'assets/icons/ic_print.svg',
-                                                      height: size_15_w,
-                                                      width: size_15_w,
-                                                    ),
-                                                    SizedBox(
-                                                      width: size_3_w,
-                                                    ),
-                                                    Text(
-                                                      LocaleKeys.print_receipt
-                                                          .tr(),
-                                                      style: TextStyle(
-                                                          fontSize: text_20,
-                                                          color: kColor555555),
-                                                    ),
-                                                  ],
-                                                ),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  SvgPicture.asset(
+                                                    'assets/icons/ic_print.svg',
+                                                    height: size_15_w,
+                                                    width: size_15_w,
+                                                  ),
+                                                  SizedBox(
+                                                    width: size_3_w,
+                                                  ),
+                                                  Text(
+                                                    LocaleKeys.print_receipt
+                                                        .tr(),
+                                                    style: TextStyle(
+                                                        fontSize: text_20,
+                                                        color: kColor555555),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
@@ -231,16 +243,19 @@ class _ValidatePageState extends State<ValidatePage> {
                                         height: size_30_w,
                                       ),
                                       Container(
-
                                         color: Colors.white,
                                         child: Column(
                                           children: [
-                                            Center(
-                                              child: Container(
-                                                child: Image.asset(
-                                                  'assets/images/logoooo.png',
+                                            Container(
+                                              child: Padding(
+                                                padding: EdgeInsets.only(top:size_10_w),
+                                                child: Center(
+                                                  child: Container(
+                                                    child: Image.asset(
+                                                      'assets/images/logoooo.png',
+                                                    ),
+                                                  ),
                                                 ),
-                                               
                                               ),
                                             ),
                                             SizedBox(
@@ -288,8 +303,11 @@ class _ValidatePageState extends State<ValidatePage> {
                                                 Expanded(
                                                   flex: 2,
                                                   child: Container(
-                                                    padding: EdgeInsets.only(right: size_10_w,top:size_20_w),
-                                                    alignment: Alignment.centerRight,
+                                                    padding: EdgeInsets.only(
+                                                        right: size_10_w,
+                                                        top: size_20_w),
+                                                    alignment:
+                                                        Alignment.centerRight,
                                                     child: Text(
                                                       LocaleKeys.total.tr(),
                                                       style: TextStyle(
@@ -301,13 +319,31 @@ class _ValidatePageState extends State<ValidatePage> {
                                                 Expanded(
                                                   flex: 1,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(right: size_10_w),
+                                                    padding: EdgeInsets.only(
+                                                        right: size_10_w),
                                                     child: Column(
-                                                      mainAxisAlignment: MainAxisAlignment.end,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
                                                       children: [
-                                                        Text('--------',style: TextStyle(color: kColor555555,fontSize: size_20_w),),
-                                                        Text('\$ 0.00',style: TextStyle(color: kColor555555,fontSize: size_20_w),),
+                                                        Text(
+                                                          '--------',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  kColor555555,
+                                                              fontSize:
+                                                                  size_20_w),
+                                                        ),
+                                                        Text(
+                                                          '\$ 0.00',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  kColor555555,
+                                                              fontSize:
+                                                                  size_20_w),
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -322,7 +358,8 @@ class _ValidatePageState extends State<ValidatePage> {
                                                 Expanded(
                                                   flex: 1,
                                                   child: Container(
-                                                    padding: EdgeInsets.only(left: size_10_w),
+                                                    padding: EdgeInsets.only(
+                                                        left: size_10_w),
                                                     child: Text(
                                                       LocaleKeys.cash.tr(),
                                                       style: TextStyle(
@@ -332,20 +369,27 @@ class _ValidatePageState extends State<ValidatePage> {
                                                   ),
                                                 ),
                                                 Expanded(
-                                                  flex:1,
-                                                child: Container(
-
-                                                ),),
+                                                  flex: 1,
+                                                  child: Container(),
+                                                ),
                                                 Expanded(
                                                   flex: 1,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(right: size_10_w),
+                                                    padding: EdgeInsets.only(
+                                                        right: size_10_w),
                                                     child: Column(
-
-                                                      mainAxisAlignment: MainAxisAlignment.end,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
                                                       children: [
-                                                        Text('2.00',style: TextStyle(color: kColor555555,),),
+                                                        Text(
+                                                          '2.00',
+                                                          style: TextStyle(
+                                                            color: kColor555555,
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -357,11 +401,15 @@ class _ValidatePageState extends State<ValidatePage> {
                                             ),
                                             Row(
                                               children: [
-                                                Expanded( 
+                                                Expanded(
                                                   flex: 2,
                                                   child: Container(
-                                                    padding: EdgeInsets.only(left: size_15_w,top:size_10_w,bottom: size_10_w),
-                                                    alignment: Alignment.centerRight,
+                                                    padding: EdgeInsets.only(
+                                                        left: size_15_w,
+                                                        top: size_10_w,
+                                                        bottom: size_10_w),
+                                                    alignment:
+                                                        Alignment.centerRight,
                                                     child: Text(
                                                       LocaleKeys.change.tr(),
                                                       style: TextStyle(
@@ -373,12 +421,23 @@ class _ValidatePageState extends State<ValidatePage> {
                                                 Expanded(
                                                   flex: 1,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(right: size_10_w),
+                                                    padding: EdgeInsets.only(
+                                                        right: size_10_w),
                                                     child: Column(
-                                                      mainAxisAlignment: MainAxisAlignment.end,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
                                                       children: [
-                                                        Text('\$ 2.00',style: TextStyle(color: kColor555555,fontSize: size_20_w),),
+                                                        Text(
+                                                          '\$ 2.00',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  kColor555555,
+                                                              fontSize:
+                                                                  size_20_w),
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -393,9 +452,11 @@ class _ValidatePageState extends State<ValidatePage> {
                                                 Expanded(
                                                   flex: 1,
                                                   child: Container(
-                                                    padding: EdgeInsets.only(left: size_10_w),
+                                                    padding: EdgeInsets.only(
+                                                        left: size_10_w),
                                                     child: Text(
-                                                      LocaleKeys.total_taxes.tr(),
+                                                      LocaleKeys.total_taxes
+                                                          .tr(),
                                                       style: TextStyle(
                                                           color: kColor555555,
                                                           fontSize: size_15_w),
@@ -403,20 +464,27 @@ class _ValidatePageState extends State<ValidatePage> {
                                                   ),
                                                 ),
                                                 Expanded(
-                                                  flex:1,
-                                                  child: Container(
-
-                                                  ),),
+                                                  flex: 1,
+                                                  child: Container(),
+                                                ),
                                                 Expanded(
                                                   flex: 1,
                                                   child: Padding(
-                                                    padding: EdgeInsets.only(right: size_10_w),
+                                                    padding: EdgeInsets.only(
+                                                        right: size_10_w),
                                                     child: Column(
-
-                                                      mainAxisAlignment: MainAxisAlignment.end,
-                                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
                                                       children: [
-                                                        Text('\$ 0.00',style: TextStyle(color: kColor555555,),),
+                                                        Text(
+                                                          '\$ 0.00',
+                                                          style: TextStyle(
+                                                            color: kColor555555,fontSize: size_15_w,
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
@@ -430,16 +498,21 @@ class _ValidatePageState extends State<ValidatePage> {
                                               child: Column(
                                                 children: [
                                                   Text(
-                                                    'Order 00004-095-0006',
+                                              LocaleKeys.order_000040950006.tr(),
                                                     style: TextStyle(
-                                                        color: kColor555555),
+                                                        color: kColor555555,fontWeight: FontWeight.w400),
                                                   ),
                                                   Text(
-                                                      '07/08/2022 14:21:59', 
-                                                      style: TextStyle(
-                                                          color: kColor555555)),
+                                                    '07/08/2022 14:21:59',
+                                                    style: TextStyle(
+                                                        color: kColor555555,fontWeight: FontWeight.w400),
+                                                  ),
+
                                                 ],
                                               ),
+                                            ),
+                                            SizedBox(
+                                              height: size_30_w,
                                             ),
                                           ],
                                         ),
