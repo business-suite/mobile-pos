@@ -5,11 +5,11 @@ import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class ItemOrder extends StatelessWidget {
+class ItemCustomer extends StatelessWidget {
   Order item;
   VoidCallback onClickItem;
 
-  ItemOrder({
+  ItemCustomer({
     Key? key,
     required this.item,
     required this.onClickItem,

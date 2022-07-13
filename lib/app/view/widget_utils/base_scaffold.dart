@@ -17,6 +17,7 @@ class BaseScaffold extends StatelessWidget {
   final bool hideBackButton;
   final bool? isTitleCenter;
   final Widget? widgetCustomTitle;
+  final double transparentStatusBar;
 
   const BaseScaffold({
     Key? key,
@@ -31,6 +32,7 @@ class BaseScaffold extends StatelessWidget {
     this.hideBackButton = false,
     this.isTitleCenter = true,
     this.widgetCustomTitle = null,
+    this.transparentStatusBar = 1.0,
   }) : super(key: key);
 
   @override
@@ -40,7 +42,7 @@ class BaseScaffold extends StatelessWidget {
     void _onBackPress() {
       Navigator.of(context).pop();
     }
-    //SystemUtils.setupStatusBar(0.2);
+    SystemUtils.setupStatusBar(transparentStatusBar);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(

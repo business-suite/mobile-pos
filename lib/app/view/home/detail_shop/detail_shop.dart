@@ -43,6 +43,7 @@ class _DetailShopState extends State<_DetailShopContent> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BaseScaffoldSafeArea(
+      transparentStatusBar: 0.2,
       backgroundColor: Colors.white70,
       customAppBar: AppBarShop(
         badgeCount: 1,

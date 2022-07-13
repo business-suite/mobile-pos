@@ -20,10 +20,15 @@ abstract class  LocaleKeys {
   static const quotation_order = 'quotation_order';
   static const refund = 'refund';
   static const back = 'back';
+  static const order = 'order';
+  static const salesman = 'salesman';
   static const invoice = 'invoice';
   static const validate = 'validate';
   static const review = 'review';
   static const pay = 'pay';
+  static const total_item_order = 'total_item_order';
+  static const state = 'state';
+  static const date = 'date';
   static const payment = 'payment';
   static const cash_in = 'cash_in';
   static const cash_out = 'cash_out';

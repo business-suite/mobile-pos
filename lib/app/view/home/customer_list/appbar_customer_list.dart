@@ -1,4 +1,4 @@
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/cash_in_out_shop/cash_in_out_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/cash_in_out_shop/cash_in_out_page.dart' as appbar_customer_list;
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/image_holder.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -9,7 +9,7 @@ import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 
-class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
+class AppBarCustomerList extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
   final bool enableCopyPaste;
   final int badgeCount;
@@ -17,7 +17,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   final Function? leftIconOnPress;
   final Function? rightIconOnPress;
 
-  AppBarShop({
+  AppBarCustomerList({
     Key? key,
     this.iconLeft,
     this.iconRight,
@@ -58,7 +58,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                     padding: EdgeInsets.only(left: size_10_w),
                     child: InkWell(
                       onTap: (){
-                        getIt<NavigationService>().pushScreenWithFade(CashInOutPage());
+                        getIt<NavigationService>().pushScreenWithFade(appbar_customer_list.CashInOutPage());
                       },
                       child: Text(
                         LocaleKeys.cash_in_out.tr(),
@@ -114,10 +114,11 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                         Container()
                     ]),
               ),
-              Icon(
-                Icons.search,
-                color: Colors.white,
-                size: size_18_w,
+              SvgPicture.asset(
+                'assets/icons/ic_desktop.svg',
+                width: size_18_w,
+                height: size_18_w,
+                color: kColor5EB937,
               ),
               SvgPicture.asset(
                 'assets/icons/ic_wifi.svg',

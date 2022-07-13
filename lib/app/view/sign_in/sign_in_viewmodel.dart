@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:business_suite_mobile_pos/app/module/common/toast_util.dart';
 import 'package:business_suite_mobile_pos/app/view/authentication/authentication_page.dart';
 import 'package:business_suite_mobile_pos/app/view/forgot_pass/forgot_pass_page.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -93,8 +94,10 @@ class SignInViewModel extends BaseViewModel {
       () {
         EasyLoading.dismiss();
         //if (email != 'lyquangbinh@gmail.com' && password != 'v6%*uvVG%k2D!b65')
-        if (email != 'lyquangbinh@gmail.com' && password != '123456')
+        if (email != 'lyquangbinh@gmail.com' || password != 'v6%*uvVG%k2D!b65'){
+          ToastUtil.errorToast('Sign In failed! Please check email/password again');
           return;
+        }
         if (_userSharePref.isLogin())
           _navigationService.pushReplacementScreenWithFade(HomePage());
         else

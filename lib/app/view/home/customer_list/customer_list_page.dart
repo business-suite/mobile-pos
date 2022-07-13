@@ -1,5 +1,7 @@
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_list/appbar_customer_list.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/item_order.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_list/item_customer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,28 +14,29 @@ import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../detail_shop/review/review_page.dart';
-import 'order_list_viewmodel.dart';
+import 'customer_list_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
 
-class OrderListPage extends PageProvideNode<OrderListViewModel> {
-  OrderListPage({Key? key}) : super(key: key, params: []);
+class CustomerListPage extends PageProvideNode<CustomerListViewModel> {
+  CustomerListPage({Key? key}) : super(key: key, params: []);
 
   @override
   Widget buildContent(BuildContext context) {
-    return OrderListContent(viewModel);
+    return CustomerListContent(viewModel);
   }
 }
 
-class OrderListContent extends StatefulWidget {
-  OrderListViewModel _orderListViewModel;
+class CustomerListContent extends StatefulWidget {
+  CustomerListViewModel _customerListViewModel;
 
-  OrderListContent(this._orderListViewModel);
+  CustomerListContent(this._customerListViewModel);
 
   @override
-  State<OrderListContent> createState() => _OrderListContentState();
+  State<CustomerListContent> createState() => _CustomerListContentState();
 }
 
-class _OrderListContentState extends State<OrderListContent> {
-  OrderListViewModel get orderListViewModel => widget._orderListViewModel;
+class _CustomerListContentState extends State<CustomerListContent> {
+  CustomerListViewModel get customerListViewModel => widget._customerListViewModel;
 
   FocusNode node1 = FocusNode();
 
@@ -54,7 +57,7 @@ class _OrderListContentState extends State<OrderListContent> {
         badgeCount: 1,
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
       ),
-      body: Consumer<OrderListViewModel>(builder: (context, value, child) {
+      body: Consumer<CustomerListViewModel>(builder: (context, value, child) {
         return Container(
           color: kColorBackground,
           child: Column(
@@ -151,9 +154,9 @@ class _OrderListContentState extends State<OrderListContent> {
                   child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: value.orders.length,
+                    itemCount: value.customers.length,
                     itemBuilder: (context, index) => ItemOrder(
-                      item: value.orders[index],
+                      item: value.customers[index],
                       onClickItem: () {},
                     ),
                   ),

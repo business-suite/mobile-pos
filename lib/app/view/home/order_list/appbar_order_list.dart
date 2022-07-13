@@ -9,7 +9,7 @@ import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 
-class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
+class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
   final bool enableCopyPaste;
   final int badgeCount;
@@ -17,7 +17,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   final Function? leftIconOnPress;
   final Function? rightIconOnPress;
 
-  AppBarShop({
+  AppBarOrderList({
     Key? key,
     this.iconLeft,
     this.iconRight,
@@ -114,10 +114,11 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                         Container()
                     ]),
               ),
-              Icon(
-                Icons.search,
-                color: Colors.white,
-                size: size_18_w,
+              SvgPicture.asset(
+                'assets/icons/ic_desktop.svg',
+                width: size_18_w,
+                height: size_18_w,
+                color: kColor5EB937,
               ),
               SvgPicture.asset(
                 'assets/icons/ic_wifi.svg',

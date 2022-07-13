@@ -1,4 +1,4 @@
-class Order{
+class Customer{
   String name = '';
   String date = '';
   String customer = '';
@@ -6,7 +6,7 @@ class Order{
   String total = '';
   String state = '';
 
-  Order({required this.name,
+  Customer({required this.name,
     required this.date,
     required this.customer,
     required this.salesMan,

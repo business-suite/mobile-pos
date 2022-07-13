@@ -1,18 +1,15 @@
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_shop.dart';
-import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
-import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
-import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../flavors.dart';
 import 'di/injection.dart';
 import 'module/common/navigator_screen.dart';
 import 'module/common/system_utils.dart';
 import 'module/res/colors.dart';
 import 'module/res/themes.dart';
-import 'view/home/detail_shop/validate_page/validate_page.dart';
 import 'view/widget_utils/custom/flutter_easyloading/flutter_easyloading.dart';
 
 class App extends StatefulWidget {
@@ -61,7 +58,7 @@ class _AppState extends State<App> {
         //hide badge debug
         debugShowCheckedModeBanner: false,
        // home: SplashPage(),
-       home: ValidatePage(),
+       home: HomePage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

@@ -93,8 +93,7 @@ class AuthenticationViewModel extends BaseViewModel {
         if(validate && authenCode == "123456") {
           _navigationService.pushReplacementScreenWithSlideRightIn(HomePage());
           _userSharePref.setIsLogin(true);
-        } else ToastUtil.showToast(LocaleKeys.authentication_failed_please_try_again.tr());
-
+        } else ToastUtil.errorToast(LocaleKeys.authentication_failed_please_try_again.tr());
       },
     );
   }

@@ -18,7 +18,7 @@ class ToastUtil {
         backgroundColor: color);
   }
 
-  void successToast(String message) {
+  static  void successToast(String message) {
     Fluttertoast.showToast(
       msg: message,
       textColor: Colors.white,
@@ -28,7 +28,7 @@ class ToastUtil {
     );
   }
 
-  void errorToast(String message) {
+  static void errorToast(String message) {
     Fluttertoast.showToast(
       msg: message,
       textColor: Colors.white,
