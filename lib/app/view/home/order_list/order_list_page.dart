@@ -99,10 +99,6 @@ class _OrderListContentState extends State<OrderListContent> {
                         child: Container(
                           height: size_35_w,
                           width: size_200_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
                           child: TextField(
                             focusNode: node1,
                             cursorColor: Colors.black,
