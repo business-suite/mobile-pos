@@ -49,6 +49,9 @@
   "change": "CHANGE",
   "total_taxes": "Total Taxes",
   "order_000040950006": "Order 00004-095-0006",
+  "what_do_you_want_to_do": "What do you want to do?",
+  "apply_a_down_payment": "Apply a down payment",
+  "settle_the_order": "Settle the order",
 
 
   "this_order_is_empty": "This order is empty",

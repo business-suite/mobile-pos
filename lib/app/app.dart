@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_quotation_order_Page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,8 @@ class _AppState extends State<App> {
         //hide badge debug
         debugShowCheckedModeBanner: false,
        // home: SplashPage(),
-       home: HomePage(),
+      // home: HomePage(),
+       home: PopupQuotationOrderPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

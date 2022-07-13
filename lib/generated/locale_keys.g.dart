@@ -47,6 +47,9 @@ abstract class  LocaleKeys {
   static const change = 'change';
   static const total_taxes = 'total_taxes';
   static const order_000040950006 = 'order_000040950006';
+  static const what_do_you_want_to_do = 'what_do_you_want_to_do';
+  static const apply_a_down_payment = 'apply_a_down_payment';
+  static const settle_the_order = 'settle_the_order';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';
