@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
+import '../../widget_utils/anims/touchable_opacity.dart';
 
 class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
@@ -16,6 +17,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   final String avatarUrl;
   final Function? leftIconOnPress;
   final Function? rightIconOnPress;
+  VoidCallback? onClickAvatar;
 
   AppBarShop({
     Key? key,
@@ -25,6 +27,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
     this.leftIconOnPress,
     this.rightIconOnPress,
     this.badgeCount = 0,  this.avatarUrl = '',
+    this.onClickAvatar
   }) : super(key: key);
 
   @override
@@ -125,24 +128,27 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                 height: size_18_w,
                 color: kColor5EB937,
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                clipBehavior: Clip.hardEdge,
-                child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/placeholder_character.png',
-                  image: avatarUrl,
-                  fit: BoxFit.cover,
-                  width: size_30_w,
-                  height: size_30_w,
-                  fadeInDuration: Duration(milliseconds: 50),
-                  //ERROR IMAGE WHEN LOAD IMAGE
-                  imageErrorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                    return ImageHolder(
-                      asset: 'assets/images/placeholder_character.png',
-                      width: size_30_w,
-                      height: size_30_w,
-                    );
-                  },
+              TouchableOpacity(
+                onPressed: () => onClickAvatar?.call(),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                  clipBehavior: Clip.hardEdge,
+                  child: FadeInImage.assetNetwork(
+                    placeholder: 'assets/images/placeholder_character.png',
+                    image: avatarUrl,
+                    fit: BoxFit.cover,
+                    width: size_30_w,
+                    height: size_30_w,
+                    fadeInDuration: Duration(milliseconds: 50),
+                    //ERROR IMAGE WHEN LOAD IMAGE
+                    imageErrorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                      return ImageHolder(
+                        asset: 'assets/images/placeholder_character.png',
+                        width: size_30_w,
+                        height: size_30_w,
+                      );
+                    },
+                  ),
                 ),
               ),
             ],

@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/services.dart';
+
 import '../../di/injection.dart';
 import '../../module/common/navigator_screen.dart';
+import '../../module/common/toast_util.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
@@ -31,5 +36,22 @@ class HomeViewModel extends BaseViewModel {
   }
 
 
+  bool doubleBackToExit = false;
+  Future<bool> onDoubleBackToExit() async{
+    if(doubleBackToExit){
+      if (Platform.isAndroid) {
+        SystemNavigator.pop();
+      } else if (Platform.isIOS) {
+        exit(0);
+      }
+      return true;
+    }
+    doubleBackToExit = true;
+    ToastUtil.showToast('Press the back button to exit');
+    Future.delayed(Duration(seconds: 2), (){
+      doubleBackToExit = false;
+    });
+    return false;
+  }
 
 }

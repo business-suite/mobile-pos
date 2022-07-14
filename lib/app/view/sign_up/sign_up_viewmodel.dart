@@ -1,8 +1,13 @@
-import 'package:dio/dio.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:business_suite_mobile_pos/app/model/webview_param.dart';
+import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
+import 'package:business_suite_mobile_pos/app/view/webview/webview_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 
-
+import '../../../flavors.dart';
+import '../../../generated/locale_keys.g.dart';
 import '../../di/injection.dart';
+import '../../module/common/extension.dart';
 import '../../module/common/navigator_screen.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
 import '../../module/network/response/login_response.dart';
@@ -14,6 +19,15 @@ class SignUpViewModel extends BaseViewModel {
   late LoginResponse _response;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
+  final formKey = GlobalKey<FormState>();
+  String fullName = '';
+  String email = '';
+  String password = '';
+  bool agreeTermsOfService = false;
+  final fullNameFC = FocusNode();
+  final emailFC = FocusNode();
+  final passwordFC = FocusNode();
+  final dobFC = FocusNode();
 
   SignUpViewModel(this._dataRepo);
 
@@ -21,6 +35,60 @@ class SignUpViewModel extends BaseViewModel {
     _response = response;
     notifyListeners();
   }
+
+
+  bool get validate => fullName.isNotEmpty && Utils.isEmail(email.trim()) && password.isNotEmpty &&
+          password.length > 5
+          &&
+          agreeTermsOfService != false;
+
+  String? requiredField(String? value, String fieldName) {
+    return value == null || value.isEmpty
+        ? LocaleKeys.msg_is_required.tr(
+      namedArgs: {
+        'field': fieldName,
+      },
+    )
+        : null;
+  }
+
+  onChangeEmail(String value) {
+    this.email = value;
+    validate;
+    notifyListeners();
+  }
+
+  onChangePassword(String value) {
+    this.password = value;
+    validate;
+    notifyListeners();
+  }
+
+  onCheckChangeAgree(bool? value) {
+    this.agreeTermsOfService = value ?? false;
+    validate;
+    notifyListeners();
+  }
+
+  String? invalidEmail(String? value) {
+    return value == null || !Utils.isEmail(value.trim())
+        ? LocaleKeys.invalid_email.tr()
+        : null;
+  }
+
+  String? passwordValidator(String? value, String fieldName) {
+    return requiredField(value, fieldName) ??
+        minimum6Characters(value ?? '', fieldName);
+  }
+
+  String? minimum6Characters(String value, String fieldName) =>
+      value.length < 6
+          ? LocaleKeys.msg_is_at_least_6_characters.tr(
+        namedArgs: {
+          'field': fieldName,
+        },
+      )
+          : null;
 
   LoginResponse get response => _response;
 
@@ -62,13 +130,26 @@ class SignUpViewModel extends BaseViewModel {
     this.addSubscription(subscript);*/
   }
 
-
-  Future<void> signOut() async{
+  Future<void> signOut() async {
     // _userSharePref.saveUser(null);
     // _userSharePref.saveTwitterId(null);
     // _userSharePref.saveAppToken(null);
     // _userSharePref.saveFirebaseToken(null);
   }
 
+  void gotoPrivacyPolicy() {
+    _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.privacy_policy.tr(), url: '${F.baseUrl}/contactus')));
+  }
 
+  void gotoTermOfService() {
+    _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.term_of_service.tr(), url: '${F.baseUrl}/contactus')));
+  }
+  
+  void signUp() {
+
+  }
+
+  void gotoSignInPage() async {
+    _navigationService.pushReplacementScreenWithSlideRightIn(SignInPage());
+  }
 }

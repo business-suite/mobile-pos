@@ -123,7 +123,7 @@
   "product_checked": "Checked",
   "product_unchecked": "Unchecked",
   "product_relate_product": "Related Products",
-  "sign_in": "Sign in",
+  "sign_in": "Sign In",
   "email": "Email",
   "password": "Password",
   "forgot_password_question": "Forgot Password?",
@@ -141,5 +141,14 @@
   "authentication_code": "Authentication Code",
   "learn_more": "Learn More",
   "invalid_authen_code": "Invalid Authentication Code",
-  "authentication_failed_please_try_again": "Authentication failed! Please try again later."
+  "authentication_failed_please_try_again": "Authentication failed! Please try again later.",
+  "msg_login_failed": "Failed! Please check email/password again",
+  "sign_up": "Sign Up",
+  "already_have_account": "Already have account?",
+  "full_name": "Full Name",
+
+  "privacy_policy": "Privacy Policy",
+  "term_of_service": "Terms of Service",
+  "i_agree_to_the": "I agree to the",
+  "and": "and"
 }

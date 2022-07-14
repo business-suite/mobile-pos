@@ -86,16 +86,16 @@ class SignInViewModel extends BaseViewModel {
 
   setloginType(int loginType) => _userSharePref.saveLoginType(loginType);
 
-  void signIn(BuildContext context) async {
-    removeFocus(context);
+  void signIn() async {
+    removeFocus(_navigationService.navigatorKey.currentContext!);
     EasyLoading.show();
     Future.delayed(
       Duration(milliseconds: 3000),
       () {
         EasyLoading.dismiss();
         //if (email != 'lyquangbinh@gmail.com' && password != 'v6%*uvVG%k2D!b65')
-        if (email != 'lyquangbinh@gmail.com' || password != 'v6%*uvVG%k2D!b65'){
-          ToastUtil.errorToast('Sign In failed! Please check email/password again');
+        if (email != 'lyquangbinh@gmail.com' || password != '123456'){
+          ToastUtil.errorToast(LocaleKeys.msg_login_failed.tr());
           return;
         }
         if (_userSharePref.isLogin())

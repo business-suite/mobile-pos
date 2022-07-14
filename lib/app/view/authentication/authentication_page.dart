@@ -51,7 +51,7 @@ class _AuthenticationContentState
   Widget build(BuildContext context) {
     return BaseScaffold(
       transparentStatusBar: 0.0,
-      onBackPress:  () => authenticationViewModel.cancel(context),
+      onBackPress:  () => authenticationViewModel.cancel(),
       title: LocaleKeys.two_factor_authentication.tr(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size_26_w),
@@ -75,7 +75,7 @@ class _AuthenticationContentState
               hintText: LocaleKeys.authentication_code.tr(),
               validator: (value) =>
                   authenticationViewModel.invalidAuthenCode(value),
-              onFieldSubmitted: (_) => authenticationViewModel.submit(context),
+              onFieldSubmitted: (_) => authenticationViewModel.submit(),
             ),
             buildSizeBox(),
             _buildCheckBoxDontAskAgain(),
@@ -85,7 +85,7 @@ class _AuthenticationContentState
                 return FilledButton(
                   enable: authenticationViewModel.validate,
                   text: LocaleKeys.sign_in.tr(),
-                  onPress: () => authenticationViewModel.submit(context),
+                  onPress: () => authenticationViewModel.submit(),
                 );
               },
             ),
@@ -99,7 +99,7 @@ class _AuthenticationContentState
                     fontSize: text_14,
                     color: kColorPrimary,
                   ),
-                  onPress: () => authenticationViewModel.cancel(context),
+                  onPress: () => authenticationViewModel.cancel(),
                 );
               },
             )

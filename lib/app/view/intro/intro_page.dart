@@ -37,23 +37,7 @@ class _IntroContentPage extends StatefulWidget {
 class _IntroContentState extends State<_IntroContentPage> {
   IntroViewModel get introViewModel => widget._introViewModel;
 
-  List<String> get _onBoardingTitles => [
-    LocaleKeys.on_boarding_title_1.tr(),
-    LocaleKeys.on_boarding_title_2.tr(),
-    LocaleKeys.on_boarding_title_3.tr(),
-  ];
 
-  List<String> get _onBoardingDescriptions => [
-    LocaleKeys.on_boarding_desc_1.tr(),
-    LocaleKeys.on_boarding_desc_2.tr(),
-    LocaleKeys.on_boarding_desc_3.tr(),
-  ];
-
-  List<String> get _onBoardingUrl => [
-    'assets/images/homepage_desktop.png',
-    'assets/images/screens_mockup.png',
-    'assets/images/market_position_update.png',
-  ];
 
   final PageController _pageController = PageController();
 
@@ -62,18 +46,18 @@ class _IntroContentState extends State<_IntroContentPage> {
       aspectRatio: 3.7 / 5,
       child: PageView.builder(
           controller: _pageController,
-          itemCount: _onBoardingTitles.length,
+          itemCount: introViewModel.onBoardingTitles.length,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             return Column(
               children: [
                 OnBoardingAnimationWidget(
                     initialStep: index,
-                    url: _onBoardingUrl[index]
+                    url: introViewModel.onBoardingUrl[index]
                 ),
                 MessageItem(
-                  onBoardingTitle: _onBoardingTitles[index],
-                  onBoardingDescription: _onBoardingDescriptions[index],
+                  onBoardingTitle: introViewModel.onBoardingTitles[index],
+                  onBoardingDescription: introViewModel.onBoardingDescriptions[index],
                 ),
               ],
             );
@@ -110,7 +94,7 @@ class _IntroContentState extends State<_IntroContentPage> {
       order: 3,
       child: SmoothPageIndicator(
         controller: _pageController, // PageController
-        count: _onBoardingTitles.length,
+        count: introViewModel.onBoardingTitles.length,
         effect: WormEffect(
           dotWidth: 8,
           dotHeight: 8,
@@ -141,9 +125,12 @@ class _IntroContentState extends State<_IntroContentPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kWhite,
-      body: _page2(),
+    return WillPopScope(
+      onWillPop: () => introViewModel.onDoubleBackToExit(),
+      child: Scaffold(
+        backgroundColor: kWhite,
+        body: _page2(),
+      ),
     );
   }
 
