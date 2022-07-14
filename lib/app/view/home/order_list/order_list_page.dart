@@ -1,5 +1,6 @@
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/item_order.dart';
+import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_quotation_order.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,6 +12,7 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
+import '../detail_shop/cash_in_out_shop/cash_in_out_page.dart';
 import '../detail_shop/review/review_page.dart';
 import 'order_list_viewmodel.dart';
 
@@ -144,13 +146,18 @@ class _OrderListContentState extends State<OrderListContent> {
               Expanded(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
-                  child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: value.orders.length,
-                    itemBuilder: (context, index) => ItemOrder(
-                      item: value.orders[index],
-                      onClickItem: () {},
+                  child: InkWell(
+                    onTap: (){
+                      getIt<NavigationService>().pushEnterFadeExitDown(PopupQuotationOrderPage());
+                    },
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: value.orders.length,
+                      itemBuilder: (context, index) => ItemOrder(
+                        item: value.orders[index],
+                        onClickItem: () {},
+                      ),
                     ),
                   ),
                 ),

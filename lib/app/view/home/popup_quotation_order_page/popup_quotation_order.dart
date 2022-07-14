@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_apply_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_percentage.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
                             ),
                             child: InkWell(
                               onTap: (){
-                                getIt<NavigationService>().pushEnterFadeExitDown(PopupApplyPage());
+                                getIt<NavigationService>().pushEnterFadeExitDown(PopupPercentage());
                               },
                               child: Text(
                                 LocaleKeys.apply_a_down_payment.tr(),
@@ -131,7 +132,7 @@ class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
                           width: size_100_w,
                           child: FlatButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              getIt<NavigationService>().pushEnterFadeExitDown(OrderListPage());
                             },
                             child: Text(
                               LocaleKeys.cancel.tr(),

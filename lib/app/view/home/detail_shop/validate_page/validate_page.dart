@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_viewmodel.dart';
 
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold_safe_area.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,17 +12,31 @@ import '../../../../module/common/navigator_screen.dart';
 import '../../../../module/res/colors.dart';
 import '../../../../module/res/dimens.dart';
 import '../../../../module/res/text.dart';
+import '../../../../viewmodel/base_viewmodel.dart';
 import '../appbar_shop.dart';
 import '../detail_shop.dart';
 
-class ValidatePage extends StatefulWidget {
-  const ValidatePage({Key? key}) : super(key: key);
+class ValidatePage extends PageProvideNode<ValidateViewModel> {
+  ValidatePage({Key? key}) : super(key: key, params: []);
 
   @override
-  State<ValidatePage> createState() => _ValidatePageState();
+  Widget buildContent(BuildContext context) {
+    return ValidateConten(viewModel);
+  }
 }
 
-class _ValidatePageState extends State<ValidatePage> {
+class ValidateConten extends StatefulWidget {
+  final ValidateViewModel _validateViewModel;
+
+  ValidateConten(this._validateViewModel);
+
+  @override
+  State<ValidateConten> createState() => _ValidateContenState();
+}
+
+class _ValidateContenState extends State<ValidateConten> {
+  ValidateViewModel get validateViewModel => widget._validateViewModel;
+
   @override
   Widget build(BuildContext context) {
     return BaseScaffoldSafeArea(
@@ -66,30 +81,31 @@ class _ValidatePageState extends State<ValidatePage> {
                                 child: Row(
                                   children: [
                                     FlatButton(
-                                      onPressed: () {
-                                        getIt<NavigationService>().pushEnterFadeExitDown(DetailShopPage());
-                                      },
-                                      child:Row(
-                                        children: [
-                                          Text(
-                                            LocaleKeys.new_order.tr(),
-                                            style: TextStyle(
-                                              fontSize: text_22,
-                                              color: kColorf0eeee,
+                                        onPressed: () {
+                                          getIt<NavigationService>()
+                                              .pushEnterFadeExitDown(
+                                                  DetailShopPage());
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              LocaleKeys.new_order.tr(),
+                                              style: TextStyle(
+                                                fontSize: text_22,
+                                                color: kColorf0eeee,
+                                              ),
                                             ),
-                                          ),
-                                          SizedBox(width: size_5_w,),
-                                          SvgPicture.asset(
-                                            'assets/icons/ic_angles_right.svg',
-                                            height: size_18_w,
-                                            width: size_18_w,
-                                            color: kColorf0eeee,
-                                          )
-                                        ],
-                                      )
-
-                                    ),
-                                    
+                                            SizedBox(
+                                              width: size_5_w,
+                                            ),
+                                            SvgPicture.asset(
+                                              'assets/icons/ic_angles_right.svg',
+                                              height: size_18_w,
+                                              width: size_18_w,
+                                              color: kColorf0eeee,
+                                            )
+                                          ],
+                                        )),
                                   ],
                                 ),
                               ),
@@ -140,25 +156,26 @@ class _ValidatePageState extends State<ValidatePage> {
                                       ),
                                       Container(
                                         decoration: BoxDecoration(
-                                            color: kColorE6E6E6 ,
-                                            borderRadius:
-                                            BorderRadius.circular(
+                                            color: kColorE6E6E6,
+                                            borderRadius: BorderRadius.circular(
                                                 size_4_w)),
                                         child: Container(
                                           decoration: BoxDecoration(
-                                              color: Colors.black12 ,
+                                              color: Colors.black12,
                                               borderRadius:
                                                   BorderRadius.circular(
                                                       size_4_w)),
                                           padding: EdgeInsets.symmetric(
-                                              vertical: size_1_w, ),
+                                            vertical: size_1_w,
+                                          ),
                                           child: SizedBox(
                                             width: double.infinity,
                                             height: size_60_w,
                                             child: FlatButton(
                                               onPressed: () {},
                                               child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   SvgPicture.asset(
                                                     'assets/icons/ic_print.svg',
@@ -249,7 +266,8 @@ class _ValidatePageState extends State<ValidatePage> {
                                           children: [
                                             Container(
                                               child: Padding(
-                                                padding: EdgeInsets.only(top:size_10_w),
+                                                padding: EdgeInsets.only(
+                                                    top: size_10_w),
                                                 child: Center(
                                                   child: Container(
                                                     child: Image.asset(
@@ -483,7 +501,8 @@ class _ValidatePageState extends State<ValidatePage> {
                                                         Text(
                                                           '\$ 0.00',
                                                           style: TextStyle(
-                                                            color: kColor555555,fontSize: size_15_w,
+                                                            color: kColor555555,
+                                                            fontSize: size_15_w,
                                                           ),
                                                         ),
                                                       ],
@@ -499,16 +518,21 @@ class _ValidatePageState extends State<ValidatePage> {
                                               child: Column(
                                                 children: [
                                                   Text(
-                                              LocaleKeys.order_000040950006.tr(),
+                                                    LocaleKeys
+                                                        .order_000040950006
+                                                        .tr(),
                                                     style: TextStyle(
-                                                        color: kColor555555,fontWeight: FontWeight.w400),
+                                                        color: kColor555555,
+                                                        fontWeight:
+                                                            FontWeight.w400),
                                                   ),
                                                   Text(
                                                     '07/08/2022 14:21:59',
                                                     style: TextStyle(
-                                                        color: kColor555555,fontWeight: FontWeight.w400),
+                                                        color: kColor555555,
+                                                        fontWeight:
+                                                            FontWeight.w400),
                                                   ),
-
                                                 ],
                                               ),
                                             ),
