@@ -108,6 +108,7 @@ dependencies:
 
   flutter_scale_tap:
     git: https://github.com/magicpro97/flutter_scale_tap
+  font_awesome_flutter: ^10.1.0
 
 
 

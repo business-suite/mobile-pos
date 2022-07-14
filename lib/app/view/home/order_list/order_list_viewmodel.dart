@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../di/injection.dart';
 import '../../../model/order.dart';
 import '../../../module/common/navigator_screen.dart';
@@ -13,6 +15,7 @@ class OrderListViewModel extends BaseViewModel {
   bool canLoadMore = false;
   bool _loading = false;
   String _response = "";
+  var node = FocusNode();
 
   final orders = [
     Order(

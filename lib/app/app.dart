@@ -1,5 +1,5 @@
-import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,6 @@ import 'module/common/navigator_screen.dart';
 import 'module/common/system_utils.dart';
 import 'module/res/colors.dart';
 import 'module/res/themes.dart';
-import 'view/splash/splash_page.dart';
 import 'view/widget_utils/custom/flutter_easyloading/flutter_easyloading.dart';
 
 class App extends StatefulWidget {
@@ -59,7 +58,10 @@ class _AppState extends State<App> {
         title: F.title,
         //hide badge debug
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+         home: SplashPage(),
+        //home: HomePage(),
+        //   home: PopupQuotationOrderPage(),
+        //  home: ReviewPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

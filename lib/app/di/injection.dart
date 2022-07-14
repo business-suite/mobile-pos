@@ -1,6 +1,9 @@
 import 'package:business_suite_mobile_pos/app/view/authentication/authentication_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/sign_up/sign_up_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 
@@ -70,10 +73,16 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<ReviewViewModel>(
       () => ReviewViewModel(getIt<DataRepository>()));
-
+  getIt.registerFactory<ValidateViewModel>(
+          () => ValidateViewModel(getIt<DataRepository>()));
   getIt.registerFactory<OrderListViewModel>(
       () => OrderListViewModel(getIt<DataRepository>()));
 
+  getIt.registerFactory<CustomerListViewModel>(
+          () => CustomerListViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<PercentageViewModel>(
+          () => PercentageViewModel(getIt<DataRepository>()));
 
   getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, String>(
       (param1, _) => //no need param2
