@@ -9,8 +9,10 @@ import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
 import '../../../../generated/locale_keys.g.dart';
+import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
+import '../../../module/event_bus/event_bus.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';

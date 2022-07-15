@@ -48,7 +48,7 @@ class _ForgotPassContentState extends LifecycleState<_ForgotPasswordContentPage>
   Widget build(BuildContext context) {
     return BaseScaffold(
       transparentStatusBar: 0.0,
-      onBackPress: () => forgotPassViewModel.cancel(context),
+      onBackPress: () => forgotPassViewModel.cancel(),
       title: LocaleKeys.forgot_password.tr(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size_26_w),
@@ -70,7 +70,7 @@ class _ForgotPassContentState extends LifecycleState<_ForgotPasswordContentPage>
               onChanged: (value) => forgotPassViewModel.onChangeEmail(value),
               hintText: LocaleKeys.email_address.tr(),
               validator: (value) => forgotPassViewModel.invalidEmail(value),
-              onFieldSubmitted: (_) => forgotPassViewModel.submit(context),
+              onFieldSubmitted: (_) => forgotPassViewModel.submit(),
             ),
             buildSizeBox(),
             Consumer<ForgotPassViewModel>(
@@ -78,7 +78,7 @@ class _ForgotPassContentState extends LifecycleState<_ForgotPasswordContentPage>
                 return FilledButton(
                   enable: forgotPassViewModel.validate,
                   text: LocaleKeys.txt_continue.tr(),
-                  onPress: () => forgotPassViewModel.submit(context),
+                  onPress: () => forgotPassViewModel.submit(),
                 );
               },
             )

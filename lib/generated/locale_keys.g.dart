@@ -60,6 +60,13 @@ abstract class  LocaleKeys {
   static const what_do_you_want_to_do = 'what_do_you_want_to_do';
   static const apply_a_down_payment = 'apply_a_down_payment';
   static const settle_the_order = 'settle_the_order';
+  static const receipt = 'receipt';
+  static const employee = 'employee';
+  static const status = 'status';
+  static const number = 'number';
+  static const delete = 'delete';
+  static const existing_orderlines = 'existing_orderlines';
+  static const order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order = 'order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';
@@ -157,5 +164,13 @@ abstract class  LocaleKeys {
   static const learn_more = 'learn_more';
   static const invalid_authen_code = 'invalid_authen_code';
   static const authentication_failed_please_try_again = 'authentication_failed_please_try_again';
+  static const msg_login_failed = 'msg_login_failed';
+  static const sign_up = 'sign_up';
+  static const already_have_account = 'already_have_account';
+  static const full_name = 'full_name';
+  static const privacy_policy = 'privacy_policy';
+  static const term_of_service = 'term_of_service';
+  static const i_agree_to_the = 'i_agree_to_the';
+  static const and = 'and';
 
 }

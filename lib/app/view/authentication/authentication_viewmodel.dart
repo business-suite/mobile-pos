@@ -82,9 +82,9 @@ class AuthenticationViewModel extends BaseViewModel {
 
   setloginType(int loginType) => _userSharePref.saveLoginType(loginType);
 
-  void submit(BuildContext context) async {
+  void submit() async {
     //TODO: Check email exist + call api reset password
-    removeFocus(context);
+    removeFocus(_navigationService.navigatorKey.currentContext!);
     EasyLoading.show();
     Future.delayed(
       Duration(milliseconds: 3000),
@@ -98,8 +98,8 @@ class AuthenticationViewModel extends BaseViewModel {
     );
   }
 
-  cancel(BuildContext context) async {
-    removeFocus(context);
+  cancel() async {
+    removeFocus(_navigationService.navigatorKey.currentContext!);
     _navigationService.pushReplacementScreenWithSlideLeftIn(SignInPage());
   }
 }

@@ -1,36 +1,39 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
+
+import 'package:business_suite_mobile_pos/app/module/event_bus/event_bus.dart';
+import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_percentage.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/dimens.dart';
 import '../../../module/res/text.dart';
-import 'apply_viewmodel.dart';
-import 'item_number.dart';
 
-void acceptScoreInputDialog() {
+void openPopupBillRemove() {
   BuildContext context =
       getIt<NavigationService>().navigatorKey.currentContext!;
   showDialog(
       context: context,
       builder: (BuildContext builderContext) {
         removeFocus(context);
-        return PopupApplyPage();
+        return PopupQuotationOrderPage();
       });
 }
 
-class PopupApplyPage extends StatefulWidget {
-  PopupApplyPage({Key? key}) : super(key: key);
+class PopupQuotationOrderPage extends StatefulWidget {
+  PopupQuotationOrderPage({Key? key}) : super(key: key);
 
   @override
-  State<PopupApplyPage> createState() => _PopupApplyPageState();
+  State<PopupQuotationOrderPage> createState() =>
+      _PopupQuotationOrderPageState();
 }
 
-class _PopupApplyPageState extends State<PopupApplyPage> {
+class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,11 +43,11 @@ class _PopupApplyPageState extends State<PopupApplyPage> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: kColorE0E0E0,
-              borderRadius: BorderRadius.circular(size_2_w),
+              color: kColorBackground,
+              borderRadius: BorderRadius.circular(size_5_w),
             ),
             margin: EdgeInsets.symmetric(
-              horizontal: size_30_w,
+              horizontal: size_1_w,
             ),
             padding: EdgeInsets.symmetric(
               vertical: size_1_w,
@@ -53,91 +56,65 @@ class _PopupApplyPageState extends State<PopupApplyPage> {
             child: Column(
               children: [
                 Container(
-                  color: kWhite.withOpacity(0.5),
+                  height: size_50_w,
+                  color: kColorffffff.withOpacity(0.5),
                   child: Center(
                     child: Padding(
-                      padding: EdgeInsets.only(top: size_20_w,bottom: size_20_w),
+                      padding: EdgeInsets.only(top: size_5_w),
                       child: Text(
-                       'Percentage of \$ 66.00',
+                        LocaleKeys.existing_orderlines.tr(),
                         style:
-                        TextStyle(fontSize: size_18_w, color: kColor555555),
+                            TextStyle(fontSize: size_18_w, color: kColor555555),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: size_15_h,
-                ),
                 Container(
-                  padding: EdgeInsets.only(left: size_30_w,right : size_30_w,),
-                  height: size_50_w,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: kColor6ec89b,
-                        borderRadius:
-                        BorderRadius.circular(size_3_w)),
-                    padding: EdgeInsets.symmetric(
-                        horizontal: size_2_w,vertical: size_2_w),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: kColorBackground,
-                          borderRadius:
-                          BorderRadius.circular(size_3_w)),
-                    ),
-                  ),
-                ),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(left: size_20_w,top: size_20_w,bottom: size_20_w,right: size_20_w,),
+                  child: Text(
 
-                SizedBox(
-                  height: size_10_w,
-                ),
-                GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: number1.length,
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 90,
-                      childAspectRatio: 1,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10),
-                  itemBuilder: (BuildContext context, int index) => ItemNumber(
-                    numbers: number1[index],
-
+                    LocaleKeys
+                        .order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order
+                        .tr(),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: kColor555555,fontSize: size_16_w),
                   ),
                 ),
                 Container(
                   height: size_1_w,
-                  color: kColorCACACA,
+                  width: double.infinity,
+                  color: kColor3C3C3C.withOpacity(0.1),
                 ),
                 SizedBox(
-                  height: size_15_h,
+                  height: size_10_w,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: size_15_w),
+                  padding: EdgeInsets.only(right: size_10_w),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.05),
-                            borderRadius: BorderRadius.circular(size_1_w)),
+                            color: kColorcacaca,
+                            borderRadius: BorderRadius.circular(size_2_w)),
                         padding: EdgeInsets.symmetric(
                             horizontal: size_1_w, vertical: size_1_w),
                         child: Container(
-                          height: size_50_w,
+                          height: size_40_w,
                           width: size_100_w,
                           child: FlatButton(
-                            color: kColor3C3C3C.withOpacity(0.1),
                             onPressed: () {
-                              getIt<NavigationService>().pushEnterFadeExitDown(PayPage());
+                              getIt<NavigationService>().dimiss();
                             },
                             child: Text(
                               LocaleKeys.cancel.tr(),
                               style: TextStyle(
-                                fontSize: text_12,
+                                fontSize: text_16,
                                 color: kColor555555,
                               ),
                             ),
-                           
+                            color: kColorE4E2E2,
                           ),
                         ),
                       ),
@@ -146,12 +123,12 @@ class _PopupApplyPageState extends State<PopupApplyPage> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.05),
-                            borderRadius: BorderRadius.circular(size_1_w)),
+                            color: kColorcacaca,
+                            borderRadius: BorderRadius.circular(size_2_w)),
                         padding: EdgeInsets.symmetric(
                             horizontal: size_1_w, vertical: size_1_w),
                         child: Container(
-                          height: size_50_w,
+                          height: size_40_w,
                           width: size_100_w,
                           child: FlatButton(
                             onPressed: () {
@@ -160,17 +137,20 @@ class _PopupApplyPageState extends State<PopupApplyPage> {
                             child: Text(
                               LocaleKeys.dialog_ok.tr(),
                               style: TextStyle(
-                                fontSize: text_12,
+                                fontSize: text_16,
                                 color: kColor555555,
                               ),
                             ),
-                            color: kColor3C3C3C.withOpacity(0.1),
+                            color: kColorE4E2E2,
                           ),
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
+                SizedBox(
+                  height: size_10_w,
+                ),
               ],
             ),
           ),
@@ -178,5 +158,4 @@ class _PopupApplyPageState extends State<PopupApplyPage> {
       ),
     );
   }
-
 }

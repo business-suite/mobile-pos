@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:business_suite_mobile_pos/app/module/common/toast_util.dart';
 import 'package:business_suite_mobile_pos/app/view/home/shop_list/shop_list_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../viewmodel/base_viewmodel.dart';
 import '../widget_utils/bottom_sheet/entry_bottom_sheet.dart';
@@ -24,42 +28,30 @@ class _HomePage extends StatefulWidget {
 }
 
 class _HomeScreen extends State<_HomePage> {
-  int _currentIndex = 3;
   bool flgBadgeOn = false;
-
+  DateTime timeBackPressed = DateTime.now();
   HomeViewModel get homeViewModel => widget._homeViewModel;
-
-  List<Widget> _children = [
-    /* HomeMainPage(),
-    AllNotificationPage(),
-    MyPage(),*/
-  ];
 
   @override
   void initState() {
     super.initState();
   }
 
-  void showEntryBottomSheet(params) {
-    entryBottomSheet(url: "");
-  }
 
   @override
   void dispose() {
     super.dispose();
   }
 
-  void onTabBar(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ShopListPage(),
+    return WillPopScope(
+      onWillPop: () => homeViewModel.onDoubleBackToExit(),
+      child: Scaffold(
+        body: SafeArea(
+          child: ShopListPage(),
+        ),
       ),
     );
   }

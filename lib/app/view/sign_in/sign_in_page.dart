@@ -88,7 +88,7 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
                       validator: (value) => signInViewModel.passwordValidator(
                           value, LocaleKeys.password.tr()),
                       textInputAction: TextInputAction.done,
-                      onFieldSubmitted: (_) => signInViewModel.signIn(context),
+                      onFieldSubmitted: (_) => signInViewModel.signIn(),
                     ),
                   ],
                 ),
@@ -118,7 +118,7 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
                       return FilledButton(
                         text: LocaleKeys.sign_in.tr().toUpperCase(),
                         enable: value.validate,
-                        onPress: () => signInViewModel.signIn(context),
+                        onPress: () => signInViewModel.signIn(),
                       );
                     },
                   )

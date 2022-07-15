@@ -1,17 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_apply_page.dart';
+import 'package:business_suite_mobile_pos/app/module/event_bus/event_bus.dart';
+import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_percentage.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/dimens.dart';
 import '../../../module/res/text.dart';
+import '../detail_shop/detail_shop.dart';
 
-void acceptScoreInputDialog() {
+void openPopupQuatationOrder() {
   BuildContext context =
       getIt<NavigationService>().navigatorKey.currentContext!;
   showDialog(
@@ -31,7 +35,6 @@ class PopupQuotationOrderPage extends StatefulWidget {
 }
 
 class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,18 +82,21 @@ class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
                     color: kColorf0eeee,
                     child: Column(
                       children: [
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              top: size_15_w,
-                              left: size_10_w,
-                              bottom: size_15_w,
-                            ),
-                            child: InkWell(
-                              onTap: (){
-                                getIt<NavigationService>().pushEnterFadeExitDown(PopupApplyPage());
-                              },
+                        InkWell(
+                          onTap: () {
+                            getIt<NavigationService>().dimiss();
+                            acceptScoreInputDialog();
+                          },
+                          child: Container(
+                            // color: Colors.,
+                            width: double.infinity,
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: size_15_w,
+                                left: size_10_w,
+                                bottom: size_15_w,
+                              ),
                               child: Text(
                                 LocaleKeys.apply_a_down_payment.tr(),
                                 style: TextStyle(color: kColor555555),
@@ -98,17 +104,24 @@ class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
                             ),
                           ),
                         ),
-                        Container(
-                          color: kColorE6E6E6,
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                              padding: EdgeInsets.only(
-                                top: size_15_w,
-                                left: size_10_w,
-                                bottom: size_15_w,
-                              ),
-                              child: Text(LocaleKeys.settle_the_order.tr(),
-                                  style: TextStyle(color: kColor555555))),
+                        InkWell(
+                          onTap: (){
+                            getIt<NavigationService>().dimiss();
+                            eventBus.fire(CloseScreenSettleOrder());
+                           // getIt<NavigationService>().pu(DetailShopPage());
+                          },
+                          child: Container(
+                            color: kColorE6E6E6,
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: size_15_w,
+                                  left: size_10_w,
+                                  bottom: size_15_w,
+                                ),
+                                child: Text(LocaleKeys.settle_the_order.tr(),
+                                    style: TextStyle(color: kColor555555))),
+                          ),
                         ),
                       ],
                     )),
@@ -131,7 +144,7 @@ class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
                           width: size_100_w,
                           child: FlatButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              getIt<NavigationService>().dimiss();
                             },
                             child: Text(
                               LocaleKeys.cancel.tr(),
