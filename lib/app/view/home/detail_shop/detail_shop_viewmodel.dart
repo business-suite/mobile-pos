@@ -1,5 +1,6 @@
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
+import 'package:business_suite_mobile_pos/app/view/intro/intro_page.dart';
 
 import '../../../di/injection.dart';
 import '../../../model/product.dart';
@@ -68,5 +69,6 @@ class DetailShopViewModel extends BaseViewModel {
   void openReviewPage(){
     _navigationService.pushEnterFadeExitDown(ReviewPage());
   }
+
 
 }

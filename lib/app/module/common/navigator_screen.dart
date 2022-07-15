@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../di/injection.dart';
 import '../../view/error/error_page.dart';
+import '../../view/intro/intro_page.dart';
 import '../../view/splash/splash_page.dart';
+import '../local_storage/shared_pref_manager.dart';
 
 class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey =
@@ -12,6 +15,7 @@ class NavigationService {
   int allNotificationTabIndexFromPush = -1;
   int myPageGameTitileIdFromPush = -1;
   String myPageTypeFromPush = "player";
+
 
   //replace with anim fade
   Future<dynamic>? pushReplacementScreenWithFade(Widget widget) {
@@ -109,6 +113,11 @@ class NavigationService {
 
   back() {
     navigatorKey.currentState?.pop();
+  }
+
+  void signOut(){
+    getIt<UserSharePref>().setIsLogin(false);
+   pushAndRemoveUntilWithFade(IntroPage());
   }
 
   dimiss() {

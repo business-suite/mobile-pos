@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:business_suite_mobile_pos/app/view/webview/webview_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,13 +41,8 @@ class _WebviewContentPageState extends State<_WebviewContentPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBarCustom(
-        colorBackGround: kColor202330,
-        resIcon: 'assets/icons/ic_close.svg',
-        onPressIcon: () => webviewViewModel.navigationService.back(),
-      ),
+    return BaseScaffold(
+      title: webviewViewModel.webviewParam?.title ?? '',
       body: Stack(
         children: <Widget>[
           WebView(

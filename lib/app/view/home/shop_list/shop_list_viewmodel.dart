@@ -67,8 +67,8 @@ class ShopListViewModel extends BaseViewModel {
     ToastUtil.showToast('Test');
   }
 
-  gotoDetailShop(BuildContext context) async {
-    removeFocus(context);
+  gotoDetailShop() async {
+    removeFocus(_navigationService.navigatorKey.currentContext!);
     EasyLoading.show();
     Future.delayed(
       Duration(milliseconds: 500),

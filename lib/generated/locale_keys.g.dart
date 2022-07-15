@@ -148,5 +148,13 @@ abstract class  LocaleKeys {
   static const learn_more = 'learn_more';
   static const invalid_authen_code = 'invalid_authen_code';
   static const authentication_failed_please_try_again = 'authentication_failed_please_try_again';
+  static const msg_login_failed = 'msg_login_failed';
+  static const sign_up = 'sign_up';
+  static const already_have_account = 'already_have_account';
+  static const full_name = 'full_name';
+  static const privacy_policy = 'privacy_policy';
+  static const term_of_service = 'term_of_service';
+  static const i_agree_to_the = 'i_agree_to_the';
+  static const and = 'and';
 
 }

@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -18,11 +17,11 @@ class ToastUtil {
         backgroundColor: color);
   }
 
-  static  void successToast(String message) {
+  static void successToast(String message) {
     Fluttertoast.showToast(
       msg: message,
       textColor: Colors.white,
-      backgroundColor: Colors.blue,
+      backgroundColor: kColor5EB937,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
     );
@@ -32,7 +31,7 @@ class ToastUtil {
     Fluttertoast.showToast(
       msg: message,
       textColor: Colors.white,
-      backgroundColor: Colors.red,
+      backgroundColor: kColorF0485D,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
     );

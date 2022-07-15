@@ -1,11 +1,18 @@
-import 'dart:io';
-
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../generated/locale_keys.g.dart';
 import '../../module/res/colors.dart';
 import '../../module/res/dimens.dart';
-import '../../module/res/string.dart';
+import '../../module/res/style.dart';
 import '../../viewmodel/base_viewmodel.dart';
 import '../../viewmodel/life_cycle_base.dart';
+import '../widget_utils/anims/touchable_opacity.dart';
+import '../widget_utils/base_scaffold.dart';
+import '../widget_utils/buttons/filled_button.dart';
+import '../widget_utils/outline_text_form_field.dart';
 import 'sign_up_viewmodel.dart';
 
 class SignUpPage extends PageProvideNode<SignUpViewModel> {
@@ -13,21 +20,21 @@ class SignUpPage extends PageProvideNode<SignUpViewModel> {
 
   @override
   Widget buildContent(BuildContext context) {
-    return _LoginContentPage(viewModel);
+    return _SignUpContent(viewModel);
   }
 }
 
-class _LoginContentPage extends StatefulWidget {
-  final SignUpViewModel _loginViewModel;
+class _SignUpContent extends StatefulWidget {
+  final SignUpViewModel _signUpViewModel;
 
-  _LoginContentPage(this._loginViewModel);
+  _SignUpContent(this._signUpViewModel);
 
   @override
-  _LoginContentState createState() => _LoginContentState();
+  _SignUpContentState createState() => _SignUpContentState();
 }
 
-class _LoginContentState extends LifecycleState<_LoginContentPage> {
-  SignUpViewModel get loginViewModel => widget._loginViewModel;
+class _SignUpContentState extends LifecycleState<_SignUpContent> {
+  SignUpViewModel get signUpViewModel => widget._signUpViewModel;
 
   @override
   void initState() {
@@ -35,64 +42,175 @@ class _LoginContentState extends LifecycleState<_LoginContentPage> {
     loginViewModel.signOut();*/
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kWhite,
-      body: Stack(
-        children: [
-          Image.asset(
-            'assets/images/bkg_gt.png',
-            width: double.infinity,
-            height: double.infinity,
-            fit: BoxFit.cover,
+    return BaseScaffold(
+      transparentStatusBar: 0.0,
+      title: LocaleKeys.sign_up.tr(),
+      hideBackButton: false,
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(
+          horizontal: size_26_w,
+        ),
+        physics: const BouncingScrollPhysics(),
+        child: Form(
+          key: signUpViewModel.formKey,
+          child: Column(
+            children: [
+              SizedBox(
+                height: size_40_h,
+              ),
+              OutlineTextFormField(
+                focusNode: signUpViewModel.fullNameFC,
+                nextFocusNode: signUpViewModel.emailFC,
+                hintText: LocaleKeys.full_name.tr(),
+                onChanged: (value) => signUpViewModel.fullName = value,
+                validator: (value) => signUpViewModel.requiredField(
+                    value, LocaleKeys.full_name.tr()),
+              ),
+              SizedBox(
+                height: size_12_h,
+              ),
+              OutlineTextFormField(
+                focusNode: signUpViewModel.emailFC,
+                nextFocusNode: signUpViewModel.passwordFC,
+                hintText: LocaleKeys.email.tr(),
+                onChanged: (value) => signUpViewModel.email = value,
+                validator: (value) => signUpViewModel.invalidEmail(value),
+              ),
+              SizedBox(
+                height: size_12_h,
+              ),
+              OutlineTextFormField(
+                focusNode: signUpViewModel.passwordFC,
+                hintText: LocaleKeys.password.tr(),
+                obscureText: true,
+                onChanged: (value) => signUpViewModel.password = value,
+                validator: (value) => signUpViewModel.passwordValidator(
+                    value, LocaleKeys.password.tr()),
+              ),
+              SizedBox(
+                height: size_20_h,
+              ),
+              Consumer<SignUpViewModel>(
+                builder: (BuildContext context, value, Widget? child) {
+                  return Container(
+                      alignment: Alignment.center,
+                      //color: Colors.green,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Container(
+                              //color: Colors.red,
+                              // height: 60,
+                              padding: EdgeInsets.all(0),
+                              alignment: Alignment.topCenter,
+                              //width: 50,
+                              child: Checkbox(
+                                checkColor: Colors.white,
+                                fillColor:
+                                    MaterialStateProperty.all(kColorPrimary),
+                                value: value.agreeTermsOfService,
+                                onChanged: (bool? data) =>
+                                    signUpViewModel.onCheckChangeAgree(data),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                              flex: 9,
+                              child: Container(
+                                  padding: EdgeInsets.all(5),
+                                  //color: Colors.red,
+                                  alignment: Alignment.topLeft,
+                                  //height: 60,
+                                  child: Wrap(
+                                    spacing: 0,
+                                    direction: Axis.horizontal, //default
+                                    alignment: WrapAlignment.start, //
+                                    children: [
+                                      Text(
+                                        LocaleKeys.i_agree_to_the.tr() + ' ',
+                                        style: TextStyle(
+                                          fontSize: text_14,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          signUpViewModel.gotoTermOfService();
+                                        },
+                                        child: Text(
+                                          LocaleKeys.term_of_service.tr() + ' ',
+                                          style: TextStyle(
+                                            fontSize: text_14,
+                                            color: kColorPrimary,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        LocaleKeys.and.tr() + ' ',
+                                        style: TextStyle(
+                                          fontSize: text_14,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          signUpViewModel.gotoPrivacyPolicy();
+                                        },
+                                        child: Text(
+                                          LocaleKeys.privacy_policy.tr() + ' ',
+                                          style: TextStyle(
+                                            fontSize: text_14,
+                                            color: kColorPrimary,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )))
+                        ],
+                      ));
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    LocaleKeys.already_have_account.tr(),
+                    style: TextStyle(
+                        fontSize: text_14, fontWeight: FontWeight.w500),
+                  ),
+                  // SizedBox(
+                  //   width: size_4_w,
+                  // ),
+                  TouchableOpacity(
+                    onPressed: () {
+                      signUpViewModel.gotoSignInPage();
+                    },
+                    child: Text(
+                      LocaleKeys.sign_in.tr(),
+                      style: TextStyle(
+                          fontSize: text_14,
+                          fontWeight: FontWeight.w500,
+                          color: kColorPrimary),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: size_10_h,
+              ),
+              FilledButton(
+                text: LocaleKeys.sign_up.tr(),
+                enable: signUpViewModel.validate,
+                onPress: () {
+                  signUpViewModel.signUp();
+                },
+              ),
+            ],
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/logo.png',
-                  width: size_260_w,
-                  fit: BoxFit.fitWidth,
-                ),
-                SizedBox(
-                  height: 50.0,
-                ),
-                SizedBox(
-                    width: 300, //横幅
-                    height: 50, //高さ
-                    child: ElevatedButton.icon(
-                      icon: Container(),
-                      label:  Text(txt_login_twitter),
-                      style: ElevatedButton.styleFrom(
-                          primary: kColor03a9f4,
-                          onPrimary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )
-                      ),
-                      onPressed: () async {
-                        // 0: apple, 1= twitter
-                        //loginViewModel.setloginType(1);
-                        // await loginViewModel.twitterLogin();
-                        //account test
-                         await loginViewModel.loginApi('2803532592'); // for iwasaki
-                        // await loginViewModel.loginApi('1228218841416683520');
-                        //await loginViewModel.loginApi('1338500678197469184');
-                        // await loginViewModel.loginApi('1137921957091979266'); // for fujimoto
-                      },
-                    )
-                ),
-                SizedBox(
-                  height: 50.0,
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

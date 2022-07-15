@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/module/res/dimens.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/appbar_shop.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/item_category.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
+import '../../../di/injection.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/custom_sliver_grid_delegate.dart';
@@ -47,6 +49,7 @@ class _DetailShopState extends State<_DetailShopContent> {
       backgroundColor: Colors.white70,
       customAppBar: AppBarShop(
         badgeCount: 1,
+        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
       ),
       body: Consumer<DetailShopViewModel>(builder: (context, value, child) {
