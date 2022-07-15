@@ -65,7 +65,8 @@ class PercentageViewModel extends BaseViewModel {
     color = kColor89000000;
     notifyListeners();
 
-  }  pressUp(){
+  }
+  pressUp(){
     color = kColorcacaca;
     notifyListeners();
 

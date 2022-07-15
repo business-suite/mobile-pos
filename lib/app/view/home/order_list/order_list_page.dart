@@ -148,7 +148,7 @@ class _OrderListContentState extends State<OrderListContent> {
                   physics: BouncingScrollPhysics(),
                   child: InkWell(
                     onTap: (){
-                      getIt<NavigationService>().pushEnterFadeExitDown(PopupQuotationOrderPage());
+                      getIt<NavigationService>().pushScreenWithFade(PopupQuotationOrderPage());
                     },
                     child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),

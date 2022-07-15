@@ -161,6 +161,10 @@ class _PopupPercentageContentState extends State<PopupPercentageContent> {
                           onClickItem: () => percentageViewModel.onClickItem(
                               percentageViewModel.computers[index].number
                                   .toString()),
+                              //
+                              // pressDown: () => percentageViewModel.pressDown(
+                              //   percentageViewModel.computers[index].number.
+                              // ),
                         ),
                       ),
                     ),
@@ -198,8 +202,7 @@ class _PopupPercentageContentState extends State<PopupPercentageContent> {
                           child: FlatButton(
 
                             onPressed: () {
-                              getIt<NavigationService>().pushEnterFadeExitDown(
-                                  PopupQuotationOrderPage());
+                              Navigator.pop(context);
                             },
                             child: Text(
                               LocaleKeys.cancel.tr(),

@@ -110,4 +110,8 @@ class NavigationService {
   back() {
     navigatorKey.currentState?.pop();
   }
+
+  dimiss() {
+    navigatorKey.currentState?.pop();
+  }
 }
