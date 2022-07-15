@@ -8,12 +8,15 @@ import 'package:provider/provider.dart';
 
 import '../../../../../flavors.dart';
 import '../../../../../generated/locale_keys.g.dart';
+import '../../../../../main.dart';
 import '../../../../di/injection.dart';
 import '../../../../module/common/navigator_screen.dart';
+import '../../../../module/event_bus/event_bus.dart';
 import '../../../../module/res/style.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
 import '../../../widget_utils/base_scaffold_safe_area.dart';
 import '../../../widget_utils/custom/custom_card.dart';
+import '../../pay/pay_page.dart';
 import '../appbar_shop.dart';
 import 'review_item_keyboard.dart';
 
@@ -36,6 +39,15 @@ class ReviewContent extends StatefulWidget {
 }
 
 class _ReviewContentState extends State<ReviewContent> {
+
+  @override
+  void initState() {
+    eventBus.on<CloseScreenSettleOrder>().listen((event) {
+      getIt<NavigationService>().back();
+    });
+    super.initState();
+  }
+
   ReviewViewModel get reviewViewModel => widget._reviewViewModel;
 
   @override
@@ -313,7 +325,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                                 child: Material(
                                                   color: kColor565656,
                                                   child: InkWell(
-                                                    onTap: () {},
+                                                    onTap: () { getIt<NavigationService>().pushScreenWithFade(PayPage());},
                                                     child: SizedBox(
                                                       width: size_56_w,
                                                       height: size_56_w,

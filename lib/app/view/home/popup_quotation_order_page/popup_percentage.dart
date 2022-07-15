@@ -234,7 +234,7 @@ class _PopupPercentageContentState extends State<PopupPercentageContent> {
                           child: FlatButton(
 
                             onPressed: () {
-
+                              getIt<NavigationService>().dimiss();
                             },
                             child: Text(
                               LocaleKeys.dialog_ok.tr(),
