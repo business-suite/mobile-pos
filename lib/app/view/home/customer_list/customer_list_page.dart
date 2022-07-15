@@ -1,6 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/appbar_customer_list.dart';
-import 'package:business_suite_mobile_pos/app/view/home/order_list/item_order.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/item_customer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -51,6 +50,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
 
   @override
   Widget build(BuildContext context) {
+    //custorm appbar
     return BaseScaffoldSafeArea(
       transparentStatusBar: 0.2,
       backgroundColor: kColorBackground,
@@ -63,7 +63,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
           color: kColorBackground,
           child: Column(
             children: <Widget>[
-              //appbar2
+              //appbar1
               Padding(
                 padding: EdgeInsets.only(
                     left: size_15_w, top: size_15_w, bottom: size_10_w),
@@ -93,12 +93,13 @@ class _CustomerListContentState extends State<CustomerListContent> {
                         ),
                       ),
                     ),
+                    //add button
                     Padding(
                       padding: const EdgeInsets.only(left:10 ),
                       child: InkWell(
-                        // onTap: () {
-                        //   getIt<NavigationService>().back();
-                        // },
+                        onTap: () {
+                          getIt<NavigationService>().back();
+                        },
                         child: Container(
                           height: size_40_w,
                           width: size_40_w,
@@ -112,7 +113,6 @@ class _CustomerListContentState extends State<CustomerListContent> {
                           child: Center(
                             child: Icon(
                               Icons.add,
-
                               color: kColor626482,
                               size: size_20_w,
                             ),
@@ -156,6 +156,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                         ),
                       ),
                     ),
+                    //database button
                     Padding(
                       padding: EdgeInsets.only(left: 10),
                       child: InkWell(
@@ -173,11 +174,10 @@ class _CustomerListContentState extends State<CustomerListContent> {
                             color: kColorE6E6E6,
                           ),
                           child: Center(
-                            child: Icon(
-                              Icons.add,
-
-                              color: kColor626482,
-                              size: size_20_w,
+                            child: SvgPicture.asset(
+                              'assets/icons/ic_database.svg',
+                              width: size_16_w,
+                              height: size_16_w,
                             ),
                           ),
                         ),
@@ -192,6 +192,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                 width: size_400_w,
                 child: Row(
                   children: [
+                    //text name
                     Expanded(
                       flex: 1,
                       child: Container(
@@ -209,10 +210,11 @@ class _CustomerListContentState extends State<CustomerListContent> {
                         ),
                       ),
                     ),
+                    //text ZIP
                     Expanded(
                       flex: 1,
                       child: Padding(
-                        padding: EdgeInsets.only(right: size_40_w),
+                        padding: EdgeInsets.only(left: size_35_w),
                         child: Text(
                           LocaleKeys.zip.tr(),
                           textAlign: TextAlign.center,
@@ -223,10 +225,11 @@ class _CustomerListContentState extends State<CustomerListContent> {
                         ),
                       ),
                     ),
+                    //text EMAIL
                     Expanded(
                       flex: 2,
                       child: Padding(
-                        padding: EdgeInsets.only(right: size_100_w),
+                        padding: EdgeInsets.only(right: size_140_w),
                         child: Text(
                           LocaleKeys.email.tr(),
                           textAlign: TextAlign.center,
@@ -240,6 +243,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                   ],
                 ),
               ),
+              //ListView
               Expanded(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
@@ -247,9 +251,14 @@ class _CustomerListContentState extends State<CustomerListContent> {
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: value.customers.length,
-                    itemBuilder: (context, index) => ItemCustomer(
-                      item: value.customers[index],
-                      onClickItem: () {},
+                    itemBuilder: (context, index) => Container(
+                      height: size_40_w,
+                      width: double.infinity,
+                      color: index % 2 == 0 ? kColorE6E6E6 : kColorF7F7F7,
+                      child: ItemCustomer(
+                        item: value.customers[index],
+                        onClickItem: () {},
+                      ),
                     ),
                   ),
                 ),

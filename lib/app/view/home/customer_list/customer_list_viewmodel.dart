@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../di/injection.dart';
@@ -177,5 +178,8 @@ class CustomerListViewModel extends BaseViewModel {
 
   void onClickItem() {
     ToastUtil.showToast('Test');
+  }
+  gotoCustomerListpage(){
+    _navigationService.pushScreenWithFade(CustomerListPage());
   }
 }

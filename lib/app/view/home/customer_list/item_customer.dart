@@ -19,64 +19,55 @@ class ItemCustomer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: [
-       Column(
-         children: [
-           Container(
-             height: size_40_w,
-             color: kWhite,
-             child: Row(
-               children: [
-                 Expanded(
-                   flex: 2,
-                   child: Container(
-                     alignment: Alignment.centerLeft,
-                     child: Padding(
-                       padding: EdgeInsets.only(left: size_10_w),
-                       child: Text(
-                         item.name,
-                         textAlign: TextAlign.center,
-                         style: TextStyle(
-                           color: kColor6F6F6F,
-                           fontWeight: FontWeight.w300,
-                           fontSize: text_13,
-                         ),
-                       ),
-                     ),
-                   ),
-                 ),
-                 Expanded(
-                   flex: 1,
-                   child: Text(
-                     item.date,
-                     textAlign: TextAlign.left ,
-                     style: TextStyle(
-                       color: kColor6F6F6F,
-                       fontWeight: FontWeight.w300,
-                       fontSize: text_12,
-                     ),
-                   ),
-                 ),
-                 Expanded(
-                   flex: 3,
-                   child: Text(
-                     item.email,
-                     textAlign: TextAlign.left,
-                     style: TextStyle(
-                       color: kColor6F6F6F,
-                       fontSize: text_10,
-                       fontWeight: FontWeight.w300,
-                     ),
-                   ),
-                 ),
-
-               ],
-             ),
-           ),
-         ],
-       ),
-    ],
+    return Row(
+      children: [
+        Expanded(
+          flex: 2,
+          child: Container(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: EdgeInsets.only(left: size_10_w),
+              child: Text(
+                item.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kColor6F6F6F,
+                  fontWeight: FontWeight.w300,
+                  fontSize: text_13,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: Padding(
+            padding: EdgeInsets.only(left: size_20_w),
+            child: Text(
+              item.date,
+              style: TextStyle(
+                color: kColor6F6F6F,
+                fontWeight: FontWeight.w300,
+                fontSize: text_12,
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 3,
+          child: Padding(
+            padding: EdgeInsets.only(right: size_10_w),
+            child: Text(
+              item.email,
+              style: TextStyle(
+                color: kColor6F6F6F,
+                fontSize: text_10,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

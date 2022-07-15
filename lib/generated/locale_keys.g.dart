@@ -13,10 +13,13 @@ abstract class  LocaleKeys {
   static const chairs = 'chairs';
   static const please_select_a_payment_method = 'please_select_a_payment_method';
   static const cash = 'cash';
+  static const phone = 'phone';
   static const bank = 'bank';
   static const customer_account = 'customer_account';
   static const customer = 'customer';
   static const info = 'info';
+  static const tax_id = 'tax_id';
+  static const barcode = 'barcode';
   static const quotation_order = 'quotation_order';
   static const refund = 'refund';
   static const back = 'back';
@@ -45,6 +48,12 @@ abstract class  LocaleKeys {
   static const served_by_mitchell_admin = 'served_by_mitchell_admin';
   static const total = 'total';
   static const zip = 'zip';
+  static const language = 'language';
+  static const country = 'country';
+  static const postcode = 'postcode';
+  static const city = 'city';
+  static const street = 'street';
+  static const search_customers = 'search_customers';
   static const change = 'change';
   static const total_taxes = 'total_taxes';
   static const order_000040950006 = 'order_000040950006';
