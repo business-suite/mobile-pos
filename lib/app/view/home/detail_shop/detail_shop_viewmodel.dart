@@ -42,7 +42,7 @@ class DetailShopViewModel extends BaseViewModel {
         'http://35.207.78.4:8069/web/image?model=product.product&field=image_128&id=25&write_date=2022-06-20%2014:43:10&unique=1',
         icon: 'assets/images/image8.png'),
   ];
-  final bills = [
+  final List<Bill> bills = [
     Bill(
         date: '2022-07-1303:43PM',
         receipt: 'Order00004',

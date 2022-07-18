@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../main.dart';
 import '../../../di/injection.dart';
+import '../../../model/bill.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
@@ -34,6 +35,8 @@ class PopupQuotationOrderPage extends StatefulWidget {
 }
 
 class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
