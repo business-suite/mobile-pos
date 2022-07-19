@@ -31,7 +31,8 @@ class CashInOutPage extends StatefulWidget {
 
 class _CashInOutPageState extends State<CashInOutPage> {
   TextEditingController _reasonController = new TextEditingController();
-  var _reasonErr = LocaleKeys.select_either_cash_in_or_cash_out_before_confirming.tr();
+  var _reasonErr =
+      LocaleKeys.select_either_cash_in_or_cash_out_before_confirming.tr();
   var _reasonInvalid = false;
 
   int index = -1; //index: 0: cash in, 1: cash out, -1: none
@@ -95,30 +96,29 @@ class _CashInOutPageState extends State<CashInOutPage> {
                       ),
                       Expanded(
                         flex: 1,
-                        child: Container(
-                          height: size_50_w,
-                          child: Material(
-                            color: kColorf0eeee,
+                        child: Material(
+                          color: kColorf0eeee,
+                          child: Expanded(
                             child: TextField(
-                              minLines: 1,
-                              maxLines: 2,
-                              cursorHeight: size_25_w,
-                              cursorColor: Colors.black87,
+                              keyboardType: TextInputType.number,
                               textAlign: TextAlign.right,
+                              cursorHeight: size_25_w,
+                              cursorColor: kColor565656,
                               decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: kColorf0eeee, width: 0.0),
-                                ),
+                                suffixText: "\$",
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                      BorderSide(color: kColor64AF8A, width: size_2_w,),
+                                  BorderSide(color: kColor64AF8A, width: size_2_w),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: kColorf0eeee, width: 1.0),
                                 ),
                                 border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(size_6_r),
-                                    ),
+                                ),
                               ),
                             ),
+
                           ),
                         ),
                       ),
@@ -128,50 +128,52 @@ class _CashInOutPageState extends State<CashInOutPage> {
                 SizedBox(
                   height: size_5_h,
                 ),
-                Container(
-                  padding: EdgeInsets.only(right: size_80_w),
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    LocaleKeys.dollars.tr(),
-                    style: TextStyle(
-                      fontSize: text_16,
-                      color: kColor555555,
-                    ),
-                  ),
-                ),
+
                 SizedBox(
                   height: size_15_h,
                 ),
-                Material(
-                  color: kColorf0eeee,
-                  child: TextField(
-                    cursorHeight: size_25_w,
-                    cursorColor: Colors.black87,
-                    controller: _reasonController,
-                    minLines: 2,
-                    maxLines: 3,
-                    textInputAction: TextInputAction.newline,
-                    keyboardType: TextInputType.multiline,
-                    decoration:  InputDecoration(
-                      errorText: _reasonInvalid ? _reasonErr : null,
-                      focusColor: kColorf0eeee,
-                      enabledBorder: OutlineInputBorder(
-                        borderSide:
-                        BorderSide(color: kColorf0eeee, width: 0.0),
+                Column(
+                  children: [
+                    Material(
+                      child: TextFormField(
+                        onChanged:  (value) {
+                          setState(() {
+                            if (value.contains(' ')) {
+                              _reasonErr = value;
+                            } else {
+                              _reasonErr = '';
+                            }
+                          });
+                        },
+                        cursorHeight: size_25_w,
+                        cursorColor: Colors.black87,
+                        controller: _reasonController,
+                        minLines: 2,
+                        maxLines: 3,
+                        textInputAction: TextInputAction.newline,
+                        keyboardType: TextInputType.multiline,
+                        decoration: InputDecoration(
+                        //    errorText: _reasonInvalid ? _reasonErr : null,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: kColor64AF8A, width: size_2_w),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(size_1_r),
+                              borderSide: BorderSide(
+                                  color: Colors.black26.withOpacity(0.5),
+                                  width: 1.0),
+                            ),
+                            hintText: 'Reason'),
+
+
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                        BorderSide(color: kColor64AF8A, width: size_2_w),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(size_6_r),
-                      ),
-                      hintText: 'Reason'
                     ),
-                  ),
+                    _reasonInvalid ? Text(_reasonErr,style: TextStyle(color: Colors.red,fontWeight: FontWeight.normal),) : Container(),
+                  ],
                 ),
                 SizedBox(
-                  height: size_25_w,
+                  height: size_15_w,
                 ),
                 Container(
                   height: size_1_w,
@@ -221,13 +223,13 @@ class _CashInOutPageState extends State<CashInOutPage> {
                         width: size_100_w,
                         child: FlatButton(
                           onPressed: () {
-                            if(_reasonInvalid == false ){
+                            if (_reasonInvalid == false) {
                               _reasonErr;
-                            }else{
+                            } else {
                               Navigator.pop(context);
                             }
                             //TO DO: Logic confirm
-                              ReasonOnclick();
+                            ReasonOnclick();
                           },
                           child: Text(
                             LocaleKeys.confirm.tr(),

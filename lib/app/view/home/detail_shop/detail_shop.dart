@@ -33,6 +33,7 @@ class DetailShopPage extends PageProvideNode<DetailShopViewModel> {
   Widget buildContent(BuildContext context) {
     return _DetailShopContent(viewModel);
   }
+
 }
 
 class _DetailShopContent extends StatefulWidget {
@@ -53,9 +54,12 @@ class _SliderView extends StatefulWidget {
 
   @override
   State<_SliderView> createState() => _SliderViewState();
+
 }
 
 class _SliderViewState extends State<_SliderView> {
+
+
   GlobalKey<SliderDrawerState> _key = GlobalKey<SliderDrawerState>();
   @override
   Widget build(BuildContext context) {
