@@ -357,6 +357,7 @@ class _PayContentState extends State<PayContent> {
                 alignment: Alignment.bottomCenter,
                 child: Container(
                   height: size_100_w,
+                  padding: EdgeInsets.all(size_1_w),
                   color: kColorCACACA,
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
@@ -365,28 +366,23 @@ class _PayContentState extends State<PayContent> {
                     children: [
                       Expanded(
                         flex: 1,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.black12,
-                              borderRadius: BorderRadius.circular(size_10_r)),
-                          padding: EdgeInsets.symmetric(horizontal: size_2_w),
-                          child: FlatButton(
-                            color: Colors.white,
-                            onPressed: () {
-                              getIt<NavigationService>().pushEnterFadeExitDown(ValidatePage());
-                            },
-                            child: Center(
-                              child: Text(
-                                LocaleKeys.validate.tr(),
-                                style: TextStyle(
-                                  fontSize: text_24,
-                                  color: kColor6EC89B,
-                                ),
+                        child: FlatButton(
+                          color: Colors.white,
+                          onPressed: () {
+                            getIt<NavigationService>().pushEnterFadeExitDown(ValidatePage());
+                          },
+                          child: Center(
+                            child: Text(
+                              LocaleKeys.validate.tr(),
+                              style: TextStyle(
+                                fontSize: text_24,
+                                color: kColor6EC89B,
                               ),
                             ),
                           ),
                         ),
                       ),
+                      Container(width: size_1_w,color: kColorCACACA,),
                       Expanded(
                         flex: 1,
                         child: FlatButton(

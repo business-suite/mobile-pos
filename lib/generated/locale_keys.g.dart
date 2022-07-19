@@ -23,7 +23,6 @@ abstract class  LocaleKeys {
   static const quotation_order = 'quotation_order';
   static const refund = 'refund';
   static const back = 'back';
-  static const order = 'order';
   static const salesman = 'salesman';
   static const invoice = 'invoice';
   static const validate = 'validate';
@@ -48,6 +47,13 @@ abstract class  LocaleKeys {
   static const served_by_mitchell_admin = 'served_by_mitchell_admin';
   static const total = 'total';
   static const zip = 'zip';
+  static const none = 'none';
+  static const algeria = 'algeria';
+  static const albania = 'albania';
+  static const afghanistan = 'afghanistan';
+  static const alaska = 'alaska';
+  static const armed_forces_europe = 'armed_forces_europe';
+  static const armed_forces_americas = 'armed_forces_americas';
   static const language = 'language';
   static const country = 'country';
   static const postcode = 'postcode';
@@ -135,6 +141,7 @@ abstract class  LocaleKeys {
   static const san_francisco = 'san_francisco';
   static const azure_interior = 'azure_interior';
   static const wood_corner = 'wood_corner';
+  static const order = 'order';
   static const total_price_excl_vat = 'total_price_excl_vat';
   static const total_cost = 'total_cost';
   static const total_margin = 'total_margin';

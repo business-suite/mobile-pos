@@ -9,11 +9,10 @@ class LoginResponse extends BaseResponse {
   int? user_id;
 
   LoginResponse({
-    required bool success,
-    required String error_message,
+    required String jsonrpc,
     this.is_new_regist = false,
     this.user_id,
-  }) : super(success: success, error_message: error_message);
+  }) : super(jsonrpc: jsonrpc);
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) => _$LoginResponseFromJson(json);
 

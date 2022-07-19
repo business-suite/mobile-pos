@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../di/injection.dart';
 import '../../../model/keyboard.dart';
-import '../../../model/product.dart';
 import '../../../model/shop.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
