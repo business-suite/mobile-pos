@@ -49,11 +49,7 @@ class _HomeScreen extends State<_HomePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () => homeViewModel.onDoubleBackToExit(),
-      child: BaseScaffoldSafeArea(
-        body: SafeArea(
-          child: ShopListPage(),
-        ),
-      ),
+      child: ShopListPage(),
     );
   }
 }

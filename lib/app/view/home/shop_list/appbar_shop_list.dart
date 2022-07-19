@@ -26,10 +26,7 @@ class AppBarShopList extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: MediaQuery
-          .of(context)
-          .padding
-          .top),
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       padding: EdgeInsets.zero,
       color: Colors.transparent,
       child: Container(
