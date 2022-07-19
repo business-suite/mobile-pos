@@ -49,6 +49,7 @@ class _WebviewContentPageState extends State<_WebviewContentPage> {
             key: UniqueKey(),
             initialUrl: webviewViewModel.webviewParam?.url ?? '',
             javascriptMode: JavascriptMode.unrestricted,
+            backgroundColor: Colors.white,
             onPageFinished: (finish) => webviewViewModel.loading = false,
           ),
           _buildLoading(),

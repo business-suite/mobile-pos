@@ -23,11 +23,12 @@ class SignUpViewModel extends BaseViewModel {
   String fullName = '';
   String email = '';
   String password = '';
+  String companyName = '';
   bool agreeTermsOfService = false;
   final fullNameFC = FocusNode();
   final emailFC = FocusNode();
   final passwordFC = FocusNode();
-  final dobFC = FocusNode();
+  final companyNameFC = FocusNode();
 
   SignUpViewModel(this._dataRepo);
 

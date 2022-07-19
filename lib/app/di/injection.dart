@@ -84,7 +84,7 @@ Future<void> configureDependencies() async {
   getIt.registerFactory<PercentageViewModel>(
           () => PercentageViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, String>(
+  getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, dynamic>(
       (param1, _) => //no need param2
           WebviewViewModel(webviewParam: param1[0]));
 }

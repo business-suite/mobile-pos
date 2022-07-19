@@ -1,6 +1,7 @@
 
 import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:business_suite_mobile_pos/app/view/intro/intro_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,8 +37,6 @@ class _IntroContentPage extends StatefulWidget {
 
 class _IntroContentState extends State<_IntroContentPage> {
   IntroViewModel get introViewModel => widget._introViewModel;
-
-
 
   final PageController _pageController = PageController();
 
@@ -127,7 +126,10 @@ class _IntroContentState extends State<_IntroContentPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () => introViewModel.onDoubleBackToExit(),
-      child: Scaffold(
+      child: BaseScaffold(
+        isAppBar: false,
+        transparentStatusBar: 0.0,
+        statusBarColor: Colors.white,
         backgroundColor: kWhite,
         body: _page2(),
       ),
@@ -141,7 +143,7 @@ class _IntroContentState extends State<_IntroContentPage> {
           color: kColor2F858A,
           text: LocaleKeys.on_boarding_btn_get_started.tr(),
           onPress: () {
-            value.gotoSignIn();
+            value.gotoSignUp();
           },
         );
       },
@@ -156,7 +158,7 @@ class _IntroContentState extends State<_IntroContentPage> {
           child: OutlineButton(
             text: LocaleKeys.on_boarding_btn_already_have_an_account.tr(),
             onPress: () {
-              value.gotoSignUp();
+              value.gotoSignIn();
             },
             color: kCBlack38,
             reversed: true,

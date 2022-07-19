@@ -8,7 +8,7 @@ class WebviewViewModel extends BaseViewModel {
   NavigationService navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool _loading = true;
-  WebviewParam? webviewParam = null;
+  WebviewParam? webviewParam;
 
   WebviewViewModel({this.webviewParam});
 
