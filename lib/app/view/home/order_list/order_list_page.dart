@@ -100,47 +100,47 @@ class _OrderListContentState extends State<OrderListContent> {
                     Padding(
                       padding:
                           EdgeInsets.only(left: size_50_w, bottom: size_7_w),
-                      child: Material(
-                        elevation: 20.0,
-                        shadowColor: node1.hasFocus ? Colors.red: Colors.transparent,
-                        child: Container(
-                          height: size_35_w,
-                          width: size_200_w,
-                          child: TextField(
-                            focusNode: node1,
-                            cursorColor: Colors.black,
-                            autocorrect: false,
-                            textAlignVertical: TextAlignVertical.center,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100.0),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.search,
+                      child: Container(
+                        height: size_35_w,
+                        width: size_200_w,
+                        decoration: BoxDecoration(
+                          color: kCWhite,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: TextField(
+                          focusNode: node1,
+                          cursorColor: Colors.black,
+                          autocorrect: false,
+                          textAlignVertical: TextAlignVertical.center,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100.0),
+                            ),
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: kColor808080,
+                            ),
+                            suffixIcon: Padding(
+                              padding: EdgeInsets.only(right: size_10_w),
+                              child: SvgPicture.asset(
+                                'assets/icons/vector.svg',
+                                fit: BoxFit.fill,
                                 color: kColor808080,
                               ),
-                              suffixIcon: Padding(
-                                padding: EdgeInsets.only(right: size_10_w),
-                                child: SvgPicture.asset(
-                                  'assets/icons/vector.svg',
-                                  fit: BoxFit.fill,
-                                  color: kColor808080,
-                                ),
-                              ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100.0),
-                                borderSide: BorderSide(
-                                  color: kColor2947C3,
-                                ),
-                              ),
-                              hintText:
-                                  'E.g. customer: Steward, date: 2020-05-09',
-                              hintStyle: TextStyle(fontSize: size_14_w),
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                             ),
+                            suffixIconConstraints: BoxConstraints(
+                                maxWidth: size_25_w, maxHeight: size_15_w),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100.0),
+                              borderSide: BorderSide(
+                                color: kColor2947C3,
+                              ),
+                            ),
+                            hintText:
+                                'E.g. customer: Steward, date: 2020-05-09',
+                            hintStyle: TextStyle(fontSize: size_14_w),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                           ),
                         ),
                       ),

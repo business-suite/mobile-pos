@@ -1128,5 +1128,10 @@ class DetailShopViewModel extends BaseViewModel {
     _navigationService.pushEnterFadeExitDown(ReviewPage());
   }
 
+  deleteBillItem(index){
+    bills.removeAt(index);
+    notifyListeners();
+  }
+
 
 }

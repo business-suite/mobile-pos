@@ -58,6 +58,8 @@ class PercentageViewModel extends BaseViewModel {
      textInput +=  input;
      notifyListeners();
   }
+
+
   var color = kColorf0eeee;
 
   pressDown(){
