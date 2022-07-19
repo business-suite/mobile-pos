@@ -11,8 +11,10 @@ import '../../../module/res/text.dart';
 class ItemApplyKeyBoard extends StatefulWidget {
   KeyBoard item;
   VoidCallback? onClickItem;
+  VoidCallback? pressDown;
+  VoidCallback? pressUp;
 
-  ItemApplyKeyBoard({Key? key, required this.item, this.onClickItem})
+  ItemApplyKeyBoard({Key? key, required this.item, this.onClickItem,this.pressDown,this.pressUp,})
       : super(key: key);
 
   @override
@@ -41,7 +43,7 @@ class _ItemApplyKeyBoardState extends State<ItemApplyKeyBoard> {
             EdgeInsets.symmetric(horizontal: size_1_w, vertical: size_1_w),
             child: Container(
               decoration: BoxDecoration(
-                  color: kColorf0eeee,
+                  color: value.color,
                   borderRadius: BorderRadius.circular(size_28_w)),
               padding:
               EdgeInsets.symmetric(horizontal: size_3_w, vertical: size_3_w),

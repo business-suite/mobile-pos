@@ -18,6 +18,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   final Function? leftIconOnPress;
   final Function? rightIconOnPress;
   VoidCallback? onClickAvatar;
+  VoidCallback? onClickTicKet;
 
   AppBarShop({
     Key? key,
@@ -27,7 +28,8 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
     this.leftIconOnPress,
     this.rightIconOnPress,
     this.badgeCount = 0,  this.avatarUrl = '',
-    this.onClickAvatar
+    this.onClickAvatar,
+    this.onClickTicKet
   }) : super(key: key);
 
   @override
@@ -80,18 +82,22 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                 child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: <Widget>[
-                      RotationTransition(
-                        turns: AlwaysStoppedAnimation(-45 / 360),
-                        child: Padding(
-                          padding: EdgeInsets.only(right: size_10_w, bottom: size_10_w),
-                          child: SvgPicture.asset(
-                            'assets/icons/ic_ticket.svg',
-                            width: size_16_w,
-                            height: size_16_w,
-                            color: kCWhite,
+                      TouchableOpacity(
+                        onPressed: () => onClickTicKet?.call(),
+                        child:  RotationTransition(
+                          turns: AlwaysStoppedAnimation(-45 / 360),
+                          child: Padding(
+                            padding: EdgeInsets.only(right: size_10_w, bottom: size_10_w),
+                            child: SvgPicture.asset(
+                              'assets/icons/ic_ticket.svg',
+                              width: size_16_w,
+                              height: size_16_w,
+                              color: kCWhite,
+                            ),
                           ),
                         ),
                       ),
+
                       if (badgeCount > 0)
                         Positioned(
                           // draw a red marble

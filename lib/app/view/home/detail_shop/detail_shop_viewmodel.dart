@@ -3,6 +3,7 @@ import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 import 'package:business_suite_mobile_pos/app/view/intro/intro_page.dart';
 
 import '../../../di/injection.dart';
+import '../../../model/bill.dart';
 import '../../../model/product.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
@@ -41,7 +42,48 @@ class DetailShopViewModel extends BaseViewModel {
         'http://35.207.78.4:8069/web/image?model=product.product&field=image_128&id=25&write_date=2022-06-20%2014:43:10&unique=1',
         icon: 'assets/images/image8.png'),
   ];
-
+  final List<Bill> bills = [
+    Bill(
+        date: '2022-07-1303:43PM',
+        receipt: 'Order00004',
+        number: '135-0005',
+        customer: '',
+        employee: 'Mitchell Admin',
+        total: '\$12314',
+        status: 'Ongoing'),
+    Bill(
+        date: '2022-07-1303:43PM',
+        receipt: 'Order00004',
+        number: '135-0005',
+        customer: '',
+        employee: 'Mitchell Admin',
+        total: '\$12314',
+        status: 'Ongoing'),
+    Bill(
+        date: '2022-07-1303:43PM',
+        receipt: 'Order00004',
+        number: '135-0005',
+        customer: '',
+        employee: 'Mitchell Admin',
+        total: '\$12314',
+        status: 'Ongoing'),
+    Bill(
+        date: '2022-07-1303:43PM',
+        receipt: 'Order00004',
+        number: '135-0005',
+        customer: '',
+        employee: 'Mitchell Admin',
+        total: '\$12314',
+        status: 'Ongoing'),
+    Bill(
+        date: '2022-07-1303:43PM',
+        receipt: 'Order00004',
+        number: '135-0005',
+        customer: '',
+        employee: 'Mitchell Admin',
+        total: '\$12314',
+        status: 'Ongoing'),
+  ];
 
   DetailShopViewModel(this._repo);
 

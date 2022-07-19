@@ -7,8 +7,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
+import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
+import '../../../module/event_bus/event_bus.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
@@ -43,6 +45,9 @@ class _OrderListContentState extends State<OrderListContent> {
   void initState() {
     node1.addListener(() {
       print(node1.hasFocus);
+    });
+    eventBus.on<CloseScreenSettleOrder>().listen((event) {
+      getIt<NavigationService>().back();
     });
     super.initState();
   }
@@ -148,7 +153,7 @@ class _OrderListContentState extends State<OrderListContent> {
                   physics: BouncingScrollPhysics(),
                   child: InkWell(
                     onTap: (){
-                      getIt<NavigationService>().pushEnterFadeExitDown(PopupQuotationOrderPage());
+                      getIt<NavigationService>().pushScreenWithFade(PopupQuotationOrderPage());
                     },
                     child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),

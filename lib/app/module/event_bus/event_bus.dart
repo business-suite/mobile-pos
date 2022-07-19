@@ -4,3 +4,8 @@ class PushUpdateNotificationEvent {
 
   PushUpdateNotificationEvent(this.tourId, this.tourRoundId);
 }
+
+
+class CloseScreenSettleOrder {
+  CloseScreenSettleOrder();
+}

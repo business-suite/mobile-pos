@@ -119,4 +119,8 @@ class NavigationService {
     getIt<UserSharePref>().setIsLogin(false);
    pushAndRemoveUntilWithFade(IntroPage());
   }
+
+  dimiss() {
+    navigatorKey.currentState?.pop();
+  }
 }

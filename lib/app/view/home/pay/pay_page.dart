@@ -10,8 +10,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
+import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
+import '../../../module/event_bus/event_bus.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../detail_shop/appbar_shop.dart';
@@ -38,6 +40,14 @@ class PayContent extends StatefulWidget {
 }
 
 class _PayContentState extends State<PayContent> {
+
+  @override
+  void initState() {
+    eventBus.on<CloseScreenSettleOrder>().listen((event) {
+      getIt<NavigationService>().back();
+    });
+    super.initState();
+  }
   PayViewModel get payViewModel => widget._payViewModel;
 
   @override

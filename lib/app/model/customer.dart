@@ -5,6 +5,6 @@ class Customer{
 
   Customer({required this.name,
     required this.date,
-    required this.email,
+    required this.email ,
    });
 }
