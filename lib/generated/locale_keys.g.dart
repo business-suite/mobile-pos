@@ -47,6 +47,7 @@ abstract class  LocaleKeys {
   static const served_by_mitchell_admin = 'served_by_mitchell_admin';
   static const total = 'total';
   static const zip = 'zip';
+  static const english_us = 'english_us';
   static const none = 'none';
   static const algeria = 'algeria';
   static const albania = 'albania';
