@@ -1,4 +1,5 @@
 import 'package:bouncing_widget/bouncing_widget.dart';
+import 'package:business_suite_mobile_pos/app/view/widget_utils/anims/touchable_opacity.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -112,61 +113,35 @@ class _AuthenticationContentState
   Consumer<AuthenticationViewModel> _buildCheckBoxDontAskAgain() {
     return Consumer<AuthenticationViewModel>(
       builder: (context, value, child) {
-        return BouncingWidget(
-          duration: Duration(milliseconds: 65),
+        return TouchableOpacity(
           onPressed: () {
-            value.changeDontAskAgain();
+            value.changeDontAskAgain(null);
           },
-          child: SizedBox(
-            height: size_36_h,
-            child: Card(
-              margin: EdgeInsets.only(top: size_10_h),
-              color: transparent,
-              elevation: 0.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(size_5_r)),
-              ),
+          child:
+          Container(
+              alignment: Alignment.center,
+              //color: Colors.green,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      value.changeDontAskAgain();
-                    },
-                    child: Container(
-                      height: size_16_w,
-                      width: size_16_w,
-                      decoration: BoxDecoration(
-                          border:
-                              Border.all(color: kColor7e7e7e, width: size_1_w),
-                          shape: BoxShape.circle,
-                          color: Colors.transparent),
-                      child: Padding(
-                        padding: EdgeInsets.all(size_1_w),
-                        child: value.dontAskAgain
-                            ? Container(
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: kColorPrimary),
-                              )
-                            : Container(
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle, color: transparent),
-                              ),
-                      ),
+                  Checkbox(
+                    checkColor: Colors.white,
+                    fillColor:
+                    MaterialStateProperty.all(kColorPrimary),
+                    value: value.dontAskAgain,
+                    onChanged: (bool? data) =>
+                        value.changeDontAskAgain(data),
+                  ),
+                  Text(
+                    LocaleKeys.don_t_ask_again_on_this_device.tr(),
+                    style: TextStyle(
+                      fontSize: text_14,
+                      color: Colors.black54,
                     ),
-                  ),
-                  SizedBox(
-                    width: size_5_h,
-                  ),
-                  Text(LocaleKeys.don_t_ask_again_on_this_device.tr(),
-                      style:
-                          TextStyle(color: Colors.black54, fontSize: text_14))
+                  )
                 ],
-              ),
-            ),
-          ),
+              ))
         );
       },
     );

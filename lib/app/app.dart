@@ -30,7 +30,7 @@ class _AppState extends State<App> {
     super.initState();
     SystemUtils.setPortraitScreenOrientation();
     //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: kColor202330));
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: transparent));
+    //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: transparent));
   }
 
   @override

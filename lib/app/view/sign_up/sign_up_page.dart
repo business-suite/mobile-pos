@@ -60,6 +60,8 @@ class _SignUpContentState extends LifecycleState<_SignUpContent> {
               SizedBox(
                 height: size_40_h,
               ),
+
+              //FULLNAME
               OutlineTextFormField(
                 focusNode: signUpViewModel.fullNameFC,
                 nextFocusNode: signUpViewModel.emailFC,
@@ -71,6 +73,8 @@ class _SignUpContentState extends LifecycleState<_SignUpContent> {
               SizedBox(
                 height: size_12_h,
               ),
+
+              //EMAIL
               OutlineTextFormField(
                 focusNode: signUpViewModel.emailFC,
                 nextFocusNode: signUpViewModel.passwordFC,
@@ -81,6 +85,8 @@ class _SignUpContentState extends LifecycleState<_SignUpContent> {
               SizedBox(
                 height: size_12_h,
               ),
+
+              //PASSWORD
               OutlineTextFormField(
                 focusNode: signUpViewModel.passwordFC,
                 hintText: LocaleKeys.password.tr(),
@@ -88,10 +94,24 @@ class _SignUpContentState extends LifecycleState<_SignUpContent> {
                 onChanged: (value) => signUpViewModel.password = value,
                 validator: (value) => signUpViewModel.passwordValidator(
                     value, LocaleKeys.password.tr()),
+              ), SizedBox(
+                height: size_12_h,
+              ),
+
+              //COMPANY NAME
+              OutlineTextFormField(
+                focusNode: signUpViewModel.companyNameFC,
+                hintText: LocaleKeys.company_name.tr(),
+                onChanged: (value) => signUpViewModel.companyName = value,
+                validator: (value) => signUpViewModel.requiredField(
+                    value, LocaleKeys.company_name.tr()),
               ),
               SizedBox(
                 height: size_20_h,
               ),
+
+
+              //PHONE MUMBER
               Consumer<SignUpViewModel>(
                 builder: (BuildContext context, value, Widget? child) {
                   return Container(
@@ -181,9 +201,9 @@ class _SignUpContentState extends LifecycleState<_SignUpContent> {
                     style: TextStyle(
                         fontSize: text_14, fontWeight: FontWeight.w500),
                   ),
-                  // SizedBox(
-                  //   width: size_4_w,
-                  // ),
+                  SizedBox(
+                    width: size_4_w,
+                  ),
                   TouchableOpacity(
                     onPressed: () {
                       signUpViewModel.gotoSignInPage();
@@ -202,7 +222,7 @@ class _SignUpContentState extends LifecycleState<_SignUpContent> {
                 height: size_10_h,
               ),
               FilledButton(
-                text: LocaleKeys.sign_up.tr(),
+                text: LocaleKeys.sign_up.tr().toUpperCase(),
                 enable: signUpViewModel.validate,
                 onPress: () {
                   signUpViewModel.signUp();

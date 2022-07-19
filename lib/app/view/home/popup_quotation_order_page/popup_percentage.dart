@@ -1,13 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_quotation_order.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
@@ -17,7 +11,6 @@ import '../../../module/res/dimens.dart';
 import '../../../module/res/text.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/custom_card.dart';
-import '../detail_shop/review/review_item_keyboard.dart';
 import 'item_number.dart';
 import 'percentage_viewmodel.dart';
 

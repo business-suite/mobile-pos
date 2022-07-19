@@ -129,6 +129,23 @@ abstract class  LocaleKeys {
   static const dialog_save_message = 'dialog_save_message';
   static const dialog_cancel = 'dialog_cancel';
   static const dialog_ok = 'dialog_ok';
+  static const product_information = 'product_information';
+  static const office_chair = 'office_chair';
+  static const furn_7777 = 'furn_7777';
+  static const financials = 'financials';
+  static const replenishment = 'replenishment';
+  static const close = 'close';
+  static const price_excl_vat = 'price_excl_vat';
+  static const cost = 'cost';
+  static const margin = 'margin';
+  static const public_pricelist = 'public_pricelist';
+  static const inventory_as_of_opening = 'inventory_as_of_opening';
+  static const san_francisco = 'san_francisco';
+  static const azure_interior = 'azure_interior';
+  static const wood_corner = 'wood_corner';
+  static const total_price_excl_vat = 'total_price_excl_vat';
+  static const total_cost = 'total_cost';
+  static const total_margin = 'total_margin';
   static const receipt_today = 'receipt_today';
   static const receipt_yesterday = 'receipt_yesterday';
   static const receipt_current_week = 'receipt_current_week';
@@ -180,5 +197,7 @@ abstract class  LocaleKeys {
   static const term_of_service = 'term_of_service';
   static const i_agree_to_the = 'i_agree_to_the';
   static const and = 'and';
+  static const press_the_back_button_to_exit = 'press_the_back_button_to_exit';
+  static const company_name = 'company_name';
 
 }

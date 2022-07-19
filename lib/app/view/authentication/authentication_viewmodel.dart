@@ -68,8 +68,8 @@ class AuthenticationViewModel extends BaseViewModel {
         : null;
   }
 
-  void changeDontAskAgain() {
-    dontAskAgain = !dontAskAgain;
+  void changeDontAskAgain(bool? data) {
+    dontAskAgain = data ?? !dontAskAgain;
     notifyListeners();
   }
 

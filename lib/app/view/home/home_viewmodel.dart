@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 
+import '../../../generated/locale_keys.g.dart';
 import '../../di/injection.dart';
 import '../../module/common/navigator_screen.dart';
 import '../../module/common/toast_util.dart';
@@ -47,7 +49,7 @@ class HomeViewModel extends BaseViewModel {
       return true;
     }
     doubleBackToExit = true;
-    ToastUtil.showToast('Press the back button to exit');
+    ToastUtil.showToast(LocaleKeys.press_the_back_button_to_exit.tr());
     Future.delayed(Duration(seconds: 2), (){
       doubleBackToExit = false;
     });

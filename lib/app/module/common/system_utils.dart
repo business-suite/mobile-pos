@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../res/themes.dart';
@@ -27,12 +28,16 @@ abstract class SystemUtils {
   }
 
 
-  static void setupStatusBar(double opacity) {
+  static void setupStatusBar(double opacity, {Color? statusBarColor}) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: DarkTheme().colorStatusBar.withOpacity(opacity),
+      statusBarColor: statusBarColor == null ? DarkTheme().colorStatusBar.withOpacity(opacity) : statusBarColor.withOpacity(opacity),
       statusBarIconBrightness: Brightness.light,
       statusBarBrightness: Brightness.dark,
     ));
+  }
+
+  static void setStatusBarColor(Color color) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: color));
   }
 
 }
