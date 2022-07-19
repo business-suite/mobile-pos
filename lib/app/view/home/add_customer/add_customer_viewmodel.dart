@@ -18,9 +18,7 @@ class AddCustomertViewModel extends BaseViewModel {
   bool _loading = false;
   String _response = "";
 
-
-
-  final countrys = [
+  final Countrys = [
     Country(
         name: 'None',
         ),
