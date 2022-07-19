@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/appbar_customer_list.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/item_customer.dart';
@@ -100,7 +101,9 @@ class _CustomerListContentState extends State<CustomerListContent> {
                       padding: const EdgeInsets.only(left:10 ),
                       child: InkWell(
                         onTap: () {
-                          getIt<NavigationService>().back();
+                            getIt<NavigationService>()
+                                .pushReplacementScreenWithSlideLeftIn(
+                                AddCustomerPage());
                         },
                         child: Container(
                           height: size_40_w,

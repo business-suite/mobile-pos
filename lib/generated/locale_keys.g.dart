@@ -48,6 +48,14 @@ abstract class  LocaleKeys {
   static const served_by_mitchell_admin = 'served_by_mitchell_admin';
   static const total = 'total';
   static const zip = 'zip';
+  static const english_us = 'English (US)';
+  static const none = 'None';
+  static const algeria = 'Algeria';
+  static const albania = 'Albania';
+  static const afghanistan = 'Afghanistan';
+  static const alaska = 'Alaska';
+  static const armed_forces_europe = 'Armed forces europe';
+  static const armed_forces_americas = 'Armed forces americas';
   static const language = 'language';
   static const country = 'country';
   static const postcode = 'postcode';
@@ -189,5 +197,7 @@ abstract class  LocaleKeys {
   static const term_of_service = 'term_of_service';
   static const i_agree_to_the = 'i_agree_to_the';
   static const and = 'and';
+  static const press_the_back_button_to_exit = 'press_the_back_button_to_exit';
+  static const company_name = 'company_name';
 
 }

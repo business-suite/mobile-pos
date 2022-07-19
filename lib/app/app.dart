@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/info/bottom_sheet_info.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
@@ -30,7 +31,7 @@ class _AppState extends State<App> {
     super.initState();
     SystemUtils.setPortraitScreenOrientation();
     //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: kColor202330));
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: transparent));
+    //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: transparent));
   }
 
   @override
@@ -65,7 +66,7 @@ class _AppState extends State<App> {
         home: PopupPercentageContent(),
 
         //   home: PopupQuotationOrderPage(),
-        //  home: ReviewPage(),
+        //  home: AddCustomerPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

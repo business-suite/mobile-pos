@@ -52,7 +52,7 @@ class IntroViewModel extends BaseViewModel {
   }
 
   void gotoSignIn() {
-    _navigationService.pushEnterFadeExitDown(SignInPage());
+    _navigationService.pushScreenNoAnim(SignInPage());
   }
 
   void gotoSignUp() {
@@ -71,7 +71,7 @@ class IntroViewModel extends BaseViewModel {
       return true;
     }
     doubleBackToExit = true;
-    ToastUtil.showToast('Press the back button to exit');
+    ToastUtil.showToast(LocaleKeys.press_the_back_button_to_exit.tr());
     Future.delayed(Duration(seconds: 2), (){
       doubleBackToExit = false;
     });

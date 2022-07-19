@@ -271,7 +271,7 @@ class _ValidateContenState extends State<ValidateConten> {
                                                 child: Center(
                                                   child: Container(
                                                     child: Image.asset(
-                                                      'assets/images/logoooo.png',
+                                                      'assets/images/logo.png',
                                                     ),
                                                   ),
                                                 ),

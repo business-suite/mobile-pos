@@ -50,6 +50,7 @@
   "served_by_mitchell_admin": "Served by Mitchell Admin",
   "total": "TOTAL",
   "zip": "ZIP",
+  "english_us": "English (US)",
   "none": "None",
   "algeria": "Algeria",
   "albania": "Albania",
@@ -205,5 +206,7 @@
   "privacy_policy": "Privacy Policy",
   "term_of_service": "Terms of Service",
   "i_agree_to_the": "I agree to the",
-  "and": "and"
+  "and": "and",
+  "press_the_back_button_to_exit": "Press the back button to exit",
+  "company_name": "Company Name"
 }

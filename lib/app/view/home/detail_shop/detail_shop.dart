@@ -190,7 +190,7 @@ class _DetailShopState extends State<_DetailShopContent> {
     return BaseScaffoldSafeArea(
       transparentStatusBar: 0.2,
       backgroundColor: Colors.white70,
-      customAppBar: null,
+      customAppBar: AppBar(toolbarHeight: 0.0,),
       body: SliderDrawer(
         key: _key,
         appBar: AppBarShop(

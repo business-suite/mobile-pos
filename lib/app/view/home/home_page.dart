@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:business_suite_mobile_pos/app/module/common/toast_util.dart';
 import 'package:business_suite_mobile_pos/app/view/home/shop_list/shop_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -48,11 +49,7 @@ class _HomeScreen extends State<_HomePage> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () => homeViewModel.onDoubleBackToExit(),
-      child: Scaffold(
-        body: SafeArea(
-          child: ShopListPage(),
-        ),
-      ),
+      child: ShopListPage(),
     );
   }
 }
