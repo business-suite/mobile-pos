@@ -16,6 +16,7 @@ import '../../../../module/res/style.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
 import '../../../widget_utils/base_scaffold_safe_area.dart';
 import '../../../widget_utils/custom/custom_card.dart';
+import '../../customer_list/customer_list_page.dart';
 import '../../info/bottom_sheet_info.dart';
 import '../../pay/pay_page.dart';
 import '../appbar_shop.dart';
@@ -1093,7 +1094,11 @@ class _ReviewContentState extends State<ReviewContent> {
                                   mainAxisCellCount: 1,
                                   child: ItemReviewKeyBoard(
                                     item: value.computers[0],
-                                    onClickItem: () => value.onClickItem,
+                                    onClickItem: () {
+                                        getIt<NavigationService>()
+                                            .pushReplacementScreenWithSlideLeftIn(
+                                            CustomerListPage());
+                                    },
                                   ),
                                 ),
                                 //1
