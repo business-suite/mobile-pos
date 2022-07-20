@@ -105,12 +105,13 @@ class _CashInOutPageState extends State<CashInOutPage> {
                           ),
                        //   color: kColorf0eeee,
                           child: TextField(
+                            cursorColor: kColor808080,
                             minLines: 1,
                             maxLines: 2,
                             textInputAction: TextInputAction.newline,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.right,
-                            cursorHeight: size_25_w,
+                            // cursorHeight: size_25_w,
                         //      cursorColor: kColor565656,
                             decoration: InputDecoration(
                               filled: true,
@@ -158,8 +159,8 @@ class _CashInOutPageState extends State<CashInOutPage> {
                             }
                           });
                         },
-                        cursorHeight: size_25_w,
-                        cursorColor: Colors.black87,
+                       // cursorHeight: size_25_w,
+                        cursorColor: kColor808080,
                         controller: _reasonController,
                         minLines: 1,
                         maxLines: 2,
