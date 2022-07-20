@@ -18,6 +18,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
 import '../../../di/injection.dart';
+import '../../../module/common/toast_util.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/custom_sliver_grid_delegate.dart';
@@ -188,8 +189,6 @@ class _DetailShopState extends State<_DetailShopContent> {
 
   @override
   Widget build(BuildContext context) {
-
-    Size size = MediaQuery.of(context).size;
     return BaseScaffoldSafeArea(
       transparentStatusBar: 0.2,
       backgroundColor: Colors.white70,

@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-// ignore_for_file: prefer_const_constructor
 import 'package:business_suite_mobile_pos/app/module/res/dimens.dart';
-import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +10,8 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/style.dart';
 
-void popupPercentageBottomSheet({
-  VoidCallback? onCloseClick,
-}) {
+void popupPercentageBottomSheet(
+    {VoidCallback? onCloseClick, double statusBarHeight = 0.0}) {
   BuildContext context =
       getIt<NavigationService>().navigatorKey.currentContext!;
   showModalBottomSheet(
@@ -24,15 +21,18 @@ void popupPercentageBottomSheet({
     backgroundColor: transparent,
     isScrollControlled: true,
     builder: (BuildContext builderContext) {
-      return PopupPercentageBottomSheet();
+      return PopupPercentageBottomSheet(
+        statusBarHeight: statusBarHeight,
+      );
     },
   );
 }
 
 class PopupPercentageBottomSheet extends StatefulWidget {
   //final PercentageViewModel _percentageViewModel;
+  double statusBarHeight = 0.0;
 
-  PopupPercentageBottomSheet();
+  PopupPercentageBottomSheet({this.statusBarHeight = 0.0});
 
   @override
   State<PopupPercentageBottomSheet> createState() =>
@@ -45,13 +45,13 @@ class _PopupPercentageBottomSheetState
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).padding.top;
+    var paddingTop = widget.statusBarHeight == 0.0
+        ? appBarSize * 2
+        : appBarSize + widget.statusBarHeight;
     return SafeArea(
       child: Container(
+        margin: EdgeInsets.only(top: paddingTop),
         color: kColorf0eeee,
-        margin: EdgeInsets.only(
-          top: height + appBarSize,
-        ),
         child: Column(
           children: [
             Container(

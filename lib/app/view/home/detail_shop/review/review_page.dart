@@ -54,6 +54,7 @@ class _ReviewContentState extends State<ReviewContent> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var statusBarHeight = MediaQuery.of(context).padding.top;
     //appbar
     return BaseScaffoldSafeArea(
       transparentStatusBar: 0.2,
@@ -137,7 +138,9 @@ class _ReviewContentState extends State<ReviewContent> {
                                     child: InkWell(
                                       onTap: () {
                                         popupPercentageBottomSheet(
-                                            onCloseClick: null);
+                                            onCloseClick: null,
+                                          statusBarHeight: statusBarHeight
+                                        );
                                       },
                                       child: Row(
                                         mainAxisAlignment:
