@@ -61,7 +61,7 @@ class _ValidateContenState extends State<ValidateConten> {
               height: size_80_w,
               width: double.infinity,
               child: Container(
-                padding: EdgeInsets.all(size_16_w),
+                padding: EdgeInsets.all(size_10_w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -69,9 +69,8 @@ class _ValidateContenState extends State<ValidateConten> {
                       decoration: BoxDecoration(
                           color: Colors.black.withOpacity(0.05),
                           borderRadius:
-                              BorderRadius.circular(size_4_w)),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: size_1_w, vertical: size_1_w),
+                              BorderRadius.circular(size_1_w)),
+                      padding: EdgeInsets.symmetric(vertical: size_1_w,horizontal: size_1_w),
                       child: Container(
                         height: size_45_w,
                         width: size_160_w,
@@ -82,7 +81,7 @@ class _ValidateContenState extends State<ValidateConten> {
                                 onPressed: () {
                                   getIt<NavigationService>()
                                       .pushEnterFadeExitDown(
-                                          DetailShopPage());
+                                      DetailShopPage());
                                 },
                                 child: Row(
                                   children: [
@@ -138,44 +137,38 @@ class _ValidateContenState extends State<ValidateConten> {
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: kColorE6E6E6,
+                            color: kColorD1D1D1,
                             borderRadius: BorderRadius.circular(
-                                size_4_w)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.black12,
-                              borderRadius:
-                                  BorderRadius.circular(
-                                      size_4_w)),
-                          padding: EdgeInsets.symmetric(
-                            vertical: size_1_w,
-                          ),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: size_60_w,
-                            child: FlatButton(
-                              onPressed: () {},
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/icons/ic_print.svg',
-                                    height: size_15_w,
-                                    width: size_15_w,
-                                  ),
-                                  SizedBox(
-                                    width: size_3_w,
-                                  ),
-                                  Text(
-                                    LocaleKeys.print_receipt
-                                        .tr(),
-                                    style: TextStyle(
-                                        fontSize: text_20,
-                                        color: kColor555555),
-                                  ),
-                                ],
-                              ),
+                                size_2_w)),
+                        padding: EdgeInsets.symmetric(
+                            vertical: size_1_w,horizontal: size_1_w
+                        ),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: size_60_w,
+                          child: FlatButton(
+                            color: kColorCBCBCB,
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/icons/ic_print.svg',
+                                  height: size_15_w,
+                                  width: size_15_w,
+                                ),
+                                SizedBox(
+                                  width: size_3_w,
+                                ),
+                                Text(
+                                  LocaleKeys.print_receipt
+                                      .tr(),
+                                  style: TextStyle(
+                                      fontSize: text_20,
+                                      color: kColor555555),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -185,18 +178,20 @@ class _ValidateContenState extends State<ValidateConten> {
                       ),
                       Container(
                         height: size_60_w,
-                        color: kColorf0eeee,
+                        width: double.infinity,
+                        color: Colors.white,
                         child: Row(
                           children: [
                             Expanded(
                               child: TextField(
+
                                 cursorHeight: size_25_w,
                                 cursorColor: kColor565656,
                                 decoration: InputDecoration(
                                   enabledBorder:
                                       OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: kColorf0eeee,
+                                        color: Colors.white,
                                         width: size_1_w),
                                   ),
                                   focusedBorder:

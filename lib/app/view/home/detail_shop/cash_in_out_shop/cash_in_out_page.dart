@@ -103,28 +103,28 @@ class _CashInOutPageState extends State<CashInOutPage> {
                             bottomLeft: Radius.circular(4),
                             bottomRight: Radius.circular(4),
                           ),
-                          color: kColorf0eeee,
-                          child: Expanded(
-                            child: TextField(
-                              autofocus: true,
-                              keyboardType: TextInputType.number,
-                              textAlign: TextAlign.right,
-                              cursorHeight: size_25_w,
-                              cursorColor: kColor565656,
-                              decoration: InputDecoration(
-                                suffixText: "\$",
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                  BorderSide(color: kColor64AF8A, width: size_2_w),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: kColorf0eeee, width: 1.0),
-                                ),
-                                border: InputBorder.none,
+                       //   color: kColorf0eeee,
+                          child: TextField(
+                            minLines: 1,
+                            maxLines: 2,
+                            textInputAction: TextInputAction.newline,
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.right,
+                            cursorHeight: size_25_w,
+                        //      cursorColor: kColor565656,
+                            decoration: InputDecoration(
+                              filled: true,
+                              suffixText: "\$",
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: kColor64AF8A, width: size_1_w),
                               ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: kColorf0eeee, width: 1.0),
+                              ),
+                             // border: InputBorder.none,
                             ),
-
                           ),
                         ),
                       ),
@@ -161,8 +161,8 @@ class _CashInOutPageState extends State<CashInOutPage> {
                         cursorHeight: size_25_w,
                         cursorColor: Colors.black87,
                         controller: _reasonController,
-                        minLines: 2,
-                        maxLines: 3,
+                        minLines: 1,
+                        maxLines: 2,
                         textInputAction: TextInputAction.newline,
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
