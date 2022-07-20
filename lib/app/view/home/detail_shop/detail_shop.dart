@@ -60,9 +60,10 @@ class _SliderViewState extends State<_SliderView> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       height: double.infinity,
-      width: double.infinity,
+      // width: size.width/2,
       color: kColorf0eeee,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,7 +111,6 @@ class _SliderViewState extends State<_SliderView> {
                     width: size_35_w,
                     padding: EdgeInsets.all(size_10_w),
                     child: SvgPicture.asset(
-
                       'assets/icons/ic_search.svg',
                     ),
                   ),

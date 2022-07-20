@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/appbar_customer_list.dart';
@@ -196,7 +198,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
               Container(
                 color: kColorF7F7F7,
                 height: size_40_w,
-                width: size_400_w,
+                width: double.infinity,
                 child: Row(
                   children: [
                     //text name

@@ -168,8 +168,8 @@ class _PayContentState extends State<PayContent> {
                                     ],
                                   ),
                                   Container(
-                                    height: size_2_w,
-                                    color: kColorE2E2E2,
+                                    height: size_1_w,
+                                    color: Colors.black12,
                                   ),
                                   SizedBox(
                                     width: double.infinity,
