@@ -45,11 +45,12 @@ class _PopupPercentageBottomSheetState
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).padding.top;
     return SafeArea(
       child: Container(
         color: kColorf0eeee,
         margin: EdgeInsets.only(
-          top: appBarSize,
+          top: height + appBarSize,
         ),
         child: Column(
           children: [
@@ -544,7 +545,6 @@ class _PopupPercentageBottomSheetState
                             ),
                           ],
                         ),
-
                       ],
                     ),
                   ),
@@ -590,7 +590,6 @@ class _PopupPercentageBottomSheetState
                                     color: kColor555555,
                                   ),
                                 ),
-
                               ),
                             ),
                           ),

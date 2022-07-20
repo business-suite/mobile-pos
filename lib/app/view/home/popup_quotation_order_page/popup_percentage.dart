@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -143,11 +145,11 @@ class _PopupPercentageContentState extends State<PopupPercentageContent> {
                         itemCount: percentageViewModel.computers.length,
                         shrinkWrap: true,
                         padding: EdgeInsets.all(0),
-                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             //childAspectRatio: 1,
                             crossAxisSpacing: 5,
                             mainAxisSpacing: 5,
-                            maxCrossAxisExtent: 80),
+                            crossAxisCount: 4),
                         itemBuilder: (BuildContext context, int index) =>
                             ItemApplyKeyBoard(
                           item: percentageViewModel.computers[index],
