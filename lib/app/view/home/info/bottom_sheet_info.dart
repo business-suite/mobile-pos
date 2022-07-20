@@ -45,11 +45,12 @@ class _PopupPercentageBottomSheetState
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).padding.top;
     return SafeArea(
       child: Container(
         color: kColorf0eeee,
         margin: EdgeInsets.only(
-          top: appBarSize,
+          top: height + appBarSize,
         ),
         child: Column(
           children: [
@@ -544,7 +545,6 @@ class _PopupPercentageBottomSheetState
                             ),
                           ],
                         ),
-
                       ],
                     ),
                   ),
@@ -561,36 +561,38 @@ class _PopupPercentageBottomSheetState
                         SizedBox(
                           height: size_10_w,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: size_15_w),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: kColor3C3C3C.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(size_4_w)),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: size_1_w, vertical: size_1_w),
+                        Container(
+                          height: double.infinity,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: size_15_w),
                             child: Container(
-                              alignment: Alignment.center,
-                              height: size_40_w,
-                              width: size_120_w,
                               decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.05),
-                                  borderRadius:
-                                      BorderRadius.circular(size_1_w)),
+                                  color: kColor3C3C3C.withOpacity(0.1),
+                                  borderRadius: BorderRadius.circular(size_4_w)),
                               padding: EdgeInsets.symmetric(
                                   horizontal: size_1_w, vertical: size_1_w),
-                              child: FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text(
-                                  LocaleKeys.close.tr(),
-                                  style: TextStyle(
-                                    fontSize: text_12,
-                                    color: kColor555555,
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: size_40_w,
+                                width: size_120_w,
+                                decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.05),
+                                    borderRadius:
+                                        BorderRadius.circular(size_1_w)),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size_1_w, vertical: size_1_w),
+                                child: FlatButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text(
+                                    LocaleKeys.close.tr(),
+                                    style: TextStyle(
+                                      fontSize: text_12,
+                                      color: kColor555555,
+                                    ),
                                   ),
                                 ),
-
                               ),
                             ),
                           ),
