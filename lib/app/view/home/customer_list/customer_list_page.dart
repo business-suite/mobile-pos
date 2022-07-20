@@ -71,6 +71,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                 padding: EdgeInsets.only(
                     left: size_15_w, top: size_15_w, bottom: size_10_w),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     // back button
                     InkWell(
@@ -102,7 +103,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                       child: InkWell(
                         onTap: () {
                             getIt<NavigationService>()
-                                .pushReplacementScreenWithSlideLeftIn(
+                                .pushScreenWithFade(
                                 AddCustomerPage());
                         },
                         child: Container(
@@ -128,7 +129,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                     // textfield
                     Padding(
                       padding:
-                          EdgeInsets.only(left: size_10_w, bottom: size_7_w),
+                          EdgeInsets.only(left: size_10_w),
                       child: Container(
                         height: size_35_w,
                         width: size_180_w,
@@ -136,31 +137,34 @@ class _CustomerListContentState extends State<CustomerListContent> {
                           color: kCWhite,
                           borderRadius: BorderRadius.circular(100),
                         ),
-                        child: TextField(
-                          cursorColor: Colors.black,
-                          autocorrect: false,
-                          textAlignVertical: TextAlignVertical.center,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100.0),
-                            ),
-                            suffixIconConstraints: BoxConstraints(
-                                maxWidth: size_25_w, maxHeight: size_15_w),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(100.0),
-                              borderSide: BorderSide(
-                                color: kColor2947C3,
+                        child: Center(
+                          child: TextField(
+                            cursorColor: Colors.black,
+                            autocorrect: false,
+                            textAlignVertical: TextAlignVertical.center,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(100.0),
                               ),
+                              suffixIconConstraints: BoxConstraints(
+                                  maxWidth: size_25_w, maxHeight: size_15_w),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(100.0),
+                                borderSide: BorderSide(
+                                  color: kColor2947C3,
+                                ),
+                              ),
+                              hintText:
+                                  'Search Customers',
+                              hintStyle: TextStyle(fontSize: size_14_w),
+                              contentPadding:
+                                  EdgeInsets.fromLTRB(12.0, 15.0, 20.0, 10.0),
                             ),
-                            hintText:
-                                'Search Customers',
-                            hintStyle: TextStyle(fontSize: size_14_w),
-                            contentPadding:
-                                EdgeInsets.fromLTRB(12.0, 15.0, 20.0, 10.0),
                           ),
                         ),
                       ),
                     ),
+
                     //database button
                     Padding(
                       padding: EdgeInsets.only(left: 10),

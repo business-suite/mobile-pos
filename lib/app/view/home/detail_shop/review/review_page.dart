@@ -1096,7 +1096,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                     item: value.computers[0],
                                     onClickItem: () {
                                         getIt<NavigationService>()
-                                            .pushReplacementScreenWithSlideLeftIn(
+                                            .pushScreenWithFade(
                                             CustomerListPage());
                                     },
                                   ),

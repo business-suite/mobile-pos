@@ -110,6 +110,7 @@ class _SliderViewState extends State<_SliderView> {
                     width: size_35_w,
                     padding: EdgeInsets.all(size_10_w),
                     child: SvgPicture.asset(
+
                       'assets/icons/ic_search.svg',
                     ),
                   ),
@@ -133,9 +134,7 @@ class _SliderViewState extends State<_SliderView> {
                     width: size_100_w,
                     child: FlatButton(
                       onPressed: () {
-                        getIt<NavigationService>()
-                            .pushReplacementScreenWithSlideLeftIn(
-                                DetailShopPage());
+                        detailShopViewModel.keySlider.currentState!.closeSlider();
                       },
                       child: Text(
                         LocaleKeys.new_order.tr(),
