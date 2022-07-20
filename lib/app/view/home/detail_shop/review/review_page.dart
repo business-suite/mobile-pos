@@ -218,6 +218,7 @@ class _ReviewContentState extends State<ReviewContent> {
                           padding: EdgeInsets.symmetric(horizontal: size_10_w),
                           child: Card(
                             color: kColorE2E2E2,
+                            elevation: 0.0,
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
                                 color: kColorBFBFBF,

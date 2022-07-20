@@ -71,11 +71,11 @@ class _ProductInfoBottomSheetState
                 children: [
                   SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: size_10_w),
-                          child: Align(
+                    child: Container(
+                      padding: EdgeInsets.only(left: size_10_w, right: size_10_w, top: size_10_w, bottom: size_80_w),
+                      child: Column(
+                        children: [
+                          Align(
                             alignment: Alignment.topLeft,
                             child: Text(
                               LocaleKeys.office_chair.tr(),
@@ -83,10 +83,7 @@ class _ProductInfoBottomSheetState
                                   fontSize: size_30_w, color: kColor555555),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: size_10_w),
-                          child: Align(
+                          Align(
                             alignment: Alignment.topLeft,
                             child: Text(
                               LocaleKeys.furn_7777.tr(),
@@ -94,26 +91,23 @@ class _ProductInfoBottomSheetState
                                   fontSize: size_15_w, color: kColor555555),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: size_10_h,
-                        ),
-                        Text(
-                          '\$ 70.00',
-                          style: TextStyle(
-                              fontSize: size_30_w, color: kColor555555),
-                        ),
-                        SizedBox(
-                          height: size_20_w,
-                        ),
+                          SizedBox(
+                            height: size_10_h,
+                          ),
+                          Text(
+                            '\$ 70.00',
+                            style: TextStyle(
+                                fontSize: size_30_w, color: kColor555555),
+                          ),
+                          SizedBox(
+                            height: size_20_w,
+                          ),
 
-                        //financials
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                          //financials
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.financials.tr(),
                                   style: TextStyle(
@@ -122,138 +116,117 @@ class _ProductInfoBottomSheetState
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                alignment: Alignment.topLeft,
-                                height: size_2_w,
-                                color: kColor808080,
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  alignment: Alignment.topLeft,
+                                  height: size_2_w,
+                                  color: kColor808080,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: size_15_w,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: size_10_w,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                              SizedBox(
+                                width: size_15_w,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: size_10_w,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.price_excl_vat.tr(),
                                   style: TextStyle(
                                       fontSize: size_15_w, color: kColor555555),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.only(left: size_20_w),
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   '\$ 70.00',
                                   style: TextStyle(
                                       fontSize: size_15_w, color: kColor555555),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.cost.tr(),
                                   style: TextStyle(
                                       fontSize: size_15_w, color: kColor555555),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.only(left: size_20_w),
-                                child: Text(
-                                  '\$ 55.00',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    '\$ 55.00',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.margin.tr(),
                                   style: TextStyle(
                                       fontSize: size_15_w, color: kColor555555),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.only(left: size_20_w),
-                                child: Text(
-                                  '\$ 15.00(21.43%)',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    '\$ 15.00(21.43%)',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.public_pricelist.tr(),
                                   style: TextStyle(
                                       fontSize: size_15_w, color: kColor555555),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.only(left: size_20_w),
-                                child: Text(
-                                  '\$ 70.00',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    '\$ 70.00',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
 
-                        SizedBox(
-                          height: size_20_w,
-                        ),
-                        //Inventory (as of opening)
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                          SizedBox(
+                            height: size_20_w,
+                          ),
+                          //Inventory (as of opening)
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
                                 child: Text(
                                   LocaleKeys.inventory_as_of_opening.tr(),
                                   style: TextStyle(
@@ -262,58 +235,54 @@ class _ProductInfoBottomSheetState
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                alignment: Alignment.topLeft,
-                                height: size_2_w,
-                                color: kColor808080,
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  alignment: Alignment.topLeft,
+                                  height: size_2_w,
+                                  color: kColor808080,
+                                ),
                               ),
+                              SizedBox(
+                                width: size_15_w,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: size_10_w,
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              LocaleKeys.san_francisco.tr(),
+                              style: TextStyle(
+                                  fontSize: size_15_w, color: kColor555555),
                             ),
-                            SizedBox(
-                              width: size_15_w,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: size_10_w,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: size_20_w),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            LocaleKeys.san_francisco.tr(),
-                            style: TextStyle(
-                                fontSize: size_15_w, color: kColor555555),
                           ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: size_35_w),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            '0 Units available,',
-                            style: TextStyle(
-                                fontSize: size_15_w, color: kColor555555),
+                          Container(
+                            padding: EdgeInsets.only(left: size_20_w),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              '0 Units available,',
+                              style: TextStyle(
+                                  fontSize: size_15_w, color: kColor555555),
+                            ),
                           ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: size_35_w),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            '35 forecasted',
-                            style: TextStyle(
-                                fontSize: size_15_w, color: kColor555555),
+                          Container(
+                            padding: EdgeInsets.only(left: size_20_w),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              '35 forecasted',
+                              style: TextStyle(
+                                  fontSize: size_15_w, color: kColor555555),
+                            ),
                           ),
-                        ),
 
-                        //Replenishment
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                          //Replenishment
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.replenishment.tr(),
                                   style: TextStyle(
@@ -322,126 +291,121 @@ class _ProductInfoBottomSheetState
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                alignment: Alignment.topLeft,
-                                height: size_2_w,
-                                color: kColor808080,
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  alignment: Alignment.topLeft,
+                                  height: size_2_w,
+                                  color: kColor808080,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: size_15_w,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: size_10_w,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: size_20_w),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            LocaleKeys.azure_interior.tr(),
-                            style: TextStyle(
-                                fontSize: size_15_w, color: kColor555555),
+                              SizedBox(
+                                width: size_15_w,
+                              ),
+                            ],
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_35_w),
-                                child: Text(
-                                  '7 Days',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_30_w),
-                                child: Text(
-                                  '\$ 55.00',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(''),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(''),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: size_20_w),
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            LocaleKeys.wood_corner.tr(),
-                            style: TextStyle(
-                                fontSize: size_15_w, color: kColor555555),
+                          SizedBox(
+                            height: size_10_w,
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_35_w),
-                                child: Text(
-                                  '4 Days',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              LocaleKeys.azure_interior.tr(),
+                              style: TextStyle(
+                                  fontSize: size_15_w, color: kColor555555),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: size_20_w),
+                                  child: Text(
+                                    '7 Days',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_30_w),
-                                child: Text(
-                                  '\$ 66.00',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: size_30_w),
+                                  child: Text(
+                                    '\$ 55.00',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(''),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(''),
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                child: Text(''),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(''),
+                                ),
                               ),
+                            ],
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              LocaleKeys.wood_corner.tr(),
+                              style: TextStyle(
+                                  fontSize: size_15_w, color: kColor555555),
                             ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: size_30_w,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: size_20_w),
+                                  child: Text(
+                                    '4 Days',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: size_30_w),
+                                  child: Text(
+                                    '\$ 66.00',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(''),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(''),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: size_30_w,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.financials.tr(),
                                   style: TextStyle(
@@ -450,102 +414,90 @@ class _ProductInfoBottomSheetState
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Container(
-                                alignment: Alignment.topLeft,
-                                height: size_2_w,
-                                color: kColor808080,
+                              Expanded(
+                                flex: 2,
+                                child: Container(
+                                  alignment: Alignment.topLeft,
+                                  height: size_2_w,
+                                  color: kColor808080,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              width: size_15_w,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: size_10_w,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                              SizedBox(
+                                width: size_15_w,
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: size_10_w,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.total_price_excl_vat.tr(),
                                   style: TextStyle(
                                       fontSize: size_15_w, color: kColor555555),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.only(left: size_20_w),
-                                child: Text(
-                                  '\$ 103.00',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    '\$ 103.00',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.total_cost.tr(),
                                   style: TextStyle(
                                       fontSize: size_15_w, color: kColor555555),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.only(left: size_20_w),
-                                child: Text(
-                                  '\$ 55.00',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    '\$ 55.00',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: size_10_w),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 1,
                                 child: Text(
                                   LocaleKeys.total_margin.tr(),
                                   style: TextStyle(
                                       fontSize: size_15_w, color: kColor555555),
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.only(left: size_20_w),
-                                child: Text(
-                                  '\$ 48.00(46.6%)',
-                                  style: TextStyle(
-                                      fontSize: size_15_w, color: kColor555555),
+                              Expanded(
+                                flex: 1,
+                                child: Container(
+                                  child: Text(
+                                    '\$ 48.00(46.6%)',
+                                    style: TextStyle(
+                                        fontSize: size_15_w, color: kColor555555),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Container(
@@ -557,28 +509,43 @@ class _ProductInfoBottomSheetState
                           color: kColorCACACA,
                         ),
                         Container(
+                          color: kColorf0eeee,
                           width: double.infinity,
-                         color: Colors.white,
-                          padding: EdgeInsets.symmetric(horizontal: size_10_w, vertical: size_10_w),
-                          child: Container(
-                            width: size_150_w,
-                            child: FlatButton(
-                              padding: EdgeInsets.symmetric(horizontal: size_10_w, vertical: size_10_w),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Container(
-                                color: kColorCACACA,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: size_100_w,
+                                height: size_60_w,
                                 padding: EdgeInsets.symmetric(horizontal: size_10_w, vertical: size_10_w),
-                                child: Text(
-                                  LocaleKeys.close.tr(),
-                                  style: TextStyle(
-                                    fontSize: text_12,
-                                    color: kColor555555,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: size_1_w,
+                                      color: kColorBFBFBF,
+                                    ),
+                                  ),
+                                  child: FlatButton(
+                                    shape: RoundedRectangleBorder(
+                                    ),
+                                    color: Colors.black.withOpacity(0.05),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                      LocaleKeys.close.tr(),
+                                      style: TextStyle(
+                                        fontSize: text_12,
+                                        color: kColor555555,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ],
