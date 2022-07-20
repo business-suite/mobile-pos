@@ -17,7 +17,7 @@ import '../../../../viewmodel/base_viewmodel.dart';
 import '../../../widget_utils/base_scaffold_safe_area.dart';
 import '../../../widget_utils/custom/custom_card.dart';
 import '../../customer_list/customer_list_page.dart';
-import '../../info/bottom_sheet_info.dart';
+import '../../info/bottom_sheet_product_info.dart';
 import '../../pay/pay_page.dart';
 import '../appbar_shop.dart';
 import 'review_item_keyboard.dart';
@@ -54,6 +54,7 @@ class _ReviewContentState extends State<ReviewContent> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var statusBarHeight = MediaQuery.of(context).padding.top;
     //appbar
     return BaseScaffoldSafeArea(
       transparentStatusBar: 0.2,
@@ -136,8 +137,10 @@ class _ReviewContentState extends State<ReviewContent> {
                                         vertical: size_10_w),
                                     child: InkWell(
                                       onTap: () {
-                                        popupPercentageBottomSheet(
-                                            onCloseClick: null);
+                                        prductInfoBottomSheet(
+                                            onCloseClick: null,
+                                          statusBarHeight: statusBarHeight
+                                        );
                                       },
                                       child: Row(
                                         mainAxisAlignment:
@@ -215,6 +218,7 @@ class _ReviewContentState extends State<ReviewContent> {
                           padding: EdgeInsets.symmetric(horizontal: size_10_w),
                           child: Card(
                             color: kColorE2E2E2,
+                            elevation: 0.0,
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
                                 color: kColorBFBFBF,
