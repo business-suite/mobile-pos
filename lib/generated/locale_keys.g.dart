@@ -166,7 +166,7 @@ abstract class  LocaleKeys {
   static const product_channels = 'product_channels';
   static const product_services = 'product_services';
   static const product_character = 'product_character';
-  static const product_price = 'product_price';
+  static const price = 'price';
   static const product_unit = 'product_unit';
   static const product_volume = 'product_volume';
   static const product_date = 'product_date';
@@ -203,5 +203,7 @@ abstract class  LocaleKeys {
   static const and = 'and';
   static const press_the_back_button_to_exit = 'press_the_back_button_to_exit';
   static const company_name = 'company_name';
+  static const product_price = 'product_price';
+  static const log_out = 'log_out';
 
 }

@@ -174,7 +174,7 @@
   "product_channels": "Channels",
   "product_services": "Services",
   "product_character": " *",
-  "product_price": "Price",
+  "price": "Price",
   "product_unit": "Unit",
   "product_volume": "Volume",
   "product_date": "Date",
@@ -212,5 +212,7 @@
   "and": "and",
   "press_the_back_button_to_exit": "Press the back button to exit",
   "company_name": "Company Name",
-  "product_price": "$ {money}"
+  "product_price": "$ {money}",
+  "log_out": "Log Out",
+  "cancel": "Cancel"
 }

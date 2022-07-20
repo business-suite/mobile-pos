@@ -59,6 +59,7 @@ class _PayContentState extends State<PayContent> {
       customAppBar: AppBarShop(
         badgeCount: 1,
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<PayViewModel>(builder: (context, value, child) {
         return SizedBox(

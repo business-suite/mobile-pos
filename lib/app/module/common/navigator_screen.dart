@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 
 import '../../di/injection.dart';
 import '../../view/error/error_page.dart';
+import '../../view/widget_utils/dialog/dialog_log_out_app.dart';
 import '../../view/intro/intro_page.dart';
 import '../../view/splash/splash_page.dart';
 import '../local_storage/shared_pref_manager.dart';
@@ -116,8 +117,17 @@ class NavigationService {
   }
 
   void signOut(){
-    getIt<UserSharePref>().setIsLogin(false);
-   pushAndRemoveUntilWithFade(IntroPage());
+    showDialog(
+        context: navigatorKey.currentContext!,
+        builder: (BuildContext context) {
+          return DialogExitApp(
+            funcExit: () {
+              getIt<UserSharePref>().setIsLogin(false);
+              pushAndRemoveUntilWithFade(IntroPage());
+            },
+          );
+        });
+
   }
 
   dimiss() {

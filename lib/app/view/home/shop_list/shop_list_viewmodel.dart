@@ -1,6 +1,7 @@
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../../../di/injection.dart';
 import '../../../model/keyboard.dart';
@@ -12,6 +13,7 @@ import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
+import '../../widget_utils/dialog/dialog_log_out_app.dart';
 class ShopListViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
@@ -78,5 +80,4 @@ class ShopListViewModel extends BaseViewModel {
     );
 
   }
-
 }

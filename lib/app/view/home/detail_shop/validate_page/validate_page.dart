@@ -45,6 +45,7 @@ class _ValidateContenState extends State<ValidateConten> {
       customAppBar: AppBarShop(
         badgeCount: 1,
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Container(
         height: double.infinity,

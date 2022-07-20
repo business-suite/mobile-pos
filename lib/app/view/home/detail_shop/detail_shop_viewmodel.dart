@@ -1,6 +1,7 @@
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 
 import '../../../di/injection.dart';
@@ -11,6 +12,7 @@ import '../../../module/network/response/category_product_response.dart';
 import '../../../module/network/response/detail_shop_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
+import '../../widget_utils/dialog/dialog_log_out_app.dart';
 
 class DetailShopViewModel extends BaseViewModel {
   final DataRepository _repo;

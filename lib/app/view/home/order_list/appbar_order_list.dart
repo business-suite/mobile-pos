@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
+import '../../widget_utils/anims/touchable_opacity.dart';
 
 class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
@@ -16,6 +17,8 @@ class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
   final String avatarUrl;
   final Function? leftIconOnPress;
   final Function? rightIconOnPress;
+  VoidCallback? onClickAvatar;
+  VoidCallback? onClickTicKet;
 
   AppBarOrderList({
     Key? key,
@@ -25,6 +28,8 @@ class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
     this.leftIconOnPress,
     this.rightIconOnPress,
     this.badgeCount = 0,  this.avatarUrl = '',
+    this.onClickAvatar,
+    this.onClickTicKet
   }) : super(key: key);
 
   @override
@@ -72,47 +77,50 @@ class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
 
-              Container(
-                height: double.infinity,
-                child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: <Widget>[
-                      RotationTransition(
-                        turns: AlwaysStoppedAnimation(-45 / 360),
-                        child: Padding(
-                          padding: EdgeInsets.only(right: size_10_w, bottom: size_10_w),
-                          child: SvgPicture.asset(
-                            'assets/icons/ic_ticket.svg',
-                            width: size_16_w,
-                            height: size_16_w,
-                            color: kCWhite,
+              TouchableOpacity(
+                onPressed: () => onClickTicKet?.call(),
+                child: Container(
+                  height: double.infinity,
+                  child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: <Widget>[
+                        RotationTransition(
+                          turns: AlwaysStoppedAnimation(-45 / 360),
+                          child: Padding(
+                            padding: EdgeInsets.only(right: size_10_w, bottom: size_10_w),
+                            child: SvgPicture.asset(
+                              'assets/icons/ic_ticket.svg',
+                              width: size_16_w,
+                              height: size_16_w,
+                              color: kCWhite,
+                            ),
                           ),
                         ),
-                      ),
-                      if (badgeCount > 0)
-                        Positioned(
-                          // draw a red marble
-                          top: size_10_w,
-                          right: size_2_w,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 4.0, horizontal: 8.0),
-                            decoration: BoxDecoration(
-                              color: kColor01A09D,
-                              borderRadius: BorderRadius.circular(size_10_r),
+                        if (badgeCount > 0)
+                          Positioned(
+                            // draw a red marble
+                            top: size_10_w,
+                            right: size_2_w,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 4.0, horizontal: 8.0),
+                              decoration: BoxDecoration(
+                                color: kColor01A09D,
+                                borderRadius: BorderRadius.circular(size_10_r),
+                              ),
+                              child: Text(
+                                badgeCount.toString(),
+                                style: TextStyle(
+                                    fontSize: text_12,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.normal),
+                              ),
                             ),
-                            child: Text(
-                              badgeCount.toString(),
-                              style: TextStyle(
-                                  fontSize: text_12,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal),
-                            ),
-                          ),
-                        )
-                      else
-                        Container()
-                    ]),
+                          )
+                        else
+                          Container()
+                      ]),
+                ),
               ),
               SvgPicture.asset(
                 'assets/icons/ic_desktop.svg',
@@ -126,24 +134,27 @@ class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
                 height: size_18_w,
                 color: kColor5EB937,
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                clipBehavior: Clip.hardEdge,
-                child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/placeholder_character.png',
-                  image: avatarUrl,
-                  fit: BoxFit.cover,
-                  width: size_30_w,
-                  height: size_30_w,
-                  fadeInDuration: Duration(milliseconds: 50),
-                  //ERROR IMAGE WHEN LOAD IMAGE
-                  imageErrorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                    return ImageHolder(
-                      asset: 'assets/images/placeholder_character.png',
-                      width: size_30_w,
-                      height: size_30_w,
-                    );
-                  },
+              TouchableOpacity(
+                onPressed: () => onClickAvatar?.call(),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                  clipBehavior: Clip.hardEdge,
+                  child: FadeInImage.assetNetwork(
+                    placeholder: 'assets/images/placeholder_character.png',
+                    image: avatarUrl,
+                    fit: BoxFit.cover,
+                    width: size_30_w,
+                    height: size_30_w,
+                    fadeInDuration: Duration(milliseconds: 50),
+                    //ERROR IMAGE WHEN LOAD IMAGE
+                    imageErrorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                      return ImageHolder(
+                        asset: 'assets/images/placeholder_character.png',
+                        width: size_30_w,
+                        height: size_30_w,
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
