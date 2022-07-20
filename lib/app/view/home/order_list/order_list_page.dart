@@ -104,7 +104,7 @@ class _OrderListContentState extends State<OrderListContent> {
                         height: size_35_w,
                         child: Padding(
                           padding:
-                          EdgeInsets.only(left: size_50_w,right: size_70_w),
+                          EdgeInsets.only(left: size_50_w,right: size_70_w,bottom: size_7_w),
                           child: Material(
                             color: kWhite,
                             borderRadius: BorderRadius.circular(size_100_r),
@@ -141,7 +141,7 @@ class _OrderListContentState extends State<OrderListContent> {
                                 hintText: LocaleKeys.E_g_customer.tr(),
                                 hintStyle: TextStyle(fontSize: size_14_w),
                                 contentPadding:
-                                EdgeInsets.fromLTRB(12.0, 5.0, 0, 10.0),
+                                EdgeInsets.fromLTRB(12.0, 5.0, 0, 1.0),
                               ),
                             ),
                           ),

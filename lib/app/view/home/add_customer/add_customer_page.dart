@@ -152,38 +152,40 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                     ),
                       //name
-                      Padding(
-                        padding:
-                        EdgeInsets.only(left: size_10_w, bottom: size_7_w),
-                        child: Container(
-                          height: size_45_w,
-                          width: size_320_w,
-                          child: Material(
-                            color: kWhite,
-                            borderRadius: BorderRadius.circular(size_100_r),
-                            child: TextField(
-                              maxLines: 1,
-                              cursorColor: kCBlack,
-                              autocorrect: false,
-                              textAlignVertical: TextAlignVertical.center,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(size_5_r),
-                                ),
-                                suffixIconConstraints: BoxConstraints(
-                                    maxWidth: size_25_w, maxHeight: size_15_w),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(size_5_r),
-                                  borderSide: BorderSide(
-                                    color: kCBlack,
-                                    width: size_2_w,
+                      Expanded(
+                        child: Padding(
+                          padding:
+                          EdgeInsets.only(left: size_10_w, bottom: size_7_w),
+                          child: Container(
+                            height: size_45_w,
+                            width: size_320_w,
+                            child: Material(
+                              color: kWhite,
+                              borderRadius: BorderRadius.circular(size_100_r),
+                              child: TextField(
+                                maxLines: 1,
+                                cursorColor: kCBlack,
+                                autocorrect: false,
+                                textAlignVertical: TextAlignVertical.center,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(size_5_r),
                                   ),
+                                  suffixIconConstraints: BoxConstraints(
+                                      maxWidth: size_25_w, maxHeight: size_15_w),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(size_5_r),
+                                    borderSide: BorderSide(
+                                      color: kCBlack,
+                                      width: size_2_w,
+                                    ),
+                                  ),
+                                  hintText:
+                                  LocaleKeys.pos_name.tr(),
+                                  hintStyle: TextStyle(fontSize: size_35_w),
+                                  contentPadding:
+                                  EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 1.0),
                                 ),
-                                hintText:
-                                LocaleKeys.pos_name.tr(),
-                                hintStyle: TextStyle(fontSize: size_35_w),
-                                contentPadding:
-                                EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 1.0),
                               ),
                             ),
                           ),
