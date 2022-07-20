@@ -207,7 +207,6 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                           ),
                           child: TextField(
                             cursorColor: Colors.black,
-                            autocorrect: false,
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -216,7 +215,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               suffixIconConstraints: BoxConstraints(
                                   maxWidth: size_25_w, maxHeight: size_15_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(5),
                                 borderSide: BorderSide(
                                   color: kCBlack,
                                   width: size_2_w,
@@ -224,7 +223,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               ),
                               hintText:
                               LocaleKeys.street.tr(),
-                              hintStyle: TextStyle(fontSize: size_20_w),
+                              hintStyle: TextStyle(fontSize: size_10_w),
                               contentPadding:
                               EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                             ),

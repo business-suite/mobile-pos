@@ -61,8 +61,8 @@ class _AppState extends State<App> {
         title: F.title,
         //hide badge debug
         debugShowCheckedModeBanner: false,
-         home: SplashPage(),
-       // home: HomePage(),
+         // home: SplashPage(),
+       home: HomePage(),
        // home: PopupPercentageContent(),
 
         //   home: PopupQuotationOrderPage(),
