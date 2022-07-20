@@ -8,6 +8,7 @@ import '../../../module/common/toast_util.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
+import '../add_customer/add_customer_page.dart';
 
 class CustomerListViewModel extends BaseViewModel {
   final DataRepository _repo;
@@ -181,5 +182,9 @@ class CustomerListViewModel extends BaseViewModel {
   }
   gotoCustomerListpage(){
     _navigationService.pushScreenWithFade(CustomerListPage());
+  }
+
+  gotoAddCustomerPage(){
+    getIt<NavigationService>().pushScreenWithFade(AddCustomerPage());
   }
 }

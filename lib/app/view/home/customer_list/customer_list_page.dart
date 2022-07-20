@@ -102,9 +102,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                       padding: const EdgeInsets.only(left:10 ),
                       child: InkWell(
                         onTap: () {
-                            getIt<NavigationService>()
-                                .pushScreenWithFade(
-                                AddCustomerPage());
+                            customerListViewModel.gotoAddCustomerPage();
                         },
                         child: Container(
                           height: size_40_w,

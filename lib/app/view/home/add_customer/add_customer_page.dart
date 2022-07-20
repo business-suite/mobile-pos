@@ -7,9 +7,7 @@ import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_custome
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 
 
 import '../../../../flavors.dart';
@@ -19,8 +17,6 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
-import '../customer_list/customer_list_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
 
 class AddCustomerPage extends PageProvideNode<AddCustomertViewModel> {
   AddCustomerPage({Key? key}) : super(key: key, params: []);
@@ -42,9 +38,9 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
 
   AddCustomertViewModel get addCustomertViewModel => widget._addCustomertViewModel;
   final textEditingController = TextEditingController();
-  String? stateValue = LocaleKeys.none.trim();
-  String? countryValue = LocaleKeys.none.trim();
-  String? languageValue= LocaleKeys.english_us.trim();
+  String? stateValue = LocaleKeys.none.tr();
+  String? countryValue = LocaleKeys.none.tr();
+  String? languageValue;
 
   @override
   Widget build(BuildContext context) {
@@ -334,8 +330,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                           decoration: InputDecoration(
                               fillColor: kCWhite,
                               filled: true,
-                              hintText:
-                              LocaleKeys.none.tr(),
+                              hintText: LocaleKeys.none.tr(),
                               hintStyle: TextStyle(fontSize: size_20_w,color:kCBlack),
                               contentPadding:
                               EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
@@ -349,8 +344,9 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
                           isEmpty: stateValue == '',
                           child: DropdownButtonHideUnderline(
-                            child: DropdownButton2<String>(
+                            child: DropdownButton<String>(
                               value: stateValue,
+                              icon: Icon(Icons.keyboard_arrow_down_sharp),
                               isExpanded: true,
                               isDense: true,
                               onChanged:
@@ -361,20 +357,20 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               },
                               items: [
                                 DropdownMenuItem(
-                                    value: LocaleKeys.none.trim(),
-                                    child: Text(LocaleKeys.none.trim().toUpperCase(),
+                                    value: LocaleKeys.none.tr(),
+                                    child: Text(LocaleKeys.none.tr().toUpperCase(),
                                         style: TextStyle(fontSize: text_15, color: kCBlack))),
                                 DropdownMenuItem(
-                                    value: LocaleKeys.armed_forces_americas.trim().toUpperCase(),
-                                    child: Text(LocaleKeys.armed_forces_americas.trim(),
+                                    value: LocaleKeys.armed_forces_americas.tr().toUpperCase(),
+                                    child: Text(LocaleKeys.armed_forces_americas.tr(),
                                         style: TextStyle(fontSize: text_15, color: kCBlack))),
                                 DropdownMenuItem(
-                                    value: LocaleKeys.armed_forces_europe.trim().toUpperCase(),
-                                    child: Text(LocaleKeys.armed_forces_europe.trim(),
+                                    value: LocaleKeys.armed_forces_europe.tr().toUpperCase(),
+                                    child: Text(LocaleKeys.armed_forces_europe.tr(),
                                         style: TextStyle(fontSize: text_15, color: kCBlack))),
                                 DropdownMenuItem(
-                                    value: LocaleKeys.alaska.trim().toUpperCase(),
-                                    child: Text(LocaleKeys.alaska.trim(),
+                                    value: LocaleKeys.alaska.tr().toUpperCase(),
+                                    child: Text(LocaleKeys.alaska.tr(),
                                         style: TextStyle(fontSize:text_15, color: kCBlack))),
                               ],
                             ),
@@ -409,8 +405,9 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
                           isEmpty: countryValue == '',
                           child: DropdownButtonHideUnderline(
-                            child: DropdownButton2<String>(
+                            child: DropdownButton<String>(
                               value: countryValue,
+                              icon: Icon(Icons.keyboard_arrow_down_sharp),
                               isDense: true,
                               onChanged: (val) {
                                 setState(() {
@@ -419,20 +416,20 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               },
                               items: [
                                 DropdownMenuItem(
-                                    value: LocaleKeys.none.trim(),
-                                    child: Text(LocaleKeys.none.trim(),
+                                    value: LocaleKeys.none.tr(),
+                                    child: Text(LocaleKeys.none.tr(),
                                         style: TextStyle(fontSize: text_15, color: kCBlack))),
                                 DropdownMenuItem(
-                                    value: LocaleKeys.afghanistan.trim(),
-                                    child: Text(LocaleKeys.afghanistan.trim(),
+                                    value: LocaleKeys.afghanistan.tr(),
+                                    child: Text(LocaleKeys.afghanistan.tr(),
                                         style: TextStyle(fontSize: text_15, color: kCBlack))),
                                 DropdownMenuItem(
-                                    value: LocaleKeys.albania.trim(),
-                                    child: Text(LocaleKeys.albania.trim(),
+                                    value: LocaleKeys.albania.tr(),
+                                    child: Text(LocaleKeys.albania.tr(),
                                         style: TextStyle(fontSize: text_15, color: kCBlack))),
                                 DropdownMenuItem(
-                                    value: LocaleKeys.algeria.trim(),
-                                    child: Text(LocaleKeys.algeria.trim(),
+                                    value: LocaleKeys.algeria.tr(),
+                                    child: Text(LocaleKeys.algeria.tr(),
                                         style: TextStyle(fontSize: text_15, color: kCBlack))),
                               ],
                             ),
@@ -464,7 +461,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
                           isEmpty: languageValue == '',
                           child: DropdownButtonHideUnderline(
-                            child: DropdownButton2<String>(
+                            child: DropdownButton<String>(
                               value: languageValue,
                               isDense: true,
                               underline: SizedBox(),
@@ -475,8 +472,8 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               },
                               items: [
                                 DropdownMenuItem(
-                                    value: LocaleKeys.english_us.trim(),
-                                    child: Text(LocaleKeys.english_us.trim(),
+                                    value: LocaleKeys.english_us.tr(),
+                                    child: Text(LocaleKeys.english_us.tr(),
                                         style: TextStyle(fontSize: 15, color: kCBlack))),
                               ],
                             ),
