@@ -1,18 +1,12 @@
-import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/info/bottom_sheet_info.dart';
-import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
-import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../flavors.dart';
 import 'di/injection.dart';
 import 'module/common/navigator_screen.dart';
 import 'module/common/system_utils.dart';
-import 'module/res/colors.dart';
 import 'module/res/themes.dart';
 import 'view/widget_utils/custom/flutter_easyloading/flutter_easyloading.dart';
 
@@ -61,9 +55,9 @@ class _AppState extends State<App> {
         title: F.title,
         //hide badge debug
         debugShowCheckedModeBanner: false,
-         // home: SplashPage(),
-       home: HomePage(),
-       // home: PopupPercentageContent(),
+        // home: SplashPage(),
+        home: HomePage(),
+        // home: PopupPercentageContent(),
 
         //   home: PopupQuotationOrderPage(),
         //  home: AddCustomerPage(),
