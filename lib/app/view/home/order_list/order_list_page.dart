@@ -99,47 +99,50 @@ class _OrderListContentState extends State<OrderListContent> {
                       ),
                     ),
                     // textfield
-                    Padding(
-                      padding:
-                      EdgeInsets.only(left: size_60_w),
+                    Expanded(
                       child: Container(
                         height: size_35_w,
-                        width: size_180_w,
-                        decoration: BoxDecoration(
-                          color: kCWhite,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: TextField(
-                            cursorColor: Colors.black,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(size_100_r),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.search,
-                                color: kColor808080,
-                              ),
-                              suffixIcon: Padding(
-                                padding: EdgeInsets.only(right: size_10_w),
-                                child: SvgPicture.asset(
-                                  'assets/icons/vector.svg',
-                                  fit: BoxFit.fill,
+                        child: Padding(
+                          padding:
+                          EdgeInsets.only(left: size_50_w,right: size_70_w),
+                          child: Material(
+                            color: kWhite,
+                            borderRadius: BorderRadius.circular(size_100_r),
+                            child: TextField(
+                              maxLines: 1,
+                              cursorColor: Colors.black,
+                              autocorrect: false,
+                              textAlignVertical: TextAlignVertical.center,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.search,
                                   color: kColor808080,
                                 ),
-                              ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_20_w, maxHeight: size_10_w),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(size_100_r),
-                                borderSide: BorderSide(
-                                  color: kColor2947C3,
+                                suffixIcon: Padding(
+                                  padding: EdgeInsets.only(right: size_10_w),
+                                  child: SvgPicture.asset(
+                                    'assets/icons/vector.svg',
+                                    fit: BoxFit.fill,
+                                    color: kColor808080,
+                                  ),
                                 ),
+
+                                suffixIconConstraints: BoxConstraints(
+                                    maxWidth: size_25_w, maxHeight: size_15_w),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                  borderSide: BorderSide(
+                                    color: kColor2947C3,
+                                  ),
+                                ),
+                                hintText: LocaleKeys.E_g_customer.tr(),
+                                hintStyle: TextStyle(fontSize: size_14_w),
+                                contentPadding:
+                                EdgeInsets.fromLTRB(12.0, 5.0, 0, 10.0),
                               ),
-                              hintText: LocaleKeys.E_g_customer.tr(),
-                              hintStyle: TextStyle(fontSize: size_14_w),
-                              contentPadding:
-                              EdgeInsets.fromLTRB(12.0, 15.0, 20.0, 10.0),
                             ),
                           ),
                         ),
