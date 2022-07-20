@@ -53,6 +53,7 @@ class _PopupQuotationOrderContentState extends State<PopupQuotationOrderContent>
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.black26.withOpacity(0.5),
       body: Consumer<DetailShopViewModel>(builder: (context,value, child){

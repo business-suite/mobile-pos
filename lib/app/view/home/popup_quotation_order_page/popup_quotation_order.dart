@@ -138,7 +138,7 @@ class _PopupQuotationOrderPageState extends State<PopupQuotationOrderPage> {
                             color: Colors.black.withOpacity(0.05),
                             borderRadius: BorderRadius.circular(size_2_w)),
                         padding: EdgeInsets.symmetric(
-                            horizontal: size_10_w, vertical: size_3_w),
+                            horizontal: size_1_w, vertical: size_1_w),
                         child: Container(
                           height: size_40_w,
                           width: size_100_w,
