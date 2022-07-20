@@ -2,10 +2,12 @@
 
 import 'package:business_suite_mobile_pos/app/view/home/shop_list/appbar_shop_list.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
+import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
@@ -62,11 +64,11 @@ class _ShopListContentState extends State<ShopListContent> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     SizedBox(
-                      width: 10.0,
-                      height: 10.0,
+                      width: size_10_w ,
+                      height: size_10_w,
                     ),
                     Text(
-                      'Point of Sale',
+                      LocaleKeys.point_of_sale.tr(),
                       style: TextStyle(color: Colors.black, fontSize: 15),
                     ),
                     Expanded(
@@ -81,35 +83,35 @@ class _ShopListContentState extends State<ShopListContent> {
                             child: ElevatedButton.icon(
                               icon: Icon(
                                 Icons.filter_alt,
-                                size: 18,
+                                size: size_18_w,
                                 color: Colors.black38,
                               ),
-                              label: Text('Filters',
+                              label: Text(LocaleKeys.filters.tr(),
                                   style: TextStyle(
                                       fontSize: text_12, color: Colors.black87)),
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                  primary: Colors.white, elevation: 0.0),
+                                  primary: Colors.white, elevation: 0),
                             ),
                           ),
                           Container(
-                            height: 20.0,
+                            height: size_20_w,
                             color: Colors.white,
                             child: Padding(
-                              padding: EdgeInsets.only(right: 1),
+                              padding: EdgeInsets.only(right: size_1_w),
                               child: ElevatedButton.icon(
                                 icon: Icon(
                                   Icons.table_rows,
-                                  size: 18,
+                                  size: size_18_w,
                                   color: Colors.black38,
                                 ),
-                                label: Text('Group By',
+                                label: Text(LocaleKeys.group_by.tr(),
                                     style: TextStyle(
                                         fontSize: text_12,
                                         color: Colors.black87)),
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
-                                    primary: Colors.white, elevation: 0.0),
+                                    primary: Colors.white, elevation: 0),
                               ),
                             ),
                           ),

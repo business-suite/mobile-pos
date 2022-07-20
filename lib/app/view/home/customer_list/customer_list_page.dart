@@ -124,39 +124,37 @@ class _CustomerListContentState extends State<CustomerListContent> {
                         ),
                       ),
                     ),
-                    // textfield
-                    Padding(
-                      padding:
-                          EdgeInsets.only(left: size_10_w),
-                      child: Container(
-                        height: size_35_w,
-                        width: size_180_w,
-                        decoration: BoxDecoration(
-                          color: kCWhite,
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: Center(
-                          child: TextField(
-                            cursorColor: Colors.black,
-                            autocorrect: false,
-                            textAlignVertical: TextAlignVertical.center,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100.0),
-                              ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100.0),
-                                borderSide: BorderSide(
-                                  color: kColor2947C3,
+                    // textfield-search
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsets.only(left: size_10_w,right: size_5_w),
+                        child: Container(
+                          height: size_70_w,
+                          child: Material(
+                            color: kWhite,
+                            borderRadius: BorderRadius.circular(size_100_r),
+                            child: TextField(
+                              maxLines: 1,
+                              cursorColor: Colors.black,
+                              autocorrect: false,
+                              textAlignVertical: TextAlignVertical.center,
+                              decoration: InputDecoration(
+                                fillColor: kWhite,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(size_100_r),
                                 ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(size_100_r),
+                                  borderSide: BorderSide(
+                                    color: kColor2947C3,
+                                  ),
+                                ),
+                                hintText: LocaleKeys.search_customers.tr(),
+                                hintStyle: TextStyle(fontSize: text_12),
+                                contentPadding:
+                                    EdgeInsets.fromLTRB(22.0, 5.0, 20.0, 5.0),
                               ),
-                              hintText:
-                                  'Search Customers',
-                              hintStyle: TextStyle(fontSize: size_14_w),
-                              contentPadding:
-                                  EdgeInsets.fromLTRB(12.0, 15.0, 20.0, 10.0),
                             ),
                           ),
                         ),
@@ -165,7 +163,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
 
                     //database button
                     Padding(
-                      padding: EdgeInsets.only(left: 10),
+                      padding: EdgeInsets.only(left: size_10_w,right: size_10_w),
                       child: InkWell(
                         // onTap: () {
                         //   getIt<NavigationService>().back();
