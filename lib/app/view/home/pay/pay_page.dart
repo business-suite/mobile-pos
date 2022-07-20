@@ -212,7 +212,7 @@ class _PayContentState extends State<PayContent> {
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: value.computers.length,
                               shrinkWrap: true,
-                              padding: EdgeInsets.all(2),
+                              padding: EdgeInsets.all(size_1_w),
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
                                       childAspectRatio: 1,
