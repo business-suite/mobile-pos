@@ -48,6 +48,7 @@ class _PayContentState extends State<PayContent> {
     });
     super.initState();
   }
+
   PayViewModel get payViewModel => widget._payViewModel;
 
   @override
@@ -98,73 +99,78 @@ class _PayContentState extends State<PayContent> {
                           Padding(
                             padding: EdgeInsets.fromLTRB(
                                 size_10_w, size_2_w, size_20_w, 0),
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: size.width / 2,
-                                  height: size_100_w,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: Colors.black12,
-                                        borderRadius:
-                                            BorderRadius.circular(size_10_w)),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: size_2_w),
-                                    child: FlatButton(
-                                      color: kColorE2E2E2,
-                                      onPressed: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.fromLTRB(
-                                            0, size_35_w, size_45_w, 0),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              LocaleKeys.cash.tr(),
-                                              style: TextStyle(
-                                                  fontSize: text_20,
-                                                  color: Colors.black38),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: SizedBox(
-                                    height: size_100_w,
-                                    child: FlatButton(
-                                      color: kColorE2E2E2,
-                                      onPressed: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.fromLTRB(
-                                            0, size_35_w, size_45_w, 0),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              LocaleKeys.bank.tr(),
-                                              style: TextStyle(
-                                                  fontSize: text_20,
-                                                  color: Colors.black38),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(
-                                size_10_w, size_2_w, size_10_w, 0),
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.black12,
                                   borderRadius:
-                                      BorderRadius.circular(size_10_r)),
-                              padding: EdgeInsets.symmetric(vertical: size_2_w),
+                                  BorderRadius.circular(size_2_r)),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size_2_w,vertical: size_2_w),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: size.width / 2.1,
+                                    height: size_100_w,
+                                    child: Container(
+                                      child: FlatButton(
+                                        color: kColorE2E2E2,
+                                        onPressed: () {},
+                                        child: Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              0, size_35_w, size_45_w, 0),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                LocaleKeys.cash.tr(),
+                                                style: TextStyle(
+                                                    fontSize: text_20,
+                                                    color: Colors.black38),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(width: size_1_w,color: kColorE2E2E2,),
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: size_100_w,
+                                      child: Container(
+                                        child: FlatButton(
+                                          color: kColorE2E2E2,
+                                          onPressed: () {},
+                                          child: Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0, size_35_w, size_45_w, 0),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  LocaleKeys.bank.tr(),
+                                                  style: TextStyle(
+                                                      fontSize: text_20,
+                                                      color: Colors.black38),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                size_10_w, size_1_w, size_20_w, 0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.black12,
+                                  borderRadius:
+                                      BorderRadius.circular(size_2_r)),
+                              padding: EdgeInsets.symmetric(vertical: size_2_w,horizontal: size_2_w),
                               child: SizedBox(
                                 width: double.infinity,
                                 height: size_100_w,
@@ -207,7 +213,7 @@ class _PayContentState extends State<PayContent> {
                                   physics: NeverScrollableScrollPhysics(),
                                   itemCount: value.computers.length,
                                   shrinkWrap: true,
-                                  padding: EdgeInsets.all(1),
+                                  padding: EdgeInsets.all(2),
                                   gridDelegate:
                                       SliverGridDelegateWithMaxCrossAxisExtent(
                                           childAspectRatio: 1,
@@ -234,8 +240,8 @@ class _PayContentState extends State<PayContent> {
                               decoration: BoxDecoration(
                                   color: Colors.black12,
                                   borderRadius:
-                                      BorderRadius.circular(size_10_r)),
-                              padding: EdgeInsets.symmetric(vertical: size_2_w),
+                                      BorderRadius.circular(size_2_r)),
+                              padding: EdgeInsets.symmetric(vertical: size_2_w,horizontal: size_2_w),
                               child: SizedBox(
                                 width: double.infinity,
                                 height: size_100_w,
@@ -249,7 +255,7 @@ class _PayContentState extends State<PayContent> {
                                             EdgeInsets.only(left: size_10_w),
                                         child: Container(
                                           height: 70,
-                                          width: 70,
+                                          width: 80,
                                           decoration: BoxDecoration(
                                               border: Border.all(
                                                 color: Colors.black
@@ -259,13 +265,13 @@ class _PayContentState extends State<PayContent> {
                                               shape: BoxShape.circle),
                                           child: Icon(
                                             Icons.person,
-                                            size: size_30_w,
+                                            size: size_32_w,
                                           ),
                                         ),
                                       ),
                                       Padding(
                                         padding:
-                                            EdgeInsets.only(left: size_70_w),
+                                            EdgeInsets.only(left: size_60_w),
                                         child: Center(
                                           child: Text(
                                             LocaleKeys.customer.tr(),
@@ -283,13 +289,13 @@ class _PayContentState extends State<PayContent> {
                           ),
                           Padding(
                             padding:
-                                EdgeInsets.only(left: size_10_w, right: size_10_w, bottom: size_10_w),
+                                EdgeInsets.only(left: size_10_w, right: size_10_w, bottom: size_10_w,top: size_10_w),
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.black12,
                                   borderRadius:
-                                      BorderRadius.circular(size_10_w)),
-                              padding: EdgeInsets.symmetric(vertical: size_2_w),
+                                      BorderRadius.circular(size_2_w)),
+                              padding: EdgeInsets.symmetric(vertical: size_2_w,horizontal: size_2_w),
                               child: SizedBox(
                                 width: double.infinity,
                                 height: size_100_w,
@@ -319,8 +325,8 @@ class _PayContentState extends State<PayContent> {
                                                   EdgeInsets.all(size_16_w),
                                               child: SvgPicture.asset(
                                                 'assets/icons/ic_file.svg',
-                                                width: size_16_w,
-                                                height: size_16_w,
+                                                width: size_14_w,
+                                                height: size_14_w,
                                               ),
                                             ),
                                           ),
@@ -328,7 +334,7 @@ class _PayContentState extends State<PayContent> {
                                       ),
                                       Padding(
                                         padding:
-                                            EdgeInsets.only(left: size_80_w),
+                                            EdgeInsets.only(left: size_65_w),
                                         child: Center(
                                           child: Text(
                                             LocaleKeys.invoice.tr(),

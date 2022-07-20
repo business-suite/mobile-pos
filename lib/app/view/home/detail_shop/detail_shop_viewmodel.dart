@@ -1,4 +1,3 @@
-
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +28,33 @@ class DetailShopViewModel extends BaseViewModel {
   List<Product> allProducts = [];
   List<Category> categoryProducts = [];
 
-  dynamic categoryProductResponse = {"jsonrpc": "2.0", "id": 20, "result": [{"id": 3, "name": "Chairs", "parent_id": false, "child_id": [], "write_date": "2022-06-20 14:34:07"}, {"id": 2, "name": "Desks", "parent_id": false, "child_id": [], "write_date": "2022-06-20 14:34:07"}, {"id": 1, "name": "Miscellaneous", "parent_id": false, "child_id": [], "write_date": "2022-06-20 14:34:07"}]};
+  dynamic categoryProductResponse = {
+    "jsonrpc": "2.0",
+    "id": 20,
+    "result": [
+      {
+        "id": 3,
+        "name": "Chairs",
+        "parent_id": false,
+        "child_id": [],
+        "write_date": "2022-06-20 14:34:07"
+      },
+      {
+        "id": 2,
+        "name": "Desks",
+        "parent_id": false,
+        "child_id": [],
+        "write_date": "2022-06-20 14:34:07"
+      },
+      {
+        "id": 1,
+        "name": "Miscellaneous",
+        "parent_id": false,
+        "child_id": [],
+        "write_date": "2022-06-20 14:34:07"
+      }
+    ]
+  };
 
   dynamic detailShopResponse = {
     "jsonrpc": "2.0",
@@ -737,7 +762,8 @@ class DetailShopViewModel extends BaseViewModel {
         "default_code": "FURN_7800",
         "to_weight": false,
         "uom_id": [1, "Units"],
-        "description_sale": "Desk combination, black-brown: chair + desk + drawer.",
+        "description_sale":
+            "Desk combination, black-brown: chair + desk + drawer.",
         "description": false,
         "product_tmpl_id": [8, "[FURN_7800] Desk Combination"],
         "tracking": "none",
@@ -875,7 +901,8 @@ class DetailShopViewModel extends BaseViewModel {
         "default_code": "FURN_8999",
         "to_weight": false,
         "uom_id": [1, "Units"],
-        "description_sale": "Three Seater Sofa with Lounger in Steel Grey Colour",
+        "description_sale":
+            "Three Seater Sofa with Lounger in Steel Grey Colour",
         "description": false,
         "product_tmpl_id": [27, "[FURN_8999] Three-Seat Sofa"],
         "tracking": "none",
@@ -1072,7 +1099,6 @@ class DetailShopViewModel extends BaseViewModel {
 
   DetailShopViewModel(this._repo);
 
-
   getProducts() {
     allProducts = DetailShopResponse.fromJson(detailShopResponse).result ?? [];
     changeMenu(lastIndexMenu);
@@ -1080,10 +1106,10 @@ class DetailShopViewModel extends BaseViewModel {
   }
 
   getCategoryProducts() {
-    categoryProducts = CategoryProductResponse.fromJson(categoryProductResponse).result ?? [];
+    categoryProducts =
+        CategoryProductResponse.fromJson(categoryProductResponse).result ?? [];
     notifyListeners();
   }
-
 
   String get response => _response;
 
@@ -1107,17 +1133,23 @@ class DetailShopViewModel extends BaseViewModel {
   changeMenu(int index) {
     lastIndexMenu = index;
     isHome = false;
-    products = allProducts.where((element) => element.pos_categ_id is List<dynamic> && element.pos_categ_id[0] == categoryProducts[lastIndexMenu].id).toList();
+    products = allProducts
+        .where((element) =>
+            element.pos_categ_id is List<dynamic> &&
+            element.pos_categ_id[0] == categoryProducts[lastIndexMenu].id)
+        .toList();
     scrollToTop();
     notifyListeners();
   }
 
-  scrollToTop(){
-    scrollController.animateTo(
-      0.0,
-      duration: const Duration(milliseconds: 0),
-      curve: Curves.ease,
-    );
+  scrollToTop() {
+    if (scrollController.hasClients) {
+      scrollController.animateTo(
+        0.0,
+        duration: const Duration(milliseconds: 0),
+        curve: Curves.ease,
+      );
+    }
   }
 
   void openPayPage() {
@@ -1128,10 +1160,8 @@ class DetailShopViewModel extends BaseViewModel {
     _navigationService.pushEnterFadeExitDown(ReviewPage());
   }
 
-  deleteBillItem(index){
+  deleteBillItem(index) {
     bills.removeAt(index);
     notifyListeners();
   }
-
-
 }
