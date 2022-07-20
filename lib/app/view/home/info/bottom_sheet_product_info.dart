@@ -10,7 +10,7 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/style.dart';
 
-void popupPercentageBottomSheet(
+void prductInfoBottomSheet(
     {VoidCallback? onCloseClick, double statusBarHeight = 0.0}) {
   BuildContext context =
       getIt<NavigationService>().navigatorKey.currentContext!;
@@ -21,26 +21,26 @@ void popupPercentageBottomSheet(
     backgroundColor: transparent,
     isScrollControlled: true,
     builder: (BuildContext builderContext) {
-      return PopupPercentageBottomSheet(
+      return ProductInfoBottomSheet(
         statusBarHeight: statusBarHeight,
       );
     },
   );
 }
 
-class PopupPercentageBottomSheet extends StatefulWidget {
+class ProductInfoBottomSheet extends StatefulWidget {
   //final PercentageViewModel _percentageViewModel;
   double statusBarHeight = 0.0;
 
-  PopupPercentageBottomSheet({this.statusBarHeight = 0.0});
+  ProductInfoBottomSheet({this.statusBarHeight = 0.0});
 
   @override
-  State<PopupPercentageBottomSheet> createState() =>
-      _PopupPercentageBottomSheetState();
+  State<ProductInfoBottomSheet> createState() =>
+      _ProductInfoBottomSheetState();
 }
 
-class _PopupPercentageBottomSheetState
-    extends State<PopupPercentageBottomSheet> {
+class _ProductInfoBottomSheetState
+    extends State<ProductInfoBottomSheet> {
   //PercentageViewModel get percentageViewModel => widget._percentageViewModel;
 
   @override
@@ -550,47 +550,31 @@ class _PopupPercentageBottomSheetState
                   ),
                   Container(
                     alignment: Alignment.bottomCenter,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    child: Wrap(
                       children: [
                         Container(
                           height: size_1_w,
                           color: kColorCACACA,
                         ),
-                        SizedBox(
-                          height: size_10_w,
-                        ),
                         Container(
-                          height: double.infinity,
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: size_15_w),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: kColor3C3C3C.withOpacity(0.1),
-                                  borderRadius: BorderRadius.circular(size_4_w)),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size_1_w, vertical: size_1_w),
+                          width: double.infinity,
+                         color: Colors.white,
+                          padding: EdgeInsets.symmetric(horizontal: size_10_w, vertical: size_10_w),
+                          child: Container(
+                            width: size_150_w,
+                            child: FlatButton(
+                              padding: EdgeInsets.symmetric(horizontal: size_10_w, vertical: size_10_w),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                               child: Container(
-                                alignment: Alignment.center,
-                                height: size_40_w,
-                                width: size_120_w,
-                                decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.05),
-                                    borderRadius:
-                                        BorderRadius.circular(size_1_w)),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: size_1_w, vertical: size_1_w),
-                                child: FlatButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text(
-                                    LocaleKeys.close.tr(),
-                                    style: TextStyle(
-                                      fontSize: text_12,
-                                      color: kColor555555,
-                                    ),
+                                color: kColorCACACA,
+                                padding: EdgeInsets.symmetric(horizontal: size_10_w, vertical: size_10_w),
+                                child: Text(
+                                  LocaleKeys.close.tr(),
+                                  style: TextStyle(
+                                    fontSize: text_12,
+                                    color: kColor555555,
                                   ),
                                 ),
                               ),
