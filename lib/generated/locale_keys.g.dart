@@ -49,6 +49,10 @@ abstract class  LocaleKeys {
   static const zip = 'zip';
   static const english_us = 'english_us';
   static const none = 'none';
+  static const filters = 'filters';
+  static const group_by = 'group_by';
+  static const point_of_sale = 'point_of_sale';
+  static const E_g_customer = 'E_g_customer';
   static const algeria = 'algeria';
   static const albania = 'albania';
   static const afghanistan = 'afghanistan';
