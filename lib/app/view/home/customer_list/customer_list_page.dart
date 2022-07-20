@@ -128,17 +128,17 @@ class _CustomerListContentState extends State<CustomerListContent> {
                     ),
                     // textfield-search
                     Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsets.only(left: size_10_w,right: size_5_w),
-                        child: Container(
-                          height: size_70_w,
+                      child: Container(
+                        height: size_35_w,
+                        child: Padding(
+                          padding:
+                              EdgeInsets.only(left: size_10_w,right: size_5_w),
                           child: Material(
                             color: kWhite,
                             borderRadius: BorderRadius.circular(size_100_r),
                             child: TextField(
                               maxLines: 1,
-                              cursorColor: Colors.black,
+                              cursorColor: kCBlack,
                               autocorrect: false,
                               textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
