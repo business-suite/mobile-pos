@@ -153,45 +153,75 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                     ),
                       //name
-                      Expanded(
+                      Container(
+                        height: size_55_w,
                         child: Padding(
                           padding:
-                          EdgeInsets.only(left: size_10_w, bottom: size_7_w),
-                          child: Container(
-                            height: size_45_w,
-                            width: size_320_w,
-                            child: Material(
-                              color: kWhite,
-                              borderRadius: BorderRadius.circular(size_100_r),
-                              child: TextField(
-                                maxLines: 1,
-                                cursorColor: kCBlack,
-                                autocorrect: false,
-                                textAlignVertical: TextAlignVertical.center,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(size_5_r),
-                                  ),
-                                  suffixIconConstraints: BoxConstraints(
-                                      maxWidth: size_25_w, maxHeight: size_15_w),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(size_5_r),
-                                    borderSide: BorderSide(
-                                      color: kCBlack,
-                                      width: size_2_w,
-                                    ),
-                                  ),
-                                  hintText:
-                                  LocaleKeys.pos_name.tr(),
-                                  hintStyle: TextStyle(fontSize: size_35_w),
-                                  contentPadding:
-                                  EdgeInsets.fromLTRB(5.0, 4.0, 5.0, 1.0),
+                          EdgeInsets.only(left: size_20_w,right: size_5_w,bottom: size_15_w),
+                          child: Material(
+                            color: kWhite,
+                            borderRadius: BorderRadius.circular(size_5_r),
+                            child: TextField(
+                              maxLines: 1,
+                              cursorColor: kCBlack,
+                              autocorrect: false,
+                              textAlignVertical: TextAlignVertical.center,
+                              decoration: InputDecoration(
+                                fillColor: kWhite,
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(size_5_r),
                                 ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(size_5_r),
+                                  borderSide: BorderSide(
+                                    color: kColor2947C3,
+                                  ),
+                                ),
+                                hintText:
+                                LocaleKeys.pos_name.tr(),
+                                hintStyle: TextStyle(fontSize: text_20),
+                                contentPadding:
+                                EdgeInsets.fromLTRB(22.0, 5.0, 20.0, 5.0),
                               ),
                             ),
                           ),
                         ),
                       ),
+                      // Padding(
+                      //   padding:
+                      //   EdgeInsets.only(left: size_10_w,right: size_20_w, bottom: size_7_w),
+                      //   child: Container(
+                      //     height: size_45_w,
+                      //     width: size_340_w,
+                      //     decoration: BoxDecoration(
+                      //       color: kCWhite,
+                      //       borderRadius: BorderRadius.circular(5),
+                      //     ),
+                      //     child: TextField(
+                      //       cursorColor: Colors.black,
+                      //       textAlignVertical: TextAlignVertical.center,
+                      //       decoration: InputDecoration(
+                      //         border: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(5),
+                      //         ),
+                      //         suffixIconConstraints: BoxConstraints(
+                      //             maxWidth: size_25_w, maxHeight: size_15_w),
+                      //         focusedBorder: OutlineInputBorder(
+                      //           borderRadius: BorderRadius.circular(5),
+                      //           borderSide: BorderSide(
+                      //             color: kCBlack,
+                      //             width: size_2_w,
+                      //           ),
+                      //         ),
+                      //         hintText:
+                      //         LocaleKeys.pos_name.tr(),
+                      //         hintStyle: TextStyle(fontSize: size_10_w),
+                      //         contentPadding:
+                      //         EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       //Street
                       Padding(
                         padding: EdgeInsets.only(right: size_290_w),
