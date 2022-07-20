@@ -191,17 +191,14 @@ class _ValidateContenState extends State<ValidateConten> {
                           children: [
                             Expanded(
                               child: TextField(
-
-                                autocorrect: true,
                                 cursorHeight: size_25_w,
                                 cursorColor: kColor565656,
                                 decoration: InputDecoration(
-                                  filled: true,
                                   enabledBorder:
                                       OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: kColorf0eeee,
-                                        width: 1.0),
+                                        width: size_1_w),
                                   ),
                                   focusedBorder:
                                       OutlineInputBorder(
@@ -213,7 +210,7 @@ class _ValidateContenState extends State<ValidateConten> {
                                   border: OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.circular(
-                                            size_6_w),
+                                            size_2_w),
                                   ),
                                   hintText: LocaleKeys
                                       .email_receipt
