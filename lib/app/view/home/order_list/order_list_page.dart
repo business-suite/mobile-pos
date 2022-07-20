@@ -115,7 +115,7 @@ class _OrderListContentState extends State<OrderListContent> {
                               textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100.0),
+                                  borderRadius: BorderRadius.circular(size_100_r),
                                 ),
                                 prefixIcon: Icon(
                                   Icons.search,
@@ -133,7 +133,7 @@ class _OrderListContentState extends State<OrderListContent> {
                                 suffixIconConstraints: BoxConstraints(
                                     maxWidth: size_25_w, maxHeight: size_15_w),
                                 focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100.0),
+                                  borderRadius: BorderRadius.circular(size_100_r),
                                   borderSide: BorderSide(
                                     color: kColor2947C3,
                                   ),

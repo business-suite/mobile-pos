@@ -136,7 +136,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                             borderRadius: BorderRadius.circular(size_100_r),
                             child: TextField(
                               maxLines: 1,
-                              cursorColor: Colors.black,
+                              cursorColor: kCBlack,
                               autocorrect: false,
                               textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
