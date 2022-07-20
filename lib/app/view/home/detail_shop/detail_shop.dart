@@ -71,6 +71,8 @@ class _SliderViewState extends State<_SliderView> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(
+              top: size_8_w,
+              bottom: size_4_w,
               left: size_10_w,
               right: size_10_w,
             ),
@@ -120,7 +122,7 @@ class _SliderViewState extends State<_SliderView> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: size_10_w),
+            padding: EdgeInsets.only(left: size_10_w, top: size_4_w, bottom: size_4_w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [

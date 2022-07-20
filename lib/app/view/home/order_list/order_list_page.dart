@@ -62,6 +62,7 @@ class _OrderListContentState extends State<OrderListContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<OrderListViewModel>(builder: (context, value, child) {
         return Container(

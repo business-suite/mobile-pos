@@ -134,4 +134,6 @@ const kColorE5E5E5= Color(0xffE5E5E5);
 const kColorc7c7c7= Color(0xffc7c7c7);
 const kColorD1D1D1 = Color(0xffD1D1D1);
 const kColorCBCBCB  = Color(0xffCBCBCB);
+const kColorFF4136= Color(0xffFF4136);
+const kColor027AFF= Color(0xff027AFF);
 

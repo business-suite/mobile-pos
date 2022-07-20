@@ -12,7 +12,7 @@ class F {
   static String get title {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
-        return 'Business Suite Pos（dev)';
+        return 'Business Suite Pos(dev)';
       case Flavor.PRODUCTION:
         return 'Business Suite Pos';
       default:

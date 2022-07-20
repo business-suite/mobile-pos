@@ -1,8 +1,4 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/appbar_customer_list.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/item_customer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -62,6 +58,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<CustomerListViewModel>(builder: (context, value, child) {
         return Container(

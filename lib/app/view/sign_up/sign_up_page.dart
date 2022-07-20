@@ -221,13 +221,18 @@ class _SignUpContentState extends LifecycleState<_SignUpContent> {
               SizedBox(
                 height: size_10_h,
               ),
-              FilledButton(
-                text: LocaleKeys.sign_up.tr().toUpperCase(),
-                enable: signUpViewModel.validate,
-                onPress: () {
-                  signUpViewModel.signUp();
+              Consumer<SignUpViewModel>(
+                builder: (context, value, child) {
+                  return FilledButton(
+                    text: LocaleKeys.sign_up.tr().toUpperCase(),
+                    enable: value.validate,
+                    onPress: () {
+                      signUpViewModel.signUp();
+                    },
+                  );
                 },
-              ),
+              )
+
             ],
           ),
         ),

@@ -40,8 +40,8 @@ class SignUpViewModel extends BaseViewModel {
 
   bool get validate => fullName.isNotEmpty && Utils.isEmail(email.trim()) && password.isNotEmpty &&
           password.length > 5
-          &&
-          agreeTermsOfService != false;
+          && companyName.isNotEmpty &&
+          agreeTermsOfService == true;
 
   String? requiredField(String? value, String fieldName) {
     return value == null || value.isEmpty
@@ -147,7 +147,7 @@ class SignUpViewModel extends BaseViewModel {
   }
   
   void signUp() {
-
+    gotoSignInPage();
   }
 
   void gotoSignInPage() async {

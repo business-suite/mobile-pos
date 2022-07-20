@@ -62,6 +62,7 @@ class _ReviewContentState extends State<ReviewContent> {
       customAppBar: AppBarShop(
         badgeCount: 1,
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<ReviewViewModel>(builder: (context, value, child) {
         return Stack(
