@@ -7,9 +7,7 @@ import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_custome
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:provider/provider.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 
 
 import '../../../../flavors.dart';
@@ -19,8 +17,6 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
-import '../customer_list/customer_list_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
 
 class AddCustomerPage extends PageProvideNode<AddCustomertViewModel> {
   AddCustomerPage({Key? key}) : super(key: key, params: []);
@@ -44,7 +40,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
   final textEditingController = TextEditingController();
   String? stateValue = LocaleKeys.none.tr();
   String? countryValue = LocaleKeys.none.tr();
-  String? languageValue= LocaleKeys.english_us.tr();
+  String? languageValue;
 
   @override
   Widget build(BuildContext context) {
@@ -334,8 +330,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                           decoration: InputDecoration(
                               fillColor: kCWhite,
                               filled: true,
-                              hintText:
-                              LocaleKeys.none.tr(),
+                              hintText: LocaleKeys.none.tr(),
                               hintStyle: TextStyle(fontSize: size_20_w,color:kCBlack),
                               contentPadding:
                               EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
@@ -477,8 +472,8 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               },
                               items: [
                                 DropdownMenuItem(
-                                    value: LocaleKeys.english_us.trim(),
-                                    child: Text(LocaleKeys.english_us.trim(),
+                                    value: LocaleKeys.english_us.tr(),
+                                    child: Text(LocaleKeys.english_us.tr(),
                                         style: TextStyle(fontSize: 15, color: kCBlack))),
                               ],
                             ),

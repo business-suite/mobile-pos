@@ -61,9 +61,9 @@ class _AppState extends State<App> {
         //hide badge debug
         debugShowCheckedModeBanner: false,
          //home: SplashPage(),
-        //home: HomePage(),
+        home: HomePage(),
         //   home: PopupQuotationOrderPage(),
-         home: AddCustomerPage(),
+        //  home: AddCustomerPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),
