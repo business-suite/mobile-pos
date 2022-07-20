@@ -1,11 +1,10 @@
 class BaseResponse {
-  bool success;
-  String error_message;
+  String jsonrpc;
 
-  BaseResponse({this.success = false, this.error_message = ''});
+  BaseResponse({this.jsonrpc = ''});
 
   factory BaseResponse.fromJson(Map<String, dynamic> json) {
     return BaseResponse(
-        success: json["success"], error_message: json["error_message"]);
+        jsonrpc: json["jsonrpc"]);
   }
 }

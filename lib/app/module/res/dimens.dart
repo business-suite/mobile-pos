@@ -43,6 +43,7 @@ final size_85_w = 85.0.w;
 final size_90_w = 90.0.w;
 final size_96_w = 96.0.w;
 final size_100_w = 100.0.w;
+final size_106_w = 106.0.w;
 final size_120_w = 120.0.w;
 final size_130_w = 130.0.w;
 final size_135_w = 135.0.w;

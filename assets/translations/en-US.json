@@ -25,7 +25,6 @@
    "quotation_order": "Quotation/Order",
    "refund": "Refund",
    "back": "Back",
-   "order": "Order",
    "salesman": "Salesman",
   "invoice": "Invoice",
   "validate": "Validate",
@@ -208,5 +207,6 @@
   "i_agree_to_the": "I agree to the",
   "and": "and",
   "press_the_back_button_to_exit": "Press the back button to exit",
-  "company_name": "Company Name"
+  "company_name": "Company Name",
+  "product_price": "$ {money}"
 }

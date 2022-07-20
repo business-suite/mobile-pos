@@ -108,6 +108,7 @@ dependencies:
 
   lottie: ^1.1.0
 
+  http: ^0.13.3
 
   flutter_scale_tap:
     git: https://github.com/magicpro97/flutter_scale_tap

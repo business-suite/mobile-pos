@@ -1,5 +1,6 @@
 import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/info/bottom_sheet_info.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
 import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -60,8 +61,10 @@ class _AppState extends State<App> {
         title: F.title,
         //hide badge debug
         debugShowCheckedModeBanner: false,
-         //home: SplashPage(),
-        home: HomePage(),
+         home: SplashPage(),
+       // home: HomePage(),
+       // home: PopupPercentageContent(),
+
         //   home: PopupQuotationOrderPage(),
         //  home: AddCustomerPage(),
         builder: EasyLoading.init(),

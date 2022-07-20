@@ -154,10 +154,6 @@ class _PopupPercentageContentState extends State<PopupPercentageContent> {
                           onClickItem: () => percentageViewModel.onClickItem(
                               percentageViewModel.computers[index].number
                                   .toString()),
-                              //
-                              // pressDown: () => percentageViewModel.pressDown(
-                              //   percentageViewModel.computers[index].number.
-                              // ),
                         ),
                       ),
                     ),

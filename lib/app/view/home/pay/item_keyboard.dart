@@ -14,13 +14,12 @@ class ItemKeyBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: kColorE2E2E2,
       child: InkWell(
         onTap: () => onClickItem?.call(),
         child: Container(
           decoration: BoxDecoration(
-              color: kColorE2E2E2, borderRadius: BorderRadius.circular(1),),
-          padding: EdgeInsets.symmetric(vertical: 1),
+              color: kColorE2E2E2, borderRadius: BorderRadius.circular(size_1_r),),
+          padding: EdgeInsets.symmetric(vertical: size_1_w,horizontal: size_1_w),
           child: Center(
             child: item.image == null
                 ? Text(

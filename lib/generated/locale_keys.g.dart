@@ -23,7 +23,6 @@ abstract class  LocaleKeys {
   static const quotation_order = 'quotation_order';
   static const refund = 'refund';
   static const back = 'back';
-  static const order = 'order';
   static const salesman = 'salesman';
   static const invoice = 'invoice';
   static const validate = 'validate';
@@ -143,6 +142,7 @@ abstract class  LocaleKeys {
   static const san_francisco = 'san_francisco';
   static const azure_interior = 'azure_interior';
   static const wood_corner = 'wood_corner';
+  static const order = 'order';
   static const total_price_excl_vat = 'total_price_excl_vat';
   static const total_cost = 'total_cost';
   static const total_margin = 'total_margin';

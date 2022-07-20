@@ -130,4 +130,6 @@ const kColorcacaca = Color(0xffcacaca);
 const kColor2e2e2 = Color(0xff2e2e2);
 const kColorffffff= Color(0xffffffff);
 const kColord23f3a= Color(0xffd23f3a);
+const kColorE5E5E5= Color(0xffE5E5E5);
+const kColorc7c7c7= Color(0xffc7c7c7);
 
