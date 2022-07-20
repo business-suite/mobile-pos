@@ -97,9 +97,16 @@ class _CashInOutPageState extends State<CashInOutPage> {
                       Expanded(
                         flex: 1,
                         child: Material(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(4),
+                            topRight: Radius.circular(4),
+                            bottomLeft: Radius.circular(4),
+                            bottomRight: Radius.circular(4),
+                          ),
                           color: kColorf0eeee,
                           child: Expanded(
                             child: TextField(
+                              autofocus: true,
                               keyboardType: TextInputType.number,
                               textAlign: TextAlign.right,
                               cursorHeight: size_25_w,
@@ -114,8 +121,7 @@ class _CashInOutPageState extends State<CashInOutPage> {
                                   borderSide: BorderSide(
                                       color: kColorf0eeee, width: 1.0),
                                 ),
-                                border: OutlineInputBorder(
-                                ),
+                                border: InputBorder.none,
                               ),
                             ),
 
@@ -135,7 +141,14 @@ class _CashInOutPageState extends State<CashInOutPage> {
                 Column(
                   children: [
                     Material(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(4),
+                        topRight: Radius.circular(4),
+                        bottomLeft: Radius.circular(4),
+                        bottomRight: Radius.circular(4),
+                      ),
                       child: TextFormField(
+                        autofocus: true,
                         onChanged:  (value) {
                           setState(() {
                             if (value.contains(' ')) {
@@ -153,17 +166,13 @@ class _CashInOutPageState extends State<CashInOutPage> {
                         textInputAction: TextInputAction.newline,
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
-                        //    errorText: _reasonInvalid ? _reasonErr : null,
+                            filled: true,
                             focusedBorder: OutlineInputBorder(
                               borderSide:
                                   BorderSide(color: kColor64AF8A, width: size_2_w),
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(size_1_r),
-                              borderSide: BorderSide(
-                                  color: Colors.black26.withOpacity(0.5),
-                                  width: 1.0),
-                            ),
+                            border: InputBorder.none,
+                            enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
                             hintText: 'Reason'),
 
 

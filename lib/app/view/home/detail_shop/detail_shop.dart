@@ -155,7 +155,7 @@ class _SliderViewState extends State<_SliderView> {
               physics: BouncingScrollPhysics(),
               child: InkWell(
                 onTap: () {
-                  getIt<NavigationService>().pushScreenWithFade(PayPage());
+                  detailShopViewModel.keySlider.currentState!.closeSlider();
                 },
                 child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
@@ -396,7 +396,6 @@ class _DetailShopState extends State<_DetailShopContent> {
                     ],
                   ),
                 )
-
               ],
             ),
           );

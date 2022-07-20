@@ -190,9 +190,12 @@ class _ValidateContenState extends State<ValidateConten> {
                           children: [
                             Expanded(
                               child: TextField(
+
+                                autocorrect: true,
                                 cursorHeight: size_25_w,
                                 cursorColor: kColor565656,
                                 decoration: InputDecoration(
+                                  filled: true,
                                   enabledBorder:
                                       OutlineInputBorder(
                                     borderSide: BorderSide(

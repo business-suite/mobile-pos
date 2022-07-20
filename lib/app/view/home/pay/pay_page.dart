@@ -69,125 +69,94 @@ class _PayContentState extends State<PayContent> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    SingleChildScrollView(
-                      physics: BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: size_20_w),
-                            child: Text(
-                              '\$ 0.00',
-                              style: TextStyle(
-                                  color: kColor43996E, fontSize: text_64),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size_30_w, bottom: size_4_w),
-                            child: Text(
-                              LocaleKeys.please_select_a_payment_method.tr(),
-                              style: TextStyle(
-                                  color: kColor555555,
-                                  fontSize: text_14,
-                                  fontWeight: FontWeight.normal),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: size_15_w,right: size_15_w),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.black12,
-                                  borderRadius: BorderRadius.circular(size_2_r)),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size_1_w, vertical: size_1_w),
-                              child: Column(
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: size_20_w),
+                        child: Text(
+                          '\$ 0.00',
+                          style: TextStyle(
+                              color: kColor43996E, fontSize: text_64),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: size_30_w, bottom: size_4_w),
+                        child: Text(
+                          LocaleKeys.please_select_a_payment_method.tr(),
+                          style: TextStyle(
+                              color: kColor555555,
+                              fontSize: text_14,
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size_15_w,right: size_15_w),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(size_2_r)),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size_1_w, vertical: size_1_w),
+                          child: Column(
+                            children: [
+                              Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        width: size.width / 2.1,
-                                        height: size_100_w,
-                                        child: Container(
-                                          child: FlatButton(
-                                            color: kColorE2E2E2,
-                                            onPressed: () {},
-                                            child: Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  0, size_35_w, size_45_w, 0),
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                    LocaleKeys.cash.tr(),
-                                                    style: TextStyle(
-                                                        fontSize: text_20,
-                                                        color:
-                                                            Colors.black38),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: size_1_w,
+                                  SizedBox(
+                                    width: size.width / 2.1,
+                                    height: size_100_w,
+                                    child: Container(
+                                      child: FlatButton(
                                         color: kColorE2E2E2,
-                                      ),
-                                      Expanded(
-                                        child: SizedBox(
-                                          height: size_100_w,
-                                          child: Container(
-                                            child: FlatButton(
-                                              color: kColorE2E2E2,
-                                              onPressed: () {},
-                                              child: Padding(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    0,
-                                                    size_35_w,
-                                                    size_45_w,
-                                                    0),
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      LocaleKeys.bank.tr(),
-                                                      style: TextStyle(
-                                                          fontSize: text_20,
-                                                          color:
-                                                              Colors.black38),
-                                                    ),
-                                                  ],
-                                                ),
+                                        onPressed: () {},
+                                        child: Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              0, size_35_w, size_45_w, 0),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                LocaleKeys.cash.tr(),
+                                                style: TextStyle(
+                                                    fontSize: text_20,
+                                                    color:
+                                                        Colors.black38),
                                               ),
-                                            ),
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
                                   Container(
-                                    height: size_1_w,
-                                    color: Colors.black12,
+                                    width: size_1_w,
+                                    color: kColorE2E2E2,
                                   ),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: size_100_w,
-                                    child: FlatButton(
-                                      color: kColorE2E2E2,
-                                      onPressed: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.fromLTRB(
-                                            0, size_5_w, size_5_w, 0),
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              right: size_65_w),
-                                          child: Text(
-                                            LocaleKeys.customer_account.tr(),
-                                            style: TextStyle(
-                                                fontSize: text_20,
-                                                color: Colors.black38),
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: size_100_w,
+                                      child: Container(
+                                        child: FlatButton(
+                                          color: kColorE2E2E2,
+                                          onPressed: () {},
+                                          child: Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                0,
+                                                size_35_w,
+                                                size_45_w,
+                                                0),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  LocaleKeys.bank.tr(),
+                                                  style: TextStyle(
+                                                      fontSize: text_20,
+                                                      color:
+                                                          Colors.black38),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -195,167 +164,193 @@ class _PayContentState extends State<PayContent> {
                                   ),
                                 ],
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: size_20_w,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.fromLTRB(size_30_w, 0, size_40_w, 0),
-                            child: CustomCard(
-                              borderRadiusValue: size_1_r,
-                              shadow: Shadow.none,
-                              backgroundColor: kColorBFBFBF,
-                              child: ClipRRect(
-                                // borderRadius:
-                                //     BorderRadius.all(Radius.circular(size_1_r)),
-                                // clipBehavior: Clip.hardEdge,
-                                child: GridView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemCount: value.computers.length,
-                                  shrinkWrap: true,
-                                  padding: EdgeInsets.all(2),
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          childAspectRatio: 1,
-                                          crossAxisSpacing: 1,
-                                          mainAxisSpacing: 1,
-                                          crossAxisCount: 4),
-                                  itemBuilder:
-                                      (BuildContext context, int index) =>
-                                          ItemKeyBoard(
-                                    item: value.computers[index],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
+                              Container(
+                                height: size_1_w,
+                                color: Colors.black12,
                               ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: size_30_w,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: size_10_w),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.black12,
-                                  borderRadius:
-                                      BorderRadius.circular(size_2_r)),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: size_2_w, horizontal: size_2_w),
-                              child: SizedBox(
+                              SizedBox(
                                 width: double.infinity,
                                 height: size_100_w,
                                 child: FlatButton(
                                   color: kColorE2E2E2,
                                   onPressed: () {},
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: size_10_w),
-                                        child: Container(
-                                          height: size_60_w,
-                                          width: size_60_w,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: Colors.black
-                                                    .withOpacity(0.2),
-                                              ),
-                                              color: Colors.white,
-                                              shape: BoxShape.circle),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(size_16_w),
-                                            child: SvgPicture.asset(
-                                              'assets/icons/ic_user.svg',
-                                              width: size_14_w,
-                                              height: size_14_w,
-                                            ),
-                                          ),
-                                        ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(
+                                        0, size_5_w, size_5_w, 0),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          right: size_65_w),
+                                      child: Text(
+                                        LocaleKeys.customer_account.tr(),
+                                        style: TextStyle(
+                                            fontSize: text_20,
+                                            color: Colors.black38),
                                       ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: size_65_w),
-                                        child: Center(
-                                          child: Text(
-                                            LocaleKeys.customer.tr(),
-                                            style: TextStyle(
-                                                fontSize: text_20,
-                                                color: Colors.black38),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                          Padding(
-                            padding: EdgeInsets.all(size_10_w),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.black12,
-                                  borderRadius:
-                                      BorderRadius.circular(size_2_w)),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: size_2_w, horizontal: size_2_w),
-                              child: SizedBox(
-                                width: double.infinity,
-                                height: size_100_w,
-                                child: FlatButton(
-                                  color: Color(0xFFe2e2e2),
-                                  onPressed: () {},
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: size_10_w),
-                                        child: Container(
-                                          height: size_60_w,
-                                          width: size_60_w,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                color: Colors.black
-                                                    .withOpacity(0.2),
-                                              ),
-                                              color: Colors.white,
-                                              shape: BoxShape.circle),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(size_16_w),
-                                            child: SvgPicture.asset(
-                                              'assets/icons/ic_file.svg',
-                                              width: size_14_w,
-                                              height: size_14_w,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: size_65_w),
-                                        child: Center(
-                                          child: Text(
-                                            LocaleKeys.invoice.tr(),
-                                            style: TextStyle(
-                                                fontSize: text_20,
-                                                color: Colors.black38),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: size_20_w,
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.fromLTRB(size_30_w, 0, size_30_w, 0),
+                        child: CustomCard(
+                          borderRadiusValue: size_1_r,
+                          shadow: Shadow.none,
+                          backgroundColor: kColorBFBFBF,
+                          child: ClipRRect(
+                            // borderRadius:
+                            //     BorderRadius.all(Radius.circular(size_1_r)),
+                            // clipBehavior: Clip.hardEdge,
+                            child: GridView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: value.computers.length,
+                              shrinkWrap: true,
+                              padding: EdgeInsets.all(2),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      childAspectRatio: 1,
+                                      crossAxisSpacing: 1,
+                                      mainAxisSpacing: 1,
+                                      crossAxisCount: 4),
+                              itemBuilder:
+                                  (BuildContext context, int index) =>
+                                      ItemKeyBoard(
+                                item: value.computers[index],
+                                onClickItem: () => value.onClickItem,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size_30_w,
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: size_10_w),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius:
+                                  BorderRadius.circular(size_2_r)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: size_2_w, horizontal: size_2_w),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: size_100_w,
+                            child: FlatButton(
+                              color: kColorE2E2E2,
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: size_10_w),
+                                    child: Container(
+                                      height: size_60_w,
+                                      width: size_60_w,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: Colors.black
+                                                .withOpacity(0.2),
+                                          ),
+                                          color: Colors.white,
+                                          shape: BoxShape.circle),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(size_16_w),
+                                        child: SvgPicture.asset(
+                                          'assets/icons/ic_user.svg',
+                                          width: size_14_w,
+                                          height: size_14_w,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: size_65_w),
+                                    child: Center(
+                                      child: Text(
+                                        LocaleKeys.customer.tr(),
+                                        style: TextStyle(
+                                            fontSize: text_20,
+                                            color: Colors.black38),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(size_10_w),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius:
+                                  BorderRadius.circular(size_2_w)),
+                          padding: EdgeInsets.symmetric(
+                              vertical: size_2_w, horizontal: size_2_w),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: size_100_w,
+                            child: FlatButton(
+                              color: Color(0xFFe2e2e2),
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: size_10_w),
+                                    child: Container(
+                                      height: size_60_w,
+                                      width: size_60_w,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                            color: Colors.black
+                                                .withOpacity(0.2),
+                                          ),
+                                          color: Colors.white,
+                                          shape: BoxShape.circle),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(size_16_w),
+                                        child: SvgPicture.asset(
+                                          'assets/icons/ic_file.svg',
+                                          width: size_14_w,
+                                          height: size_14_w,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(left: size_65_w),
+                                    child: Center(
+                                      child: Text(
+                                        LocaleKeys.invoice.tr(),
+                                        style: TextStyle(
+                                            fontSize: text_20,
+                                            color: Colors.black38),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
