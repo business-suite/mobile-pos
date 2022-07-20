@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold_safe_area.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -68,44 +69,40 @@ class _ValidateContenState extends State<ValidateConten> {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.05),
+                          color: Colors.black12,
                           borderRadius:
-                              BorderRadius.circular(size_1_w)),
-                      padding: EdgeInsets.symmetric(vertical: size_1_w,horizontal: size_1_w),
-                      child: Container(
-                        height: size_45_w,
-                        width: size_160_w,
-                        color: kColor64AF8A,
-                        child: Row(
+                          BorderRadius.circular(size_2_w)),
+                      padding: EdgeInsets.symmetric(
+                          vertical: size_1_w, horizontal: size_1_w),
+                      height: double.infinity,
+                      width: size_150_w,
+                      child: FlatButton(
+                        onPressed: () {
+                          getIt<NavigationService>()
+                              .pushEnterFadeExitDown(DetailShopPage());
+                        },
+                        child:  Row(
                           children: [
-                            FlatButton(
-                                onPressed: () {
-                                  getIt<NavigationService>()
-                                      .pushEnterFadeExitDown(
-                                      DetailShopPage());
-                                },
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      LocaleKeys.new_order.tr(),
-                                      style: TextStyle(
-                                        fontSize: text_22,
-                                        color: kColorf0eeee,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: size_5_w,
-                                    ),
-                                    SvgPicture.asset(
-                                      'assets/icons/ic_angles_right.svg',
-                                      height: size_18_w,
-                                      width: size_18_w,
-                                      color: kColorf0eeee,
-                                    )
-                                  ],
-                                )),
+                            Text(
+                              LocaleKeys.new_order.tr(),
+                              style: TextStyle(
+                                fontSize: text_20,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: size_5_w,
+                            ),
+                            SvgPicture.asset(
+                              'assets/icons/ic_angles_right.svg',
+                              height: size_18_w,
+                              width: size_18_w,
+                              color: Colors.white,
+                            ),
+
                           ],
                         ),
+                        color: kColor64AF8A,
                       ),
                     ),
                   ],
@@ -178,59 +175,68 @@ class _ValidateContenState extends State<ValidateConten> {
                         height: size_15_w,
                       ),
                       Container(
-                        height: size_60_w,
-                        width: double.infinity,
-                        color: Colors.white,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: TextField(
+                        decoration: BoxDecoration(
+                            color: kColorD1D1D1,
+                            borderRadius: BorderRadius.circular(
+                                size_2_w)),
+                        padding: EdgeInsets.symmetric(
+                            vertical: size_1_w,horizontal: size_1_w
+                        ),
+                        child: Container(
+                          height: size_60_w,
+                          width: double.infinity,
+                          color: Colors.white,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
 
-                                cursorHeight: size_25_w,
-                                cursorColor: kColor565656,
-                                decoration: InputDecoration(
-                                  enabledBorder:
-                                      OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.white,
-                                        width: size_1_w),
-                                  ),
-                                  focusedBorder:
-                                      OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: kColorf0eeee,
-                                      width: size_2_w,
+                                  cursorHeight: size_25_w,
+                                  cursorColor: kColor565656,
+                                  decoration: InputDecoration(
+                                    enabledBorder:
+                                        OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: size_1_w),
                                     ),
+                                    focusedBorder:
+                                        OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.white,
+                                        width: size_2_w,
+                                      ),
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(
+                                              size_2_w),
+                                    ),
+                                    hintText: LocaleKeys
+                                        .email_receipt
+                                        .tr(),
                                   ),
-                                  border: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.circular(
-                                            size_2_w),
-                                  ),
-                                  hintText: LocaleKeys
-                                      .email_receipt
-                                      .tr(),
                                 ),
                               ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                  top: size_3_w,
-                                  bottom: size_3_w,
-                                  right: size_3_w),
-                              height: double.infinity,
-                              width: size_100_w,
-                              child: FlatButton(
-                                onPressed: () {},
-                                child: SvgPicture.asset(
-                                  'assets/icons/ic_paper_plane.svg',
-                                  height: size_15_w,
-                                  width: size_15_w,
+                              Container(
+                                padding: EdgeInsets.only(
+                                    top: size_3_w,
+                                    bottom: size_3_w,
+                                    right: size_3_w),
+                                height: double.infinity,
+                                width: size_100_w,
+                                child: FlatButton(
+                                  onPressed: () {},
+                                  child: SvgPicture.asset(
+                                    'assets/icons/ic_paper_plane.svg',
+                                    height: size_15_w,
+                                    width: size_15_w,
+                                  ),
+                                  color: kColorE4E2E2,
                                 ),
-                                color: kColorE4E2E2,
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(
