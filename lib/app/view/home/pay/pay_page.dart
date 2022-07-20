@@ -59,6 +59,7 @@ class _PayContentState extends State<PayContent> {
       customAppBar: AppBarShop(
         badgeCount: 1,
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<PayViewModel>(builder: (context, value, child) {
         return SizedBox(
@@ -201,30 +202,25 @@ class _PayContentState extends State<PayContent> {
                         padding:
                             EdgeInsets.fromLTRB(size_30_w, 0, size_30_w, 0),
                         child: CustomCard(
-                          borderRadiusValue: size_1_r,
+                          borderRadiusValue: 0,
                           shadow: Shadow.none,
                           backgroundColor: kColorBFBFBF,
-                          child: ClipRRect(
-                            // borderRadius:
-                            //     BorderRadius.all(Radius.circular(size_1_r)),
-                            // clipBehavior: Clip.hardEdge,
-                            child: GridView.builder(
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: value.computers.length,
-                              shrinkWrap: true,
-                              padding: EdgeInsets.all(2),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      childAspectRatio: 1,
-                                      crossAxisSpacing: 1,
-                                      mainAxisSpacing: 1,
-                                      crossAxisCount: 4),
-                              itemBuilder:
-                                  (BuildContext context, int index) =>
-                                      ItemKeyBoard(
-                                item: value.computers[index],
-                                onClickItem: () => value.onClickItem,
-                              ),
+                          child: GridView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: value.computers.length,
+                            shrinkWrap: true,
+                            padding: EdgeInsets.all(size_1_w),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    childAspectRatio: 1,
+                                    crossAxisSpacing: 1,
+                                    mainAxisSpacing: 1,
+                                    crossAxisCount: 4),
+                            itemBuilder:
+                                (BuildContext context, int index) =>
+                                    ItemKeyBoard(
+                              item: value.computers[index],
+                              onClickItem: () => value.onClickItem,
                             ),
                           ),
                         ),
@@ -239,9 +235,9 @@ class _PayContentState extends State<PayContent> {
                           decoration: BoxDecoration(
                               color: Colors.black12,
                               borderRadius:
-                                  BorderRadius.circular(size_2_r)),
+                                  BorderRadius.circular(size_1_w)),
                           padding: EdgeInsets.symmetric(
-                              vertical: size_2_w, horizontal: size_2_w),
+                              vertical: size_1_w, horizontal: size_1_w),
                           child: SizedBox(
                             width: double.infinity,
                             height: size_100_w,
@@ -297,9 +293,9 @@ class _PayContentState extends State<PayContent> {
                           decoration: BoxDecoration(
                               color: Colors.black12,
                               borderRadius:
-                                  BorderRadius.circular(size_2_w)),
+                                  BorderRadius.circular(size_1_w)),
                           padding: EdgeInsets.symmetric(
-                              vertical: size_2_w, horizontal: size_2_w),
+                              vertical: size_1_w, horizontal: size_1_w),
                           child: SizedBox(
                             width: double.infinity,
                             height: size_100_w,

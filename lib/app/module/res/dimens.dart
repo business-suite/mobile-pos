@@ -200,4 +200,5 @@ final size_550_r = 550.0.r;
 final size_600_r = 600.0.r;
 
 final appBarSize = AppBar().preferredSize.height;
+double heightButton = 50.0;
 

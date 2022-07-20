@@ -142,7 +142,7 @@ flavorizr:
   flavors:
     development:
       app:
-        name: "Business Suite Pos（dev)"
+        name: "Business Suite Pos(dev)"
       android:
         applicationId: "com.businesssuite.business_suite_mobile_pos"
       ios:

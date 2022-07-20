@@ -77,14 +77,14 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                 ],
               ),
 
-              Container(
-                height: double.infinity,
-                child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: <Widget>[
-                      TouchableOpacity(
-                        onPressed: () => onClickTicKet?.call(),
-                        child:  RotationTransition(
+              TouchableOpacity(
+                onPressed: () => onClickTicKet?.call(),
+                child: Container(
+                  height: double.infinity,
+                  child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: <Widget>[
+                        RotationTransition(
                           turns: AlwaysStoppedAnimation(-45 / 360),
                           child: Padding(
                             padding: EdgeInsets.only(right: size_10_w, bottom: size_10_w),
@@ -96,37 +96,36 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           ),
                         ),
-                      ),
-
-                      if (badgeCount > 0)
-                        Positioned(
-                          // draw a red marble
-                          top: size_10_w,
-                          right: size_2_w,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 4.0, horizontal: 8.0),
-                            decoration: BoxDecoration(
-                              color: kColor01A09D,
-                              borderRadius: BorderRadius.circular(size_10_r),
+                        if (badgeCount > 0)
+                          Positioned(
+                            // draw a red marble
+                            top: size_10_w,
+                            right: size_2_w,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 4.0, horizontal: 8.0),
+                              decoration: BoxDecoration(
+                                color: kColor01A09D,
+                                borderRadius: BorderRadius.circular(size_10_r),
+                              ),
+                              child: Text(
+                                badgeCount.toString(),
+                                style: TextStyle(
+                                    fontSize: text_12,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.normal),
+                              ),
                             ),
-                            child: Text(
-                              badgeCount.toString(),
-                              style: TextStyle(
-                                  fontSize: text_12,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal),
-                            ),
-                          ),
-                        )
-                      else
-                        Container()
-                    ]),
+                          )
+                        else
+                          Container()
+                      ]),
+                ),
               ),
               Icon(
                 Icons.search,
                 color: Colors.white,
-                size: size_18_w,
+                size: size_22_w,
               ),
               SvgPicture.asset(
                 'assets/icons/ic_wifi.svg',

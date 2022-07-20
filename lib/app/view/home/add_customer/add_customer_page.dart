@@ -51,6 +51,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<AddCustomertViewModel>(builder: (context, value, child) {
         return Container(
