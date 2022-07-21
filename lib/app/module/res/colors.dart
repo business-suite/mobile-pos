@@ -4,6 +4,7 @@ const kCWhite = Colors.white;
 const kCBlack = Colors.black;
 const kCBlue = Colors.blue;
 const kCBlue191 = Color(0xFFbfccec);
+const kCOrange = Color(0xFFFFA500);
 const kCGrey136 = Color(0xFF888892);
 const kCGrey165 = Color(0xFFA5A4A6);
 const kCGrey240 = Color(0xFFf0f3f6);
