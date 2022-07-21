@@ -15,7 +15,7 @@ import '../../widget_utils/base_scaffold_safe_area.dart';
 import 'item_shop.dart';
 import 'shop_list_viewmodel.dart';
 
-class ShopListPage extends PageProvideNode<ShopListViewModel> {
+class ShopListPage extends PopupInvoicePage<ShopListViewModel> {
   ShopListPage({Key? key}) : super(key: key, params: []);
 
   @override

@@ -16,7 +16,7 @@ import '../widget_utils/buttons/outline_button.dart';
 import '../widget_utils/outline_text_form_field.dart';
 import 'authentication_viewmodel.dart';
 
-class AuthenticationPage extends PageProvideNode<AuthenticationViewModel> {
+class AuthenticationPage extends PopupInvoicePage<AuthenticationViewModel> {
   AuthenticationPage() : super();
 
   @override

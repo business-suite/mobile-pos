@@ -28,7 +28,7 @@ void openPopupBillRemove() {
         return PopupQuotationOrderPage();
       });
 }
-class PopupQuotationOrderPage extends PageProvideNode<DetailShopViewModel> {
+class PopupQuotationOrderPage extends PopupInvoicePage<DetailShopViewModel> {
   PopupQuotationOrderPage({Key? key,}) : super(key: key, params: []);
 
   @override
@@ -92,7 +92,6 @@ class _PopupQuotationOrderContentState extends State<PopupQuotationOrderContent>
                     alignment: Alignment.center,
                     padding: EdgeInsets.only(left: size_20_w,top: size_20_w,bottom: size_20_w,right: size_20_w,),
                     child: Text(
-
                       LocaleKeys
                           .order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order
                           .tr(),

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/popup_invoice/popup_invoice.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -14,6 +15,7 @@ import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/event_bus/event_bus.dart';
+import '../../../module/res/colors.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../detail_shop/appbar_shop.dart';
@@ -21,7 +23,7 @@ import '../detail_shop/review/review_page.dart';
 import 'item_keyboard.dart';
 import 'pay_viewmodel.dart';
 
-class PayPage extends PageProvideNode<PayViewModel> {
+class PayPage extends PopupInvoicePage<PayViewModel> {
   PayPage({Key? key}) : super(key: key, params: []);
 
   @override
@@ -40,6 +42,9 @@ class PayContent extends StatefulWidget {
 }
 
 class _PayContentState extends State<PayContent> {
+
+  bool _hasBeenPressed = false;
+
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
@@ -300,8 +305,13 @@ class _PayContentState extends State<PayContent> {
                             width: double.infinity,
                             height: size_100_w,
                             child: FlatButton(
-                              color: Color(0xFFe2e2e2),
-                              onPressed: () {},
+                              color: _hasBeenPressed ? kColor64AF8A : kColorE2E2E2,
+                              onPressed: () {
+                                OpenPopupInvoiceValidatePage();
+                                setState(() {
+                                  _hasBeenPressed = !_hasBeenPressed;
+                                });
+                              },
                               child: Row(
                                 children: [
                                   Padding(

@@ -27,7 +27,7 @@ import '../pay/pay_page.dart';
 import 'detail_shop_viewmodel.dart';
 import 'item_bill.dart';
 
-class DetailShopPage extends PageProvideNode<DetailShopViewModel> {
+class DetailShopPage extends PopupInvoicePage<DetailShopViewModel> {
   DetailShopPage({Key? key}) : super(key: key, params: []);
 
   @override

@@ -7,7 +7,7 @@ import '../../viewmodel/base_viewmodel.dart';
 import '../widget_utils/base_scaffold.dart';
 import 'splash_viewmodel.dart';
 
-class SplashPage extends PageProvideNode<SplashViewModel> {
+class SplashPage extends PopupInvoicePage<SplashViewModel> {
   SplashPage() : super();
 
   @override

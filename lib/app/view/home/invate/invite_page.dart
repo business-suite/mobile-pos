@@ -19,7 +19,7 @@ import 'invite_viewmodel.dart';
 import 'invite_viewmodel.dart';
 import 'invite_viewmodel.dart';
 
-class InVitePage extends PageProvideNode<InViteViewModel> {
+class InVitePage extends PopupInvoicePage<InViteViewModel> {
   InVitePage({Key? key}) : super(key: key, params: []);
 
   @override

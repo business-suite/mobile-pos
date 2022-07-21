@@ -10,6 +10,7 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
 import '../invate/invite_page.dart';
+import '../popup_error_sesion/popup_erro_sesion.dart';
 
 class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
@@ -135,11 +136,16 @@ class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
                   color: kColor5EB937,
                 ),
               ),
-              SvgPicture.asset(
-                'assets/icons/ic_wifi.svg',
-                width: size_18_w,
-                height: size_18_w,
-                color: kColor5EB937,
+              InkWell(
+                onTap: (){
+                  OpenPopupErrorSesionPage();
+                },
+                child: SvgPicture.asset(
+                  'assets/icons/ic_wifi.svg',
+                  width: size_18_w,
+                  height: size_18_w,
+                  color: kColor5EB937,
+                ),
               ),
               TouchableOpacity(
                 onPressed: () => onClickAvatar?.call(),

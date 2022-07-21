@@ -33,11 +33,11 @@ class BaseViewModel with ChangeNotifier {
   }
 }
 
-abstract class PageProvideNode<T extends ChangeNotifier> extends StatelessWidget
+abstract class PopupInvoicePage<T extends ChangeNotifier> extends StatelessWidget
     implements Presenter {
   final T viewModel;
 
-  PageProvideNode({List<dynamic>? params, Key? key})
+  PopupInvoicePage({List<dynamic>? params, Key? key})
       : viewModel = getIt<T>(param1: params),
         super(key: key);
 

@@ -27,7 +27,7 @@ void acceptScoreInputDialog() {
       });
 }
 
-class PopupPercentage extends PageProvideNode<PercentageViewModel> {
+class PopupPercentage extends PopupInvoicePage<PercentageViewModel> {
   PopupPercentage({Key? key}) : super(key: key, params: []);
 
   @override

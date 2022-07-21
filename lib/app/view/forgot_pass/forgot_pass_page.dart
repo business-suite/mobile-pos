@@ -14,7 +14,7 @@ import '../widget_utils/buttons/filled_button.dart';
 import '../widget_utils/outline_text_form_field.dart';
 import 'forgot_pass_viewmodel.dart';
 
-class ForgotPasswordPage extends PageProvideNode<ForgotPassViewModel> {
+class ForgotPasswordPage extends PopupInvoicePage<ForgotPassViewModel> {
   ForgotPasswordPage() : super();
 
   @override

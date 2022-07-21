@@ -20,7 +20,7 @@ import '../detail_shop/cash_in_out_shop/cash_in_out_page.dart';
 import '../detail_shop/review/review_page.dart';
 import 'order_list_viewmodel.dart';
 
-class OrderListPage extends PageProvideNode<OrderListViewModel> {
+class OrderListPage extends PopupInvoicePage<OrderListViewModel> {
   OrderListPage({Key? key}) : super(key: key, params: []);
 
   @override

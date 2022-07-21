@@ -18,7 +18,7 @@ import '../../widget_utils/base_scaffold_safe_area.dart';
 import 'customer_list_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
 
-class CustomerListPage extends PageProvideNode<CustomerListViewModel> {
+class CustomerListPage extends PopupInvoicePage<CustomerListViewModel> {
   CustomerListPage({Key? key}) : super(key: key, params: []);
 
   @override

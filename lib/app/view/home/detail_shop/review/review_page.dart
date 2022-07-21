@@ -22,7 +22,7 @@ import '../../pay/pay_page.dart';
 import '../appbar_shop.dart';
 import 'review_item_keyboard.dart';
 
-class ReviewPage extends PageProvideNode<ReviewViewModel> {
+class ReviewPage extends PopupInvoicePage<ReviewViewModel> {
   ReviewPage({Key? key}) : super(key: key, params: []);
 
   @override
