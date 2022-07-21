@@ -9,6 +9,7 @@ import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
+import '../invate/invite_page.dart';
 
 class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
@@ -122,11 +123,17 @@ class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
                       ]),
                 ),
               ),
-              SvgPicture.asset(
-                'assets/icons/ic_desktop.svg',
-                width: size_18_w,
-                height: size_18_w,
-                color: kColor5EB937,
+              InkWell(
+                onTap: (){
+                  getIt<NavigationService>()
+                      .pushEnterFadeExitDown(InVitePage());
+                },
+                child: SvgPicture.asset(
+                  'assets/icons/ic_desktop.svg',
+                  width: size_18_w,
+                  height: size_18_w,
+                  color: kColor5EB937,
+                ),
               ),
               SvgPicture.asset(
                 'assets/icons/ic_wifi.svg',

@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/model/invite.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -765,7 +766,7 @@ class DetailShopViewModel extends BaseViewModel {
         "to_weight": false,
         "uom_id": [1, "Units"],
         "description_sale":
-            "Desk combination, black-brown: chair + desk + drawer.",
+        "Desk combination, black-brown: chair + desk + drawer.",
         "description": false,
         "product_tmpl_id": [8, "[FURN_7800] Desk Combination"],
         "tracking": "none",
@@ -904,7 +905,7 @@ class DetailShopViewModel extends BaseViewModel {
         "to_weight": false,
         "uom_id": [1, "Units"],
         "description_sale":
-            "Three Seater Sofa with Lounger in Steel Grey Colour",
+        "Three Seater Sofa with Lounger in Steel Grey Colour",
         "description": false,
         "product_tmpl_id": [27, "[FURN_8999] Three-Seat Sofa"],
         "tracking": "none",
@@ -1099,17 +1100,23 @@ class DetailShopViewModel extends BaseViewModel {
         status: 'Ongoing'),
   ];
 
+
+
   DetailShopViewModel(this._repo);
 
   getProducts() {
-    allProducts = DetailShopResponse.fromJson(detailShopResponse).result ?? [];
+    allProducts = DetailShopResponse
+        .fromJson(detailShopResponse)
+        .result ?? [];
     changeMenu(lastIndexMenu);
     notifyListeners();
   }
 
   getCategoryProducts() {
     categoryProducts =
-        CategoryProductResponse.fromJson(categoryProductResponse).result ?? [];
+        CategoryProductResponse
+            .fromJson(categoryProductResponse)
+            .result ?? [];
     notifyListeners();
   }
 
@@ -1137,8 +1144,8 @@ class DetailShopViewModel extends BaseViewModel {
     isHome = false;
     products = allProducts
         .where((element) =>
-            element.pos_categ_id is List<dynamic> &&
-            element.pos_categ_id[0] == categoryProducts[lastIndexMenu].id)
+    element.pos_categ_id is List<dynamic> &&
+        element.pos_categ_id[0] == categoryProducts[lastIndexMenu].id)
         .toList();
     scrollToTop();
     notifyListeners();
