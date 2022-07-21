@@ -125,7 +125,6 @@ class _CustomerListContentState extends State<CustomerListContent> {
                     ),
                     // textfield-search
                     Expanded(
-
                       child: Container(
                         height: size_35_w,
                         child: Padding(
