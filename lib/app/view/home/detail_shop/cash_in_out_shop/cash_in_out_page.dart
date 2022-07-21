@@ -96,35 +96,38 @@ class _CashInOutPageState extends State<CashInOutPage> {
                       ),
                       Expanded(
                         flex: 1,
-                        child: Material(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4),
-                            topRight: Radius.circular(4),
-                            bottomLeft: Radius.circular(4),
-                            bottomRight: Radius.circular(4),
-                          ),
+                        child: Container(
+                          height: size_50_w,
+                          child: Material(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(4),
+                              topRight: Radius.circular(4),
+                              bottomLeft: Radius.circular(4),
+                              bottomRight: Radius.circular(4),
+                            ),
                        //   color: kColorf0eeee,
-                          child: TextField(
-                            cursorColor: kColor808080,
-                            minLines: 1,
-                            maxLines: 2,
-                            textInputAction: TextInputAction.newline,
-                            keyboardType: TextInputType.number,
-                            textAlign: TextAlign.right,
-                            // cursorHeight: size_25_w,
-                        //      cursorColor: kColor565656,
-                            decoration: InputDecoration(
-                              filled: true,
-                              suffixText: "\$",
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: kColor64AF8A, width: size_1_w),
+                            child: TextField(
+                              cursorColor: kColor808080,
+                              minLines: 1,
+                              maxLines: 2,
+                              textInputAction: TextInputAction.newline,
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.right,
+                              // cursorHeight: size_25_w,
+                          //      cursorColor: kColor565656,
+                              decoration: InputDecoration(
+                                filled: true,
+                                suffixText: "\$",
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                  BorderSide(color: kColor64AF8A, width: size_1_w),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: kColorf0eeee, width: 1.0),
+                                ),
+                               // border: InputBorder.none,
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: kColorf0eeee, width: 1.0),
-                              ),
-                             // border: InputBorder.none,
                             ),
                           ),
                         ),

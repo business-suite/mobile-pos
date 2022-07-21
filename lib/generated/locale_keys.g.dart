@@ -66,6 +66,7 @@ abstract class  LocaleKeys {
   static const street = 'street';
   static const search_customers = 'search_customers';
   static const change = 'change';
+  static const name_change = 'name_change';
   static const total_taxes = 'total_taxes';
   static const order_000040950006 = 'order_000040950006';
   static const what_do_you_want_to_do = 'what_do_you_want_to_do';
@@ -78,6 +79,8 @@ abstract class  LocaleKeys {
   static const delete = 'delete';
   static const existing_orderlines = 'existing_orderlines';
   static const order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order = 'order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order';
+  static const quantity = 'quantity';
+  static const name = 'name';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';

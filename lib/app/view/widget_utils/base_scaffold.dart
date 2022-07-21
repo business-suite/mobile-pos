@@ -1,6 +1,11 @@
+// ignore_for_file: prefer_if_null_operators
+
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../di/injection.dart';
+import '../../module/common/navigator_screen.dart';
 import '../../module/common/system_utils.dart';
 import '../../module/res/colors.dart';
 import '../../module/res/text.dart';
@@ -76,9 +81,15 @@ class BaseScaffold extends StatelessWidget {
               leading: hideBackButton
                   ? null
                   : IconButton(
-                      icon: Icon(
-                        CupertinoIcons.back,
-                        color: kColorPrimary,
+                      icon: InkWell(
+                        onTap: (){
+                          getIt<NavigationService>()
+                              .pushEnterFadeExitDown(DetailShopPage());
+                        },
+                        child: Icon(
+                          CupertinoIcons.back,
+                          color: kColorPrimary,
+                        ),
                       ),
                       onPressed: onBackPress ?? _onBackPress,
                     ),

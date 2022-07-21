@@ -14,7 +14,7 @@
   "cash_in_out": "Cash In/Out",
   "chairs": "Chairs",
   "please_select_a_payment_method": "Please select a payment method.",
-  "cash": "Cash",
+  "cash": "Cash:",
   "phone": "Phone",
   "bank": "Bank",
    "customer_account":  "Customer Account",
@@ -68,6 +68,7 @@
   "street": "Street",
   "search_customers": "Search Customers",
   "change": "CHANGE",
+  "name_change": "Change",
   "total_taxes": "Total Taxes",
   "order_000040950006": "Order 00004-095-0006",
   "what_do_you_want_to_do": "What do you want to do?",
@@ -80,7 +81,8 @@
   "delete": "Delete",
   "existing_orderlines": "Existing orderlines",
   "order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order": "Order 00004-153-0017 has a total amount of $ 33.00, are you sure you want to delete this order ?",
-
+  "quantity": "Quantity",
+  "name": "Name",
 
 
   "this_order_is_empty": "This order is empty",

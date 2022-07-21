@@ -1,5 +1,7 @@
+import 'package:business_suite_mobile_pos/app/model/invite.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/invate/invite_page.dart';
 import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -58,6 +60,7 @@ class _AppState extends State<App> {
         //hide badge debug
         debugShowCheckedModeBanner: false,
         home: SplashPage(),
+        //home: InVitePage(),
         //home: HomePage(),
         // home: PopupPercentageContent(),
         //   home: CustomerListPage(),
