@@ -44,7 +44,11 @@ class PayContent extends StatefulWidget {
 
 class _PayContentState extends State<PayContent> {
 
+
   bool _hasBeenPressed = false;
+  bool _hasBeenText = false;
+  bool _hasBeenBank = false;
+  bool _hasBeenTextBank = false;
 
   @override
   void initState() {
@@ -116,8 +120,13 @@ class _PayContentState extends State<PayContent> {
                                     height: size_100_w,
                                     child: Container(
                                       child: FlatButton(
-                                        color: kColorE2E2E2,
-                                        onPressed: () {},
+                                        color: _hasBeenPressed ? Colors.black : kColorE2E2E2,
+                                        onPressed: () {
+                                          setState(() {
+                                            _hasBeenPressed = !_hasBeenPressed;
+                                            _hasBeenText = !_hasBeenText;
+                                          });
+                                        },
                                         child: Padding(
                                           padding: EdgeInsets.fromLTRB(
                                               0, size_35_w, size_45_w, 0),
@@ -127,8 +136,8 @@ class _PayContentState extends State<PayContent> {
                                                 LocaleKeys.name_cash.tr(),
                                                 style: TextStyle(
                                                     fontSize: text_20,
-                                                    color:
-                                                        Colors.black38),
+                                                    color: _hasBeenText ? Colors.white : kColor555555.withOpacity(0.5),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -145,9 +154,13 @@ class _PayContentState extends State<PayContent> {
                                       height: size_100_w,
                                       child: Container(
                                         child: FlatButton(
-                                          color: kColorE2E2E2,
+                                          color: _hasBeenBank ? Colors.black : kColorE2E2E2,
                                           onPressed: () {
                                             OpenPopupEmptyOrder();
+                                            setState(() {
+                                              _hasBeenBank = !_hasBeenBank;
+                                              _hasBeenTextBank = !_hasBeenTextBank;
+                                            });
                                           },
                                           child: Padding(
                                             padding: EdgeInsets.fromLTRB(
@@ -161,8 +174,8 @@ class _PayContentState extends State<PayContent> {
                                                   LocaleKeys.bank.tr(),
                                                   style: TextStyle(
                                                       fontSize: text_20,
-                                                      color:
-                                                          Colors.black38),
+                                                    color: _hasBeenTextBank ? Colors.white : kColor555555.withOpacity(0.5),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -308,11 +321,13 @@ class _PayContentState extends State<PayContent> {
                             width: double.infinity,
                             height: size_100_w,
                             child: FlatButton(
+
                               color: _hasBeenPressed ? kColor64AF8A : kColorE2E2E2,
                               onPressed: () {
                                 OpenPopupInvoiceValidate();
                                 setState(() {
                                   _hasBeenPressed = !_hasBeenPressed;
+                                  _hasBeenText = !_hasBeenText;
                                 });
                               },
                               child: Row(
@@ -328,7 +343,7 @@ class _PayContentState extends State<PayContent> {
                                             color: Colors.black
                                                 .withOpacity(0.2),
                                           ),
-                                          color: Colors.white,
+                                          color: _hasBeenPressed ? kColor64AF8A : Colors.white,
                                           shape: BoxShape.circle),
                                       child: Padding(
                                         padding: EdgeInsets.all(size_16_w),
@@ -336,6 +351,7 @@ class _PayContentState extends State<PayContent> {
                                           'assets/icons/ic_file.svg',
                                           width: size_14_w,
                                           height: size_14_w,
+                                          color: _hasBeenPressed ? Colors.white : kColor555555.withOpacity(0.5),
                                         ),
                                       ),
                                     ),
@@ -348,7 +364,8 @@ class _PayContentState extends State<PayContent> {
                                         LocaleKeys.invoice.tr(),
                                         style: TextStyle(
                                             fontSize: text_20,
-                                            color: Colors.black38),
+                                          color: _hasBeenPressed ? Colors.white : kColor555555.withOpacity(0.5),
+                                        ),
                                       ),
                                     ),
                                   ),

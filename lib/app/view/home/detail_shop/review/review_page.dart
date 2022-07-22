@@ -34,6 +34,7 @@ class ReviewPage extends PopupInvoicePage<ReviewViewModel> {
 class ReviewContent extends StatefulWidget {
   final ReviewViewModel _reviewViewModel;
 
+
   ReviewContent(this._reviewViewModel);
 
   @override
@@ -41,6 +42,17 @@ class ReviewContent extends StatefulWidget {
 }
 
 class _ReviewContentState extends State<ReviewContent> {
+  bool _hasBeenPressed = false;
+  bool _hasBeenQuotationOrder = false;
+  int index = -1;
+  Color enableColor = kColorBackground;
+  Color disableColor  = Colors.black;
+
+  onClick(){
+    setState((){
+      index = 0;
+    });
+  }
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
@@ -126,7 +138,7 @@ class _ReviewContentState extends State<ReviewContent> {
                             children: [
                               Expanded(
                                 child: Card(
-                                  color: kColorE2E2E2,
+                                  color: _hasBeenPressed ? Colors.black : kColorE2E2E2,
                                   elevation: 1,
                                   shape: const RoundedRectangleBorder(
                                     side: BorderSide(
@@ -138,10 +150,15 @@ class _ReviewContentState extends State<ReviewContent> {
                                         vertical: size_10_w),
                                     child: InkWell(
                                       onTap: () {
+                                        setState(() {
+                                          _hasBeenPressed = !_hasBeenPressed;
+                                          onClick();
+                                        });
                                         prductInfoBottomSheet(
                                             onCloseClick: null,
                                           statusBarHeight: statusBarHeight
                                         );
+
                                       },
                                       child: Row(
                                         mainAxisAlignment:
@@ -151,7 +168,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                           Icon(
                                             Icons.info_outlined,
                                             size: size_20_w,
-                                            color: kColor555555,
+                                              color: index == 0 ? enableColor : disableColor
                                           ),
                                           SizedBox(
                                             width: size_6_w,
@@ -159,7 +176,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                           Text(
                                             LocaleKeys.info.tr(),
                                             style: TextStyle(
-                                              color: kColor555555,
+                                              color: index == 0 ? enableColor : disableColor,
                                               fontSize: text_20,
                                             ),
                                           ), // text
@@ -218,7 +235,7 @@ class _ReviewContentState extends State<ReviewContent> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: size_10_w),
                           child: Card(
-                            color: kColorE2E2E2,
+                            color: _hasBeenQuotationOrder ? Colors.black : kColorE2E2E2,
                             elevation: 0.0,
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
@@ -228,8 +245,14 @@ class _ReviewContentState extends State<ReviewContent> {
                             child: Ink(
                               child: InkWell(
                                 //goto order list page
-                                onTap: () =>
-                                    reviewViewModel.gotoOrderListpage(),
+                                onTap: () {
+                                  reviewViewModel.gotoOrderListpage();
+                                  setState(() {
+                                    _hasBeenQuotationOrder = !_hasBeenQuotationOrder;
+                                    onClick();
+                                  });
+
+                                },
                                 child: SizedBox(
                                   width: double.infinity,
                                   height: size_40_w,
@@ -238,14 +261,14 @@ class _ReviewContentState extends State<ReviewContent> {
                                     children: <Widget>[
                                       SvgPicture.asset(
                                         'assets/icons/ic_chain.svg',
-                                        color: kColor555555,
+                                        color: index == 1 ? disableColor : enableColor,
                                         height: size_18_w,
                                       ),
                                       SizedBox(width: size_6_w),
                                       Text(
                                         LocaleKeys.quotation_order.tr(),
                                         style: TextStyle(
-                                          color: kColor555555,
+                                          color: index == 1 ? disableColor : enableColor,
                                           fontSize: text_20,
                                         ),
                                       ),
