@@ -14,6 +14,7 @@ abstract class  LocaleKeys {
   static const please_select_a_payment_method = 'please_select_a_payment_method';
   static const cash = 'cash';
   static const phone = 'phone';
+  static const phone_phone = 'phone_phone';
   static const bank = 'bank';
   static const customer_account = 'customer_account';
   static const customer = 'customer';
@@ -47,6 +48,7 @@ abstract class  LocaleKeys {
   static const served_by_mitchell_admin = 'served_by_mitchell_admin';
   static const total = 'total';
   static const zip = 'zip';
+  static const zip_phone = 'zip_phone';
   static const english_us = 'english_us';
   static const none = 'none';
   static const filters = 'filters';
@@ -108,6 +110,7 @@ abstract class  LocaleKeys {
   static const tab_help = 'tab_help';
   static const tab_logout = 'tab_logout';
   static const pos_name = 'pos_name';
+  static const name_phone = 'name_phone';
   static const pos_vat = 'pos_vat';
   static const pos_qty = 'pos_qty';
   static const pos_quantity = 'pos_quantity';
@@ -179,6 +182,8 @@ abstract class  LocaleKeys {
   static const product_relate_product = 'product_relate_product';
   static const sign_in = 'sign_in';
   static const email = 'email';
+  static const address_phone = 'address_phone';
+  static const email_phone = 'email_phone';
   static const password = 'password';
   static const forgot_password_question = 'forgot_password_question';
   static const invalid_email = 'invalid_email';

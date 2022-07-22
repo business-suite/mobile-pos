@@ -1,5 +1,7 @@
+import 'package:business_suite_mobile_pos/app/view/home/customer_phone_list/item_phone_customer.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/item_tablet_customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/item_customer.dart';
+import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +17,10 @@ import '../../../module/event_bus/event_bus.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
-import 'customer_list_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
+import 'customer_phone_list_viewmodel.dart';
 
-class CustomerListPage extends PageProvideNode<CustomerListViewModel> {
-  CustomerListPage({Key? key}) : super(key: key, params: []);
+class CustomerPhoneListPage extends PageProvideNode<CustomerPhoneListViewModel> {
+  CustomerPhoneListPage({Key? key}) : super(key: key, params: []);
 
   @override
   Widget buildContent(BuildContext context) {
@@ -28,16 +29,16 @@ class CustomerListPage extends PageProvideNode<CustomerListViewModel> {
 }
 
 class CustomerListContent extends StatefulWidget {
-  CustomerListViewModel _customerListViewModel;
+  CustomerPhoneListViewModel _customerListViewModel;
 
   CustomerListContent(this._customerListViewModel);
 
   @override
-  State<CustomerListContent> createState() => _CustomerListContentState();
+  State<CustomerListContent> createState() => _CustomerPhoneListContentState();
 }
 
-class _CustomerListContentState extends State<CustomerListContent> {
-  CustomerListViewModel get customerListViewModel => widget._customerListViewModel;
+class _CustomerPhoneListContentState extends State<CustomerListContent> {
+  CustomerPhoneListViewModel get customerListViewModel => widget._customerListViewModel;
 
   FocusNode node1 = FocusNode();
 
@@ -60,7 +61,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
         onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
-      body: Consumer<CustomerListViewModel>(builder: (context, value, child) {
+      body: Consumer<CustomerPhoneListViewModel>(builder: (context, value, child) {
         return Container(
           color: kColorBackground,
           child: Column(
@@ -101,7 +102,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                       padding: const EdgeInsets.only(left:10 ),
                       child: InkWell(
                         onTap: () {
-                            customerListViewModel.gotoAddCustomerPage();
+                            // customerListViewModel.gotoAddCustomerPage();
                         },
                         child: Container(
                           height: size_40_w,
@@ -129,7 +130,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
                         height: size_35_w,
                         child: Padding(
                           padding:
-                              EdgeInsets.only(left: size_10_w,right: size_5_w,bottom: size_7_w),
+                              EdgeInsets.only(left: size_10_w,right: size_5_w,bottom: size_1_w),
                           child: Material(
                             color: kWhite,
                             borderRadius: BorderRadius.circular(size_100_r),
@@ -150,9 +151,9 @@ class _CustomerListContentState extends State<CustomerListContent> {
                                   ),
                                 ),
                                 hintText: LocaleKeys.search_customers.tr(),
-                                hintStyle: TextStyle(fontSize: text_12),
+                                hintStyle: TextStyle(fontSize: text_15),
                                 contentPadding:
-                                    EdgeInsets.fromLTRB(22.0, 5.0, 20.0, 5.0),
+                                    EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
                               ),
                             ),
                           ),
@@ -190,78 +191,24 @@ class _CustomerListContentState extends State<CustomerListContent> {
                   ],
                 ),
               ),
-              Container(
-                color: kColorF7F7F7,
-                height: size_40_w,
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    //text name
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: size_10_w),
-                          child: Text(
-                            LocaleKeys.pos_name.tr(),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: kColor666666,
-                              fontSize: text_15,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    //text ZIP
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: size_35_w),
-                        child: Text(
-                          LocaleKeys.zip.tr(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: kColor666666,
-                            fontSize: text_15,
-                          ),
-                        ),
-                      ),
-                    ),
-                    //text EMAIL
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: size_140_w),
-                        child: Text(
-                          LocaleKeys.email.tr(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: kColor666666,
-                            fontSize: text_15,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               //ListView
               Expanded(
                 child: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
-                  child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: value.customers.length,
-                    itemBuilder: (context, index) => Container(
-                      height: size_40_w,
-                      width: double.infinity,
-                      color: index % 2 == 0 ? kColorE6E6E6 : kColorF7F7F7,
-                      child: ItemCustomer(
-                        item: value.customers[index],
-                        onClickItem: () {},
+                  child: InkWell(
+                    onTap: (){
+                      // getIt<NavigationService>().pushScreenWithFade(PopupQuotationOrderPage());
+                    },
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: value.customersphone.length,
+                      itemBuilder: (context, index) => Container(
+                        color: index % 2 == 0 ? kColorE6E6E6 : kColorF7F7F7,
+                        child: ItemPhoneCustomer(
+                          itemphone: value.customersphone[index],
+                            onClickItem: () {},
+                        ),
                       ),
                     ),
                   ),

@@ -1,5 +1,5 @@
 import 'package:business_suite_mobile_pos/app/model/invite.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_phone_list/customer_phone_list_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/invate/invite_page.dart';
 import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
@@ -60,11 +60,12 @@ class _AppState extends State<App> {
         //hide badge debug
         debugShowCheckedModeBanner: false,
         // home: SplashPage(),
-        home: HomePage(),
+        // home: HomePage(),
         // home: PopupPercentageContent(),
         //   home: CustomerListPage(),
         //   home: PopupQuotationOrderPage(),
         //  home: AddCustomerPage(),
+          home: CustomerPhoneListPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

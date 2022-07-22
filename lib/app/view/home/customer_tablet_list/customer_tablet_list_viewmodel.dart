@@ -1,4 +1,4 @@
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../di/injection.dart';
@@ -10,7 +10,7 @@ import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../add_customer/add_customer_page.dart';
 
-class CustomerListViewModel extends BaseViewModel {
+class CustomerTabletListViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
@@ -161,7 +161,7 @@ class CustomerListViewModel extends BaseViewModel {
     ),
   ];
 
-  CustomerListViewModel(this._repo);
+  CustomerTabletListViewModel(this._repo);
 
   String get response => _response;
 
@@ -181,7 +181,7 @@ class CustomerListViewModel extends BaseViewModel {
     ToastUtil.showToast('Test');
   }
   gotoCustomerListpage(){
-    _navigationService.pushScreenWithFade(CustomerListPage());
+    _navigationService.pushScreenWithFade(CustomerTabletListPage());
   }
 
   gotoAddCustomerPage(){

@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +17,6 @@ import '../../../../module/res/style.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
 import '../../../widget_utils/base_scaffold_safe_area.dart';
 import '../../../widget_utils/custom/custom_card.dart';
-import '../../customer_list/customer_list_page.dart';
 import '../../info/bottom_sheet_product_info.dart';
 import '../../pay/pay_page.dart';
 import '../appbar_shop.dart';
@@ -280,7 +280,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                     onClickItem: () {
                                       getIt<NavigationService>()
                                           .pushScreenWithFade(
-                                              CustomerListPage());
+                                              CustomerTabletListPage());
                                     },
                                   ),
                                 ),

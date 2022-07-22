@@ -1,6 +1,7 @@
 import 'package:business_suite_mobile_pos/app/view/authentication/authentication_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_phone_list/customer_phone_list_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_viewmodel.dart';
@@ -80,8 +81,10 @@ Future<void> configureDependencies() async {
   getIt.registerFactory<OrderListViewModel>(
       () => OrderListViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactory<CustomerListViewModel>(
-          () => CustomerListViewModel(getIt<DataRepository>()));
+  getIt.registerFactory<CustomerPhoneListViewModel>(
+          () => CustomerPhoneListViewModel(getIt<DataRepository>()));
+  getIt.registerFactory<CustomerTabletListViewModel>(
+          () => CustomerTabletListViewModel(getIt<DataRepository>()));
   getIt.registerFactory<AddCustomertViewModel>(
           () => AddCustomertViewModel(getIt<DataRepository>()));
 
