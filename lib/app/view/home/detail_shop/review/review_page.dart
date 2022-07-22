@@ -42,17 +42,14 @@ class ReviewContent extends StatefulWidget {
 }
 
 class _ReviewContentState extends State<ReviewContent> {
-  bool _hasBeenPressed = false;
-  bool _hasBeenQuotationOrder = false;
-  int index = -1;
-  Color enableColor = kColorBackground;
-  Color disableColor  = Colors.black;
 
-  onClick(){
-    setState((){
-      index = 0;
-    });
-  }
+  bool _hasBeenPressed = false;
+  bool _hasBeenTextInfo = false;
+
+  bool _hasBeenQuotationOrder = false;
+  bool _hasBeenTextQuotatiOrder = false;
+
+
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
@@ -152,7 +149,8 @@ class _ReviewContentState extends State<ReviewContent> {
                                       onTap: () {
                                         setState(() {
                                           _hasBeenPressed = !_hasBeenPressed;
-                                          onClick();
+                                          _hasBeenTextInfo = !_hasBeenTextInfo;
+
                                         });
                                         prductInfoBottomSheet(
                                             onCloseClick: null,
@@ -168,7 +166,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                           Icon(
                                             Icons.info_outlined,
                                             size: size_20_w,
-                                              color: index == 0 ? enableColor : disableColor
+                                            color: _hasBeenTextInfo ? Colors.white : kColor555555,
                                           ),
                                           SizedBox(
                                             width: size_6_w,
@@ -176,7 +174,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                           Text(
                                             LocaleKeys.info.tr(),
                                             style: TextStyle(
-                                              color: index == 0 ? enableColor : disableColor,
+                                              color: _hasBeenTextInfo ? Colors.white : kColor555555,
                                               fontSize: text_20,
                                             ),
                                           ), // text
@@ -249,7 +247,8 @@ class _ReviewContentState extends State<ReviewContent> {
                                   reviewViewModel.gotoOrderListpage();
                                   setState(() {
                                     _hasBeenQuotationOrder = !_hasBeenQuotationOrder;
-                                    onClick();
+                                    _hasBeenTextQuotatiOrder = !_hasBeenTextQuotatiOrder;
+
                                   });
 
                                 },
@@ -261,14 +260,14 @@ class _ReviewContentState extends State<ReviewContent> {
                                     children: <Widget>[
                                       SvgPicture.asset(
                                         'assets/icons/ic_chain.svg',
-                                        color: index == 1 ? disableColor : enableColor,
+                                        color: _hasBeenTextQuotatiOrder ? Colors.white : kColor555555,
                                         height: size_18_w,
                                       ),
                                       SizedBox(width: size_6_w),
                                       Text(
                                         LocaleKeys.quotation_order.tr(),
                                         style: TextStyle(
-                                          color: index == 1 ? disableColor : enableColor,
+                                          color: _hasBeenTextQuotatiOrder ? Colors.white : kColor555555,
                                           fontSize: text_20,
                                         ),
                                       ),

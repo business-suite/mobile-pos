@@ -1,13 +1,13 @@
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
-
 import '../../../di/injection.dart';
 import '../../../model/keyboard.dart';
 import '../../../module/common/navigator_screen.dart';
-import '../../../module/common/toast_util.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../module/res/colors.dart';
 import '../../../viewmodel/base_viewmodel.dart';
+
+
 class PercentageViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();

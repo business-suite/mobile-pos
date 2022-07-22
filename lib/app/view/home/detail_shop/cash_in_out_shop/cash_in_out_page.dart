@@ -3,7 +3,6 @@
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../di/injection.dart';
 import '../../../../module/common/extension.dart';
 import '../../../../module/common/navigator_screen.dart';

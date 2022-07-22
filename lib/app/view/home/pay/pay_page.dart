@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/popup_invoice/popup_invoice.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
@@ -9,7 +8,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../flavors.dart';
 import '../../../../main.dart';
 import '../../../di/injection.dart';
@@ -47,8 +45,13 @@ class _PayContentState extends State<PayContent> {
 
   bool _hasBeenPressed = false;
   bool _hasBeenText = false;
+
   bool _hasBeenBank = false;
   bool _hasBeenTextBank = false;
+
+  bool _hasBeenCustomer = false;
+  bool _hasBeenTextCustomer = false;
+
 
   @override
   void initState() {
@@ -122,6 +125,7 @@ class _PayContentState extends State<PayContent> {
                                       child: FlatButton(
                                         color: _hasBeenPressed ? Colors.black : kColorE2E2E2,
                                         onPressed: () {
+
                                           setState(() {
                                             _hasBeenPressed = !_hasBeenPressed;
                                             _hasBeenText = !_hasBeenText;
@@ -194,8 +198,13 @@ class _PayContentState extends State<PayContent> {
                                 width: double.infinity,
                                 height: size_100_w,
                                 child: FlatButton(
-                                  color: kColorE2E2E2,
-                                  onPressed: () {},
+                                  color: _hasBeenCustomer ? Colors.black : kColorE2E2E2,
+                                  onPressed: () {
+                                    setState(() {
+                                      _hasBeenCustomer = !_hasBeenCustomer;
+                                      _hasBeenTextCustomer = !_hasBeenTextCustomer;
+                                    });
+                                  },
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(
                                         0, size_5_w, size_5_w, 0),
@@ -206,7 +215,8 @@ class _PayContentState extends State<PayContent> {
                                         LocaleKeys.customer_account.tr(),
                                         style: TextStyle(
                                             fontSize: text_20,
-                                            color: Colors.black38),
+                                          color: _hasBeenTextCustomer ? Colors.white : kColor555555.withOpacity(0.5),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -324,7 +334,7 @@ class _PayContentState extends State<PayContent> {
 
                               color: _hasBeenPressed ? kColor64AF8A : kColorE2E2E2,
                               onPressed: () {
-                                OpenPopupInvoiceValidate();
+                                payViewModel.changePopup();
                                 setState(() {
                                   _hasBeenPressed = !_hasBeenPressed;
                                   _hasBeenText = !_hasBeenText;
@@ -351,7 +361,7 @@ class _PayContentState extends State<PayContent> {
                                           'assets/icons/ic_file.svg',
                                           width: size_14_w,
                                           height: size_14_w,
-                                          color: _hasBeenPressed ? Colors.white : kColor555555.withOpacity(0.5),
+                                          color: _hasBeenPressed ? Colors.white : kColor555555,
                                         ),
                                       ),
                                     ),

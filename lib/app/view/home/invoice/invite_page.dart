@@ -1,21 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:business_suite_mobile_pos/app/module/res/style.dart';
-
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../generated/locale_keys.g.dart';
 import '../../../module/res/colors.dart';
 import '../../../viewmodel/base_viewmodel.dart';
-import '../detail_shop/detail_shop_viewmodel.dart';
-import '../detail_shop/review/review_viewmodel.dart';
-import 'invite_viewmodel.dart';
-import 'invite_viewmodel.dart';
-import 'invite_viewmodel.dart';
 import 'invite_viewmodel.dart';
 import 'item_voice.dart';
 

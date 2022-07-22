@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
+
 
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold_safe_area.dart';
 import 'package:easy_localization/easy_localization.dart';

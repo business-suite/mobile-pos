@@ -1,20 +1,14 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:business_suite_mobile_pos/app/module/event_bus/event_bus.dart';
-import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/popup_percentage.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/dimens.dart';
 import '../../../module/res/text.dart';
-import '../detail_shop/detail_shop.dart';
 
 void OpenPopupErrorSesion() {
   BuildContext context =
