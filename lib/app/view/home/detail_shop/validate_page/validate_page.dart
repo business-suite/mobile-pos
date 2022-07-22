@@ -17,7 +17,7 @@ import '../../../../viewmodel/base_viewmodel.dart';
 import '../appbar_shop.dart';
 import '../detail_shop.dart';
 
-class ValidatePage extends PopupInvoicePage<ValidateViewModel> {
+class ValidatePage extends PageProvideNode<ValidateViewModel> {
   ValidatePage({Key? key}) : super(key: key, params: []);
 
   @override

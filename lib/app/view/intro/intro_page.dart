@@ -17,7 +17,7 @@ import '../widget_utils/buttons/outline_button.dart';
 import '../widget_utils/anims/animated_in_widget.dart';
 import '../widget_utils/buttons/filled_button.dart';
 
-class IntroPage extends PopupInvoicePage<IntroViewModel> {
+class IntroPage extends PageProvideNode<IntroViewModel> {
   IntroPage() : super();
 
   @override

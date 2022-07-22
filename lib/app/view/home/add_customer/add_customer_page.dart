@@ -15,7 +15,7 @@ import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 
-class AddCustomerPage extends PopupInvoicePage<AddCustomertViewModel> {
+class AddCustomerPage extends PageProvideNode<AddCustomertViewModel> {
   AddCustomerPage({Key? key}) : super(key: key, params: []);
   @override
   Widget buildContent(BuildContext context) {

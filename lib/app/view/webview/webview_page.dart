@@ -11,7 +11,7 @@ import '../../module/res/colors.dart';
 import '../../viewmodel/base_viewmodel.dart';
 import '../widget_utils/custom/default_loading_progress.dart';
 import '../widget_utils/custom/appbar_custom.dart';
-class WebviewPage extends PopupInvoicePage<WebviewViewModel> {
+class WebviewPage extends PageProvideNode<WebviewViewModel> {
   WebviewPage(WebviewParam? webviewParam) : super(params: [webviewParam]);
 
   @override

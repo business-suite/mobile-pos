@@ -10,7 +10,7 @@ import '../../viewmodel/base_viewmodel.dart';
 import '../widget_utils/bottom_sheet/entry_bottom_sheet.dart';
 import 'home_viewmodel.dart';
 
-class HomePage extends PopupInvoicePage<HomeViewModel> {
+class HomePage extends PageProvideNode<HomeViewModel> {
   HomePage({Key? key}) : super(key: key, params: []);
 
   @override

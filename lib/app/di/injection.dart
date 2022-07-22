@@ -1,6 +1,7 @@
 import 'package:business_suite_mobile_pos/app/view/authentication/authentication_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_phone_list/customer_phone_list_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_viewmodel.dart';
@@ -13,8 +14,8 @@ import '../module/common/navigator_screen.dart';
 import '../module/local_storage/shared_pref_manager.dart';
 import '../module/network/request/auth_request.dart';
 import '../module/repository/data_repository.dart';
-import '../view/home/detail_shop/review/review_viewmodel.dart';
 import '../view/forgot_pass/forgot_pass_viewmodel.dart';
+import '../view/home/detail_shop/review/review_viewmodel.dart';
 import '../view/home/order_list/order_list_viewmodel.dart';
 import '../view/home/pay/pay_viewmodel.dart';
 import '../view/home/shop_list/shop_list_viewmodel.dart';
@@ -39,7 +40,7 @@ Future<void> configureDependencies() async {
   getIt.registerFactory<DataRepository>(() => DataRepository(
         getIt<AuthRequest>(),
         getIt<SharedPrefManager>(),
-       // getIt<SocketManager>(),
+        // getIt<SocketManager>(),
       ));
 
   //view model
@@ -56,16 +57,16 @@ Future<void> configureDependencies() async {
       () => SignUpViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<ForgotPassViewModel>(
-          () => ForgotPassViewModel(getIt<DataRepository>()));
+      () => ForgotPassViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<AuthenticationViewModel>(
-          () => AuthenticationViewModel(getIt<DataRepository>()));
+      () => AuthenticationViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<HomeViewModel>(
       () => HomeViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<ShopListViewModel>(
-          () => ShopListViewModel(getIt<DataRepository>()));
+      () => ShopListViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<DetailShopViewModel>(
       () => DetailShopViewModel(getIt<DataRepository>()));
@@ -75,20 +76,27 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<ReviewViewModel>(
       () => ReviewViewModel(getIt<DataRepository>()));
+
   getIt.registerFactory<ValidateViewModel>(
-          () => ValidateViewModel(getIt<DataRepository>()));
+      () => ValidateViewModel(getIt<DataRepository>()));
+
   getIt.registerFactory<OrderListViewModel>(
       () => OrderListViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactory<CustomerListViewModel>(
-          () => CustomerListViewModel(getIt<DataRepository>()));
+  getIt.registerFactory<CustomerPhoneListViewModel>(
+      () => CustomerPhoneListViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<CustomerTabletListViewModel>(
+      () => CustomerTabletListViewModel(getIt<DataRepository>()));
+
   getIt.registerFactory<AddCustomertViewModel>(
-          () => AddCustomertViewModel(getIt<DataRepository>()));
+      () => AddCustomertViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<PercentageViewModel>(
-          () => PercentageViewModel(getIt<DataRepository>()));
+      () => PercentageViewModel(getIt<DataRepository>()));
+
   getIt.registerFactory<InVoiceViewModel>(
-          () => InVoiceViewModel(getIt<DataRepository>()));
+      () => InVoiceViewModel(getIt<DataRepository>()));
 
   getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, dynamic>(
       (param1, _) => //no need param2

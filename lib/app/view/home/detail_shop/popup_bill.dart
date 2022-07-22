@@ -28,7 +28,7 @@ void openPopupBillRemove() {
         return PopupQuotationOrderPage();
       });
 }
-class PopupQuotationOrderPage extends PopupInvoicePage<DetailShopViewModel> {
+class PopupQuotationOrderPage extends PageProvideNode<DetailShopViewModel> {
   PopupQuotationOrderPage({Key? key,}) : super(key: key, params: []);
 
   @override

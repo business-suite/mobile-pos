@@ -15,7 +15,7 @@ import '../widget_utils/buttons/filled_button.dart';
 import '../widget_utils/outline_text_form_field.dart';
 import 'sign_up_viewmodel.dart';
 
-class SignUpPage extends PopupInvoicePage<SignUpViewModel> {
+class SignUpPage extends PageProvideNode<SignUpViewModel> {
   SignUpPage() : super();
 
   @override

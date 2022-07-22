@@ -12,7 +12,7 @@ import '../../../viewmodel/base_viewmodel.dart';
 import 'invite_viewmodel.dart';
 import 'item_voice.dart';
 
-class InVoicePage extends PopupInvoicePage<InVoiceViewModel> {
+class InVoicePage extends PageProvideNode<InVoiceViewModel> {
   InVoicePage({Key? key}) : super(key: key, params: []);
 
   @override

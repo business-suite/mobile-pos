@@ -22,7 +22,7 @@ import '../popup_empty_order/popup_empty_order.dart';
 import 'item_keyboard.dart';
 import 'pay_viewmodel.dart';
 
-class PayPage extends PopupInvoicePage<PayViewModel> {
+class PayPage extends PageProvideNode<PayViewModel> {
   PayPage({Key? key}) : super(key: key, params: []);
 
   @override
