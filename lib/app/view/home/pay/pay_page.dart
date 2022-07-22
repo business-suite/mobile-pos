@@ -20,6 +20,7 @@ import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../detail_shop/appbar_shop.dart';
 import '../detail_shop/review/review_page.dart';
+import '../popup_empty_order/popup_empty_order.dart';
 import 'item_keyboard.dart';
 import 'pay_viewmodel.dart';
 
@@ -123,7 +124,7 @@ class _PayContentState extends State<PayContent> {
                                           child: Column(
                                             children: [
                                               Text(
-                                                LocaleKeys.cash.tr(),
+                                                LocaleKeys.name_cash.tr(),
                                                 style: TextStyle(
                                                     fontSize: text_20,
                                                     color:
@@ -145,7 +146,9 @@ class _PayContentState extends State<PayContent> {
                                       child: Container(
                                         child: FlatButton(
                                           color: kColorE2E2E2,
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            OpenPopupEmptyOrder();
+                                          },
                                           child: Padding(
                                             padding: EdgeInsets.fromLTRB(
                                                 0,
@@ -307,7 +310,7 @@ class _PayContentState extends State<PayContent> {
                             child: FlatButton(
                               color: _hasBeenPressed ? kColor64AF8A : kColorE2E2E2,
                               onPressed: () {
-                                OpenPopupInvoiceValidatePage();
+                                OpenPopupInvoiceValidate();
                                 setState(() {
                                   _hasBeenPressed = !_hasBeenPressed;
                                 });

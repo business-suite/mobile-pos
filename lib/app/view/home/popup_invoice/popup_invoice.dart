@@ -16,26 +16,26 @@ import '../../../module/res/dimens.dart';
 import '../../../module/res/text.dart';
 import '../detail_shop/detail_shop.dart';
 
-void OpenPopupInvoiceValidatePage() {
+void OpenPopupInvoiceValidate() {
   BuildContext context =
   getIt<NavigationService>().navigatorKey.currentContext!;
   showDialog(
       context: context,
       builder: (BuildContext builderContext) {
         removeFocus(context);
-        return PopupInvoiceValidatePage();
+        return PopupInvoiceValidate();
       });
 }
 
-class PopupInvoiceValidatePage extends StatefulWidget {
-  PopupInvoiceValidatePage({Key? key}) : super(key: key);
+class PopupInvoiceValidate extends StatefulWidget {
+  PopupInvoiceValidate({Key? key}) : super(key: key);
 
   @override
-  State<PopupInvoiceValidatePage> createState() =>
-      _PopupInvoiceValidatePageState();
+  State<PopupInvoiceValidate> createState() =>
+      _PopupInvoiceValidateState();
 }
 
-class _PopupInvoiceValidatePageState extends State<PopupInvoiceValidatePage> {
+class _PopupInvoiceValidateState extends State<PopupInvoiceValidate> {
 
 
 

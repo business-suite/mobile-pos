@@ -99,16 +99,9 @@ class _CashInOutPageState extends State<CashInOutPage> {
                         child: Container(
                           height: size_50_w,
                           child: Material(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4),
-                              topRight: Radius.circular(4),
-                              bottomLeft: Radius.circular(4),
-                              bottomRight: Radius.circular(4),
-                            ),
-                       //   color: kColorf0eeee,
                             child: TextField(
                               cursorColor: kColor808080,
-                              minLines: 1,
+                              //    minLines: 1,
                               maxLines: 2,
                               textInputAction: TextInputAction.newline,
                               keyboardType: TextInputType.number,
@@ -120,11 +113,12 @@ class _CashInOutPageState extends State<CashInOutPage> {
                                 suffixText: "\$",
                                 focusedBorder: OutlineInputBorder(
                                   borderSide:
-                                  BorderSide(color: kColor64AF8A, width: size_1_w),
+                                  BorderSide(color: kColor64AF8A, width: size_1_w,),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                      color: kColorf0eeee, width: 1.0),
+                                      //color: kColorf0eeee, width: 1.0
+                                    ),
                                 ),
                                // border: InputBorder.none,
                               ),
@@ -165,7 +159,7 @@ class _CashInOutPageState extends State<CashInOutPage> {
                        // cursorHeight: size_25_w,
                         cursorColor: kColor808080,
                         controller: _reasonController,
-                        minLines: 1,
+                      //  minLines: 1,
                         maxLines: 2,
                         textInputAction: TextInputAction.newline,
                         keyboardType: TextInputType.multiline,

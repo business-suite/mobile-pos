@@ -13,6 +13,7 @@ abstract class  LocaleKeys {
   static const chairs = 'chairs';
   static const please_select_a_payment_method = 'please_select_a_payment_method';
   static const cash = 'cash';
+  static const name_cash = 'name_cash';
   static const phone = 'phone';
   static const bank = 'bank';
   static const customer_account = 'customer_account';
@@ -84,6 +85,8 @@ abstract class  LocaleKeys {
   static const please_select_the_customer = 'please_select_the_customer';
   static const you_need_to_select_the_customer_before_you_can_invoice_or_ship_an_order = 'you_need_to_select_the_customer_before_you_can_invoice_or_ship_an_order';
   static const error_finalized_order_cannot_be_modified = 'error_finalized_order_cannot_be_modified';
+  static const empty_order = 'empty_order';
+  static const there_must_be_at_least_one_product_in_your_order_before_it_can_be_validated_and_invoiced = 'there_must_be_at_least_one_product_in_your_order_before_it_can_be_validated_and_invoiced';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';

@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:business_suite_mobile_pos/app/module/res/style.dart';
-import 'package:business_suite_mobile_pos/app/view/home/invate/invite_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/invate/item_invite.dart';
+
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,9 +17,10 @@ import 'invite_viewmodel.dart';
 import 'invite_viewmodel.dart';
 import 'invite_viewmodel.dart';
 import 'invite_viewmodel.dart';
+import 'item_voice.dart';
 
-class InVitePage extends PopupInvoicePage<InViteViewModel> {
-  InVitePage({Key? key}) : super(key: key, params: []);
+class InVoicePage extends PopupInvoicePage<InVoiceViewModel> {
+  InVoicePage({Key? key}) : super(key: key, params: []);
 
   @override
   Widget buildContent(BuildContext context) {
@@ -29,7 +29,7 @@ class InVitePage extends PopupInvoicePage<InViteViewModel> {
 }
 
 class InViteContent extends StatefulWidget {
-  final InViteViewModel _inViteViewModel;
+  final InVoiceViewModel _inViteViewModel;
 
   InViteContent(this._inViteViewModel);
 
@@ -38,7 +38,7 @@ class InViteContent extends StatefulWidget {
 }
 
 class _InViteContentState extends State<InViteContent> {
-  InViteViewModel get inViteViewModel => widget._inViteViewModel;
+  InVoiceViewModel get inViteViewModel => widget._inViteViewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _InViteContentState extends State<InViteContent> {
       transparentStatusBar: 0.0,
       title: LocaleKeys.invoice.tr(),
       hideBackButton: false,
-      body: Consumer<InViteViewModel>(builder: (context, value, child) {
+      body: Consumer<InVoiceViewModel>(builder: (context, value, child) {
         return Stack(
           children: [
             Column(
@@ -107,10 +107,10 @@ class _InViteContentState extends State<InViteContent> {
                           ),
                           child: ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: value.invites.length,
+                            itemCount: value.invoices.length,
                             shrinkWrap: true,
-                            itemBuilder: (context, index) => ItemInVite(
-                              item: value.invites[index],
+                            itemBuilder: (context, index) => ItemInVoice(
+                              item: value.invoices[index],
                               onClickItem: () {},
                             ),
                           ),

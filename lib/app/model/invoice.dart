@@ -1,10 +1,10 @@
-class InVite {
+class InVoice {
   String image = "";
   String name = "";
   String quantity = "";
   String price = "";
 
-  InVite(
+  InVoice(
       {
         required this.image,
       required this.name,

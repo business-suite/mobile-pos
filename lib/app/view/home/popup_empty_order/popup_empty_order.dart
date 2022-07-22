@@ -16,25 +16,25 @@ import '../../../module/res/dimens.dart';
 import '../../../module/res/text.dart';
 import '../detail_shop/detail_shop.dart';
 
-void OpenPopupErrorSesion() {
+void OpenPopupEmptyOrder() {
   BuildContext context =
-      getIt<NavigationService>().navigatorKey.currentContext!;
+  getIt<NavigationService>().navigatorKey.currentContext!;
   showDialog(
       context: context,
       builder: (BuildContext builderContext) {
         removeFocus(context);
-        return PopupErrorSesion();
+        return PopupEmptyOrder();
       });
 }
 
-class PopupErrorSesion extends StatefulWidget {
-  PopupErrorSesion({Key? key}) : super(key: key);
+class PopupEmptyOrder extends StatefulWidget {
+  PopupEmptyOrder({Key? key}) : super(key: key);
 
   @override
-  State<PopupErrorSesion> createState() => _PopupErrorSesionState();
+  State<PopupEmptyOrder> createState() => _PopupEmptyOrderState();
 }
 
-class _PopupErrorSesionState extends State<PopupErrorSesion> {
+class _PopupEmptyOrderState extends State<PopupEmptyOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,14 +57,14 @@ class _PopupErrorSesionState extends State<PopupErrorSesion> {
             child: Column(
               children: [
                 Container(
-
+                  width:double.infinity,
                   color: kColorFF4C4C.withOpacity(0.5),
                   child: Padding(
                     padding:
-                        EdgeInsets.all(size_15_w),
+                    EdgeInsets.all(size_15_w),
                     child: Text(
 
-                      LocaleKeys.error_finalized_order_cannot_be_modified
+                      LocaleKeys.empty_order
                           .tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -77,13 +77,14 @@ class _PopupErrorSesionState extends State<PopupErrorSesion> {
 
                 Container(
                   alignment: Alignment.topLeft,
-                  height: size_100_w,
-                  padding: EdgeInsets.all(size_10_w),
+
+                  padding: EdgeInsets.all(size_15_w),
                   child: Text(
-                    LocaleKeys.error_finalized_order_cannot_be_modified.tr(),
+                    LocaleKeys.there_must_be_at_least_one_product_in_your_order_before_it_can_be_validated_and_invoiced.tr(),
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         color: kColorA85959,
-                        fontSize: size_16_w,
+                        fontSize: size_20_w,
                         fontWeight: FontWeight.normal),
                   ),
                 ),
@@ -95,73 +96,13 @@ class _PopupErrorSesionState extends State<PopupErrorSesion> {
                   color: kColor755555,
                 ),
                 SizedBox(
-                  height: size_15_h,
+                  height: size_10_h,
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: size_15_w,right: size_10_w),
+                  padding: EdgeInsets.only(bottom: size_10_w,right: size_10_w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: kColor3C3C3C.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(size_4_w)),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: size_1_w, vertical: size_1_w),
-                        child: Container(
-                          height: size_50_w,
-                          width: size_50_w,
-                          decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.05),
-                              borderRadius: BorderRadius.circular(size_1_w)),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: size_1_w, vertical: size_1_w),
-                          child: FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child:  SvgPicture.asset(
-                              'assets/icons/ic_paper_plane.svg',
-                              height: size_14_w,
-                              width: size_14_w,
-                              color: kColorA85959,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size_5_w,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: kColor3C3C3C.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(size_4_w)),
-                        padding: EdgeInsets.symmetric(
-                            horizontal: size_1_w, vertical: size_1_w),
-                        child: Container(
-                          height: size_50_w,
-                          width: size_50_w,
-                          decoration: BoxDecoration(
-                              color: Colors.black.withOpacity(0.05),
-                              borderRadius: BorderRadius.circular(size_1_w)),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: size_1_w, vertical: size_1_w),
-                          child: FlatButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child:  SvgPicture.asset(
-                              'assets/icons/ic_download.svg',
-                              height: size_14_w,
-                              width: size_14_w,
-                              color: kColor555555,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size_5_w,
-                      ),
                       Container(
                         decoration: BoxDecoration(
                             color: kColor3C3C3C.withOpacity(0.1),
