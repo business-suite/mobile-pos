@@ -8,10 +8,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
 import '../../../../generated/locale_keys.g.dart';
-import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
-import '../../../module/event_bus/event_bus.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
@@ -22,20 +20,20 @@ class CustomerTabletListPage extends PageProvideNode<CustomerTabletListViewModel
 
   @override
   Widget buildContent(BuildContext context) {
-    return CustomerListContent(viewModel);
+    return CustomerTabletListContent(viewModel);
   }
 }
 
-class CustomerListContent extends StatefulWidget {
+class CustomerTabletListContent extends StatefulWidget {
   CustomerTabletListViewModel _customerListViewModel;
 
-  CustomerListContent(this._customerListViewModel);
+  CustomerTabletListContent(this._customerListViewModel);
 
   @override
-  State<CustomerListContent> createState() => _CustomerListContentState();
+  State<CustomerTabletListContent> createState() => _CustomerTabletListContentState();
 }
 
-class _CustomerListContentState extends State<CustomerListContent> {
+class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
   CustomerTabletListViewModel get customerListViewModel => widget._customerListViewModel;
 
   FocusNode node1 = FocusNode();

@@ -83,6 +83,7 @@ class _CashInOutPageState extends State<CashInOutPage> {
                   height: size_5_w,
                 ),
                 Container(
+                  height: size_50_w,
                   padding: EdgeInsets.fromLTRB(0, size_2_w, 0, size_2_w),
                   child: Row(
                     children: [
@@ -96,38 +97,37 @@ class _CashInOutPageState extends State<CashInOutPage> {
                       ),
                       Expanded(
                         flex: 1,
-                        child: Container(
-                          height: size_50_w,
-                          child: Material(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4),
-                              topRight: Radius.circular(4),
-                              bottomLeft: Radius.circular(4),
-                              bottomRight: Radius.circular(4),
-                            ),
+                        child: Material(
+                          borderRadius: BorderRadius.only(
+                             topLeft: Radius.circular(4),
+                             topRight: Radius.circular(4),
+                             bottomLeft: Radius.circular(4),
+                             bottomRight: Radius.circular(4),
+                          ),
                        //   color: kColorf0eeee,
-                            child: TextField(
-                              cursorColor: kColor808080,
-                              minLines: 1,
-                              maxLines: 2,
-                              textInputAction: TextInputAction.newline,
-                              keyboardType: TextInputType.number,
-                              textAlign: TextAlign.right,
-                              // cursorHeight: size_25_w,
-                          //      cursorColor: kColor565656,
-                              decoration: InputDecoration(
-                                filled: true,
-                                suffixText: "\$",
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                  BorderSide(color: kColor64AF8A, width: size_1_w),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: kColorf0eeee, width: 1.0),
-                                ),
-                               // border: InputBorder.none,
+                          child: TextField(
+                            cursorColor: kColor808080,
+                               // minLines: 1,
+                            maxLines: 1,
+                            textInputAction: TextInputAction.newline,
+                            keyboardType: TextInputType.number,
+                            textAlign: TextAlign.right,
+                            // cursorHeight: size_25_w,
+                        //      cursorColor: kColor565656,
+                            decoration: InputDecoration(
+                              filled: true,
+                              border: InputBorder.none,
+                              suffixText: "\$",
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: kColor64AF8A, width: size_1_w,),
                               ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    //color: kColorf0eeee, width: 1.0
+                                  ),
+                              ),
+                             // border: InputBorder.none,
                             ),
                           ),
                         ),
@@ -165,7 +165,7 @@ class _CashInOutPageState extends State<CashInOutPage> {
                        // cursorHeight: size_25_w,
                         cursorColor: kColor808080,
                         controller: _reasonController,
-                        minLines: 1,
+                      //  minLines: 1,
                         maxLines: 2,
                         textInputAction: TextInputAction.newline,
                         keyboardType: TextInputType.multiline,
@@ -275,17 +275,25 @@ class _CashInOutPageState extends State<CashInOutPage> {
               borderRadius: BorderRadius.circular(size_3_w)),
           padding:
               EdgeInsets.symmetric(horizontal: size_1_w, vertical: size_1_w),
-          child: Container(
-            color: index == indexSelect ? kColor64AF8A : kColorE4E2E2,
-            height: size_50_w,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: size_12_w),
-              child: Center(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: text_12,
-                    color: kColor555555,
+          child: Material(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(4),
+              topRight: Radius.circular(4),
+              bottomLeft: Radius.circular(4),
+              bottomRight: Radius.circular(4),
+            ),
+            child: Container(
+              color: index == indexSelect ? kColor64AF8A : kColorE4E2E2,
+              height: size_50_w,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: size_12_w),
+                child: Center(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: text_12,
+                      color: kColor555555,
+                    ),
                   ),
                 ),
               ),

@@ -1,4 +1,4 @@
-import 'package:business_suite_mobile_pos/app/model/invite.dart';
+import 'package:business_suite_mobile_pos/app/model/invoice.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 import 'package:flutter/cupertino.dart';

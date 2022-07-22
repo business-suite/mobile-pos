@@ -1,13 +1,13 @@
-import 'package:business_suite_mobile_pos/app/model/invite.dart';
+import 'package:business_suite_mobile_pos/app/model/invoice.dart';
 import 'package:business_suite_mobile_pos/app/module/res/style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ItemInVite extends StatelessWidget {
-  InVite item;
+class ItemInVoice extends StatelessWidget {
+  InVoice item;
   VoidCallback onClickItem;
 
-  ItemInVite({
+  ItemInVoice({
     Key? key,
     required this.item,
     required this.onClickItem,

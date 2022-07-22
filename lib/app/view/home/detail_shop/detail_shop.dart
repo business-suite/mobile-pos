@@ -1,7 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
-// ignore_for_file: prefer_const_constructors
-
 import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/module/res/dimens.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/appbar_shop.dart';
@@ -18,12 +14,10 @@ import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
 import '../../../di/injection.dart';
-import '../../../module/common/toast_util.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/custom_sliver_grid_delegate.dart';
 import '../../widget_utils/custom/loadmore.dart';
-import '../pay/pay_page.dart';
 import 'detail_shop_viewmodel.dart';
 import 'item_bill.dart';
 

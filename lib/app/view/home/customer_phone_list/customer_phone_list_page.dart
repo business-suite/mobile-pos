@@ -24,20 +24,20 @@ class CustomerPhoneListPage extends PageProvideNode<CustomerPhoneListViewModel> 
 
   @override
   Widget buildContent(BuildContext context) {
-    return CustomerListContent(viewModel);
+    return CustomerPhoneListContent(viewModel);
   }
 }
 
-class CustomerListContent extends StatefulWidget {
+class CustomerPhoneListContent extends StatefulWidget {
   CustomerPhoneListViewModel _customerListViewModel;
 
-  CustomerListContent(this._customerListViewModel);
+  CustomerPhoneListContent(this._customerListViewModel);
 
   @override
-  State<CustomerListContent> createState() => _CustomerPhoneListContentState();
+  State<CustomerPhoneListContent> createState() => _CustomerPhoneListContentState();
 }
 
-class _CustomerPhoneListContentState extends State<CustomerListContent> {
+class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
   CustomerPhoneListViewModel get customerListViewModel => widget._customerListViewModel;
 
   FocusNode node1 = FocusNode();

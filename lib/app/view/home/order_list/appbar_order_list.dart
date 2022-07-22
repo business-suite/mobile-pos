@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/cash_in_out_shop/cash_in_out_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/invoice/invite_page.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/image_holder.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -9,7 +10,8 @@ import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
-import '../invate/invite_page.dart';
+
+import '../popup_error_sesion/popup_erro_sesion.dart';
 
 class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
@@ -126,7 +128,7 @@ class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
               InkWell(
                 onTap: (){
                   getIt<NavigationService>()
-                      .pushEnterFadeExitDown(InVitePage());
+                      .pushEnterFadeExitDown(InVoicePage());
                 },
                 child: SvgPicture.asset(
                   'assets/icons/ic_desktop.svg',
@@ -135,11 +137,16 @@ class AppBarOrderList extends StatelessWidget implements PreferredSizeWidget {
                   color: kColor5EB937,
                 ),
               ),
-              SvgPicture.asset(
-                'assets/icons/ic_wifi.svg',
-                width: size_18_w,
-                height: size_18_w,
-                color: kColor5EB937,
+              InkWell(
+                onTap: (){
+                  OpenPopupErrorSesion();
+                },
+                child: SvgPicture.asset(
+                  'assets/icons/ic_wifi.svg',
+                  width: size_18_w,
+                  height: size_18_w,
+                  color: kColor5EB937,
+                ),
               ),
               TouchableOpacity(
                 onPressed: () => onClickAvatar?.call(),

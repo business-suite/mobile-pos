@@ -1,5 +1,4 @@
 import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
-import 'package:flutter/material.dart';
 
 import '../../../di/injection.dart';
 import '../../../model/customer.dart';
