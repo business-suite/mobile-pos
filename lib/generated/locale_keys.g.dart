@@ -219,6 +219,8 @@ abstract class  LocaleKeys {
   static const term_of_service = 'term_of_service';
   static const i_agree_to_the = 'i_agree_to_the';
   static const and = 'and';
+  static const taxes_review = 'taxes_review';
+  static const total_review = 'total_review';
   static const press_the_back_button_to_exit = 'press_the_back_button_to_exit';
   static const company_name = 'company_name';
   static const product_price = 'product_price';

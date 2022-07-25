@@ -1,6 +1,4 @@
-import 'package:business_suite_mobile_pos/app/view/home/closing_control/bottom_sheet_closing_control.dart';
 import 'package:business_suite_mobile_pos/app/view/home/customer_phone_list/customer_phone_list_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
