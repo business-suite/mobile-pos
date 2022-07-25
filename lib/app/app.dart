@@ -1,4 +1,6 @@
-import 'package:business_suite_mobile_pos/app/view/home/customer_phone_list/customer_phone_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -59,9 +61,10 @@ class _AppState extends State<App> {
         // home: HomePage(),
         // home: PopupPercentageContent(),
         //   home: CustomerListPage(),
+        //   home: DetailShopPage(),
         //   home: PopupQuotationOrderPage(),
         //  home: AddCustomerPage(),
-          home: CustomerPhoneListPage(),
+          home: ReviewPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

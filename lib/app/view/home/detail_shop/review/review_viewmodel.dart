@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/model/review_oder.dart';
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
 import '../../../../di/injection.dart';
@@ -33,11 +34,64 @@ class ReviewViewModel extends BaseViewModel {
     KeyBoard(number: '.'),
     KeyBoard(image: 'assets/icons/ic_backspace.png',),
   ];
-
+  final reviews = [
+    Review(
+      name: 'Conference Chair (Steel)',
+      amount:"1.00",
+      sale: ' Units at \$ 33.00/Units',
+      price: '\$ 33.00',
+    ),
+    Review(
+      name: 'Desk Organizer',
+      amount:"3.00",
+      sale: 'Units at \$ 5.10/Units',
+      price: '\$ 15.30',
+    ),
+    Review(
+      name: 'Conference Chair (Aluminium)',
+      amount:"9.00",
+      sale: ' Units at \$ 39.40/Units',
+      price: '\$ 100005.30',
+    ),
+    Review(
+      name: 'Conference Chair (Steel)',
+      amount:"1.00",
+      sale: ' Units at \$ 33.00/Units',
+      price: '\$ 33.00',
+    ),
+    Review(
+      name: 'Desk Organizer',
+      amount:"3.00",
+      sale: 'Units at \$ 5.10/Units',
+      price: '\$ 15.30',
+    ),
+    Review(
+      name: 'Conference Chair (Aluminium)',
+      amount:"9.00",
+      sale: ' Units at \$ 39.40/Units',
+      price: '\$ 100005.30',
+    ),
+    Review(
+      name: 'Conference Chair (Steel)',
+      amount:"1.00",
+      sale: ' Units at \$ 33.00/Units',
+      price: '\$ 33.00',
+    ),
+    Review(
+      name: 'Desk Organizer',
+      amount:"3.00",
+      sale: 'Units at \$ 5.10/Units',
+      price: '\$ 15.30',
+    ),
+    Review(
+      name: 'Conference Chair (Aluminium)',
+      amount:"9.00",
+      sale: ' Units at \$ 39.40/Units',
+      price: '\$ 100005.30',
+    ),
+  ];
 
   ReviewViewModel(this._repo);
-
-
 
   String get response => _response;
 
@@ -63,4 +117,35 @@ class ReviewViewModel extends BaseViewModel {
     _navigationService.pushScreenWithFade(OrderListPage());
   }
 
+}
+
+class ReviewItemtViewModel extends BaseViewModel {
+  final DataRepository _repo;
+  NavigationService _navigationService = getIt<NavigationService>();
+  UserSharePref _userSharePref = getIt<UserSharePref>();
+  bool canLoadMore = false;
+  bool _loading = false;
+  String _response = "";
+
+
+
+  ReviewItemtViewModel(this._repo);
+
+  String get response => _response;
+
+  set response(String response) {
+    _response = response;
+    notifyListeners();
+  }
+
+  bool get loading => _loading;
+
+  set loading(bool loading) {
+    _loading = loading;
+    notifyListeners();
+  }
+
+  void onClickItem() {
+    ToastUtil.showToast('Test');
+  }
 }

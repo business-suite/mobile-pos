@@ -223,6 +223,8 @@
   "term_of_service": "Terms of Service",
   "i_agree_to_the": "I agree to the",
   "and": "and",
+  "taxes_review": "Taxes: $ 0.00",
+  "total_review": "Total: $ 402.90",
   "press_the_back_button_to_exit": "Press the back button to exit",
   "company_name": "Company Name",
   "product_price": "$ {money}",

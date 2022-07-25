@@ -120,6 +120,7 @@ const kColorE6E6E6 = Color(0xffE6E6E6);
 const kColor71639E = Color(0xff71639E);
 const kColor6F6F6F = Color(0xff6F6F6F);
 const kColor7C7C7C = Color(0xff7C7C7C);
+const kColor777777 = Color(0xff777777);
 const kColor666666 = Color(0xff666666);
 const kColor808080 = Color(0xff808080);
 const kColor9999FF = Color(0xff9999ff);

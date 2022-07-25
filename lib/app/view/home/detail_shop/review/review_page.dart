@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/item_review_customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,13 +35,11 @@ class ReviewPage extends PageProvideNode<ReviewViewModel> {
 class ReviewContent extends StatefulWidget {
   final ReviewViewModel _reviewViewModel;
 
-
   ReviewContent(this._reviewViewModel);
 
   @override
   State<ReviewContent> createState() => _ReviewContentState();
 }
-
 class _ReviewContentState extends State<ReviewContent> {
 
   bool _hasBeenPressed = false;
@@ -77,34 +76,92 @@ class _ReviewContentState extends State<ReviewContent> {
         return Stack(
           children: [
             //List order
-            SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: size_16_w,
-                  right: size_16_w,
-                  top: size_30_w,
-                ),
-                child: Center(
+            // SingleChildScrollView(
+            //   child: Padding(
+            //     padding: EdgeInsets.only(
+            //       left: size_16_w,
+            //       right: size_16_w,
+            //       top: size_30_w,
+            //     ),
+            //     child: Center(
+            //       child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         children: <Widget>[
+            //           Container(
+            //             padding: EdgeInsets.only(bottom: size_5_w),
+            //             child: SvgPicture.asset(
+            //               'assets/icons/ic_shopping_cart.svg',
+            //               color: kColorDDDDDD,
+            //               height: size_80_w,
+            //             ),
+            //           ),
+            //           Container(
+            //             padding: EdgeInsets.only(bottom: size_5_w),
+            //             child: Padding(
+            //               padding: EdgeInsets.only(right: size_10_w),
+            //               child: Text(
+            //                 LocaleKeys.this_order_is_empty.tr(),
+            //                 style: TextStyle(
+            //                     color: kColorDDDDDD, fontSize: text_20),
+            //               ),
+            //             ),
+            //           ),
+            //
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            Padding(
+              padding:  EdgeInsets.only(top: size_10_w,bottom: size_320_w),
+              child: Expanded(
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(bottom: size_5_w),
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_shopping_cart.svg',
-                          color: kColorDDDDDD,
-                          height: size_80_w,
+                    children: [
+                      ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: value.reviews.length,
+                        itemBuilder: (context, index) => Container(
+                          height: size_40_w,
+                          width: double.infinity,
+                          child: ItemReview(
+                            item: value.reviews[index],
+                            onClickItem: () => value.onClickItem,
+                          ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: size_5_w),
-                        child: Padding(
-                          padding: EdgeInsets.only(right: size_10_w),
-                          child: Text(
-                            LocaleKeys.this_order_is_empty.tr(),
-                            style: TextStyle(
-                                color: kColorDDDDDD, fontSize: text_20),
+                      Padding(
+                        padding: EdgeInsets.only(left: size_180_w,top: size_22_w),
+                        child: Container(
+                          height: size_2_w,
+                          width: size_130_w,
+                          color: kColor777777,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size_180_w),
+                        child: Text(
+                          LocaleKeys.total_review.tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kColor6F6F6F,
+                            fontWeight: FontWeight.w500,
+                            fontSize: text_20,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size_180_w),
+                        child: Text(
+                          LocaleKeys.taxes_review.tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kColor6F6F6F,
+                            fontWeight: FontWeight.w300,
+                            fontSize: text_15,
                           ),
                         ),
                       ),
