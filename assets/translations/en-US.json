@@ -91,7 +91,10 @@
   "error_finalized_order_cannot_be_modified": "Error: Finalized Order cannot be modified",
   "empty_order": "Empty Order",
   "there_must_be_at_least_one_product_in_your_order_before_it_can_be_validated_and_invoiced": "There must be at least one product in your order before it can be validated and invoiced.",
-
+  "keep_session_open": "Keep Session Open",
+  "close_session": "Close Session",
+  "continue_selling": "Continue Selling",
+  "closing_control": " CLOSING CONTROL",
 
   "this_order_is_empty": "This order is empty",
   "tab_home": "Home",

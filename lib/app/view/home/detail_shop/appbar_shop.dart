@@ -9,6 +9,7 @@ import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
+import '../closing_control/bottom_sheet_closing_control.dart';
 
 class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
@@ -127,11 +128,16 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                 color: Colors.white,
                 size: size_22_w,
               ),
-              SvgPicture.asset(
-                'assets/icons/ic_wifi.svg',
-                width: size_18_w,
-                height: size_18_w,
-                color: kColor5EB937,
+              InkWell(
+                onTap: (){
+                  closingControlBottomSheet();
+                },
+                child: SvgPicture.asset(
+                  'assets/icons/ic_wifi.svg',
+                  width: size_18_w,
+                  height: size_18_w,
+                  color: kColor5EB937,
+                ),
               ),
               TouchableOpacity(
                 onPressed: () => onClickAvatar?.call(),

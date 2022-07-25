@@ -15,6 +15,7 @@ import '../module/local_storage/shared_pref_manager.dart';
 import '../module/network/request/auth_request.dart';
 import '../module/repository/data_repository.dart';
 import '../view/forgot_pass/forgot_pass_viewmodel.dart';
+import '../view/home/coins_bills/coins_bills_viewmodel.dart';
 import '../view/home/detail_shop/review/review_viewmodel.dart';
 import '../view/home/order_list/order_list_viewmodel.dart';
 import '../view/home/pay/pay_viewmodel.dart';
@@ -97,6 +98,10 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<InVoiceViewModel>(
       () => InVoiceViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<ConInsBillsViewModel>(
+          () => ConInsBillsViewModel(getIt<DataRepository>()));
+
 
   getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, dynamic>(
       (param1, _) => //no need param2

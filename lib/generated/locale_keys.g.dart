@@ -89,6 +89,10 @@ abstract class  LocaleKeys {
   static const error_finalized_order_cannot_be_modified = 'error_finalized_order_cannot_be_modified';
   static const empty_order = 'empty_order';
   static const there_must_be_at_least_one_product_in_your_order_before_it_can_be_validated_and_invoiced = 'there_must_be_at_least_one_product_in_your_order_before_it_can_be_validated_and_invoiced';
+  static const keep_session_open = 'keep_session_open';
+  static const close_session = 'close_session';
+  static const continue_selling = 'continue_selling';
+  static const closing_control = 'closing_control';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';
