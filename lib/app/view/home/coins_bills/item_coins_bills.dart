@@ -26,36 +26,44 @@ class ItemCoInsBills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: kColorf0eeee,
+       elevation: 0,
       child: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(
-
               left: size_5_w,
               right: size_5_w,
             ),
             child: Row(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    bottom: size_5_w,
+                Expanded(
+                  flex: 1,
+                  child: TextFormField(
+                    cursorColor: kColor808080,
+                    keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      hintText: '0',
+                      errorStyle: TextStyle(height: 0) ,
+                      border: UnderlineInputBorder(),
+                    ),
                   ),
-                  child: Container(
-                    width: size_30_w,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+
+                    padding: EdgeInsets.only(top: size_20_w),
+                    child: Text(
+                      item.name,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: kColor555555,
+                        fontWeight: FontWeight.normal,
+                        fontSize: text_14,
                       ),
                     ),
-                  )
-                ),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: kColor6F6F6F,
-                    fontWeight: FontWeight.normal,
-                    fontSize: text_12,
                   ),
                 ),
               ],

@@ -94,7 +94,12 @@
   "keep_session_open": "Keep Session Open",
   "close_session": "Close Session",
   "continue_selling": "Continue Selling",
-  "closing_control": " CLOSING CONTROL",
+  "closing_control": "CLOSING CONTROL",
+  "open_session": "Open session",
+  "opening_cash_control": "OPENING CASH CONTROL",
+  "accept_payments": "Accept Payments",
+  "difference_and_post_a": "difference and post a",
+  "profit_loss_journal_entry": "profit/loss journal entry",
 
   "this_order_is_empty": "This order is empty",
   "tab_home": "Home",

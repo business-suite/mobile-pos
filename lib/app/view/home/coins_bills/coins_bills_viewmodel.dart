@@ -23,19 +23,19 @@ class ConInsBillsViewModel extends BaseViewModel {
     Price(name: '\$ 0.05'),
     Price(name: '\$ 0.1'),
     Price(name: '\$ 0.2'),
-    Price(name: '\$ 0.3'),
-    Price(name: '\$ 0.4'),
+    Price(name: '\$ 0.5'),
+    Price(name: '\$ 1'),
   ];
 
   final priceBills = [
-    Price(name: '\$ 2.2'),
-    Price(name: '\$ 2.2'),
-    Price(name: '\$ 2.2'),
-    Price(name: '\$ 2.2'),
-    Price(name: '\$ 2.2'),
-    Price(name: '\$ 2.2'),
-    Price(name: '\$ 2.2'),
-    Price(name: '\$ 2.2'),
+    Price(name: '\$ 2'),
+    Price(name: '\$ 5'),
+    Price(name: '\$ 10'),
+    Price(name: '\$ 20'),
+    Price(name: '\$ 50'),
+    Price(name: '\$ 100'),
+    Price(name: '\$ 200'),
+    Price(name: '\$ 500'),
   ];
 
   ConInsBillsViewModel(this._repo);

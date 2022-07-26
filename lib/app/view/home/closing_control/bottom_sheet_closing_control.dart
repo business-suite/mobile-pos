@@ -1,14 +1,17 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:business_suite_mobile_pos/app/module/res/dimens.dart';
+import 'package:business_suite_mobile_pos/app/view/home/closing_control/closing_control_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/style.dart';
+import '../../../viewmodel/base_viewmodel.dart';
 import '../coins_bills/popup_coins_bills.dart';
 
 void closingControlBottomSheet(
@@ -22,17 +25,28 @@ void closingControlBottomSheet(
     backgroundColor: transparent,
     isScrollControlled: true,
     builder: (BuildContext builderContext) {
-      return ClosingControlBottomSheet(
-        statusBarHeight: statusBarHeight,
-      );
+      return closingControlPage();
     },
   );
 }
 
+class closingControlPage extends PageProvideNode<ClosingControlViewModel> {
+  closingControlPage() : super();
+
+  @override
+  Widget buildContent(BuildContext context) {
+    return ClosingControlBottomSheet(viewModel);
+  }
+}
+
 class ClosingControlBottomSheet extends StatefulWidget {
+  final ClosingControlViewModel _closingControlViewModel;
+
   double statusBarHeight = 0.0;
 
-  ClosingControlBottomSheet({this.statusBarHeight = 0.0});
+  ClosingControlBottomSheet(this._closingControlViewModel);
+
+  //ClosingControlBottomSheet({this.statusBarHeight = 0.0});
 
   @override
   State<ClosingControlBottomSheet> createState() =>
@@ -40,16 +54,24 @@ class ClosingControlBottomSheet extends StatefulWidget {
 }
 
 class _ClosingControlBottomSheetState extends State<ClosingControlBottomSheet> {
+  ClosingControlViewModel get closingControlViewModel =>
+      widget._closingControlViewModel;
+
   bool value = false;
 
   @override
   Widget build(BuildContext context) {
     var paddingTop = widget.statusBarHeight == 0.0
-        ? appBarSize * 2
+        ? appBarSize * 1.5
         : appBarSize + widget.statusBarHeight;
+  //  double barHeight =2;
+    final double statusbarHeight = MediaQuery.of(context).padding.top;
     return SafeArea(
+
       child: Container(
+        padding: EdgeInsets.only(top: statusbarHeight),
          margin: EdgeInsets.only(top: paddingTop),
+     //   height: statusbarHeight + barHeight,
         color: kColorf0eeee,
         child: Column(
           children: [
@@ -238,42 +260,28 @@ class _ClosingControlBottomSheetState extends State<ClosingControlBottomSheet> {
                                 ),
                                 Column(
                                   children: [
-                                    Text('Counted',
-                                        style: TextStyle(
-                                            color: kColor555555,
-                                            fontWeight: FontWeight.bold)),
+                                    Text(
+                                      'Counted',
+                                      style: TextStyle(
+                                          color: kColor555555,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                     SizedBox(
                                       height: size_10_w,
                                     ),
                                     Container(
-                                      width: 70,
-                                      height: 30,
-                                      child: TextField(
+                                      width: size_70_w,
+                                      height: size_50_w,
+                                      child: TextFormField(
                                         cursorColor: kColor808080,
-                                        maxLines: 1,
-                                        textInputAction:
-                                            TextInputAction.newline,
                                         keyboardType: TextInputType.number,
                                         textAlign: TextAlign.center,
                                         decoration: InputDecoration(
-                                          filled: true,
-                                          border: InputBorder.none,
-                                          focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                              color: Colors.blue.shade900,
-                                              width: size_1_w,
-                                            ),
-                                          ),
-                                          enabledBorder: OutlineInputBorder(
-
-                                            borderSide: BorderSide(
-                                              color: kColor555555.withOpacity(0.5)
-                                            ),
-                                          ),
-                                          // border: InputBorder.none,
+                                          border: UnderlineInputBorder(),
                                         ),
                                       ),
                                     ),
+
                                   ],
                                 ),
                                 SizedBox(
@@ -281,25 +289,31 @@ class _ClosingControlBottomSheetState extends State<ClosingControlBottomSheet> {
                                 ),
                                 Column(
                                   children: [
-                                    Text('',),
+                                    Text(
+                                      '',
+                                    ),
                                     SizedBox(
                                       height: size_5_w,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
                                           color: kColorE0E0E0,
-                                          borderRadius: BorderRadius.circular(size_1_w)),
+                                          borderRadius:
+                                              BorderRadius.circular(size_1_w)),
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: size_7_w, vertical: size_5_w),
+                                          horizontal: size_7_w,
+                                          vertical: size_5_w),
                                       child: Container(
                                         height: size_22_w,
                                         width: size_22_w,
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(size_1_w)),
+                                            borderRadius: BorderRadius.circular(
+                                                size_1_w)),
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: size_1_w, vertical: size_1_w),
+                                            horizontal: size_1_w,
+                                            vertical: size_1_w),
                                         child: InkWell(
-                                          onTap: (){
+                                          onTap: () {
                                             OpenPopupClosingControl();
                                           },
                                           child: SvgPicture.asset(
@@ -337,57 +351,132 @@ class _ClosingControlBottomSheetState extends State<ClosingControlBottomSheet> {
                           SizedBox(
                             height: size_20_w,
                           ),
-                          Material(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(4),
-                              topRight: Radius.circular(4),
-                              bottomLeft: Radius.circular(4),
-                              bottomRight: Radius.circular(4),
-                            ),
-                            child: TextFormField(
-                              cursorHeight: size_25_w,
-                              autofocus: true,
-                              cursorColor: kColor808080,
-                              //  minLines: 1,
-                              maxLines: 3,
-                              textInputAction: TextInputAction.newline,
-                              keyboardType: TextInputType.multiline,
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: kColor64AF8A, width: size_2_w),
-                                  ),
-                                  border: InputBorder.none,
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide.none),
-                                  hintText: 'Notes'),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.05),
+                                borderRadius: BorderRadius.circular(size_4_w)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: size_1_w, vertical: size_1_w),
+                            child: Material(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(4),
+                                topRight: Radius.circular(4),
+                                bottomLeft: Radius.circular(4),
+                                bottomRight: Radius.circular(4),
+                              ),
+                              child: TextFormField(
+                                cursorHeight: size_20_w,
+                                autofocus: true,
+                                cursorColor: kColor808080,
+                                //  minLines: 1,
+                                maxLines: 3,
+                                textInputAction: TextInputAction.newline,
+                                keyboardType: TextInputType.multiline,
+                                decoration: InputDecoration(
+                                    filled: true,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: kColor64AF8A, width: size_3_w),
+                                    ),
+                                    border: InputBorder.none,
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide.none),
+                                    hintText: 'Notes'),
+                              ),
                             ),
                           ),
-                          Row(
-                            children: [
-                              Checkbox(
-                                value: this.value,
-                                onChanged: (value) {
-                                  setState(() {
-                                    this.value = value!;
-                                  });
-                                },
-                              ),
-                              Flexible(
-                                child: Text(
-                                  'Accept payments difference and post a profit/loss journal entry',
-                                  style: TextStyle(
-                                      color: kColor555555,
-                                      fontWeight: FontWeight.normal),
-                                  maxLines: 1,
-                                  softWrap: false,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          )
+                          Consumer<ClosingControlViewModel>(
+                            builder:
+                                (BuildContext context, value, Widget? child) {
+                              return Container(
+                                  alignment: Alignment.center,
+                                  //color: Colors.green,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Container(
+                                          //color: Colors.red,
+                                          // height: 60,
+                                          padding: EdgeInsets.all(0),
+                                          alignment: Alignment.topCenter,
+                                          //width: 50,
+                                          child: Checkbox(
+                                            checkColor: Colors.white,
+                                            fillColor:
+                                                MaterialStateProperty.all(
+                                                    kColorPrimary),
+                                            value: value.agreeTermsOfService,
+                                            onChanged: (bool? data) =>
+                                                closingControlViewModel
+                                                    .onCheckChangeAgree(data),
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                          flex: 9,
+                                          child: Container(
+                                              padding: EdgeInsets.all(5),
+                                              //color: Colors.red,
+                                              alignment: Alignment.topLeft,
+                                              //height: 60,
+                                              child: Wrap(
+                                                spacing: 0,
+                                                direction: Axis.horizontal,
+                                                //default
+                                                alignment: WrapAlignment.start,
+                                                //
+                                                children: [
+                                                  Text(
+                                                    LocaleKeys.accept_payments
+                                                            .tr() +
+                                                        ' ',
+                                                    style: TextStyle(
+                                                      color: kColor555555,
+                                                      fontSize: text_14,
+                                                      fontWeight: FontWeight.normal
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+
+                                                    },
+                                                    child: Text(
+                                                      LocaleKeys.difference_and_post_a
+                                                              .tr() +
+                                                          ' ',
+                                                      style: TextStyle(
+                                                        fontSize: text_14,
+                                                        color: kColor555555,
+                                                          fontWeight: FontWeight.normal
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+
+                                                    },
+                                                    child: Text(
+                                                      LocaleKeys.profit_loss_journal_entry
+                                                              .tr() +
+                                                          ' ',
+                                                      style: TextStyle(
+                                                        fontSize: text_14,
+                                                        color: kColor555555,
+                                                          fontWeight: FontWeight.normal
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              )))
+                                    ],
+                                  ));
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -475,7 +564,8 @@ class _ClosingControlBottomSheetState extends State<ClosingControlBottomSheet> {
                                     width: size_160_w,
                                     height: size_60_w,
                                     padding: EdgeInsets.symmetric(
-                                        horizontal: size_10_w, vertical: size_10_w),
+                                        horizontal: size_10_w,
+                                        vertical: size_10_w),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         border: Border.all(
