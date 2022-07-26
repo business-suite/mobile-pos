@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/model/detail_review_oder.dart';
 import 'package:business_suite_mobile_pos/app/model/review_oder.dart';
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/order_list_page.dart';
@@ -34,6 +35,23 @@ class ReviewViewModel extends BaseViewModel {
     KeyBoard(number: '.'),
     KeyBoard(image: 'assets/icons/ic_backspace.png',),
   ];
+  final detailreviews = [
+    DetailReview(
+      name: '  [FURN_0096] Customizable Desk (Steel, White)',
+      amount:"1x",
+      price: ':  \$ 750.00 (tax incl.)',
+    ),
+    DetailReview(
+      name: '  [Sub2] Weekly Subscription',
+      amount:"1x",
+      price: ':  \$ 575.00',
+    ),
+    DetailReview(
+      name: '  Down Payment (POS)',
+      amount:"0x",
+      price: ':  \$ 0.00 (tax incl.)',
+    ),
+      ];
   final reviews = [
     Review(
       name: 'Conference Chair (Steel)',
@@ -44,7 +62,25 @@ class ReviewViewModel extends BaseViewModel {
     Review(
       name: 'Desk Organizer',
       amount:"3.00",
-      sale: 'Units at \$ 5.10/Units',
+      sale: ' Units at \$ 5.10/Units',
+      price: '\$ 15.30',
+    ),
+    Review(
+      name: 'Conference Room Chairs & Classroom Seating',
+      amount:"9.00",
+      sale: ' Units at \$ 39.40/Units',
+      price: '\$ 100005.30',
+    ),
+    Review(
+      name: 'Conference Chair (Steel)',
+      amount:"1.00",
+      sale: ' Units at \$ 33.00/Units',
+      price: '\$ 33.00',
+    ),
+    Review(
+      name: 'Desk Organizer',
+      amount:"3.00",
+      sale: ' Units at \$ 5.10/Units',
       price: '\$ 15.30',
     ),
     Review(
@@ -62,7 +98,7 @@ class ReviewViewModel extends BaseViewModel {
     Review(
       name: 'Desk Organizer',
       amount:"3.00",
-      sale: 'Units at \$ 5.10/Units',
+      sale: ' Units at \$ 5.10/Units',
       price: '\$ 15.30',
     ),
     Review(
@@ -72,22 +108,10 @@ class ReviewViewModel extends BaseViewModel {
       price: '\$ 100005.30',
     ),
     Review(
-      name: 'Conference Chair (Steel)',
+      name: 'Down Payment (POS)',
       amount:"1.00",
-      sale: ' Units at \$ 33.00/Units',
-      price: '\$ 33.00',
-    ),
-    Review(
-      name: 'Desk Organizer',
-      amount:"3.00",
-      sale: 'Units at \$ 5.10/Units',
-      price: '\$ 15.30',
-    ),
-    Review(
-      name: 'Conference Chair (Aluminium)',
-      amount:"9.00",
-      sale: ' Units at \$ 39.40/Units',
-      price: '\$ 100005.30',
+      sale: ' Units at \$ 1,325.40/Units',
+      price: '\$ 1,325.30',
     ),
   ];
 
