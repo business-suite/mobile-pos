@@ -114,7 +114,7 @@ class _ReviewContentState extends State<ReviewContent> {
             //   ),
             // ),
             Padding(
-              padding:  EdgeInsets.only(top: size_10_w,bottom: size_320_w),
+              padding:  EdgeInsets.only(top: size_1_w,bottom: size_360_w),
               child: Expanded(
                 child: SingleChildScrollView(
                   physics: AlwaysScrollableScrollPhysics(),
@@ -124,9 +124,8 @@ class _ReviewContentState extends State<ReviewContent> {
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: value.reviews.length,
-                        itemBuilder: (context, index) => Container(
-                          height: size_40_w,
-                          width: double.infinity,
+                        itemBuilder: (context, index) => Material(
+                          color: kColorf0eeee,
                           child: ItemReview(
                             item: value.reviews[index],
                             onClickItem: () => value.onClickItem,
@@ -134,7 +133,7 @@ class _ReviewContentState extends State<ReviewContent> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: size_180_w,top: size_22_w),
+                        padding: EdgeInsets.only(left: size_180_w,top: size_10_w),
                         child: Container(
                           height: size_2_w,
                           width: size_130_w,
@@ -213,7 +212,6 @@ class _ReviewContentState extends State<ReviewContent> {
                                             onCloseClick: null,
                                           statusBarHeight: statusBarHeight
                                         );
-
                                       },
                                       child: Row(
                                         mainAxisAlignment:

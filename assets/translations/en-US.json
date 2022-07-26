@@ -210,6 +210,7 @@
   "sent_email_reset": "Sent an email to reset password!",
   "email_address": "Email Address",
   "txt_continue": "CONTINUE",
+  "s00041": "S00041",
   "two_factor_authentication": "Two Factor Authentication",
   "msg_enter_six_digit_code": "To login, enter below the six-digit authentication code provided by your Authentication app.",
   "don_t_ask_again_on_this_device": "Don't ask again on this device",

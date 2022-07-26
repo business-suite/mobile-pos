@@ -19,34 +19,46 @@ class ItemReview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // item name
             Flexible(
               child: Padding(
                 padding: EdgeInsets.only(left: size_10_w),
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    item.name,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: kColor6F6F6F,
-                      fontWeight: FontWeight.w500,
-                      fontSize: text_18,
-                    ),
+                  child: Column(
+                    children: [
+                      Text(
+                        item.name,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                        style: TextStyle(
+                          color: kColor6F6F6F,
+                          fontWeight: FontWeight.w500,
+                          fontSize: text_18,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
+            //item price
             Flexible(
               child: Padding(
                 padding: EdgeInsets.only(right: size_10_w),
                 child: Container(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.topRight,
                   child: Text(
                     item.price,
                     textAlign: TextAlign.right,
+                    maxLines: 1 ,
                     style: TextStyle(
                       color: kColor6F6F6F,
                       fontWeight: FontWeight.w500,
@@ -58,6 +70,7 @@ class ItemReview extends StatelessWidget {
             ),
           ],
         ),
+        //item amuont
         Padding(
           padding: EdgeInsets.only(left: size_20_w),
           child: Container(
@@ -70,6 +83,7 @@ class ItemReview extends StatelessWidget {
                   color: kColor666666,
                   fontSize: text_15,
                 ),
+                //item sale
                 children: [
                   TextSpan(
                     text: item.sale,
@@ -84,36 +98,6 @@ class ItemReview extends StatelessWidget {
             ),
           ),
         ),
-        // Row(
-        //   children: [
-        //     Container(
-        //       alignment: Alignment.centerLeft,
-        //       child: Padding(
-        //         padding: EdgeInsets.only(left: size_15_w),
-        //         child: Text(
-        //           item.amount,
-        //           textAlign: TextAlign.center,
-        //           style: TextStyle(
-        //             color: kColor6F6F6F,
-        //             fontWeight: FontWeight.w400,
-        //             fontSize: text_15,
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //     Padding(
-        //       padding: EdgeInsets.only(left: size_2_w),
-        //       child: Text(
-        //         item.sale,
-        //         style: TextStyle(
-        //           color: kColor6F6F6F,
-        //           fontWeight: FontWeight.w300,
-        //           fontSize: text_15,
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ],
     );
   }
