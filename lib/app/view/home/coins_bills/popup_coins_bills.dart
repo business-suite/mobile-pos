@@ -44,7 +44,9 @@ class PopupCoInsBills extends StatefulWidget {
 }
 
 class _PopupCoInsBillsState extends State<PopupCoInsBills> {
+
   ConInsBillsViewModel get conInsBillsViewModel => widget._conInsBillsViewModel;
+
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
@@ -54,10 +56,14 @@ class _PopupCoInsBillsState extends State<PopupCoInsBills> {
   }
   @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kColorf0eeee.withOpacity(0.5),
       body: SafeArea(
         child: Container(
+          height: screenHeight - keyboardHeight,
           decoration: BoxDecoration(
             color: kColorf0eeee,
             borderRadius: BorderRadius.circular(size_2_w),

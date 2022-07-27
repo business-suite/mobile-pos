@@ -431,19 +431,24 @@ class _ClosingControlBottomSheetState extends State<ClosingControlBottomSheet> {
                                                 alignment: WrapAlignment.start,
                                                 //
                                                 children: [
-                                                  Text(
-                                                    LocaleKeys.accept_payments
-                                                            .tr() +
-                                                        ' ',
-                                                    style: TextStyle(
-                                                      color: kColor555555,
-                                                      fontSize: text_14,
-                                                      fontWeight: FontWeight.normal
+                                                  InkWell(
+                                                    onTap: (){
+                                                            value.onCheckChangeAgree(true);
+                                                    },
+                                                    child: Text(
+                                                      LocaleKeys.accept_payments
+                                                              .tr() +
+                                                          ' ',
+                                                      style: TextStyle(
+                                                        color: kColor555555,
+                                                        fontSize: text_14,
+                                                        fontWeight: FontWeight.normal
+                                                      ),
                                                     ),
                                                   ),
                                                   GestureDetector(
                                                     onTap: () {
-
+                                                      //value.onCheckChangeAgree(value)
                                                     },
                                                     child: Text(
                                                       LocaleKeys.difference_and_post_a
