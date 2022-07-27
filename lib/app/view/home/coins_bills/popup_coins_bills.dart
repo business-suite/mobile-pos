@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:business_suite_mobile_pos/app/module/event_bus/event_bus.dart';
 import 'package:business_suite_mobile_pos/app/view/home/coins_bills/coins_bills_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/coins_bills/item_coins_bills.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
+import 'package:business_suite_mobile_pos/main.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
@@ -43,21 +44,32 @@ class PopupCoInsBills extends StatefulWidget {
 }
 
 class _PopupCoInsBillsState extends State<PopupCoInsBills> {
+
   ConInsBillsViewModel get conInsBillsViewModel => widget._conInsBillsViewModel;
 
   @override
+  void initState() {
+    eventBus.on<CloseScreenSettleOrder>().listen((event) {
+      getIt<NavigationService>().back();
+    });
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
-      backgroundColor: Colors.black26.withOpacity(0.5),
+      resizeToAvoidBottomInset: false,
+      backgroundColor: kColorf0eeee.withOpacity(0.5),
       body: SafeArea(
         child: Container(
+          height: screenHeight - keyboardHeight,
           decoration: BoxDecoration(
             color: kColorf0eeee,
             borderRadius: BorderRadius.circular(size_2_w),
           ),
-          margin: EdgeInsets.symmetric(
-            horizontal: size_30_w,
-          ),
+          margin:
+              EdgeInsets.symmetric(horizontal: size_30_w, vertical: size_130_w),
           padding: EdgeInsets.symmetric(
             vertical: size_1_w,
             horizontal: size_1_w,
@@ -65,11 +77,12 @@ class _PopupCoInsBillsState extends State<PopupCoInsBills> {
           child: Column(
             children: [
               Container(
+                alignment: Alignment.topLeft,
                 color: kColorf0eeee,
                 child: Padding(
                   padding: EdgeInsets.all(size_15_w),
                   child: Text(
-                    'CoIns/Bills',
+                    'Coins/Bills',
                     textAlign: TextAlign.end,
                     style: TextStyle(
                         fontSize: size_22_w,
@@ -91,115 +104,135 @@ class _PopupCoInsBillsState extends State<PopupCoInsBills> {
                               children: [
                                 Expanded(
                                   flex: 1,
-                                  child: ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount:
-                                        conInsBillsViewModel.prices.length,
-                                    itemBuilder: (context, index) =>
-                                        ItemCoInsBills(
-                                      item: conInsBillsViewModel.prices[index],
-                                      onClickItem: () {},
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size_20_w, bottom: size_100_w),
+                                    child: ListView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount:
+                                          conInsBillsViewModel.prices.length,
+                                      itemBuilder: (context, index) =>
+                                          ItemCoInsBills(
+                                        item:
+                                            conInsBillsViewModel.prices[index],
+                                        onClickItem: () {},
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Expanded(
                                   flex: 1,
-                                  child: ListView.builder(
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount:
-                                        conInsBillsViewModel.priceBills.length,
-                                    itemBuilder: (context, index) =>
-                                        ItemCoInsBills(
-                                      item: conInsBillsViewModel
-                                          .priceBills[index],
-                                      onClickItem: () {},
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size_20_w, bottom: size_50_w),
+                                    child: ListView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: conInsBillsViewModel
+                                          .priceBills.length,
+                                      itemBuilder: (context, index) =>
+                                          ItemCoInsBills(
+                                        item: conInsBillsViewModel
+                                            .priceBills[index],
+                                        onClickItem: () {},
+                                      ),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
+                            SizedBox(height: size_40_w,)
+
                           ],
                         ),
                       ),
                     ),
+
                     Container(
                       alignment: Alignment.bottomCenter,
                       child: Wrap(
                         children: [
-                          Center(child: Text('Total \$ 0.00')),
-                          SizedBox(
-                            height: size_10_w,
-                          ),
-                          Container(
-                            height: size_1_w,
-                            color: kColorCACACA,
-                          ),
                           Container(
                             color: kColorf0eeee,
                             width: double.infinity,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            child: Column(
                               children: [
-                                Container(
-                                  width: size_100_w,
-                                  height: size_60_w,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: size_10_w,
-                                      vertical: size_10_w),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: size_1_w,
-                                        color: kColorBFBFBF,
-                                      ),
-                                    ),
-                                    child: FlatButton(
-                                      shape: RoundedRectangleBorder(),
-                                      color: Colors.black.withOpacity(0.05),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        LocaleKeys.confirm.tr(),
-                                        style: TextStyle(
-                                            fontSize: text_12,
-                                            color: kColor555555,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
+                                Padding(
+                                  padding: EdgeInsets.only(bottom: size_10_w),
+                                  child: Text(
+                                    'Total \$ 0.00',
+                                    style: TextStyle(
+                                        color: kColor555555, fontSize: size_18_w),
                                   ),
                                 ),
                                 Container(
-                                  width: size_100_w,
-                                  height: size_60_w,
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: size_10_w,
-                                      vertical: size_10_w),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: size_1_w,
-                                        color: kColorBFBFBF,
+                                  height: size_1_w,
+                                  color: kColorCACACA,
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      width: size_100_w,
+                                      height: size_60_w,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: size_10_w,
+                                          vertical: size_10_w),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            width: size_1_w,
+                                            color: kColorBFBFBF,
+                                          ),
+                                        ),
+                                        child: FlatButton(
+                                          shape: RoundedRectangleBorder(),
+                                          color: Colors.black.withOpacity(0.05),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            LocaleKeys.confirm.tr(),
+                                            style: TextStyle(
+                                                fontSize: text_12,
+                                                color: kColor555555,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                    child: FlatButton(
-                                      shape: RoundedRectangleBorder(),
-                                      color: Colors.black.withOpacity(0.05),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        'Discard',
-                                        style: TextStyle(
-                                            fontSize: text_12,
-                                            color: kColor555555,
-                                            fontWeight: FontWeight.bold),
+                                    Container(
+                                      width: size_100_w,
+                                      height: size_60_w,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: size_10_w,
+                                          vertical: size_10_w),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                            width: size_1_w,
+                                            color: kColorBFBFBF,
+                                          ),
+                                        ),
+                                        child: FlatButton(
+                                          shape: RoundedRectangleBorder(),
+                                          color: Colors.black.withOpacity(0.05),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            'Discard',
+                                            style: TextStyle(
+                                                fontSize: text_12,
+                                                color: kColor555555,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
                               ],
                             ),

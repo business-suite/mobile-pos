@@ -10,6 +10,7 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
 import '../closing_control/bottom_sheet_closing_control.dart';
+import '../opening_cash_control/popup_opening_cash_control.dart';
 
 class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
@@ -53,11 +54,16 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
-                    'assets/icons/ic_money.svg',
-                    width: size_16_w,
-                    height: size_16_w,
-                    color: kCWhite,
+                  InkWell(
+                    onTap: (){
+                      PopupPercentageDialog();
+                    },
+                    child: SvgPicture.asset(
+                      'assets/icons/ic_money.svg',
+                      width: size_16_w,
+                      height: size_16_w,
+                      color: kCWhite,
+                    ),
                   ),
 
                   Padding(

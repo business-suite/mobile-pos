@@ -93,6 +93,11 @@ abstract class  LocaleKeys {
   static const close_session = 'close_session';
   static const continue_selling = 'continue_selling';
   static const closing_control = 'closing_control';
+  static const open_session = 'open_session';
+  static const opening_cash_control = 'opening_cash_control';
+  static const accept_payments = 'accept_payments';
+  static const difference_and_post_a = 'difference_and_post_a';
+  static const profit_loss_journal_entry = 'profit_loss_journal_entry';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';

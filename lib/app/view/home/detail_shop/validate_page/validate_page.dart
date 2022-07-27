@@ -243,278 +243,290 @@ class _ValidateContenState extends State<ValidateConten> {
                         height: size_30_w,
                       ),
                       Container(
-                        padding: EdgeInsets.all(size_16_w),
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            Center(
-                              child: Image.asset(
-                                'assets/images/logo.png',
+                        decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.05),
+                            borderRadius: BorderRadius.circular(size_2_w)),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size_1_w, vertical: size_1_w),
+                        child: Material(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(2),
+                            topRight: Radius.circular(2),
+                            bottomLeft: Radius.circular(2),
+                            bottomRight: Radius.circular(2),
+                          ),
+                          color: Colors.white,
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Image.asset(
+                                  'assets/images/logo.png',
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: size_30_w,
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  LocaleKeys
-                                      .my_company_san_francisco
-                                      .tr(),
-                                  style: TextStyle(
-                                      color: kColor555555),
-                                ),
-                                Text(
-                                    LocaleKeys.tel_16505550111
-                                        .tr(),
-                                    style: TextStyle(
-                                        color: kColor555555)),
-                                Text('info@yourcompany.com',
-                                    style: TextStyle(
-                                        color: kColor555555)),
-                                Text('http://www.example.com',
-                                    style: TextStyle(
-                                        color: kColor555555)),
-                                Text(
-                                    '--------------------------------',
-                                    style: TextStyle(
-                                        color: kColor555555)),
-                                Text(
-                                    LocaleKeys
-                                        .served_by_mitchell_admin
-                                        .tr(),
-                                    style: TextStyle(
-                                        color: kColor555555)),
-                              ],
-                            ),
-                            SizedBox(
-                              height: size_40_w,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        right: size_10_w,
-                                        left: size_10_w,
-                                        top: size_20_w),
-                                    alignment:
-                                        Alignment.centerRight,
-                                    child: Text(
-                                      LocaleKeys.total.tr(),
-                                      style: TextStyle(
-                                          color: kColor555555,
-                                          fontSize: size_25_w),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        right: size_10_w,left: size_10_w),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment
-                                              .end,
-                                      children: [
-                                        Text(
-                                          '--------',
-                                          style: TextStyle(
-                                              color:
-                                                  kColor555555,
-                                              fontSize:
-                                                  size_20_w),
-                                        ),
-                                        Text(
-                                          '\$ 0.00',
-                                          style: TextStyle(
-                                              color:
-                                                  kColor555555,
-                                              fontSize:
-                                                  size_20_w),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: size_25_w,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        left: size_10_w),
-                                    child: Text(
-                                      LocaleKeys.cash.tr(),
-                                      style: TextStyle(
-                                          color: kColor555555,
-                                          fontSize: size_15_w),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        right: size_10_w),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment
-                                              .end,
-                                      children: [
-                                        Text(
-                                          '2.00',
-                                          style: TextStyle(
-                                            color: kColor555555,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: size_25_w,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        left: size_10_w,
-                                        right: size_10_w,
-                                        top: size_10_w,
-                                        bottom: size_10_w),
-                                    alignment:
-                                        Alignment.centerRight,
-                                    child: Text(
-                                      LocaleKeys.change.tr(),
-                                      style: TextStyle(
-                                          color: kColor555555,
-                                          fontSize: size_25_w),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        right: size_10_w,left: size_10_w),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment
-                                              .end,
-                                      children: [
-                                        Text(
-                                          '\$ 2.00',
-                                          style: TextStyle(
-                                              color:
-                                                  kColor555555,
-                                              fontSize:
-                                                  size_20_w),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: size_25_w,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        left: size_10_w,right: size_10_w),
-                                    child: Text(
-                                      LocaleKeys.total_taxes
-                                          .tr(),
-                                      style: TextStyle(
-                                          color: kColor555555,
-                                          fontSize: size_15_w),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        right: size_10_w,left: size_10_w),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment
-                                              .end,
-                                      children: [
-                                        Text(
-                                          '\$ 0.00',
-                                          style: TextStyle(
-                                            color: kColor555555,
-                                            fontSize: size_15_w,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: size_25_w,
-                            ),
-                            Container(
-                              child: Column(
+                              SizedBox(
+                                height: size_30_w,
+                              ),
+                              Column(
                                 children: [
                                   Text(
                                     LocaleKeys
-                                        .order_000040950006
+                                        .my_company_san_francisco
                                         .tr(),
                                     style: TextStyle(
-                                        color: kColor555555,
-                                        fontWeight:
-                                            FontWeight.w400),
+                                        color: kColor555555),
                                   ),
                                   Text(
-                                    '07/08/2022 14:21:59',
-                                    style: TextStyle(
-                                        color: kColor555555,
-                                        fontWeight:
-                                            FontWeight.w400),
+                                      LocaleKeys.tel_16505550111
+                                          .tr(),
+                                      style: TextStyle(
+                                          color: kColor555555)),
+                                  Text('info@yourcompany.com',
+                                      style: TextStyle(
+                                          color: kColor555555)),
+                                  Text('http://www.example.com',
+                                      style: TextStyle(
+                                          color: kColor555555)),
+                                  Text(
+                                      '--------------------------------',
+                                      style: TextStyle(
+                                          color: kColor555555)),
+                                  Text(
+                                      LocaleKeys
+                                          .served_by_mitchell_admin
+                                          .tr(),
+                                      style: TextStyle(
+                                          color: kColor555555)),
+                                ],
+                              ),
+                              SizedBox(
+                                height: size_40_w,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      padding: EdgeInsets.only(
+                                          right: size_10_w,
+                                          left: size_10_w,
+                                          top: size_20_w),
+                                      alignment:
+                                          Alignment.centerRight,
+                                      child: Text(
+                                        LocaleKeys.total.tr(),
+                                        style: TextStyle(
+                                            color: kColor555555,
+                                            fontSize: size_25_w),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          right: size_10_w,left: size_10_w),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment
+                                                .end,
+                                        children: [
+                                          Text(
+                                            '--------',
+                                            style: TextStyle(
+                                                color:
+                                                    kColor555555,
+                                                fontSize:
+                                                    size_20_w),
+                                          ),
+                                          Text(
+                                            '\$ 0.00',
+                                            style: TextStyle(
+                                                color:
+                                                    kColor555555,
+                                                fontSize:
+                                                    size_20_w),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
-                            ),
-                            SizedBox(
-                              height: size_30_w,
-                            ),
-                          ],
+                              SizedBox(
+                                height: size_25_w,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      padding: EdgeInsets.only(
+                                          left: size_10_w),
+                                      child: Text(
+                                        LocaleKeys.cash.tr(),
+                                        style: TextStyle(
+                                            color: kColor555555,
+                                            fontSize: size_15_w),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          right: size_10_w),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment
+                                                .end,
+                                        children: [
+                                          Text(
+                                            '2.00',
+                                            style: TextStyle(
+                                              color: kColor555555,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: size_25_w,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: Container(
+                                      padding: EdgeInsets.only(
+                                          left: size_10_w,
+                                          right: size_10_w,
+                                          top: size_10_w,
+                                          bottom: size_10_w),
+                                      alignment:
+                                          Alignment.centerRight,
+                                      child: Text(
+                                        LocaleKeys.change.tr(),
+                                        style: TextStyle(
+                                            color: kColor555555,
+                                            fontSize: size_25_w),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          right: size_10_w,left: size_10_w),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment
+                                                .end,
+                                        children: [
+                                          Text(
+                                            '\$ 2.00',
+                                            style: TextStyle(
+                                                color:
+                                                    kColor555555,
+                                                fontSize:
+                                                    size_20_w),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: size_25_w,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(
+                                      padding: EdgeInsets.only(
+                                          left: size_10_w,right: size_10_w),
+                                      child: Text(
+                                        LocaleKeys.total_taxes
+                                            .tr(),
+                                        style: TextStyle(
+                                            color: kColor555555,
+                                            fontSize: size_15_w),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Container(),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          right: size_10_w,left: size_10_w),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment
+                                                .end,
+                                        children: [
+                                          Text(
+                                            '\$ 0.00',
+                                            style: TextStyle(
+                                              color: kColor555555,
+                                              fontSize: size_15_w,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: size_25_w,
+                              ),
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      LocaleKeys
+                                          .order_000040950006
+                                          .tr(),
+                                      style: TextStyle(
+                                          color: kColor555555,
+                                          fontWeight:
+                                              FontWeight.w400),
+                                    ),
+                                    Text(
+                                      '07/08/2022 14:21:59',
+                                      style: TextStyle(
+                                          color: kColor555555,
+                                          fontWeight:
+                                              FontWeight.w400),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: size_30_w,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

@@ -256,6 +256,7 @@ class _DetailShopState extends State<_DetailShopContent> {
                                     itemBuilder: (context, index) => ItemMenu(
                                       category: value.categoryProducts[index],
                                       onClickItem: () {
+
                                         detailShopViewModel.changeMenu(index);
                                       },
                                     ),
