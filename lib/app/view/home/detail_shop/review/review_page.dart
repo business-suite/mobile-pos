@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/detail_item_review_customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/item_review_customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -124,12 +125,40 @@ class _ReviewContentState extends State<ReviewContent> {
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: value.reviews.length,
-                        itemBuilder: (context, index) => Material(
-                          color: kColorf0eeee,
-                          child: ItemReview(
-                            item: value.reviews[index],
-                            onClickItem: () => value.onClickItem,
-                          ),
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            Material(
+                              color: kColorf0eeee,
+                              child: ItemReview(
+                                item: value.reviews[index],
+                                onClickItem: () => value.onClickItem,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(right: size_250_w),
+                              child: Text(
+                                LocaleKeys.s00041.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: kColor6F6F6F,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: text_18,
+                                ),
+                              ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: value.detailreviews.length,
+                              itemBuilder: (context, index) =>
+                                  Material(
+                                color: kColorf0eeee,
+                                child: DetailItemReview(
+                                  item: value.detailreviews[index],
+                                  onClickItem: () => value.onClickItem,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
@@ -190,10 +219,11 @@ class _ReviewContentState extends State<ReviewContent> {
                           child: Row(
                             children: [
                               Expanded(
+                                flex:1,
                                 child: Card(
                                   color: _hasBeenPressed ? Colors.black : kColorE2E2E2,
                                   elevation: 1,
-                                  shape: const RoundedRectangleBorder(
+                                  shape:  RoundedRectangleBorder(
                                     side: BorderSide(
                                       color: kColorBFBFBF,
                                     ),

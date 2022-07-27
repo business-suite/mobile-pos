@@ -204,6 +204,7 @@ abstract class  LocaleKeys {
   static const sent_email_reset = 'sent_email_reset';
   static const email_address = 'email_address';
   static const txt_continue = 'txt_continue';
+  static const s00041 = 's00041';
   static const two_factor_authentication = 'two_factor_authentication';
   static const msg_enter_six_digit_code = 'msg_enter_six_digit_code';
   static const don_t_ask_again_on_this_device = 'don_t_ask_again_on_this_device';
