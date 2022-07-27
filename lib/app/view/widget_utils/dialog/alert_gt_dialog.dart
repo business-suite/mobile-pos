@@ -7,15 +7,14 @@ import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/dimens.dart';
-import '../../../module/res/string.dart';
 import '../../../module/res/text.dart';
 
-void showAlertGTDialog({String? message}) {
+void showGeneralDialog({String? message}) {
   BuildContext context = getIt<NavigationService>().navigatorKey.currentContext!;
   showDialog(
       context: context,
       builder: (BuildContext builderContext) {
-        return AlertGTDialog(
+        return GeneralDialog(
           message: message,
           defaultAction: () {
             Navigator.pop(context);
@@ -24,15 +23,15 @@ void showAlertGTDialog({String? message}) {
       });
 }
 
-class AlertGTDialog extends StatelessWidget {
-  final String? message;
-  final String? actionString;
+class GeneralDialog extends StatelessWidget {
+   String? message;
+   String? actionString;
   VoidCallback? defaultAction;
 
-  AlertGTDialog(
+  GeneralDialog(
       {Key? key,
-      this.message = txt_msg_error_login_twitter,
-      this.actionString = txt_cancel,
+      this.message = '',
+      this.actionString = '',
       this.defaultAction})
       : super(key: key);
 

@@ -1,27 +1,30 @@
+import 'package:business_suite_mobile_pos/app/model/session_info.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../../di/injection.dart';
 import '../../../model/bill.dart';
+import '../../../module/common/config.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/network/response/category_product_response.dart';
 import '../../../module/network/response/detail_shop_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
-import '../../widget_utils/dialog/dialog_log_out_app.dart';
+import '../../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 
 class DetailShopViewModel extends BaseViewModel {
-  final DataRepository _repo;
+  final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   GlobalKey<SliderDrawerState> keySlider = GlobalKey<SliderDrawerState>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
-  String _response = "";
   ScrollController scrollController = ScrollController();
 
   bool isHome = false;
@@ -30,33 +33,8 @@ class DetailShopViewModel extends BaseViewModel {
   List<Product> allProducts = [];
   List<Category> categoryProducts = [];
 
-  dynamic categoryProductResponse = {
-    "jsonrpc": "2.0",
-    "id": 20,
-    "result": [
-      {
-        "id": 3,
-        "name": "Chairs",
-        "parent_id": false,
-        "child_id": [],
-        "write_date": "2022-06-20 14:34:07"
-      },
-      {
-        "id": 2,
-        "name": "Desks",
-        "parent_id": false,
-        "child_id": [],
-        "write_date": "2022-06-20 14:34:07"
-      },
-      {
-        "id": 1,
-        "name": "Miscellaneous",
-        "parent_id": false,
-        "child_id": [],
-        "write_date": "2022-06-20 14:34:07"
-      }
-    ]
-  };
+  CategoryProductResponse? _categoryProductResponse;
+
 
   dynamic detailShopResponse = {
     "jsonrpc": "2.0",
@@ -1099,24 +1077,11 @@ class DetailShopViewModel extends BaseViewModel {
         status: 'Ongoing'),
   ];
 
-  DetailShopViewModel(this._repo);
+  DetailShopViewModel(this._dataRepo);
 
   getProducts() {
     allProducts = DetailShopResponse.fromJson(detailShopResponse).result ?? [];
     changeMenu(lastIndexMenu);
-    notifyListeners();
-  }
-
-  getCategoryProducts() {
-    categoryProducts =
-        CategoryProductResponse.fromJson(categoryProductResponse).result ?? [];
-    notifyListeners();
-  }
-
-  String get response => _response;
-
-  set response(String response) {
-    _response = response;
     notifyListeners();
   }
 
@@ -1125,6 +1090,53 @@ class DetailShopViewModel extends BaseViewModel {
   set loading(bool loading) {
     _loading = loading;
     notifyListeners();
+  }
+
+  set categoryProductResponse(CategoryProductResponse? categoryProductResponse) {
+    _categoryProductResponse = categoryProductResponse;
+    notifyListeners();
+  }
+
+  CategoryProductResponse? get categoryProductResponse =>
+      _categoryProductResponse;
+
+  Future<void> getCategoryProducts() async {
+    EasyLoading.show();
+    SessionInfo? sessionInfo = _userSharePref.getUser();
+    Map<String, dynamic> kwargs = <String, dynamic>{};
+    kwargs.putIfAbsent('context', () => sessionInfo?.userContext);
+    kwargs.putIfAbsent('domain', () => []);
+    kwargs.putIfAbsent('fields', () => ["id", "name", "parent_id", "child_id", "write_date"]);
+    var params = {
+      "model": POS_CATEGORY,
+      "method": SEARCH_READ,
+      "args":  [],
+      "kwargs": kwargs,
+    };
+    /*final data = await _dataRepo.odooClient.callKw(params);
+    print(data);*/
+    final subscript = _dataRepo
+        .callKW(POS_CATEGORY, SEARCH_READ, kwargs: kwargs, )
+        .doOnData((r) => categoryProductResponse = CategoryProductResponse.fromJson(r))
+        .doOnError((e, stacktrace) {
+      if (e is DioError) {
+        categoryProductResponse = CategoryProductResponse.fromJson(e.response?.data.trim());
+      }
+    }).doOnListen(() {
+      EasyLoading.show();
+    }).doOnDone(() {
+      EasyLoading.dismiss();
+    }).listen((_) {
+      if (categoryProductResponse?.result != null) {
+        categoryProducts = categoryProductResponse?.result ?? [];
+        notifyListeners();
+      } else {
+        _navigationService.gotoErrorPage();
+      }
+    }, onError: (e) {
+      _navigationService.gotoErrorPage();
+    });
+    addSubscription(subscript);
   }
 
   homeMenu() {
@@ -1137,7 +1149,7 @@ class DetailShopViewModel extends BaseViewModel {
     isHome = false;
     products = allProducts
         .where((element) =>
-            element.pos_categ_id is List<dynamic> &&
+            element.pos_categ_id is List<dynamic> && categoryProducts.isNotEmpty &&
             element.pos_categ_id[0] == categoryProducts[lastIndexMenu].id)
         .toList();
     scrollToTop();

@@ -21,10 +21,14 @@ class SplashViewModel extends BaseViewModel {
     Future.delayed(
       Duration(milliseconds: DELAY_SPLASH_PAGE),
       () {
-        if (_userSharePref.isLogin())
+        if( _userSharePref.getUser() != null) {
+          print('User Info: ' +  _userSharePref.getUser()!.toJson().toString() );
+        }
+        if (_userSharePref.isLogin()) {
           _navigationService.pushReplacementScreenWithFade(HomePage());
-        else
+        } else {
           _navigationService.pushReplacementScreenWithFade(IntroPage());
+        }
       },
     );
   }

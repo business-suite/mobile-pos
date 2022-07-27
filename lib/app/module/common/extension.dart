@@ -1,10 +1,17 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
+import 'package:business_suite_mobile_pos/app/module/local_storage/shared_pref_manager.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:html/parser.dart' show parse;
+import 'package:html/dom.dart';
+
+import '../../di/injection.dart';
 
 ReturnType run<ReturnType>(ReturnType Function() operation) {
   return operation();
@@ -845,6 +852,16 @@ class Utils {
     final list = segments.map((e) => '/$e');
     return path + list.join();
   }
+  
+  
+  
+  static void getCsrtTokenWeb(String htmlWeb){
+    var document = parse(htmlWeb);
+    var inputElement = document.querySelector('[name="csrf_token"]')?.attributes['value'];
+    print("csrf_token: $inputElement");
+    getIt<UserSharePref>().saveCsrtToken(inputElement);
+  }
+  
 }
 
 typedef PrintFunctionCallback = void Function(

@@ -1,4 +1,5 @@
 
+import 'package:business_suite_mobile_pos/app/module/repository/data_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -17,6 +18,7 @@ class NavigationService {
   int myPageGameTitileIdFromPush = -1;
   String myPageTypeFromPush = "player";
 
+  BuildContext get context => navigatorKey.currentContext!;
 
   //replace with anim fade
   Future<dynamic>? pushReplacementScreenWithFade(Widget widget) {
@@ -122,8 +124,8 @@ class NavigationService {
         builder: (BuildContext context) {
           return DialogExitApp(
             funcExit: () {
-              getIt<UserSharePref>().setIsLogin(false);
-              pushAndRemoveUntilWithFade(IntroPage());
+              dimiss();
+              getIt<DataRepository>().logout();
             },
           );
         });

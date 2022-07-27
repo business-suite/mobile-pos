@@ -9,7 +9,7 @@ import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 
 class OrderListViewModel extends BaseViewModel {
-  final DataRepository _repo;
+  final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
@@ -76,7 +76,7 @@ class OrderListViewModel extends BaseViewModel {
         state: 'Sales Order'),
   ];
 
-  OrderListViewModel(this._repo);
+  OrderListViewModel(this._dataRepo);
 
   String get response => _response;
 

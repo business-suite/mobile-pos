@@ -10,7 +10,7 @@ import '../../di/injection.dart';
 import '../../module/common/extension.dart';
 import '../../module/common/navigator_screen.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
-import '../../module/network/response/login_response.dart';
+import '../../model/session_info.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
 import '../home/detail_shop/detail_shop.dart';
@@ -18,7 +18,6 @@ import '../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 
 class ForgotPassViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
-  late LoginResponse _response;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   final emailFC = FocusNode();
@@ -64,13 +63,6 @@ class ForgotPassViewModel extends BaseViewModel {
           )
         : null;
   }
-
-  set response(LoginResponse response) {
-    _response = response;
-    notifyListeners();
-  }
-
-  LoginResponse get response => _response;
 
   setloginType(int loginType) => _userSharePref.saveLoginType(loginType);
 

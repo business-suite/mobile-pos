@@ -8,10 +8,13 @@ class CategoryProductResponse extends BaseResponse {
   @JsonKey(defaultValue: [])
   List<Category>? result;
 
+
   CategoryProductResponse({
-    required String jsonrpc,
+    String? jsonrpc,
+    int? id,
+    Error? error,
     this.result,
-  }) : super(jsonrpc: jsonrpc);
+  }) : super(jsonrpc: jsonrpc, id: id, error: error);
 
   factory CategoryProductResponse.fromJson(Map<String, dynamic> json) => _$CategoryProductResponseFromJson(json);
 

@@ -8,7 +8,7 @@ launchURL(String url) async {
   if (await canLaunch(url)) {
     await launch(url);
   } else {
-    showAlertGTDialog(
+    showGeneralDialog(
       message: 'Could not Launch $url',
     );
     throw 'Could not Launch $url';
@@ -21,7 +21,7 @@ launchScheme(String scheme, String? url) async {
   } else if (url != null && await canLaunch(url)) {
     await launch(url);
   } else {
-    showAlertGTDialog(
+    showGeneralDialog(
       message: 'Could not Launch $url',
     );
     throw 'Could not Launch $url';

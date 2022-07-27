@@ -10,7 +10,6 @@ import 'package:get_it/get_it.dart';
 
 import '../module/common/navigator_screen.dart';
 import '../module/local_storage/shared_pref_manager.dart';
-import '../module/network/request/auth_request.dart';
 import '../module/repository/data_repository.dart';
 import '../view/home/detail_shop/review/review_viewmodel.dart';
 import '../view/forgot_pass/forgot_pass_viewmodel.dart';
@@ -31,13 +30,11 @@ Future<void> configureDependencies() async {
   getIt.registerLazySingleton<NavigationService>(() => NavigationService());
 
   //repository
-  getIt.registerFactory<AuthRequest>(() => AuthRequest());
   //getIt.registerFactory<SocketManager>(() => SocketManager());
 
   //data repository
   getIt.registerFactory<DataRepository>(() => DataRepository(
-        getIt<AuthRequest>(),
-        getIt<SharedPrefManager>(),
+        getIt<UserSharePref>(),
        // getIt<SocketManager>(),
       ));
 

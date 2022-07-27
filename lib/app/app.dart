@@ -36,9 +36,6 @@ class _AppState extends State<App> {
     super.dispose();
   }
 
-  void backPress(BuildContext context) {
-    Navigator.of(context).pop();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +55,12 @@ class _AppState extends State<App> {
         title: F.title,
         //hide badge debug
         debugShowCheckedModeBanner: false,
-        // home: SplashPage(),
+        home: SplashPage(),
         //home: HomePage(),
         // home: PopupPercentageContent(),
         //   home: CustomerListPage(),
         //   home: PopupQuotationOrderPage(),
-         home: AddCustomerPage(),
+         //home: AddCustomerPage(),
         builder: EasyLoading.init(),
         navigatorKey: getIt<NavigationService>().navigatorKey,
       ),

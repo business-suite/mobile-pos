@@ -1,21 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../model/session_info.dart';
 import 'base_response.dart';
+
 part 'login_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
 class LoginResponse extends BaseResponse {
-  bool is_new_regist = false;
-  int? user_id;
+  @JsonKey(defaultValue: null)
+  SessionInfo? result;
 
   LoginResponse({
-    required String jsonrpc,
-    this.is_new_regist = false,
-    this.user_id,
-  }) : super(jsonrpc: jsonrpc);
+    String? jsonrpc,
+    int? id,
+    Error? error,
+    this.result,
+  }) : super(jsonrpc: jsonrpc, id: id, error: error);
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) => _$LoginResponseFromJson(json);
+  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginResponseToJson(this);
-
 }

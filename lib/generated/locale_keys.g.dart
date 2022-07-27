@@ -34,7 +34,6 @@ abstract class  LocaleKeys {
   static const payment = 'payment';
   static const cash_in = 'cash_in';
   static const cash_out = 'cash_out';
-  static const cancel = 'cancel';
   static const confirm = 'confirm';
   static const dollars = 'dollars';
   static const select_either_cash_in_or_cash_out_before_confirming = 'select_either_cash_in_or_cash_out_before_confirming';
@@ -205,5 +204,9 @@ abstract class  LocaleKeys {
   static const company_name = 'company_name';
   static const product_price = 'product_price';
   static const log_out = 'log_out';
+  static const cancel = 'cancel';
+  static const refresh = 'refresh';
+  static const log_out_failed_please_try_again = 'log_out_failed_please_try_again';
+  static const an_unexpected_error_has_occurred = 'an_unexpected_error_has_occurred';
 
 }

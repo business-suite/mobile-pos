@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../network/response/login_response.dart';
+import '../../model/session_info.dart';
 
 
 
@@ -123,6 +123,7 @@ class UserSharePref extends SharedPrefManager {
   static const USER = 'USER';
   static const LOAD_START_API = 'LOAD_START_API';
   static const APP_TOKEN = 'APP_TOKEN';
+  static const CSRT_TOKEN = 'CSRT_TOKEN';
   static const FIREBASE_DEVICE_TOKEN = 'FIREBASE_DEVICE_TOKEN';
   static const LOGIN_TYPE = 'LOGIN_TYPE';
   static const TWITTER_ID = 'TWITTER_ID';
@@ -189,18 +190,33 @@ class UserSharePref extends SharedPrefManager {
     return SharedPrefManager.spf!.getString(APP_TOKEN) ?? '';
   }
 
-  Future<void>? saveUser(LoginResponse? loginResponse) {
+  Future<void>? saveCsrtToken(String? value) {
     if (SharedPrefManager.beforCheck()) return null;
-    return SharedPrefManager.spf!.setString(
-        USER, loginResponse != null ? json.encode(loginResponse.toJson()) : '');
+    return SharedPrefManager.spf!.setString(CSRT_TOKEN, value ?? '');
   }
 
-  LoginResponse? getUser() {
+  String getCsrtToken() {
+    if (SharedPrefManager.beforCheck()) return '';
+    return SharedPrefManager.spf!.getString(CSRT_TOKEN) ?? '';
+  }
+
+  Future<void>? saveUser(SessionInfo? user) {
+    if (SharedPrefManager.beforCheck()) return null;
+    return SharedPrefManager.spf!.setString(
+        USER, user != null ? json.encode(user.toJson()) : '');
+  }
+
+  Future<void>? clearUser() {
+    if (SharedPrefManager.beforCheck()) return null;
+    return SharedPrefManager.spf!.clear();
+  }
+
+  SessionInfo? getUser() {
     if (SharedPrefManager.beforCheck()) return null;
     String jsonData = SharedPrefManager.spf!.getString(USER) ?? '';
     if (jsonData.isEmpty) return null;
     dynamic data = json.decode(jsonData);
-    return LoginResponse.fromJson(data);
+    return SessionInfo.fromJson(data);
   }
 
   Future<void>? setLoadStartAPI(bool isAllow) {
@@ -213,14 +229,9 @@ class UserSharePref extends SharedPrefManager {
     return SharedPrefManager.spf!.getBool(LOAD_START_API) ?? false;
   }
 
-  Future<void>? setIsLogin(bool isLogin) {
-    if (SharedPrefManager.beforCheck()) return null;
-    return SharedPrefManager.spf!.setBool(
-        USER, isLogin);
-  }
 
   bool isLogin() {
     if (SharedPrefManager.beforCheck()) return false;
-    return SharedPrefManager.spf!.getBool(USER) ?? false;
+    return getUser()!= null && getUser()!.uid != null;
   }
 }

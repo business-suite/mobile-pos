@@ -9,7 +9,7 @@ Widget EmptyListPlayer() {
   return SafeArea(
     child: Center(
       child: Text(
-        txt_empty_list_player,
+        '',
         style: TextStyle(
             color: kWhite,
             fontSize: text_16,

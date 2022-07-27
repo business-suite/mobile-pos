@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/model/webview_param.dart';
+import 'package:business_suite_mobile_pos/app/module/network/response/login_response.dart';
 import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
 import 'package:business_suite_mobile_pos/app/view/webview/webview_page.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,13 +11,12 @@ import '../../di/injection.dart';
 import '../../module/common/extension.dart';
 import '../../module/common/navigator_screen.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
-import '../../module/network/response/login_response.dart';
+import '../../model/session_info.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
 
 class SignUpViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
-  late LoginResponse _response;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   final formKey = GlobalKey<FormState>();
@@ -32,10 +32,12 @@ class SignUpViewModel extends BaseViewModel {
 
   SignUpViewModel(this._dataRepo);
 
-  set response(LoginResponse response) {
-    _response = response;
+  late LoginResponse _loginResponse;
+  set loginResponse(LoginResponse loginResponse) {
+    _loginResponse = loginResponse;
     notifyListeners();
   }
+  LoginResponse get loginResponse => _loginResponse;
 
 
   bool get validate => fullName.isNotEmpty && Utils.isEmail(email.trim()) && password.isNotEmpty &&
@@ -91,9 +93,6 @@ class SignUpViewModel extends BaseViewModel {
       )
           : null;
 
-  LoginResponse get response => _response;
-
-  setloginType(int loginType) => _userSharePref.saveLoginType(loginType);
 
   /*Observable sign_in(Map<String, dynamic> params) => _dataRepo
       .sign_in(params)

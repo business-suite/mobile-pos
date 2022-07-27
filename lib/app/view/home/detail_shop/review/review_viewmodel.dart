@@ -8,7 +8,7 @@ import '../../../../module/local_storage/shared_pref_manager.dart';
 import '../../../../module/repository/data_repository.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
 class ReviewViewModel extends BaseViewModel {
-  final DataRepository _repo;
+  final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
@@ -35,7 +35,7 @@ class ReviewViewModel extends BaseViewModel {
   ];
 
 
-  ReviewViewModel(this._repo);
+  ReviewViewModel(this._dataRepo);
 
 
 

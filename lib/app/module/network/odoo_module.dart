@@ -12,6 +12,10 @@ import '../local_storage/shared_pref_manager.dart';
 
 final dio = AppDio.getInstance();
 
+
+
+
+
 // ignore: prefer_mixin
 class AppDio with DioMixin implements Dio {
   AppDio._([BaseOptions? options]) {

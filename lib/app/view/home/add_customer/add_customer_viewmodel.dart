@@ -11,7 +11,7 @@ import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 
 class AddCustomertViewModel extends BaseViewModel {
-  final DataRepository _repo;
+  final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
@@ -33,7 +33,7 @@ class AddCustomertViewModel extends BaseViewModel {
         ),
   ];
 
-  AddCustomertViewModel(this._repo);
+  AddCustomertViewModel(this._dataRepo);
 
   String get response => _response;
 

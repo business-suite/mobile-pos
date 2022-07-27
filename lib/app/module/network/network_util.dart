@@ -1,22 +1,24 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:package_info/package_info.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:http/http.dart' as http;
 
 import '../../di/injection.dart';
 import '../../model/device_param.dart';
+import '../../model/session_info.dart';
+import '../common/navigator_screen.dart';
 import '../common/toast_util.dart';
 import '../local_storage/shared_pref_manager.dart';
 import 'dio_module.dart';
 
 Future _get(String url, {Map<String, dynamic>? params}) async {
-  if (params == null) {
-    params = new Map<String, dynamic>();
-  }
-  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  params ??= <String, dynamic>{};
+  /*PackageInfo packageInfo = await PackageInfo.fromPlatform();
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   DeviceParam deviceParam = DeviceParam();
   if (Platform.isAndroid) {
@@ -34,12 +36,14 @@ Future _get(String url, {Map<String, dynamic>? params}) async {
         osVersion: iosDeviceInfo.systemVersion,
         modelName: iosDeviceInfo.model);
   }
-  params.putIfAbsent('device_type', () => deviceParam.deviceType ?? ''); // 2: android
+  params.putIfAbsent(
+      'device_type', () => deviceParam.deviceType ?? ''); // 2: android
   params.putIfAbsent('device_id', () => deviceParam.deviceId ?? '');
-  params.putIfAbsent('device_token', () => getIt<UserSharePref>().getFirebaseToken());
+  params.putIfAbsent(
+      'device_token', () => getIt<UserSharePref>().getFirebaseToken());
   params.putIfAbsent('os_version', () => deviceParam.osVersion ?? '');
   params.putIfAbsent('app_version', () => packageInfo.version);
-  params.putIfAbsent('model_name', () => deviceParam.modelName ?? '');
+  params.putIfAbsent('model_name', () => deviceParam.modelName ?? '');*/
   var response = await dio.get(
     url,
     // options: Options(
@@ -75,9 +79,11 @@ Future _post(String url, Map<String, dynamic>? params) async {
         modelName: iosDeviceInfo.model);
   }
   // common parameter
-  params.putIfAbsent('device_type', () => deviceParam.deviceType ?? ''); // 2: android
+  params.putIfAbsent(
+      'device_type', () => deviceParam.deviceType ?? ''); // 2: android
   params.putIfAbsent('device_id', () => deviceParam.deviceId ?? '');
-  params.putIfAbsent('device_token', () => getIt<UserSharePref>().getFirebaseToken());
+  params.putIfAbsent(
+      'device_token', () => getIt<UserSharePref>().getFirebaseToken());
   params.putIfAbsent('os_version', () => deviceParam.osVersion ?? '');
   params.putIfAbsent('app_version', () => packageInfo.version);
   params.putIfAbsent('model_name', () => deviceParam.modelName ?? '');
@@ -87,11 +93,77 @@ Future _post(String url, Map<String, dynamic>? params) async {
   return response.data;
 }
 
-/*Observable post(String url, {Map<String, dynamic>? params}) =>
-    Observable.fromFuture(_post(url, params)).asBroadcastStream();
+int request_id = 0;
 
-Observable get(String url, {Map<String, dynamic>? params}) =>
-    Observable.fromFuture(_get(url, params: params)).asBroadcastStream();*/
+
+// Take new session from cookies and update session instance
+void updateSessionIdFromCookies(Response response, {bool auth = false}) {
+  // see https://github.com/dart-lang/http/issues/362
+  var cookiesStr = response.headers['set-cookie'];
+  if (cookiesStr == null) {
+    return;
+  }
+
+  for (final cookieStr in cookiesStr) {
+    try {
+      final cookie = Cookie.fromSetCookieValue(cookieStr);
+      if (cookie.name == 'session_id') {
+        //save app token
+        getIt<UserSharePref>().saveAppToken(cookie.value);
+      }
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+}
+
+Future _call(String url, params) async {
+  var headers = {"Content-Type": "application/json"};
+  var payload = {
+    'params': params ?? {},
+    'method': "call",
+    'jsonrpc': "2.0",
+    'id': ++request_id,
+  };
+
+  String? sessionId = getIt<UserSharePref>().getAppToken();
+  var cookie = '';
+  String frontendLang = '';
+  if (sessionId != null) {
+    cookie = 'session_id=' + sessionId;
+  }
+  if (frontendLang.isNotEmpty) {
+    if (cookie.isEmpty) {
+      cookie = 'frontend_lang=$frontendLang';
+    } else {
+      cookie += '; frontend_lang=$frontendLang';
+    }
+  }
+  if (cookie.isNotEmpty) {
+    headers['Cookie'] = cookie;
+  }
+
+  try {
+    Response response = await dio.post(url,
+        data: json.encode(payload), options: Options(headers: headers));
+    print(response.data);
+    updateSessionIdFromCookies(response);
+    return response.data;
+  } on DioError catch (err) {
+    print(err);
+    dispatchFailure(getIt<NavigationService>().context, err);
+    return null;
+  }
+}
+
+Stream post(String url, {Map<String, dynamic>? params}) =>
+    Stream.fromFuture(_post(url, params)).asBroadcastStream();
+
+Stream get(String url, {Map<String, dynamic>? params}) =>
+    Stream.fromFuture(_get(url, params: params)).asBroadcastStream();
+
+Stream call(String url, params) =>
+    Stream.fromFuture(_call(url, params)).asBroadcastStream();
 
 dispatchFailure(BuildContext context, dynamic e) {
   var message = e.toString();

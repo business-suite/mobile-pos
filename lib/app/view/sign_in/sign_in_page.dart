@@ -37,6 +37,7 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
 
   @override
   void initState() {
+    super.initState();
   }
 
   @override

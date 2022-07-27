@@ -15,7 +15,7 @@ import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 import '../../widget_utils/dialog/dialog_log_out_app.dart';
 class ShopListViewModel extends BaseViewModel {
-  final DataRepository _repo;
+  final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
@@ -45,7 +45,7 @@ class ShopListViewModel extends BaseViewModel {
   ];
 
 
-  ShopListViewModel(this._repo);
+  ShopListViewModel(this._dataRepo);
 
 
 

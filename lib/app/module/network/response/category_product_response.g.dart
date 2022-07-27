@@ -9,7 +9,9 @@ part of 'category_product_response.dart';
 CategoryProductResponse _$CategoryProductResponseFromJson(
         Map<String, dynamic> json) =>
     CategoryProductResponse(
-      jsonrpc: json['jsonrpc'] as String,
+      jsonrpc: json['jsonrpc'] as String?,
+      id: json['id'] as int?,
+      error: json['error'] == null ? null : Error.fromJson(json['error']),
       result: (json['result'] as List<dynamic>?)
               ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -20,6 +22,8 @@ Map<String, dynamic> _$CategoryProductResponseToJson(
         CategoryProductResponse instance) =>
     <String, dynamic>{
       'jsonrpc': instance.jsonrpc,
+      'id': instance.id,
+      'error': instance.error,
       'result': instance.result,
     };
 

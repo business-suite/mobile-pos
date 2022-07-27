@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flavorizr/parser/models/flavorizr.dart';
 
 import '../../../../flavors.dart';
 import '../../../../generated/locale_keys.g.dart';
@@ -48,7 +47,7 @@ class DialogExitApp extends StatelessWidget {
                       "Do you want to log out?",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.black54,
+                        color: Colors.black87,
                         fontSize: text_14,
                         fontWeight: FontWeight.normal,
                       ),

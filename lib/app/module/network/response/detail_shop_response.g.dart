@@ -8,7 +8,9 @@ part of 'detail_shop_response.dart';
 
 DetailShopResponse _$DetailShopResponseFromJson(Map<String, dynamic> json) =>
     DetailShopResponse(
-      jsonrpc: json['jsonrpc'] as String,
+      jsonrpc: json['jsonrpc'] as String?,
+      id: json['id'] as int?,
+      error: json['error'] == null ? null : Error.fromJson(json['error']),
       result: (json['result'] as List<dynamic>?)
               ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -18,6 +20,8 @@ DetailShopResponse _$DetailShopResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DetailShopResponseToJson(DetailShopResponse instance) =>
     <String, dynamic>{
       'jsonrpc': instance.jsonrpc,
+      'id': instance.id,
+      'error': instance.error,
       'result': instance.result,
     };
 

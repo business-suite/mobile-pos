@@ -10,10 +10,13 @@ class DetailShopResponse extends BaseResponse {
   @JsonKey(defaultValue: [])
   List<Product>? result;
 
+
   DetailShopResponse({
-    required String jsonrpc,
+    String? jsonrpc,
+    int? id,
+    Error? error,
     this.result,
-  }) : super(jsonrpc: jsonrpc);
+  }) : super(jsonrpc: jsonrpc, id: id, error: error);
 
   factory DetailShopResponse.fromJson(Map<String, dynamic> json) =>
       _$DetailShopResponseFromJson(json);

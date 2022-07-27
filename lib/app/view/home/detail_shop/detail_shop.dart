@@ -18,12 +18,10 @@ import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
 import '../../../di/injection.dart';
-import '../../../module/common/toast_util.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/custom_sliver_grid_delegate.dart';
 import '../../widget_utils/custom/loadmore.dart';
-import '../pay/pay_page.dart';
 import 'detail_shop_viewmodel.dart';
 import 'item_bill.dart';
 
@@ -122,7 +120,8 @@ class _SliderViewState extends State<_SliderView> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: size_10_w, top: size_4_w, bottom: size_4_w),
+            padding: EdgeInsets.only(
+                left: size_10_w, top: size_4_w, bottom: size_4_w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -137,7 +136,8 @@ class _SliderViewState extends State<_SliderView> {
                     width: size_100_w,
                     child: FlatButton(
                       onPressed: () {
-                        detailShopViewModel.keySlider.currentState!.closeSlider();
+                        detailShopViewModel.keySlider.currentState!
+                            .closeSlider();
                       },
                       child: Text(
                         LocaleKeys.new_order.tr(),
@@ -180,7 +180,6 @@ class _SliderViewState extends State<_SliderView> {
 
 class _DetailShopState extends State<_DetailShopContent> {
   DetailShopViewModel get detailShopViewModel => widget._detailShopViewModel;
-
 
   @override
   void initState() {
@@ -231,7 +230,7 @@ class _DetailShopState extends State<_DetailShopContent> {
                     children: <Widget>[
                       Ink(
                         child: InkWell(
-                          onTap: (){
+                          onTap: () {
                             detailShopViewModel.homeMenu();
                           },
                           child: Container(
@@ -275,9 +274,17 @@ class _DetailShopState extends State<_DetailShopContent> {
                                     height: size_50_w,
                                   ),
                                   Container(
-                                    padding: EdgeInsets.only(left: size_8_w,  right: size_12_w),
+                                    padding: EdgeInsets.only(
+                                        left: size_8_w, right: size_12_w),
                                     child: Text(
-                                      value.categoryProducts[value.lastIndexMenu].name ?? '',
+                                      value.categoryProducts.length >
+                                              value.lastIndexMenu
+                                          ? value
+                                                  .categoryProducts[
+                                                      value.lastIndexMenu]
+                                                  .name ??
+                                              ''
+                                          : '',
                                       style: TextStyle(
                                           color: Colors.black38,
                                           fontSize: text_14),
@@ -307,25 +314,30 @@ class _DetailShopState extends State<_DetailShopContent> {
                         controller: value.scrollController,
                         slivers: <Widget>[
                           SliverPadding(
-                            padding: EdgeInsets.only(left: size_6_w, right: size_6_w, top: size_6_w, bottom: size_106_w),
+                            padding: EdgeInsets.only(
+                                left: size_6_w,
+                                right: size_6_w,
+                                top: size_6_w,
+                                bottom: size_106_w),
                             sliver: SliverGrid(
                               gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: size_6_w,
-                                  mainAxisSpacing: size_6_w,
-                                  height: size_150_w),
+                                  SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: size_6_w,
+                                      mainAxisSpacing: size_6_w,
+                                      height: size_150_w),
                               delegate: SliverChildBuilderDelegate(
-                                    (context, index) => ItemCategory(
-                                      product: value.products[index],
+                                (context, index) => ItemCategory(
+                                  product: value.products[index],
                                 ),
                                 childCount: value.products.length,
                               ),
                             ),
                           ),
                           SliverToBoxAdapter(
-                            child:
-                            value.canLoadMore ? BuildLoadMore() : SizedBox(),
+                            child: value.canLoadMore
+                                ? BuildLoadMore()
+                                : SizedBox(),
                           ),
                         ],
                       ),
@@ -353,7 +365,8 @@ class _DetailShopState extends State<_DetailShopContent> {
                                         Text(
                                           LocaleKeys.pay.tr(),
                                           style: TextStyle(
-                                              fontSize: text_24, color: Colors.white),
+                                              fontSize: text_24,
+                                              color: Colors.white),
                                         ),
                                         Text(
                                           '\$143.39',
@@ -364,7 +377,10 @@ class _DetailShopState extends State<_DetailShopContent> {
                                   ),
                                 ),
                               ),
-                              Container(width: size_1_w,color: kColorCACACA,),
+                              Container(
+                                width: size_1_w,
+                                color: kColorCACACA,
+                              ),
                               Expanded(
                                 flex: 1,
                                 child: FlatButton(
@@ -379,7 +395,8 @@ class _DetailShopState extends State<_DetailShopContent> {
                                         Text(
                                           LocaleKeys.review.tr(),
                                           style: TextStyle(
-                                              fontSize: text_24, color: kColor6EC89B),
+                                              fontSize: text_24,
+                                              color: kColor6EC89B),
                                         ),
                                         Text(
                                           '4 items',

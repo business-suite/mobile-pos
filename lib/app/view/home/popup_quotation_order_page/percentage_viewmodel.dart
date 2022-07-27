@@ -9,7 +9,7 @@ import '../../../module/repository/data_repository.dart';
 import '../../../module/res/colors.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 class PercentageViewModel extends BaseViewModel {
-  final DataRepository _repo;
+  final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
@@ -34,7 +34,7 @@ class PercentageViewModel extends BaseViewModel {
     KeyBoard(image: 'assets/icons/ic_backspace.png', sizeStyle: SizeStyle.SMALL),
   ];
 
-  PercentageViewModel(this._repo);
+  PercentageViewModel(this._dataRepo);
 
 
 

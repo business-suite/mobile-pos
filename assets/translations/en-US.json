@@ -36,7 +36,6 @@
   "payment": "Payment",
   "cash_in": "Cash In",
   "cash_out": "Cash Out",
-  "cancel": "Cancel",
   "confirm": "Confirm",
   "dollars": "$",
   "select_either_cash_in_or_cash_out_before_confirming": "Select either Cash In or Cash Out before confirming.",
@@ -214,5 +213,8 @@
   "company_name": "Company Name",
   "product_price": "$ {money}",
   "log_out": "Log Out",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "refresh": "Refresh",
+  "log_out_failed_please_try_again": "Log out failed! Please try again later.",
+  "an_unexpected_error_has_occurred": "An unexpected error occurred!\nPlease try again later."
 }
