@@ -13,7 +13,9 @@ abstract class  LocaleKeys {
   static const chairs = 'chairs';
   static const please_select_a_payment_method = 'please_select_a_payment_method';
   static const cash = 'cash';
+  static const name_cash = 'name_cash';
   static const phone = 'phone';
+  static const phone_phone = 'phone_phone';
   static const bank = 'bank';
   static const customer_account = 'customer_account';
   static const customer = 'customer';
@@ -46,6 +48,7 @@ abstract class  LocaleKeys {
   static const served_by_mitchell_admin = 'served_by_mitchell_admin';
   static const total = 'total';
   static const zip = 'zip';
+  static const zip_phone = 'zip_phone';
   static const english_us = 'english_us';
   static const none = 'none';
   static const filters = 'filters';
@@ -65,6 +68,7 @@ abstract class  LocaleKeys {
   static const street = 'street';
   static const search_customers = 'search_customers';
   static const change = 'change';
+  static const name_change = 'name_change';
   static const total_taxes = 'total_taxes';
   static const order_000040950006 = 'order_000040950006';
   static const what_do_you_want_to_do = 'what_do_you_want_to_do';
@@ -77,6 +81,22 @@ abstract class  LocaleKeys {
   static const delete = 'delete';
   static const existing_orderlines = 'existing_orderlines';
   static const order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order = 'order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order';
+  static const quantity = 'quantity';
+  static const name = 'name';
+  static const please_select_the_customer = 'please_select_the_customer';
+  static const you_need_to_select_the_customer_before_you_can_invoice_or_ship_an_order = 'you_need_to_select_the_customer_before_you_can_invoice_or_ship_an_order';
+  static const error_finalized_order_cannot_be_modified = 'error_finalized_order_cannot_be_modified';
+  static const empty_order = 'empty_order';
+  static const there_must_be_at_least_one_product_in_your_order_before_it_can_be_validated_and_invoiced = 'there_must_be_at_least_one_product_in_your_order_before_it_can_be_validated_and_invoiced';
+  static const keep_session_open = 'keep_session_open';
+  static const close_session = 'close_session';
+  static const continue_selling = 'continue_selling';
+  static const closing_control = 'closing_control';
+  static const open_session = 'open_session';
+  static const opening_cash_control = 'opening_cash_control';
+  static const accept_payments = 'accept_payments';
+  static const difference_and_post_a = 'difference_and_post_a';
+  static const profit_loss_journal_entry = 'profit_loss_journal_entry';
   static const this_order_is_empty = 'this_order_is_empty';
   static const tab_home = 'tab_home';
   static const tab_cloud_pos = 'tab_cloud_pos';
@@ -104,6 +124,7 @@ abstract class  LocaleKeys {
   static const tab_help = 'tab_help';
   static const tab_logout = 'tab_logout';
   static const pos_name = 'pos_name';
+  static const name_phone = 'name_phone';
   static const pos_vat = 'pos_vat';
   static const pos_qty = 'pos_qty';
   static const pos_quantity = 'pos_quantity';
@@ -175,6 +196,8 @@ abstract class  LocaleKeys {
   static const product_relate_product = 'product_relate_product';
   static const sign_in = 'sign_in';
   static const email = 'email';
+  static const address_phone = 'address_phone';
+  static const email_phone = 'email_phone';
   static const password = 'password';
   static const forgot_password_question = 'forgot_password_question';
   static const invalid_email = 'invalid_email';
@@ -185,6 +208,7 @@ abstract class  LocaleKeys {
   static const sent_email_reset = 'sent_email_reset';
   static const email_address = 'email_address';
   static const txt_continue = 'txt_continue';
+  static const s00041 = 's00041';
   static const two_factor_authentication = 'two_factor_authentication';
   static const msg_enter_six_digit_code = 'msg_enter_six_digit_code';
   static const don_t_ask_again_on_this_device = 'don_t_ask_again_on_this_device';
@@ -200,6 +224,8 @@ abstract class  LocaleKeys {
   static const term_of_service = 'term_of_service';
   static const i_agree_to_the = 'i_agree_to_the';
   static const and = 'and';
+  static const taxes_review = 'taxes_review';
+  static const total_review = 'total_review';
   static const press_the_back_button_to_exit = 'press_the_back_button_to_exit';
   static const company_name = 'company_name';
   static const product_price = 'product_price';

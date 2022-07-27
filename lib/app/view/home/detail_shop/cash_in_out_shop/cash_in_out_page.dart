@@ -3,7 +3,6 @@
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../di/injection.dart';
 import '../../../../module/common/extension.dart';
 import '../../../../module/common/navigator_screen.dart';
@@ -83,6 +82,7 @@ class _CashInOutPageState extends State<CashInOutPage> {
                   height: size_5_w,
                 ),
                 Container(
+                  height: size_50_w,
                   padding: EdgeInsets.fromLTRB(0, size_2_w, 0, size_2_w),
                   child: Row(
                     children: [
@@ -96,35 +96,38 @@ class _CashInOutPageState extends State<CashInOutPage> {
                       ),
                       Expanded(
                         flex: 1,
-                        child: Material(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4),
-                            topRight: Radius.circular(4),
-                            bottomLeft: Radius.circular(4),
-                            bottomRight: Radius.circular(4),
-                          ),
-                       //   color: kColorf0eeee,
-                          child: TextField(
-                            cursorColor: kColor808080,
-                            minLines: 1,
-                            maxLines: 2,
-                            textInputAction: TextInputAction.newline,
-                            keyboardType: TextInputType.number,
-                            textAlign: TextAlign.right,
-                            // cursorHeight: size_25_w,
-                        //      cursorColor: kColor565656,
-                            decoration: InputDecoration(
-                              filled: true,
-                              suffixText: "\$",
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: kColor64AF8A, width: size_1_w),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.05),
+                              borderRadius: BorderRadius.circular(size_4_w)),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size_1_w, vertical: size_1_w),
+                          child: Material(
+                            borderRadius: BorderRadius.only(
+                               topLeft: Radius.circular(4),
+                               topRight: Radius.circular(4),
+                               bottomLeft: Radius.circular(4),
+                               bottomRight: Radius.circular(4),
+                            ),
+
+                            child: TextField(
+                              cursorColor: kColor808080,
+                                 // minLines: 1,
+                              maxLines: 1,
+                              textInputAction: TextInputAction.newline,
+                              keyboardType: TextInputType.number,
+                              textAlign: TextAlign.right,
+                              decoration: InputDecoration(
+                                filled: true,
+                                border: InputBorder.none,
+                                suffixText: "\$",
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                  BorderSide(color: kColor64AF8A, width: size_3_w,),
+                                ),
+                                enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
+                               // border: InputBorder.none,
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: kColorf0eeee, width: 1.0),
-                              ),
-                             // border: InputBorder.none,
                             ),
                           ),
                         ),
@@ -141,42 +144,49 @@ class _CashInOutPageState extends State<CashInOutPage> {
                 ),
                 Column(
                   children: [
-                    Material(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(4),
-                        topRight: Radius.circular(4),
-                        bottomLeft: Radius.circular(4),
-                        bottomRight: Radius.circular(4),
-                      ),
-                      child: TextFormField(
-                        autofocus: true,
-                        onChanged:  (value) {
-                          setState(() {
-                            if (value.contains(' ')) {
-                              _reasonErr = value;
-                            } else {
-                              _reasonErr = '';
-                            }
-                          });
-                        },
-                       // cursorHeight: size_25_w,
-                        cursorColor: kColor808080,
-                        controller: _reasonController,
-                        minLines: 1,
-                        maxLines: 2,
-                        textInputAction: TextInputAction.newline,
-                        keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
-                            filled: true,
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: kColor64AF8A, width: size_2_w),
-                            ),
-                            border: InputBorder.none,
-                            enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
-                            hintText: 'Reason'),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.05),
+                          borderRadius: BorderRadius.circular(size_4_w)),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: size_1_w, vertical: size_1_w),
+                      child: Material(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(4),
+                          topRight: Radius.circular(4),
+                          bottomLeft: Radius.circular(4),
+                          bottomRight: Radius.circular(4),
+                        ),
+                        child: TextFormField(
+                          autofocus: true,
+                          onChanged:  (value) {
+                            setState(() {
+                              if (value.contains(' ')) {
+                                _reasonErr = value;
+                              } else {
+                                _reasonErr = '';
+                              }
+                            });
+                          },
+                         // cursorHeight: size_25_w,
+                          cursorColor: kColor808080,
+                          controller: _reasonController,
+                        //  minLines: 1,
+                          maxLines: 2,
+                          textInputAction: TextInputAction.newline,
+                          keyboardType: TextInputType.multiline,
+                          decoration: InputDecoration(
+                              filled: true,
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: kColor64AF8A, width: size_3_w),
+                              ),
+                              border: InputBorder.none,
+                              enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
+                              hintText: 'Reason'),
 
 
+                        ),
                       ),
                     ),
                     _reasonInvalid ? Text(_reasonErr,style: TextStyle(color: Colors.red,fontWeight: FontWeight.normal),) : Container(),
@@ -272,17 +282,25 @@ class _CashInOutPageState extends State<CashInOutPage> {
               borderRadius: BorderRadius.circular(size_3_w)),
           padding:
               EdgeInsets.symmetric(horizontal: size_1_w, vertical: size_1_w),
-          child: Container(
-            color: index == indexSelect ? kColor64AF8A : kColorE4E2E2,
-            height: size_50_w,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: size_12_w),
-              child: Center(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: text_12,
-                    color: kColor555555,
+          child: Material(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(4),
+              topRight: Radius.circular(4),
+              bottomLeft: Radius.circular(4),
+              bottomRight: Radius.circular(4),
+            ),
+            child: Container(
+              color: index == indexSelect ? kColor64AF8A : kColorE4E2E2,
+              height: size_50_w,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: size_12_w),
+                child: Center(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: text_12,
+                      color: kColor555555,
+                    ),
                   ),
                 ),
               ),

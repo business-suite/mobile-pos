@@ -1,6 +1,5 @@
 import 'package:business_suite_mobile_pos/app/model/order.dart';
 import 'package:business_suite_mobile_pos/app/module/res/style.dart';
-import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';

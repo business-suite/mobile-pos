@@ -2,13 +2,10 @@ import 'package:business_suite_mobile_pos/app/model/customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:business_suite_mobile_pos/app/model/customer_add_country.dart';
-import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-
 
 import '../../../../flavors.dart';
 import '../../../../generated/locale_keys.g.dart';
@@ -27,9 +24,7 @@ class AddCustomerPage extends PageProvideNode<AddCustomertViewModel> {
 }
 class AddCustomerContent extends StatefulWidget {
   AddCustomertViewModel _addCustomertViewModel;
-
   AddCustomerContent(this._addCustomertViewModel);
-
   @override
   State<AddCustomerContent> createState() => _AddCustomerContentState();
 }
@@ -38,7 +33,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
 
   AddCustomertViewModel get addCustomertViewModel => widget._addCustomertViewModel;
   final textEditingController = TextEditingController();
-  String? stateValue = LocaleKeys.none.tr();
+  String? stateValue  = LocaleKeys.none.tr();
   String? countryValue = LocaleKeys.none.tr();
   String? languageValue= LocaleKeys.english_us.tr();
 
@@ -125,7 +120,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       Row(
                         children: List.generate(1200~/10, (index) => Expanded(
                           child: Container(
-                            color: index%2==0?kCGrey240 :kCGrey102,
+                            color: index%2==0?kColorBackground :kCGrey220,
                             height: 2,
                           ),
                         )),
@@ -154,32 +149,30 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                     ),
                       //name
                       Container(
-                        height: size_55_w,
+                        height: size_65_w,
                         child: Padding(
                           padding:
-                          EdgeInsets.only(left: size_20_w,right: size_5_w,bottom: size_15_w),
+                          EdgeInsets.only(left: size_20_w,right: size_5_w,bottom: size_24_w,),
                           child: Material(
                             color: kWhite,
                             borderRadius: BorderRadius.circular(size_5_r),
                             child: TextField(
-                              maxLines: 1,
-                              cursorColor: kCBlack,
-                              autocorrect: false,
+                              style: TextStyle(color: kCBlack, fontSize:text_25),
                               textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
-                                fillColor: kWhite,
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(size_5_r),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(size_5_r),
                                   borderSide: BorderSide(
-                                    color: kColor2947C3,
+                                    color: kCOrange,
+                                    width: size_1_w,
                                   ),
                                 ),
                                 hintText:
                                 LocaleKeys.pos_name.tr(),
-                                hintStyle: TextStyle(fontSize: text_20),
+                                hintStyle: TextStyle(fontSize: text_30,color:kCBlack),
                                 contentPadding:
                                 EdgeInsets.fromLTRB(22.0, 5.0, 20.0, 5.0),
                               ),
@@ -187,41 +180,6 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                           ),
                         ),
                       ),
-                      // Padding(
-                      //   padding:
-                      //   EdgeInsets.only(left: size_10_w,right: size_20_w, bottom: size_7_w),
-                      //   child: Container(
-                      //     height: size_45_w,
-                      //     width: size_340_w,
-                      //     decoration: BoxDecoration(
-                      //       color: kCWhite,
-                      //       borderRadius: BorderRadius.circular(5),
-                      //     ),
-                      //     child: TextField(
-                      //       cursorColor: Colors.black,
-                      //       textAlignVertical: TextAlignVertical.center,
-                      //       decoration: InputDecoration(
-                      //         border: OutlineInputBorder(
-                      //           borderRadius: BorderRadius.circular(5),
-                      //         ),
-                      //         suffixIconConstraints: BoxConstraints(
-                      //             maxWidth: size_25_w, maxHeight: size_15_w),
-                      //         focusedBorder: OutlineInputBorder(
-                      //           borderRadius: BorderRadius.circular(5),
-                      //           borderSide: BorderSide(
-                      //             color: kCBlack,
-                      //             width: size_2_w,
-                      //           ),
-                      //         ),
-                      //         hintText:
-                      //         LocaleKeys.pos_name.tr(),
-                      //         hintStyle: TextStyle(fontSize: size_10_w),
-                      //         contentPadding:
-                      //         EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                       //Street
                       Padding(
                         padding: EdgeInsets.only(right: size_290_w),
@@ -231,33 +189,27 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                       Padding(
                         padding:
-                        EdgeInsets.only(left: size_10_w,right: size_20_w, bottom: size_7_w),
-                        child: Container(
-                          height: size_45_w,
-                          width: size_340_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                        EdgeInsets.only(left: size_10_w, bottom: size_12_w,right: size_18_w),
+                        child: Material(
+                          color: kWhite,
+                          borderRadius: BorderRadius.circular(size_5_r),
                           child: TextField(
-                            cursorColor: Colors.black,
+                            style: TextStyle(color: kCBlack, fontSize:text_15),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(size_5_r),
                               ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
                               hintText:
                               LocaleKeys.street.tr(),
-                              hintStyle: TextStyle(fontSize: size_10_w),
+                              hintStyle: TextStyle(fontSize: size_15_w,color:kCBlack),
                               contentPadding:
                               EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                             ),
@@ -273,34 +225,27 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                       Padding(
                         padding:
-                        EdgeInsets.only(left: size_10_w,right: size_20_w, bottom: size_7_w),
-                        child: Container(
-                          height: size_45_w,
-                          width: size_340_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                        EdgeInsets.only(left: size_10_w, bottom: size_12_w,right: size_18_w),
+                        child: Material(
+                          color: kWhite,
+                          borderRadius: BorderRadius.circular(size_5_r),
                           child: TextField(
-                            cursorColor: Colors.black,
-                            autocorrect: false,
+                            style: TextStyle(color: kCBlack, fontSize:text_15),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(size_5_r),
                               ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
                               hintText:
                               LocaleKeys.city.tr(),
-                              hintStyle: TextStyle(fontSize: size_20_w),
+                              hintStyle: TextStyle(fontSize: size_15_w,color:kCBlack),
                               contentPadding:
                               EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                             ),
@@ -316,34 +261,27 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                       Padding(
                         padding:
-                        EdgeInsets.only(left: size_10_w,right: size_20_w, bottom: size_7_w),
-                        child: Container(
-                          height: size_45_w,
-                          width: size_340_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                        EdgeInsets.only(left: size_10_w, bottom: size_12_w,right: size_18_w),
+                        child: Material(
+                          color: kWhite,
+                          borderRadius: BorderRadius.circular(size_5_r),
                           child: TextField(
-                            cursorColor: Colors.black,
-                            autocorrect: false,
+                            style: TextStyle(color: kCBlack, fontSize:text_15),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(size_5_r),
                               ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
                               hintText:
                               LocaleKeys.zip.tr(),
-                              hintStyle: TextStyle(fontSize: size_20_w),
+                              hintStyle: TextStyle(fontSize: size_15_w,color:kCBlack),
                               contentPadding:
                               EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                             ),
@@ -363,18 +301,17 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                           decoration: InputDecoration(
                               fillColor: kCWhite,
                               filled: true,
-                              hintText: LocaleKeys.none.tr(),
                               hintStyle: TextStyle(fontSize: size_20_w,color:kCBlack),
                               contentPadding:
                               EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
-                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
+                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(size_5_r))),
                           isEmpty: stateValue == '',
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton<String>(
@@ -391,7 +328,7 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               items: [
                                 DropdownMenuItem(
                                     value: LocaleKeys.none.tr(),
-                                    child: Text(LocaleKeys.none.tr().toUpperCase(),
+                                    child: Text(LocaleKeys.none.tr(),
                                         style: TextStyle(fontSize: text_15, color: kCBlack))),
                                 DropdownMenuItem(
                                     value: LocaleKeys.armed_forces_americas.tr().toUpperCase(),
@@ -429,10 +366,10 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               LocaleKeys.none.tr(),
                               hintStyle: TextStyle(fontSize: size_20_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
@@ -485,17 +422,18 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                               contentPadding:
                               EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
-                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(size_5_r))),
                           isEmpty: languageValue == '',
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton<String>(
                               value: languageValue,
+                              icon: Icon(Icons.keyboard_arrow_down_sharp),
                               isDense: true,
                               underline: SizedBox(),
                               onChanged: (val) {
@@ -507,12 +445,13 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                                 DropdownMenuItem(
                                     value: LocaleKeys.english_us.tr(),
                                     child: Text(LocaleKeys.english_us.tr(),
-                                        style: TextStyle(fontSize: 15, color: kCBlack))),
+                                        style: TextStyle(fontSize:text_15, color: kCBlack))),
                               ],
                             ),
                           ),
                         ),
                       ),
+                      //email
                       Padding(
                         padding: EdgeInsets.only(right: size_290_w),
                         child: Text( LocaleKeys.email.tr(),
@@ -521,31 +460,26 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                       Padding(
                         padding:
-                        EdgeInsets.only(left: size_10_w, bottom: size_7_w,right: size_18_w),
-                        child: Container(
-                          height: size_45_w,
-                          width: size_340_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                        EdgeInsets.only(left: size_10_w, bottom: size_12_w,right: size_18_w),
+                        child: Material(
+                          color: kWhite,
+                          borderRadius: BorderRadius.circular(size_5_r),
                           child: TextField(
-                            cursorColor: Colors.black,
-                            autocorrect: false,
+                            style: TextStyle(color: kCBlack, fontSize:text_15),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                               ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
+                              contentPadding:
+                              EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                             ),
                           ),
                         ),
@@ -559,31 +493,26 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                       Padding(
                         padding:
-                        EdgeInsets.only(left: size_10_w, bottom: size_7_w,right: size_18_w),
-                        child: Container(
-                          height: size_45_w,
-                          width: size_340_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                        EdgeInsets.only(left: size_10_w, bottom: size_12_w,right: size_18_w),
+                        child: Material(
+                          color: kWhite,
+                          borderRadius: BorderRadius.circular(size_5_r),
                           child: TextField(
-                            cursorColor: Colors.black,
-                            autocorrect: false,
+                            style: TextStyle(color: kCBlack, fontSize:text_15),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                               ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
+                              contentPadding:
+                              EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                             ),
                           ),
                         ),
@@ -597,31 +526,26 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                       Padding(
                         padding:
-                        EdgeInsets.only(left: size_10_w, bottom: size_7_w,right: size_18_w),
-                        child: Container(
-                          height: size_45_w,
-                          width: size_340_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                        EdgeInsets.only(left: size_10_w, bottom: size_12_w,right: size_18_w),
+                        child: Material(
+                          color: kWhite,
+                          borderRadius: BorderRadius.circular(size_5_r),
                           child: TextField(
-                            cursorColor: Colors.black,
-                            autocorrect: false,
+                            style: TextStyle(color: kCBlack, fontSize:text_15),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                               ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
+                              contentPadding:
+                              EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                             ),
                           ),
                         ),
@@ -635,31 +559,25 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
                       ),
                       Padding(
                         padding:
-                        EdgeInsets.only(left: size_10_w, bottom: size_7_w,right: size_18_w),
-                        child: Container(
-                          height: size_45_w,
-                          width: size_340_w,
-                          decoration: BoxDecoration(
-                            color: kCWhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
+                        EdgeInsets.only(left: size_10_w, bottom: size_12_w,right: size_18_w),
+                        child: Material(
+                          color: kWhite,
                           child: TextField(
-                            cursorColor: Colors.grey,
-                            autocorrect: false,
+                            style: TextStyle(color: kCBlack, fontSize:text_15),
                             textAlignVertical: TextAlignVertical.center,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                               ),
-                              suffixIconConstraints: BoxConstraints(
-                                  maxWidth: size_25_w, maxHeight: size_15_w),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0),
+                                borderRadius: BorderRadius.circular(size_5_r),
                                 borderSide: BorderSide(
-                                  color: kCBlack,
-                                  width: size_2_w,
+                                  color: kCOrange,
+                                  width: size_1_w,
                                 ),
                               ),
+                              contentPadding:
+                              EdgeInsets.fromLTRB(5.0, 5.0, 10.0, 10.0),
                             ),
                           ),
                         ),

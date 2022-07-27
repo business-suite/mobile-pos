@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/popup_invoice/popup_invoice.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -8,16 +8,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../flavors.dart';
 import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/event_bus/event_bus.dart';
+import '../../../module/res/colors.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../detail_shop/appbar_shop.dart';
 import '../detail_shop/review/review_page.dart';
+import '../popup_empty_order/popup_empty_order.dart';
 import 'item_keyboard.dart';
 import 'pay_viewmodel.dart';
 
@@ -40,6 +41,18 @@ class PayContent extends StatefulWidget {
 }
 
 class _PayContentState extends State<PayContent> {
+
+
+  bool _hasBeenPressed = false;
+  bool _hasBeenText = false;
+
+  bool _hasBeenBank = false;
+  bool _hasBeenTextBank = false;
+
+  bool _hasBeenCustomer = false;
+  bool _hasBeenTextCustomer = false;
+
+
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
@@ -110,19 +123,25 @@ class _PayContentState extends State<PayContent> {
                                     height: size_100_w,
                                     child: Container(
                                       child: FlatButton(
-                                        color: kColorE2E2E2,
-                                        onPressed: () {},
+                                        color: _hasBeenPressed ? Colors.black : kColorE2E2E2,
+                                        onPressed: () {
+
+                                          setState(() {
+                                            _hasBeenPressed = !_hasBeenPressed;
+                                            _hasBeenText = !_hasBeenText;
+                                          });
+                                        },
                                         child: Padding(
                                           padding: EdgeInsets.fromLTRB(
                                               0, size_35_w, size_45_w, 0),
                                           child: Column(
                                             children: [
                                               Text(
-                                                LocaleKeys.cash.tr(),
+                                                LocaleKeys.name_cash.tr(),
                                                 style: TextStyle(
                                                     fontSize: text_20,
-                                                    color:
-                                                        Colors.black38),
+                                                    color: _hasBeenText ? Colors.white : kColor555555.withOpacity(0.5),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -139,8 +158,14 @@ class _PayContentState extends State<PayContent> {
                                       height: size_100_w,
                                       child: Container(
                                         child: FlatButton(
-                                          color: kColorE2E2E2,
-                                          onPressed: () {},
+                                          color: _hasBeenBank ? Colors.black : kColorE2E2E2,
+                                          onPressed: () {
+                                            OpenPopupEmptyOrder();
+                                            setState(() {
+                                              _hasBeenBank = !_hasBeenBank;
+                                              _hasBeenTextBank = !_hasBeenTextBank;
+                                            });
+                                          },
                                           child: Padding(
                                             padding: EdgeInsets.fromLTRB(
                                                 0,
@@ -153,8 +178,8 @@ class _PayContentState extends State<PayContent> {
                                                   LocaleKeys.bank.tr(),
                                                   style: TextStyle(
                                                       fontSize: text_20,
-                                                      color:
-                                                          Colors.black38),
+                                                    color: _hasBeenTextBank ? Colors.white : kColor555555.withOpacity(0.5),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -173,8 +198,13 @@ class _PayContentState extends State<PayContent> {
                                 width: double.infinity,
                                 height: size_100_w,
                                 child: FlatButton(
-                                  color: kColorE2E2E2,
-                                  onPressed: () {},
+                                  color: _hasBeenCustomer ? Colors.black : kColorE2E2E2,
+                                  onPressed: () {
+                                    setState(() {
+                                      _hasBeenCustomer = !_hasBeenCustomer;
+                                      _hasBeenTextCustomer = !_hasBeenTextCustomer;
+                                    });
+                                  },
                                   child: Padding(
                                     padding: EdgeInsets.fromLTRB(
                                         0, size_5_w, size_5_w, 0),
@@ -185,7 +215,8 @@ class _PayContentState extends State<PayContent> {
                                         LocaleKeys.customer_account.tr(),
                                         style: TextStyle(
                                             fontSize: text_20,
-                                            color: Colors.black38),
+                                          color: _hasBeenTextCustomer ? Colors.white : kColor555555.withOpacity(0.5),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -300,8 +331,15 @@ class _PayContentState extends State<PayContent> {
                             width: double.infinity,
                             height: size_100_w,
                             child: FlatButton(
-                              color: Color(0xFFe2e2e2),
-                              onPressed: () {},
+
+                              color: _hasBeenPressed ? kColor64AF8A : kColorE2E2E2,
+                              onPressed: () {
+                                payViewModel.changePopup();
+                                setState(() {
+                                  _hasBeenPressed = !_hasBeenPressed;
+                                  _hasBeenText = !_hasBeenText;
+                                });
+                              },
                               child: Row(
                                 children: [
                                   Padding(
@@ -315,7 +353,7 @@ class _PayContentState extends State<PayContent> {
                                             color: Colors.black
                                                 .withOpacity(0.2),
                                           ),
-                                          color: Colors.white,
+                                          color: _hasBeenPressed ? kColor64AF8A : Colors.white,
                                           shape: BoxShape.circle),
                                       child: Padding(
                                         padding: EdgeInsets.all(size_16_w),
@@ -323,6 +361,7 @@ class _PayContentState extends State<PayContent> {
                                           'assets/icons/ic_file.svg',
                                           width: size_14_w,
                                           height: size_14_w,
+                                          color: _hasBeenPressed ? Colors.white : kColor555555,
                                         ),
                                       ),
                                     ),
@@ -335,7 +374,8 @@ class _PayContentState extends State<PayContent> {
                                         LocaleKeys.invoice.tr(),
                                         style: TextStyle(
                                             fontSize: text_20,
-                                            color: Colors.black38),
+                                          color: _hasBeenPressed ? Colors.white : kColor555555.withOpacity(0.5),
+                                        ),
                                       ),
                                     ),
                                   ),

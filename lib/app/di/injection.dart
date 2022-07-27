@@ -52,16 +52,16 @@ Future<void> configureDependencies() async {
       () => SignUpViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<ForgotPassViewModel>(
-          () => ForgotPassViewModel(getIt<DataRepository>()));
+      () => ForgotPassViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<AuthenticationViewModel>(
-          () => AuthenticationViewModel(getIt<DataRepository>()));
+      () => AuthenticationViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<HomeViewModel>(
       () => HomeViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<ShopListViewModel>(
-          () => ShopListViewModel(getIt<DataRepository>()));
+      () => ShopListViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<DetailShopViewModel>(
       () => DetailShopViewModel(getIt<DataRepository>()));
@@ -71,18 +71,37 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<ReviewViewModel>(
       () => ReviewViewModel(getIt<DataRepository>()));
+
   getIt.registerFactory<ValidateViewModel>(
-          () => ValidateViewModel(getIt<DataRepository>()));
+      () => ValidateViewModel(getIt<DataRepository>()));
+
   getIt.registerFactory<OrderListViewModel>(
       () => OrderListViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactory<CustomerListViewModel>(
-          () => CustomerListViewModel(getIt<DataRepository>()));
+  getIt.registerFactory<CustomerPhoneListViewModel>(
+      () => CustomerPhoneListViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<CustomerTabletListViewModel>(
+      () => CustomerTabletListViewModel(getIt<DataRepository>()));
+
   getIt.registerFactory<AddCustomertViewModel>(
-          () => AddCustomertViewModel(getIt<DataRepository>()));
+      () => AddCustomertViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<PercentageViewModel>(
-          () => PercentageViewModel(getIt<DataRepository>()));
+      () => PercentageViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<InVoiceViewModel>(
+      () => InVoiceViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<ConInsBillsViewModel>(
+          () => ConInsBillsViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<ClosingControlViewModel>(
+          () => ClosingControlViewModel(getIt<DataRepository>()));
+
+
+  getIt.registerFactory<OpeningCashViewModel>(
+          () => OpeningCashViewModel(getIt<DataRepository>()));
 
   getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, dynamic>(
       (param1, _) => //no need param2

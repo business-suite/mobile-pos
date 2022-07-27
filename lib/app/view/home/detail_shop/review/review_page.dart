@@ -1,3 +1,6 @@
+import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/detail_item_review_customer.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/item_review_customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +19,6 @@ import '../../../../module/res/style.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
 import '../../../widget_utils/base_scaffold_safe_area.dart';
 import '../../../widget_utils/custom/custom_card.dart';
-import '../../customer_list/customer_list_page.dart';
 import '../../info/bottom_sheet_product_info.dart';
 import '../../pay/pay_page.dart';
 import '../appbar_shop.dart';
@@ -39,8 +41,15 @@ class ReviewContent extends StatefulWidget {
   @override
   State<ReviewContent> createState() => _ReviewContentState();
 }
-
 class _ReviewContentState extends State<ReviewContent> {
+
+  bool _hasBeenPressed = false;
+  bool _hasBeenTextInfo = false;
+
+  bool _hasBeenQuotationOrder = false;
+  bool _hasBeenTextQuotatiOrder = false;
+
+
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
@@ -68,34 +77,119 @@ class _ReviewContentState extends State<ReviewContent> {
         return Stack(
           children: [
             //List order
-            SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: size_16_w,
-                  right: size_16_w,
-                  top: size_30_w,
-                ),
-                child: Center(
+            // SingleChildScrollView(
+            //   child: Padding(
+            //     padding: EdgeInsets.only(
+            //       left: size_16_w,
+            //       right: size_16_w,
+            //       top: size_30_w,
+            //     ),
+            //     child: Center(
+            //       child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         children: <Widget>[
+            //           Container(
+            //             padding: EdgeInsets.only(bottom: size_5_w),
+            //             child: SvgPicture.asset(
+            //               'assets/icons/ic_shopping_cart.svg',
+            //               color: kColorDDDDDD,
+            //               height: size_80_w,
+            //             ),
+            //           ),
+            //           Container(
+            //             padding: EdgeInsets.only(bottom: size_5_w),
+            //             child: Padding(
+            //               padding: EdgeInsets.only(right: size_10_w),
+            //               child: Text(
+            //                 LocaleKeys.this_order_is_empty.tr(),
+            //                 style: TextStyle(
+            //                     color: kColorDDDDDD, fontSize: text_20),
+            //               ),
+            //             ),
+            //           ),
+            //
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            Padding(
+              padding:  EdgeInsets.only(top: size_1_w,bottom: size_360_w),
+              child: Expanded(
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(bottom: size_5_w),
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_shopping_cart.svg',
-                          color: kColorDDDDDD,
-                          height: size_80_w,
+                    children: [
+                      ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: value.reviews.length,
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            Material(
+                              color: kColorf0eeee,
+                              child: ItemReview(
+                                item: value.reviews[index],
+                                onClickItem: () => value.onClickItem,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(right: size_250_w),
+                              child: Text(
+                                LocaleKeys.s00041.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: kColor6F6F6F,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: text_18,
+                                ),
+                              ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: value.detailreviews.length,
+                              itemBuilder: (context, index) =>
+                                  Material(
+                                color: kColorf0eeee,
+                                child: DetailItemReview(
+                                  item: value.detailreviews[index],
+                                  onClickItem: () => value.onClickItem,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(bottom: size_5_w),
-                        child: Padding(
-                          padding: EdgeInsets.only(right: size_10_w),
-                          child: Text(
-                            LocaleKeys.this_order_is_empty.tr(),
-                            style: TextStyle(
-                                color: kColorDDDDDD, fontSize: text_20),
+                      Padding(
+                        padding: EdgeInsets.only(left: size_180_w,top: size_10_w),
+                        child: Container(
+                          height: size_2_w,
+                          width: size_130_w,
+                          color: kColor777777,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size_180_w),
+                        child: Text(
+                          LocaleKeys.total_review.tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kColor6F6F6F,
+                            fontWeight: FontWeight.w500,
+                            fontSize: text_20,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size_180_w),
+                        child: Text(
+                          LocaleKeys.taxes_review.tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kColor6F6F6F,
+                            fontWeight: FontWeight.w300,
+                            fontSize: text_15,
                           ),
                         ),
                       ),
@@ -125,10 +219,11 @@ class _ReviewContentState extends State<ReviewContent> {
                           child: Row(
                             children: [
                               Expanded(
+                                flex:1,
                                 child: Card(
-                                  color: kColorE2E2E2,
+                                  color: _hasBeenPressed ? Colors.black : kColorE2E2E2,
                                   elevation: 1,
-                                  shape: const RoundedRectangleBorder(
+                                  shape:  RoundedRectangleBorder(
                                     side: BorderSide(
                                       color: kColorBFBFBF,
                                     ),
@@ -138,6 +233,11 @@ class _ReviewContentState extends State<ReviewContent> {
                                         vertical: size_10_w),
                                     child: InkWell(
                                       onTap: () {
+                                        setState(() {
+                                          _hasBeenPressed = !_hasBeenPressed;
+                                          _hasBeenTextInfo = !_hasBeenTextInfo;
+
+                                        });
                                         prductInfoBottomSheet(
                                             onCloseClick: null,
                                           statusBarHeight: statusBarHeight
@@ -151,7 +251,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                           Icon(
                                             Icons.info_outlined,
                                             size: size_20_w,
-                                            color: kColor555555,
+                                            color: _hasBeenTextInfo ? Colors.white : kColor555555,
                                           ),
                                           SizedBox(
                                             width: size_6_w,
@@ -159,7 +259,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                           Text(
                                             LocaleKeys.info.tr(),
                                             style: TextStyle(
-                                              color: kColor555555,
+                                              color: _hasBeenTextInfo ? Colors.white : kColor555555,
                                               fontSize: text_20,
                                             ),
                                           ), // text
@@ -218,7 +318,7 @@ class _ReviewContentState extends State<ReviewContent> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: size_10_w),
                           child: Card(
-                            color: kColorE2E2E2,
+                            color: _hasBeenQuotationOrder ? Colors.black : kColorE2E2E2,
                             elevation: 0.0,
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
@@ -228,8 +328,15 @@ class _ReviewContentState extends State<ReviewContent> {
                             child: Ink(
                               child: InkWell(
                                 //goto order list page
-                                onTap: () =>
-                                    reviewViewModel.gotoOrderListpage(),
+                                onTap: () {
+                                  reviewViewModel.gotoOrderListpage();
+                                  setState(() {
+                                    _hasBeenQuotationOrder = !_hasBeenQuotationOrder;
+                                    _hasBeenTextQuotatiOrder = !_hasBeenTextQuotatiOrder;
+
+                                  });
+
+                                },
                                 child: SizedBox(
                                   width: double.infinity,
                                   height: size_40_w,
@@ -238,14 +345,14 @@ class _ReviewContentState extends State<ReviewContent> {
                                     children: <Widget>[
                                       SvgPicture.asset(
                                         'assets/icons/ic_chain.svg',
-                                        color: kColor555555,
+                                        color: _hasBeenTextQuotatiOrder ? Colors.white : kColor555555,
                                         height: size_18_w,
                                       ),
                                       SizedBox(width: size_6_w),
                                       Text(
                                         LocaleKeys.quotation_order.tr(),
                                         style: TextStyle(
-                                          color: kColor555555,
+                                          color: _hasBeenTextQuotatiOrder ? Colors.white : kColor555555,
                                           fontSize: text_20,
                                         ),
                                       ),
@@ -280,7 +387,7 @@ class _ReviewContentState extends State<ReviewContent> {
                                     onClickItem: () {
                                       getIt<NavigationService>()
                                           .pushScreenWithFade(
-                                              CustomerListPage());
+                                              CustomerTabletListPage());
                                     },
                                   ),
                                 ),

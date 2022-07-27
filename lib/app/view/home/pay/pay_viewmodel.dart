@@ -7,8 +7,11 @@ import '../../../module/common/toast_util.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
+import '../popup_empty_order/popup_empty_order.dart';
+import '../popup_invoice/popup_invoice.dart';
 class PayViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
+  bool isChange = true;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
@@ -57,4 +60,14 @@ class PayViewModel extends BaseViewModel {
     ToastUtil.showToast('Test');
   }
 
+
+  void changePopup(){
+    isChange =! isChange;
+    if(isChange){
+      OpenPopupInvoiceValidate();
+    }else{
+      OpenPopupEmptyOrder();
+    }
+     notifyListeners();
+  }
 }

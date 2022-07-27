@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/model/price.dart';
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
 import '../../../di/injection.dart';
 import '../../../model/keyboard.dart';
@@ -8,33 +9,36 @@ import '../../../module/res/colors.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 
 
-class PercentageViewModel extends BaseViewModel {
-  final DataRepository _dataRepo;
+class ConInsBillsViewModel extends BaseViewModel {
+  final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref _userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
   String _response = "";
-  final computers = [
-    KeyBoard(number: '1'),
-    KeyBoard(number: '2'),
-    KeyBoard(number: '3'),
-    KeyBoard(number: '+10', sizeStyle: SizeStyle.SMALL),
-    KeyBoard(number: '4'),
-    KeyBoard(number: '5'),
-    KeyBoard(number: '6'),
-    KeyBoard(number: '+20', sizeStyle: SizeStyle.SMALL),
-    KeyBoard(number: '7'),
-    KeyBoard(number: '8'),
-    KeyBoard(number: '9'),
-    KeyBoard(number: '-'),
-    KeyBoard(number: 'C'),
-    KeyBoard(number: '0'),
-    KeyBoard(number: '.'),
-    KeyBoard(image: 'assets/icons/ic_backspace.png', sizeStyle: SizeStyle.SMALL),
+  
+  final prices = [
+    Price(name: '\$ 0.01'),
+    Price(name: '\$ 0.02'),
+    Price(name: '\$ 0.05'),
+    Price(name: '\$ 0.1'),
+    Price(name: '\$ 0.2'),
+    Price(name: '\$ 0.5'),
+    Price(name: '\$ 1'),
   ];
 
-  PercentageViewModel(this._dataRepo);
+  final priceBills = [
+    Price(name: '\$ 2'),
+    Price(name: '\$ 5'),
+    Price(name: '\$ 10'),
+    Price(name: '\$ 20'),
+    Price(name: '\$ 50'),
+    Price(name: '\$ 100'),
+    Price(name: '\$ 200'),
+    Price(name: '\$ 500'),
+  ];
+
+  ConInsBillsViewModel(this._repo);
 
 
 
@@ -55,8 +59,8 @@ class PercentageViewModel extends BaseViewModel {
 
   String textInput = '';
   void onClickItem(String input){
-     textInput +=  input;
-     notifyListeners();
+    textInput +=  input;
+    notifyListeners();
   }
 
 

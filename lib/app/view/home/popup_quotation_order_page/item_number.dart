@@ -1,7 +1,6 @@
 import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../model/keyboard.dart';
 import '../../../module/common/config.dart';
 import '../../../module/res/colors.dart';

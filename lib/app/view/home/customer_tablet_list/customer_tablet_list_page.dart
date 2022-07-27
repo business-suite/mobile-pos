@@ -1,5 +1,5 @@
+import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/item_tablet_customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/order_list/appbar_order_list.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/item_customer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,36 +8,33 @@ import 'package:provider/provider.dart';
 
 import '../../../../flavors.dart';
 import '../../../../generated/locale_keys.g.dart';
-import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
-import '../../../module/event_bus/event_bus.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
-import 'customer_list_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/customer_list/customer_list_viewmodel.dart';
+import 'customer_tablet_list_viewmodel.dart';
 
-class CustomerListPage extends PageProvideNode<CustomerListViewModel> {
-  CustomerListPage({Key? key}) : super(key: key, params: []);
+class CustomerTabletListPage extends PageProvideNode<CustomerTabletListViewModel> {
+  CustomerTabletListPage({Key? key}) : super(key: key, params: []);
 
   @override
   Widget buildContent(BuildContext context) {
-    return CustomerListContent(viewModel);
+    return CustomerTabletListContent(viewModel);
   }
 }
 
-class CustomerListContent extends StatefulWidget {
-  CustomerListViewModel _customerListViewModel;
+class CustomerTabletListContent extends StatefulWidget {
+  CustomerTabletListViewModel _customerListViewModel;
 
-  CustomerListContent(this._customerListViewModel);
+  CustomerTabletListContent(this._customerListViewModel);
 
   @override
-  State<CustomerListContent> createState() => _CustomerListContentState();
+  State<CustomerTabletListContent> createState() => _CustomerTabletListContentState();
 }
 
-class _CustomerListContentState extends State<CustomerListContent> {
-  CustomerListViewModel get customerListViewModel => widget._customerListViewModel;
+class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
+  CustomerTabletListViewModel get customerListViewModel => widget._customerListViewModel;
 
   FocusNode node1 = FocusNode();
 
@@ -60,7 +57,7 @@ class _CustomerListContentState extends State<CustomerListContent> {
         avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
         onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
-      body: Consumer<CustomerListViewModel>(builder: (context, value, child) {
+      body: Consumer<CustomerTabletListViewModel>(builder: (context, value, child) {
         return Container(
           color: kColorBackground,
           child: Column(

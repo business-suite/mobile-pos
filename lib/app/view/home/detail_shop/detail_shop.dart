@@ -1,7 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
-// ignore_for_file: prefer_const_constructors
-
 import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/module/res/dimens.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/appbar_shop.dart';
@@ -261,6 +257,7 @@ class _DetailShopState extends State<_DetailShopContent> {
                                     itemBuilder: (context, index) => ItemMenu(
                                       category: value.categoryProducts[index],
                                       onClickItem: () {
+
                                         detailShopViewModel.changeMenu(index);
                                       },
                                     ),
