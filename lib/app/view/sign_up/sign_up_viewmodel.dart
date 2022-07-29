@@ -18,7 +18,7 @@ import '../../viewmodel/base_viewmodel.dart';
 class SignUpViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   final formKey = GlobalKey<FormState>();
   String fullName = '';
   String email = '';
@@ -113,8 +113,8 @@ class SignUpViewModel extends BaseViewModel {
     params.putIfAbsent('twitter_id', () => twitterId);
     /*final subscript = this.sign_in(params).listen((_) {
       if (response.success) {
-        _userSharePref.saveUser(response);
-        _userSharePref.saveTwitterId(twitterId);
+        userSharePref.saveUser(response);
+        userSharePref.saveTwitterId(twitterId);
         if(response.is_new_regist){
           //new register => goto Agreement Page
           //_navigationService.pushReplacementScreenWithFade(AgreementPage());
@@ -131,10 +131,10 @@ class SignUpViewModel extends BaseViewModel {
   }
 
   Future<void> signOut() async {
-    // _userSharePref.saveUser(null);
-    // _userSharePref.saveTwitterId(null);
-    // _userSharePref.saveAppToken(null);
-    // _userSharePref.saveFirebaseToken(null);
+    // userSharePref.saveUser(null);
+    // userSharePref.saveTwitterId(null);
+    // userSharePref.saveAppToken(null);
+    // userSharePref.saveFirebaseToken(null);
   }
 
   void gotoPrivacyPolicy() {

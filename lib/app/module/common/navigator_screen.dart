@@ -129,7 +129,6 @@ class NavigationService {
             },
           );
         });
-
   }
 
   dimiss() {

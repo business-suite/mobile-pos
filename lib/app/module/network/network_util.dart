@@ -4,13 +4,13 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:package_info/package_info.dart';
-import 'package:http/http.dart' as http;
 
+import '../../../generated/locale_keys.g.dart';
 import '../../di/injection.dart';
 import '../../model/device_param.dart';
-import '../../model/session_info.dart';
 import '../common/navigator_screen.dart';
 import '../common/toast_util.dart';
 import '../local_storage/shared_pref_manager.dart';
@@ -95,7 +95,6 @@ Future _post(String url, Map<String, dynamic>? params) async {
 
 int request_id = 0;
 
-
 // Take new session from cookies and update session instance
 void updateSessionIdFromCookies(Response response, {bool auth = false}) {
   // see https://github.com/dart-lang/http/issues/362
@@ -117,8 +116,9 @@ void updateSessionIdFromCookies(Response response, {bool auth = false}) {
   }
 }
 
+var headers = {"Content-Type": "application/json"};
+
 Future _call(String url, params) async {
-  var headers = {"Content-Type": "application/json"};
   var payload = {
     'params': params ?? {},
     'method': "call",
@@ -129,7 +129,7 @@ Future _call(String url, params) async {
   String? sessionId = getIt<UserSharePref>().getAppToken();
   var cookie = '';
   String frontendLang = '';
-  if (sessionId != null) {
+  if (sessionId.isNotEmpty) {
     cookie = 'session_id=' + sessionId;
   }
   if (frontendLang.isNotEmpty) {
@@ -146,8 +146,15 @@ Future _call(String url, params) async {
   try {
     Response response = await dio.post(url,
         data: json.encode(payload), options: Options(headers: headers));
-    print(response.data);
     updateSessionIdFromCookies(response);
+    var result = response.data;
+    if (result['error'] != null) {
+      if (result['error']['code'] == 100) {
+        // session expired
+        getIt<UserSharePref>().saveAppToken(null);
+        throw Exception(LocaleKeys.session_expired.tr());
+      }
+    }
     return response.data;
   } on DioError catch (err) {
     print(err);

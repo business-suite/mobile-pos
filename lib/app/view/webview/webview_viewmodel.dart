@@ -6,7 +6,7 @@ import '../../viewmodel/base_viewmodel.dart';
 
 class WebviewViewModel extends BaseViewModel {
   NavigationService navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   bool _loading = true;
   WebviewParam? webviewParam;
 

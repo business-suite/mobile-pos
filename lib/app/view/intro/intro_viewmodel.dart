@@ -17,7 +17,7 @@ import '../sign_in/sign_in_page.dart';
 class IntroViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   bool termOfService = false;
   bool dontAskAgain = false;
 

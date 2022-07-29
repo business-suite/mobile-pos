@@ -15,13 +15,13 @@ import 'dart:math';
     connect();
   }
 
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   WebsocketManager? socket; //initialize a websocket channel
   int reconnectionAttempts = 0;
   SocketState socketState = SocketState.CLOSED;
 
   WebsocketManager? _init() {
-    var token = _userSharePref.getAppToken();
+    var token = userSharePref.getAppToken();
     if (token.isNotEmpty && socket == null) {
       socketState = SocketState.CLOSED;
       Random r = new Random();

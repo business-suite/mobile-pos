@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:business_suite_mobile_pos/app/model/session_info.dart';
 import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/module/local_storage/shared_pref_manager.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -11,7 +12,9 @@ import 'package:jiffy/jiffy.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:html/dom.dart';
 
+import '../../../flavors.dart';
 import '../../di/injection.dart';
+import 'config.dart';
 
 ReturnType run<ReturnType>(ReturnType Function() operation) {
   return operation();
@@ -105,6 +108,9 @@ extension DateTimeFormatter on DateTime {
       DateTime.now().difference(this).inDays > dayDiff
           ? shortDateFormatted()
           : shortTimeFormatted();
+
+
+
 }
 
 Future<Uint8List?> readFileByte(String? filePath) async {
@@ -230,66 +236,76 @@ extension EmailValidate on String {
   }
 }
 
-
-
-/// Returns whether a dynamic value PROBABLY
-/// has the isEmpty getter/method by checking
-/// standard dart types that contains it.
-///
-/// This is here to for the 'DRY'
-bool? _isEmpty(dynamic value) {
-  if (value is String) {
-    return value.toString().trim().isEmpty;
-  }
-  if (value is Iterable || value is Map) {
-    return value.isEmpty as bool?;
-  }
-  return false;
+String getAvatarProfile(){
+  SessionInfo? sessionInfo = getIt<UserSharePref>().getUser();
+  return '${F.baseUrl}/web/image/res.users/${sessionInfo?.uid}/avatar_128';
+  //return '${F.baseUrl}/web/image?model=res.users&field=avatar_128&id=${sessionInfo?.uid}';
 }
 
-/// Returns whether a dynamic value PROBABLY
-/// has the length getter/method by checking
-/// standard dart types that contains it.
-///
-/// This is here to for the 'DRY'
-bool _hasLength(dynamic value) {
-  return value is Iterable || value is String || value is Map;
-}
-
-/// Obtains a length of a dynamic value
-/// by previously validating it's type
-///
-/// Note: if [value] is double/int
-/// it will be taking the .toString
-/// length of the given value.
-///
-/// Note 2: **this may return null!**
-///
-/// Note 3: null [value] returns null.
-int? _obtainDynamicLength(dynamic value) {
-  if (value == null) {
-    // ignore: avoid_returning_null
-    return null;
-  }
-
-  if (_hasLength(value)) {
-    return value.length as int?;
-  }
-
-  if (value is int) {
-    return value.toString().length;
-  }
-
-  if (value is double) {
-    return value.toString().replaceAll('.', '').length;
-  }
-
-  // ignore: avoid_returning_null
-  return null;
+String dateTimeFromString(String? date,{ String format = MMddyyyy}) {
+  return date == null || date == '' ? '' : DateFormat(format).format(DateTime.parse(date)).toString();
 }
 
 class Utils {
   Utils._();
+
+
+  /// Returns whether a dynamic value PROBABLY
+  /// has the isEmpty getter/method by checking
+  /// standard dart types that contains it.
+  ///
+  /// This is here to for the 'DRY'
+  static bool? _isEmpty(dynamic value) {
+    if (value is String) {
+      return value.toString().trim().isEmpty;
+    }
+    if (value is Iterable || value is Map) {
+      return value.isEmpty as bool?;
+    }
+    return false;
+  }
+
+  /// Returns whether a dynamic value PROBABLY
+  /// has the length getter/method by checking
+  /// standard dart types that contains it.
+  ///
+  /// This is here to for the 'DRY'
+  static bool _hasLength(dynamic value) {
+    return value is Iterable || value is String || value is Map;
+  }
+
+  /// Obtains a length of a dynamic value
+  /// by previously validating it's type
+  ///
+  /// Note: if [value] is double/int
+  /// it will be taking the .toString
+  /// length of the given value.
+  ///
+  /// Note 2: **this may return null!**
+  ///
+  /// Note 3: null [value] returns null.
+  static int? _obtainDynamicLength(dynamic value) {
+    if (value == null) {
+      // ignore: avoid_returning_null
+      return null;
+    }
+
+    if (_hasLength(value)) {
+      return value.length as int?;
+    }
+
+    if (value is int) {
+      return value.toString().length;
+    }
+
+    if (value is double) {
+      return value.toString().replaceAll('.', '').length;
+    }
+
+    // ignore: avoid_returning_null
+    return null;
+  }
+
 
   /// Checks if data is null.
   static bool isNull(dynamic value) => value == null;

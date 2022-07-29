@@ -9,7 +9,7 @@ part of 'login_response.dart';
 LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
     LoginResponse(
       jsonrpc: json['jsonrpc'] as String?,
-      id: json['id'] as int?,
+      id: json['id'],
       error: json['error'] == null ? null : Error.fromJson(json['error']),
       result:
           json['result'] == null ? null : SessionInfo.fromJson(json['result']),

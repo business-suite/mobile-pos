@@ -9,10 +9,10 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../../flavors.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../../../../../main.dart';
 import '../../../../di/injection.dart';
+import '../../../../module/common/extension.dart';
 import '../../../../module/common/navigator_screen.dart';
 import '../../../../module/event_bus/event_bus.dart';
 import '../../../../module/res/style.dart';
@@ -70,7 +70,7 @@ class _ReviewContentState extends State<ReviewContent> {
       backgroundColor: kColorf0eeee,
       customAppBar: AppBarShop(
         badgeCount: 1,
-        avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        avatarUrl: getAvatarProfile(),
         onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<ReviewViewModel>(builder: (context, value, child) {

@@ -3,6 +3,7 @@ import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 
 import 'app/app.dart';
 import 'app/di/injection.dart';
@@ -25,24 +26,15 @@ void main() async {
   await configureDependencies();
   //await initFirebase();
   configLoading();
-
   runApp(
     ScreenUtilInit(
       designSize: ScreenUtil.defaultSize,
       builder: (BuildContext context, Widget? child) => EasyLocalization(
-              supportedLocales: [Locale('en', 'US'), Locale('de', 'DE')],
+        supportedLocales: [Locale('en', 'US'), Locale('de', 'DE')],
               path: 'assets/translations', // <-- change the path of the translation files
-              fallbackLocale: Locale('en', 'US'),
-              child: App(),
-          ),
-
-          /*GetMaterialApp(
-        translationsKeys: AppTranslation.translations,
-        locale: Locale('en', 'US'),
         fallbackLocale: Locale('en', 'US'),
-        home: App(),
-        title: F.name,
-      ),*/
+              child: App(),
+      ),
     ),
   );
 }

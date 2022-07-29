@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../flavors.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
+import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
@@ -54,7 +54,7 @@ class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
       backgroundColor: kColorBackground,
       customAppBar: AppBarOrderList(
         badgeCount: 1,
-        avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        avatarUrl: getAvatarProfile(),
         onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<CustomerTabletListViewModel>(builder: (context, value, child) {

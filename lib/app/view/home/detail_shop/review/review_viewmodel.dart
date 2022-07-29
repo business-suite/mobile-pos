@@ -12,7 +12,7 @@ import '../../../../viewmodel/base_viewmodel.dart';
 class ReviewViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
   String _response = "";
@@ -146,7 +146,7 @@ class ReviewViewModel extends BaseViewModel {
 class ReviewItemtViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
   String _response = "";

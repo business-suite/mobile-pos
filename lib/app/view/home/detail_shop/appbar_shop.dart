@@ -7,8 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../di/injection.dart';
 import '../../../module/common/navigator_screen.dart';
+import '../../../module/network/network_util.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
+import '../../widget_utils/avatar_profile_circle.dart';
 import '../closing_control/bottom_sheet_closing_control.dart';
 import '../opening_cash_control/popup_opening_cash_control.dart';
 
@@ -22,17 +24,18 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   VoidCallback? onClickAvatar;
   VoidCallback? onClickTicKet;
 
-  AppBarShop({
-    Key? key,
-    this.iconLeft,
-    this.iconRight,
-    this.enableCopyPaste = false,
-    this.leftIconOnPress,
-    this.rightIconOnPress,
-    this.badgeCount = 0,  this.avatarUrl = '',
-    this.onClickAvatar,
-    this.onClickTicKet
-  }) : super(key: key);
+  AppBarShop(
+      {Key? key,
+      this.iconLeft,
+      this.iconRight,
+      this.enableCopyPaste = false,
+      this.leftIconOnPress,
+      this.rightIconOnPress,
+      this.badgeCount = 0,
+      this.avatarUrl = '',
+      this.onClickAvatar,
+      this.onClickTicKet})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       PopupPercentageDialog();
                     },
                     child: SvgPicture.asset(
@@ -65,12 +68,12 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                       color: kCWhite,
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(left: size_10_w),
                     child: InkWell(
-                      onTap: (){
-                        getIt<NavigationService>().pushScreenWithFade(CashInOutPage());
+                      onTap: () {
+                        getIt<NavigationService>()
+                            .pushScreenWithFade(CashInOutPage());
                       },
                       child: Text(
                         LocaleKeys.cash_in_out.tr(),
@@ -83,7 +86,6 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ],
               ),
-
               TouchableOpacity(
                 onPressed: () => onClickTicKet?.call(),
                 child: Container(
@@ -94,7 +96,8 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                         RotationTransition(
                           turns: AlwaysStoppedAnimation(-45 / 360),
                           child: Padding(
-                            padding: EdgeInsets.only(right: size_10_w, bottom: size_10_w),
+                            padding: EdgeInsets.only(
+                                right: size_10_w, bottom: size_10_w),
                             child: SvgPicture.asset(
                               'assets/icons/ic_ticket.svg',
                               width: size_16_w,
@@ -135,7 +138,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
                 size: size_22_w,
               ),
               InkWell(
-                onTap: (){
+                onTap: () {
                   closingControlBottomSheet();
                 },
                 child: SvgPicture.asset(
@@ -147,27 +150,8 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
               ),
               TouchableOpacity(
                 onPressed: () => onClickAvatar?.call(),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                  clipBehavior: Clip.hardEdge,
-                  child: FadeInImage.assetNetwork(
-                    placeholder: 'assets/images/placeholder_character.png',
-                    image: avatarUrl,
-                    fit: BoxFit.cover,
-                    width: size_30_w,
-                    height: size_30_w,
-                    fadeInDuration: Duration(milliseconds: 50),
-                    //ERROR IMAGE WHEN LOAD IMAGE
-                    imageErrorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
-                      return ImageHolder(
-                        asset: 'assets/images/placeholder_character.png',
-                        width: size_30_w,
-                        height: size_30_w,
-                      );
-                    },
-                  ),
-                ),
-              ),
+                child: AvatarProfileCircle(avatarUrl: avatarUrl,size: size_30_w,),
+              )
             ],
           ),
         ),

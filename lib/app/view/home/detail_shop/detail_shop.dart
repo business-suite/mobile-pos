@@ -1,7 +1,7 @@
 import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/module/res/dimens.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/appbar_shop.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/item_category.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/item_product.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/item_menu.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold_safe_area.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -12,8 +12,10 @@ import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../flavors.dart';
 import '../../../di/injection.dart';
+import '../../../module/common/extension.dart';
+import '../../../module/local_storage/shared_pref_manager.dart';
+import '../../../module/network/response/shops_response.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/custom_sliver_grid_delegate.dart';
@@ -176,10 +178,12 @@ class _SliderViewState extends State<_SliderView> {
 
 class _DetailShopState extends State<_DetailShopContent> {
   DetailShopViewModel get detailShopViewModel => widget._detailShopViewModel;
+  Shop? shop;
 
   @override
   void initState() {
     super.initState();
+    shop = getIt<UserSharePref>().getShop();
     detailShopViewModel.getCategoryProducts();
     detailShopViewModel.getProducts();
   }
@@ -200,7 +204,7 @@ class _DetailShopState extends State<_DetailShopContent> {
           onClickTicKet: () {
             detailShopViewModel.keySlider.currentState!.openSlider();
           },
-          avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+          avatarUrl: getAvatarProfile(),
         ),
         sliderOpenSize: 179,
         slider: _SliderView(
@@ -257,7 +261,6 @@ class _DetailShopState extends State<_DetailShopContent> {
                                     itemBuilder: (context, index) => ItemMenu(
                                       category: value.categoryProducts[index],
                                       onClickItem: () {
-
                                         detailShopViewModel.changeMenu(index);
                                       },
                                     ),
@@ -324,7 +327,8 @@ class _DetailShopState extends State<_DetailShopContent> {
                                       mainAxisSpacing: size_6_w,
                                       height: size_150_w),
                               delegate: SliverChildBuilderDelegate(
-                                (context, index) => ItemCategory(
+                                (context, index) => ItemProduct(
+                                  shop: shop,
                                   product: value.products[index],
                                 ),
                                 childCount: value.products.length,

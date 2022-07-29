@@ -24,7 +24,7 @@ class ClosingControlViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   late LoginResponse _response;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   final emailFC = FocusNode();
   final passwordFC = FocusNode();
   bool agreeTermsOfService = false;
@@ -87,7 +87,7 @@ class ClosingControlViewModel extends BaseViewModel {
 
   LoginResponse get response => _response;
 
-  setloginType(int loginType) => _userSharePref.saveLoginType(loginType);
+  setloginType(int loginType) => userSharePref.saveLoginType(loginType);
 
   void signIn() async {
     removeFocus(_navigationService.navigatorKey.currentContext!);
@@ -101,7 +101,7 @@ class ClosingControlViewModel extends BaseViewModel {
           ToastUtil.errorToast(LocaleKeys.msg_login_failed.tr());
           return;
         }
-        if (_userSharePref.isLogin())
+        if (userSharePref.isLogin())
           _navigationService.pushReplacementScreenWithFade(HomePage());
         else
           _navigationService.pushReplacementScreenWithSlideRightIn(AuthenticationPage());
@@ -141,8 +141,8 @@ class ClosingControlViewModel extends BaseViewModel {
     _navigationService.pushScreenWithFade(DetailShopPage());
     /*final subscript = this.sign_in(params).listen((_) {
       if (response.success) {
-        _userSharePref.saveUser(response);
-        _userSharePref.saveTwitterId(twitterId);
+        userSharePref.saveUser(response);
+        userSharePref.saveTwitterId(twitterId);
         if(response.is_new_regist){
           //new register => goto Agreement Page
           //_navigationService.pushReplacementScreenWithFade(DetailShopPage()());
@@ -159,10 +159,10 @@ class ClosingControlViewModel extends BaseViewModel {
   }
 
   Future<void> signOut() async {
-    // _userSharePref.saveUser(null);
-    // _userSharePref.saveTwitterId(null);
-    // _userSharePref.saveAppToken(null);
-    // _userSharePref.saveFirebaseToken(null);
+    // userSharePref.saveUser(null);
+    // userSharePref.saveTwitterId(null);
+    // userSharePref.saveAppToken(null);
+    // userSharePref.saveFirebaseToken(null);
   }
   onCheckChangeAgree(bool? value) {
     this.agreeTermsOfService = value ?? false;

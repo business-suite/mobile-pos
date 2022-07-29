@@ -14,7 +14,6 @@ import '../../module/common/extension.dart';
 import '../../module/common/navigator_screen.dart';
 import '../../module/common/toast_util.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
-import '../../module/network/dio_module.dart';
 import '../../module/network/response/login_response.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
@@ -24,26 +23,25 @@ import '../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 class SignInViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   final emailFC = FocusNode();
   final passwordFC = FocusNode();
-  String email = 'lyquangbinh@gmail.com';
-  String password = 'v6%*uvVG%k2D!b65';
-  var emailController = TextEditingController(text: "lyquangbinh@gmail.com");
-  var passController = TextEditingController(text: "v6%*uvVG%k2D!b65");
+  String email = 'admin';
+  String password = 'admin';
+  var emailController = TextEditingController(text: 'admin');
+  var passController = TextEditingController(text: 'admin');
   LoginResponse? _loginResponse;
 
   set loginResponse(LoginResponse? loginResponse) {
     _loginResponse = loginResponse;
     notifyListeners();
   }
-
   LoginResponse? get loginResponse => _loginResponse;
 
   SignInViewModel(this._dataRepo);
 
   bool get validate =>
-      Utils.isEmail(email.trim()) && password.isNotEmpty && password.length > 5;
+      /*Utils.isEmail(email.trim()) &&*/ password.isNotEmpty && password.length > 4;
 
   onChangeEmail(String value) {
     this.email = value;
@@ -68,7 +66,7 @@ class SignInViewModel extends BaseViewModel {
         minimum6Characters(value ?? '', fieldName);
   }
 
-  String? minimum6Characters(String value, String fieldName) => value.length < 6
+  String? minimum6Characters(String value, String fieldName) => value.length < 5
       ? LocaleKeys.msg_is_at_least_6_characters.tr(
           namedArgs: {
             'field': fieldName,
@@ -97,18 +95,6 @@ class SignInViewModel extends BaseViewModel {
 
   void signIn() async {
     removeFocus(_navigationService.navigatorKey.currentContext!);
-    /*EasyLoading.show();
-    try{
-      OdooSession odooSession = await _dataRepo.authenticate( email, password, F.odooDatabase,);
-      EasyLoading.dismiss();
-      _userSharePref.saveUser(odooSession);
-      gotoAuthenticationPage();
-    }
-    catch (e){
-      EasyLoading.dismiss();
-      ToastUtil.errorToast(LocaleKeys.msg_login_failed.tr());
-    }*/
-
     final subscript = _dataRepo
         //.callKW(POS_CATEGORY, SEARCH_READ, kwargs: kwargs, )
         .authenticate(email, password, F.odooDatabase)
@@ -122,20 +108,15 @@ class SignInViewModel extends BaseViewModel {
     }).doOnDone(() {
       EasyLoading.dismiss();
     }).listen((_) {
-      // print('User Login:  ${loginResponse.result?.toJson().toString()}');
-      try {
-        if (loginResponse?.result != null) {
-          if (loginResponse?.result!.uid == null) {
-            gotoAuthenticationPage();
-          } else {
-            _userSharePref.saveUser(loginResponse?.result);
-            gotoHomePage();
-          }
+      if (loginResponse?.result != null) {
+        if (loginResponse?.result!.uid == null) {
+          gotoAuthenticationPage();
         } else {
-          ToastUtil.errorToast(LocaleKeys.msg_login_failed.tr());
+          userSharePref.saveUser(loginResponse?.result);
+          gotoHomePage();
         }
-      } catch (e) {
-        print(e);
+      } else {
+        ToastUtil.errorToast(LocaleKeys.msg_login_failed.tr());
       }
     }, onError: (e) {
       _navigationService.gotoErrorPage();

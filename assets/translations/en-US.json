@@ -235,10 +235,16 @@
   "total_review": "Total: $ 402.90",
   "press_the_back_button_to_exit": "Press the back button to exit",
   "company_name": "Company Name",
-  "product_price": "$ {money}",
+  "product_price": "{currency} {money}",
   "log_out": "Log Out",
   "cancel": "Cancel",
   "refresh": "Refresh",
   "log_out_failed_please_try_again": "Log out failed! Please try again later.",
-  "an_unexpected_error_has_occurred": "An unexpected error occurred!\nPlease try again later."
+  "an_unexpected_error_has_occurred": "An unexpected error occurred!\nPlease try again later.",
+  "session_expired": "Your session has expired!\nPlease refresh the page.",
+  "view_oders": "View Orders",
+  "view_session": "View Sessions",
+  "reporting_orders": "Reporting Orders",
+  "settings": "Settings",
+  "do_you_want_to_log_out": "Do you want to log out?"
 }

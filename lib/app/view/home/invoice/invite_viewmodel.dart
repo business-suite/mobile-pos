@@ -11,7 +11,7 @@ import '../../../viewmodel/base_viewmodel.dart';
 class InVoiceViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
   String _response = "";

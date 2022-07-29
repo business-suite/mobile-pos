@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../module/network/response/detail_shop_response.dart';
+import '../../../module/network/response/shops_response.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/bottom_gradient_black_to_white.dart';
 import '../../widget_utils/custom/image_holder.dart';
 
-class ItemCategory extends StatelessWidget {
+class ItemProduct extends StatelessWidget {
   Product product;
+  Shop? shop;
 
-  ItemCategory({Key? key, required this.product})
+  ItemProduct({Key? key, required this.product, required this.shop})
       : super(key: key);
 
   @override
@@ -89,7 +91,13 @@ class ItemCategory extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: size_3_w, vertical: size_2_w),
               child: Text(
-                  LocaleKeys.product_price.tr(namedArgs: {'money': product.lst_price?.toStringAsFixed(2) ?? ''}) ,
+                  LocaleKeys.product_price.tr(namedArgs: {
+                    'currency': NumberFormat()
+                        .simpleCurrencySymbol(shop?.currencyId?[1]),
+                    'money': product.lst_price
+                        ?.toStringAsFixed(shop?.currencyId?[0]) ??
+                        ''
+                  }),
                   style: TextStyle(
                       fontSize: text_12,
                       fontWeight: FontWeight.bold,

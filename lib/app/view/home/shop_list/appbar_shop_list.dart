@@ -1,7 +1,9 @@
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/image_holder.dart';
 import 'package:flutter/material.dart';
+import '../../../module/network/network_util.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
+import '../../widget_utils/avatar_profile_circle.dart';
 
 class AppBarShopList extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
@@ -25,6 +27,7 @@ class AppBarShopList extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Header Image: $headers');
     return Container(
       margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       padding: EdgeInsets.zero,
@@ -82,30 +85,8 @@ class AppBarShopList extends StatelessWidget implements PreferredSizeWidget {
 
               TouchableOpacity(
                 onPressed: () => onClickAvatar?.call(),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                  clipBehavior: Clip.hardEdge,
-                  child: FadeInImage.assetNetwork(
-                    placeholder: 'assets/images/placeholder_character.png',
-                    image: avatarUrl,
-                    fit: BoxFit.cover,
-                    width: size_30_w,
-                    height: size_30_w,
-                    fadeInDuration: Duration(milliseconds: 50),
-                    //ERROR IMAGE WHEN LOAD IMAGE
-                    imageErrorBuilder: (BuildContext context, Object exception,
-                        StackTrace? stackTrace) {
-                      return ImageHolder(
-                        asset: 'assets/images/placeholder_character.png',
-                        width: size_30_w,
-                        height: size_30_w,
-                      );
-                    },
-                  ),
-                ),
+                child: AvatarProfileCircle(avatarUrl: avatarUrl,size: size_30_w,),
               ),
-
-
             ],
           ),
         ),

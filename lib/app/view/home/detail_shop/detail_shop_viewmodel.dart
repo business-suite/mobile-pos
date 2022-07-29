@@ -22,7 +22,7 @@ class DetailShopViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   GlobalKey<SliderDrawerState> keySlider = GlobalKey<SliderDrawerState>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
   ScrollController scrollController = ScrollController();
@@ -1102,7 +1102,7 @@ class DetailShopViewModel extends BaseViewModel {
 
   Future<void> getCategoryProducts() async {
     EasyLoading.show();
-    SessionInfo? sessionInfo = _userSharePref.getUser();
+    SessionInfo? sessionInfo = userSharePref.getUser();
     Map<String, dynamic> kwargs = <String, dynamic>{};
     kwargs.putIfAbsent('context', () => sessionInfo?.userContext);
     kwargs.putIfAbsent('domain', () => []);
@@ -1129,6 +1129,7 @@ class DetailShopViewModel extends BaseViewModel {
     }).listen((_) {
       if (categoryProductResponse?.result != null) {
         categoryProducts = categoryProductResponse?.result ?? [];
+        changeMenu(lastIndexMenu);
         notifyListeners();
       } else {
         _navigationService.gotoErrorPage();

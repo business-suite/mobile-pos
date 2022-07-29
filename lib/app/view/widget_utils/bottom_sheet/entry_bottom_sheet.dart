@@ -16,8 +16,7 @@ import '../../../module/res/dimens.dart';
 import '../../home/home_page.dart';
 
 void entryBottomSheet({String? message, String? url}) {
-  BuildContext context =
-      getIt<NavigationService>().navigatorKey.currentContext!;
+  BuildContext context = getIt<NavigationService>().navigatorKey.currentContext!;
 
   showModalBottomSheet(
     isScrollControlled: true,

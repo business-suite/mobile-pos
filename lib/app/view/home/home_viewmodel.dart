@@ -21,7 +21,7 @@ import '../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 class HomeViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
 
   bool _loading = false;
   CategoryProductResponse? _response;

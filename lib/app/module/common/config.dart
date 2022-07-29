@@ -16,6 +16,20 @@ const Locale locale = Locale('vi', 'VN');
 //get image url
 String getImageUrl(String path) => path;
 
+//Date time
+const String ddMMyyyy = 'dd/MM/yyyy';
+const String MMddyyyy = 'MM/dd/yyyy';
+
+
+//ACCOUNT
+const String APP_NAME = 'Business Suite Pos';
+const String BASE_URL = 'http://35.214.179.117:8069';
+const String HOST = '35.214.179.117';
+const int PORT = 8069;
+const String ODOO_DB = 'businesssuite_pos';
+
+
+
 
 
 // API
@@ -33,7 +47,11 @@ const String WRITE = "write";
 //const String WRITE = "write";
 //MODEL
 const String AUTH_TOTP = "auth_totp.wizard";
+//get shops
+const String SHOPS = "pos.config";
+const int LIMIT_SHOP = 80;
 const String POS_CATEGORY = "pos.category";
+
 
 
 

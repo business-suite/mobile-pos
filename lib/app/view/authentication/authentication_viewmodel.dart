@@ -24,7 +24,7 @@ class AuthenticationViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   late OtpDataResponse _otpDataResponse;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   final emailFC = FocusNode();
   String authenCode = '';
   final subList = <StreamSubscription>[];

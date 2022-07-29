@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../../../../flavors.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
+import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
@@ -37,6 +38,13 @@ class _ShopListContentState extends State<ShopListContent> {
   ShopListViewModel get shopListViewModel => widget._shopListViewModel;
 
   @override
+  void initState() {
+    shopListViewModel.getShops();
+    super.initState();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BaseScaffoldSafeArea(
@@ -44,7 +52,7 @@ class _ShopListContentState extends State<ShopListContent> {
       backgroundColor: kColorf0eeee,
       customAppBar: AppBarShopList(
         badgeCount: 1,
-        avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        avatarUrl: getAvatarProfile(),
         onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<ShopListViewModel>(builder: (context, value, child) {
@@ -132,6 +140,7 @@ class _ShopListContentState extends State<ShopListContent> {
                     itemBuilder: (context, index) => ItemShop(
                       shop: shopListViewModel.shops[index],
                       onClickItem: () {
+                        shopListViewModel.userSharePref.saveShop(shopListViewModel.shops[index]);
                         shopListViewModel.gotoDetailShop();
                       },
 

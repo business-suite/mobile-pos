@@ -12,7 +12,7 @@ import '../add_customer/add_customer_page.dart';
 class CustomerTabletListViewModel extends BaseViewModel {
   final DataRepository _repo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
   String _response = "";

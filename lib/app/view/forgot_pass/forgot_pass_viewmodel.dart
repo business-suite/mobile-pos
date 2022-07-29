@@ -19,7 +19,7 @@ import '../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 class ForgotPassViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   final emailFC = FocusNode();
   String email = '';
   final subList = <StreamSubscription>[];
@@ -64,7 +64,7 @@ class ForgotPassViewModel extends BaseViewModel {
         : null;
   }
 
-  setloginType(int loginType) => _userSharePref.saveLoginType(loginType);
+  setloginType(int loginType) => userSharePref.saveLoginType(loginType);
 
   void submit() async {
     //TODO: Check email exist + call api reset password

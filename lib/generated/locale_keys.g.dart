@@ -234,5 +234,11 @@ abstract class  LocaleKeys {
   static const refresh = 'refresh';
   static const log_out_failed_please_try_again = 'log_out_failed_please_try_again';
   static const an_unexpected_error_has_occurred = 'an_unexpected_error_has_occurred';
+  static const session_expired = 'session_expired';
+  static const view_oders = 'view_oders';
+  static const view_session = 'view_session';
+  static const reporting_orders = 'reporting_orders';
+  static const settings = 'settings';
+  static const do_you_want_to_log_out = 'do_you_want_to_log_out';
 
 }

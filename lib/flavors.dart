@@ -1,3 +1,5 @@
+import 'app/module/common/config.dart';
+
 enum Flavor {
   DEVELOPMENT,
   PRODUCTION,
@@ -12,11 +14,11 @@ class F {
   static String get title {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
-        return 'Business Suite Pos(dev)';
+        return '$APP_NAME(dev)';
       case Flavor.PRODUCTION:
-        return 'Business Suite Pos';
+        return APP_NAME;
       default:
-        return 'Business Suite Pos';
+        return APP_NAME;
     }
   }
 
@@ -24,11 +26,11 @@ class F {
   static String get baseUrl {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
-        return 'http://35.207.78.4:8069';
+        return BASE_URL;
       case Flavor.PRODUCTION:
-        return 'http://35.207.78.4:8069';
+        return BASE_URL;
       default:
-        return 'http://35.207.78.4:8069';
+        return BASE_URL;
     }
   }
 
@@ -36,11 +38,11 @@ class F {
   static String get host {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
-        return '35.207.78.4';
+        return HOST;
       case Flavor.PRODUCTION:
-        return '35.207.78.4';
+        return HOST;
       default:
-        return '35.207.78.4';
+        return HOST;
     }
   }
 
@@ -48,11 +50,11 @@ class F {
   static int get port {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
-        return 8069;
+        return PORT;
       case Flavor.PRODUCTION:
-        return 8069;
+        return PORT;
       default:
-        return 8069;
+        return PORT;
     }
   }
 
@@ -60,11 +62,11 @@ class F {
   static String get odooDatabase {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
-        return 'odoo15';
+        return ODOO_DB;
       case Flavor.PRODUCTION:
-        return 'odoo15';
+        return ODOO_DB;
       default:
-        return 'odoo15';
+        return ODOO_DB;
     }
   }
 

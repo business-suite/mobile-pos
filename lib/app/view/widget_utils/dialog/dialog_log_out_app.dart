@@ -33,18 +33,18 @@ class DialogExitApp extends StatelessWidget {
               children: [
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 16.0),
+                    padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                     child: Text(
                       F.title,
-                      style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: text_16),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: text_16),
                     ),
                   ),
                 ),
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 26.0, bottom: 30.0),
+                    padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0, bottom: 30.0),
                     child: Text(
-                      "Do you want to log out?",
+                      LocaleKeys.do_you_want_to_log_out.tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black87,

@@ -12,7 +12,7 @@ class LoginResponse extends BaseResponse {
 
   LoginResponse({
     String? jsonrpc,
-    int? id,
+    dynamic id,
     Error? error,
     this.result,
   }) : super(jsonrpc: jsonrpc, id: id, error: error);

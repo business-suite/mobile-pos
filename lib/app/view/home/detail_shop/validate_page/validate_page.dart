@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../flavors.dart';
 import '../../../../../generated/locale_keys.g.dart';
 import '../../../../di/injection.dart';
+import '../../../../module/common/extension.dart';
 import '../../../../module/common/navigator_screen.dart';
 import '../../../../module/res/colors.dart';
 import '../../../../module/res/dimens.dart';
@@ -45,7 +46,7 @@ class _ValidateContenState extends State<ValidateConten> {
       backgroundColor: kColorE2E2E2,
       customAppBar: AppBarShop(
         badgeCount: 1,
-        avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        avatarUrl: getAvatarProfile(),
         onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Container(

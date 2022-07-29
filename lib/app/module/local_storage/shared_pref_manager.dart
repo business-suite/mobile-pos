@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../model/session_info.dart';
+import '../network/response/shops_response.dart';
 
 
 
@@ -121,6 +122,7 @@ class SharedPrefManager {
 
 class UserSharePref extends SharedPrefManager {
   static const USER = 'USER';
+  static const SHOP = 'SHOP';
   static const LOAD_START_API = 'LOAD_START_API';
   static const APP_TOKEN = 'APP_TOKEN';
   static const CSRT_TOKEN = 'CSRT_TOKEN';
@@ -229,6 +231,19 @@ class UserSharePref extends SharedPrefManager {
     return SharedPrefManager.spf!.getBool(LOAD_START_API) ?? false;
   }
 
+  Future<void>? saveShop(Shop? shop) {
+    if (SharedPrefManager.beforCheck()) return null;
+    return SharedPrefManager.spf!.setString(
+        SHOP, shop != null ? json.encode(shop.toJson()) : '');
+  }
+
+  Shop? getShop() {
+    if (SharedPrefManager.beforCheck()) return null;
+    String jsonData = SharedPrefManager.spf!.getString(SHOP) ?? '';
+    if (jsonData.isEmpty) return null;
+    dynamic data = json.decode(jsonData);
+    return Shop.fromJson(data);
+  }
 
   bool isLogin() {
     if (SharedPrefManager.beforCheck()) return false;

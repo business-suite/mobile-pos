@@ -1,6 +1,6 @@
 class BaseResponse {
   String? jsonrpc;
-  int? id;
+  dynamic id;
   Error? error;
 
 
@@ -36,7 +36,7 @@ class Error {
     message = json['message'];
   }
 
-  int? code;
+  dynamic code;
   String? message;
 
   Map<String, dynamic> toJson() {

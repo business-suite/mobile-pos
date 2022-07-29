@@ -13,7 +13,7 @@ class PayViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   bool isChange = true;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
   bool canLoadMore = false;
   bool _loading = false;
   String _response = "";

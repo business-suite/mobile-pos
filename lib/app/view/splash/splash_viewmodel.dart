@@ -13,7 +13,7 @@ import '../home/detail_shop/detail_shop.dart';
 class SplashViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref _userSharePref = getIt<UserSharePref>();
+  UserSharePref userSharePref = getIt<UserSharePref>();
 
   SplashViewModel(this._dataRepo);
 
@@ -21,10 +21,10 @@ class SplashViewModel extends BaseViewModel {
     Future.delayed(
       Duration(milliseconds: DELAY_SPLASH_PAGE),
       () {
-        if( _userSharePref.getUser() != null) {
-          print('User Info: ' +  _userSharePref.getUser()!.toJson().toString() );
+        if( userSharePref.getUser() != null) {
+          print('User Info: ' +  userSharePref.getUser()!.toJson().toString() );
         }
-        if (_userSharePref.isLogin()) {
+        if (userSharePref.isLogin()) {
           _navigationService.pushReplacementScreenWithFade(HomePage());
         } else {
           _navigationService.pushReplacementScreenWithFade(IntroPage());

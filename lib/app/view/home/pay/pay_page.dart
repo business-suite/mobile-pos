@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/popup_invoice/popup_invoice.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
@@ -11,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../../../../flavors.dart';
 import '../../../../main.dart';
 import '../../../di/injection.dart';
+import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/event_bus/event_bus.dart';
 import '../../../module/res/colors.dart';
@@ -71,7 +71,7 @@ class _PayContentState extends State<PayContent> {
       backgroundColor: kColorf0eeee,
       customAppBar: AppBarShop(
         badgeCount: 1,
-        avatarUrl: '${F.baseUrl}/web/image/res.users/2/avatar_128',
+        avatarUrl: getAvatarProfile(),
         onClickAvatar: ()=> getIt<NavigationService>().signOut(),
       ),
       body: Consumer<PayViewModel>(builder: (context, value, child) {

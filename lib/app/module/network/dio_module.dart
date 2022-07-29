@@ -1,14 +1,17 @@
 import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../flavors.dart';
+import '../../../generated/locale_keys.g.dart';
 import '../../di/injection.dart';
 import '../common/config.dart';
 import '../common/navigator_screen.dart';
 import '../local_storage/shared_pref_manager.dart';
+import 'network_util.dart';
 
 final dio = AppDio.getInstance();
 
@@ -28,10 +31,7 @@ class AppDio with DioMixin implements Dio {
     interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
         final appToken = getIt<UserSharePref>().getAppToken();
-        options.headers.addAll({
-          /*'X-APP-TOKEN': '$appToken',*/
-          "Content-Type": "application/json"
-        });
+        options.headers.addAll(headers);
         handler.next(options);
       },
       onError: (error, handler) async {
@@ -80,6 +80,6 @@ class AppDio with DioMixin implements Dio {
 
   void _handleTokenExpired(DioError error, ErrorInterceptorHandler handler) {
     getIt<UserSharePref>().clearUser();
-    getIt<NavigationService>().pushAndRemoveUntilWithFade(SignInPage());
+    getIt<NavigationService>().gotoErrorPage(message: LocaleKeys.session_expired.tr());
   }
 }

@@ -15,17 +15,42 @@ import '../local_storage/shared_pref_manager.dart';
 import '../network/network_util.dart';
 
 class DataRepository {
-  final UserSharePref _userSharePref;
+  final UserSharePref userSharePref;
   final NavigationService _navigationService = getIt<NavigationService>();
 
   DataRepository(
-    this._userSharePref,
+    this.userSharePref,
   );
 
   //must to call api login web to get Csrt Token
   Future<Response> webGetCsrfToken(String api) async {
     return await Dio().get('${F.baseUrl}$api');
   }
+
+  Future<Response> getAvatarData(String api) async {
+    return await Dio().get(getAvatarProfile());
+  }
+
+  void logout() async {
+    removeFocus(_navigationService.navigatorKey.currentContext!);
+    late BaseResponse baseResponse;
+    final stream = call(API_DESTROY_SESSION, null);
+    stream.doOnData((r) {
+      baseResponse = BaseResponse.fromJson(r);
+    }).doOnError((e, stacktrace) {
+      if (e is DioError) baseResponse = BaseResponse.fromJson(e.response?.data.trim());
+    }).doOnListen(() {
+      EasyLoading.show();
+    }).doOnDone(() {
+      EasyLoading.dismiss();
+    }).listen((_) {
+      userSharePref.clearUser();
+      getIt<NavigationService>().pushAndRemoveUntilWithFade(IntroPage());
+    }, onError: (e) {
+      _navigationService.gotoErrorPage();
+    });
+  }
+
 
   Stream authenticate(String username, String password, String database) {
     var params = {
@@ -50,25 +75,21 @@ class DataRepository {
   }
 
 
-
-  void logout() async {
-    removeFocus(_navigationService.navigatorKey.currentContext!);
-    late BaseResponse baseResponse;
-    final stream = call(API_DESTROY_SESSION, null);
-    stream.doOnData((r) {
-      baseResponse = BaseResponse.fromJson(r);
-    }).doOnError((e, stacktrace) {
-       if (e is DioError) baseResponse = BaseResponse.fromJson(e.response?.data.trim());
-    }).doOnListen(() {
-      EasyLoading.show();
-    }).doOnDone(() {
-      EasyLoading.dismiss();
-    }).listen((_) {
-       _userSharePref.clearUser();
-       getIt<NavigationService>().pushAndRemoveUntilWithFade(IntroPage());
-    }, onError: (e) {
-      _navigationService.gotoErrorPage();
-    });
+  Stream searchRead(String model,
+      {String? urlPath, List? domain,  List? fields, String? sort,  int? limit, Map? context}) {
+    var url = urlPath ?? "/web/dataset/search_read";
+    var params = {
+      "model": model,
+      "domain": domain ?? [],
+      "context": context ?? {},
+      "limit": limit ?? 80,
+      "fields": fields ?? [],
+      "sort": sort ?? '',
+    };
+    return call(url, params);
   }
+
+
+
 
 }
