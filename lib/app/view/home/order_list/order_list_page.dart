@@ -46,9 +46,9 @@ class _OrderListContentState extends State<OrderListContent> {
     node1.addListener(() {
       print(node1.hasFocus);
     });
-    eventBus.on<CloseScreenSettleOrder>().listen((event) {
+    /*eventBus.on<CloseScreenSettleOrder>().listen((event) {
       getIt<NavigationService>().back();
-    });
+    });*/
     super.initState();
   }
 

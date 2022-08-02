@@ -17,6 +17,7 @@ import '../../../module/res/colors.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../detail_shop/appbar_shop.dart';
+import '../detail_shop/detail_shop.dart';
 import '../detail_shop/review/review_page.dart';
 import '../popup_empty_order/popup_empty_order.dart';
 import 'item_keyboard.dart';
@@ -55,9 +56,6 @@ class _PayContentState extends State<PayContent> {
 
   @override
   void initState() {
-    eventBus.on<CloseScreenSettleOrder>().listen((event) {
-      getIt<NavigationService>().back();
-    });
     super.initState();
   }
 
@@ -408,7 +406,7 @@ class _PayContentState extends State<PayContent> {
                           color: Colors.white,
                           onPressed: () {
                             getIt<NavigationService>()
-                                .pushEnterFadeExitDown(ValidatePage());
+                                .pushReplacementScreenWithFade(ValidatePage());
                           },
                           child: Center(
                             child: Text(
@@ -431,7 +429,7 @@ class _PayContentState extends State<PayContent> {
                           color: Colors.white,
                           onPressed: () {
                             getIt<NavigationService>()
-                                .pushEnterFadeExitDown(ReviewPage());
+                                .pushReplacementScreenWithFade(ReviewPage());
                           },
                           child: Center(
                             child: Text(

@@ -49,9 +49,9 @@ class _PopupCoInsBillsState extends State<PopupCoInsBills> {
 
   @override
   void initState() {
-    eventBus.on<CloseScreenSettleOrder>().listen((event) {
+    /*eventBus.on<CloseScreenSettleOrder>().listen((event) {
       getIt<NavigationService>().back();
-    });
+    });*/
     super.initState();
   }
   @override

@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/item_review_customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -52,7 +53,7 @@ class _ReviewContentState extends State<ReviewContent> {
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
-      getIt<NavigationService>().back();
+      getIt<NavigationService>().pushAndRemoveUntilWithFade(DetailShopPage());
     });
     super.initState();
   }
