@@ -13,12 +13,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../di/injection.dart';
+import '../../../module/common/config.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/network/response/shops_response.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/custom/custom_sliver_grid_delegate.dart';
+import '../../widget_utils/custom/default_loading_progress.dart';
 import '../../widget_utils/custom/loadmore.dart';
 import 'detail_shop_viewmodel.dart';
 import 'item_bill.dart';
@@ -176,16 +178,20 @@ class _SliderViewState extends State<_SliderView> {
   }
 }
 
-class _DetailShopState extends State<_DetailShopContent> {
+class _DetailShopState extends State<_DetailShopContent> with SingleTickerProviderStateMixin {
   DetailShopViewModel get detailShopViewModel => widget._detailShopViewModel;
   Shop? shop;
 
   @override
   void initState() {
     super.initState();
+    detailShopViewModel.scrollController.addListener(() {
+      detailShopViewModel.onScroll();
+    });
     shop = getIt<UserSharePref>().getShop();
-    detailShopViewModel.getCategoryProducts();
-    detailShopViewModel.getProducts();
+    detailShopViewModel.getProductsApi();
+    detailShopViewModel.getCategoryProductsApi();
+
   }
 
   @override
@@ -307,40 +313,62 @@ class _DetailShopState extends State<_DetailShopContent> {
                 Expanded(
                   child: Stack(
                     children: [
-                      CustomScrollView(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        scrollDirection: Axis.vertical,
-                        controller: value.scrollController,
-                        slivers: <Widget>[
-                          SliverPadding(
-                            padding: EdgeInsets.only(
-                                left: size_6_w,
-                                right: size_6_w,
-                                top: size_6_w,
-                                bottom: size_106_w),
-                            sliver: SliverGrid(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: size_6_w,
-                                      mainAxisSpacing: size_6_w,
-                                      height: size_150_w),
-                              delegate: SliverChildBuilderDelegate(
-                                (context, index) => ItemProduct(
-                                  shop: shop,
-                                  product: value.products[index],
+                      Consumer<DetailShopViewModel>(
+                        builder: (context, value, child) {
+                          switch (value.loadingState) {
+                            case LoadingState.LOADING:
+                              return BuildProgressLoading();
+                            case LoadingState.DONE:
+                              return Container(
+                                // color: kColorFF193053,
+                                child: value.products.isEmpty
+                                    ? Container()
+                                    : RefreshIndicator(
+                                  onRefresh: () {
+                                    value.refreshData();
+                                    return value.completer.future;
+                                  },
+                                  child: CustomScrollView(
+                                    shrinkWrap: true,
+                                    physics: const AlwaysScrollableScrollPhysics(),
+                                    scrollDirection: Axis.vertical,
+                                    controller: value.scrollController,
+                                    slivers: <Widget>[
+                                      SliverPadding(
+                                        padding: EdgeInsets.only(
+                                            left: size_6_w,
+                                            right: size_6_w,
+                                            top: size_6_w,
+                                            bottom: size_106_w),
+                                        sliver: SliverGrid(
+                                          gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                                              crossAxisCount: 2,
+                                              crossAxisSpacing: size_6_w,
+                                              mainAxisSpacing: size_6_w,
+                                              height: size_150_w),
+                                          delegate: SliverChildBuilderDelegate(
+                                                (context, index) => ItemProduct(
+                                              shop: shop,
+                                              product: value.products[index],
+                                            ),
+                                            childCount: value.products.length,
+                                          ),
+                                        ),
+                                      ),
+                                      SliverToBoxAdapter(
+                                        child: value.canLoadMore
+                                            ? BuildLoadMore()
+                                            : SizedBox(),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                                childCount: value.products.length,
-                              ),
-                            ),
-                          ),
-                          SliverToBoxAdapter(
-                            child: value.canLoadMore
-                                ? BuildLoadMore()
-                                : SizedBox(),
-                          ),
-                        ],
+                              );
+                            default:
+                              return Container();
+                          }
+                        },
                       ),
                       //Button PAY + REVIEW
                       Align(

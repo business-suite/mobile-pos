@@ -51,6 +51,7 @@ const String AUTH_TOTP = "auth_totp.wizard";
 const String SHOPS = "pos.config";
 const int LIMIT_SHOP = 80;
 const String POS_CATEGORY = "pos.category";
+const String POS_PRODUCT = "product.product";
 
 
 

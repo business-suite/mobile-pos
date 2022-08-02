@@ -21,12 +21,19 @@ class ItemShop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(size_8_w),
+      elevation: 0.0,
+      margin: EdgeInsets.only(left:size_8_w, right: size_8_w, top: size_8_w),
       color: Colors.white,
       child: Ink(
         child: InkWell(
           onTap: () => onClickItem.call(),
           child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: size_1_w,
+                color: kColorDEE2E6,
+              ),
+            ),
             padding: EdgeInsets.symmetric(vertical: size_10_w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

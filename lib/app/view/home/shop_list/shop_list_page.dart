@@ -40,7 +40,7 @@ class ShopListContent extends StatefulWidget {
 
 class _ShopListContentState extends State<ShopListContent> with SingleTickerProviderStateMixin {
   ShopListViewModel get shopListViewModel => widget._shopListViewModel;
-  Completer<void> _completer = Completer<void>();
+
 
   @override
   void initState() {
@@ -143,14 +143,15 @@ class _ShopListContentState extends State<ShopListContent> with SingleTickerProv
                   case LoadingState.DONE:
                     return Container(
                       // color: kColorFF193053,
-                      child: value.shops.length == 0
+                      child: value.shops.isEmpty
                           ? Container()
                           : RefreshIndicator(
                               onRefresh: () {
                                 value.refreshData();
-                                return _completer.future;
+                                return value.completer.future;
                               },
                               child: CustomScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
                                 scrollDirection: Axis.vertical,
                                 controller: value.scrollController,
                                 slivers: <Widget>[

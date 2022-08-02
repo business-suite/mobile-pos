@@ -23,6 +23,7 @@ class ShopListViewModel extends BaseViewModel {
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref userSharePref = getIt<UserSharePref>();
 
+  final Completer<void> completer = Completer<void>();
   double endReachedThreshold = 200;
   bool isLoading = true;
   bool canLoadMore = true;
@@ -75,12 +76,13 @@ class ShopListViewModel extends BaseViewModel {
       try {
         shopsResponse = ShopsResponse.fromJson(r);
         if (shopsResponse?.result != null) {
-          loadingState = LoadingState.DONE;
           if (shopsResponse?.result?.records?.length ==
               shopsResponse?.result?.length) {
             canLoadMore = false;
           }
           shops.addAll(shopsResponse?.result?.records ?? []);
+          loadingState = LoadingState.DONE;
+          notifyListeners();
         }
       } catch (e) {
         print(e);
