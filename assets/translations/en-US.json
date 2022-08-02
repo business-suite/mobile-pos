@@ -93,6 +93,9 @@
   "keep_session_open": "Keep Session Open",
   "close_session": "Close Session",
   "continue_selling": "Continue Selling",
+  "new_selling": "New Session",
+  "opening_control": "Opening Control",
+  "open_session_pascal": "Open Session",
   "closing_control": "CLOSING CONTROL",
   "open_session": "Open session",
   "opening_cash_control": "OPENING CASH CONTROL",
@@ -235,7 +238,7 @@
   "total_review": "Total: $ 402.90",
   "press_the_back_button_to_exit": "Press the back button to exit",
   "company_name": "Company Name",
-  "product_price": "{currency} {money}",
+  "product_price": "{money} {currency}",
   "log_out": "Log Out",
   "cancel": "Cancel",
   "refresh": "Refresh",
@@ -246,5 +249,15 @@
   "view_session": "View Sessions",
   "reporting_orders": "Reporting Orders",
   "settings": "Settings",
-  "do_you_want_to_log_out": "Do you want to log out?"
+  "do_you_want_to_log_out": "Do you want to log out?",
+  "last_closing_date": "Last Closing Date",
+  "last_closing_cash": "Last Closing Cash",
+  "balance": "Balance",
+
+  "server_internal_error": "Server Internal Error",
+  "unauthorized_access_is_denied_due_to_invalid_credentials": "Unauthorized\nAccess is denied due to invalid credentials",
+  "forbidden_you_dont_have_permission_to_access_on_this_server": "Forbidden\nYou don't have permission to access on this server",
+  "page_not_found": "Page Not Found",
+  "server_unavailable": "Server Unavailable",
+  "no_internet_connection": "No Internet Connection"
 }

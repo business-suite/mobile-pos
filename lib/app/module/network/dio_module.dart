@@ -37,10 +37,13 @@ class AppDio with DioMixin implements Dio {
       onError: (error, handler) async {
         switch (error.type) {
           case DioErrorType.connectTimeout:
+            handler.next(error);
             break;
           case DioErrorType.sendTimeout:
+            handler.next(error);
             break;
           case DioErrorType.receiveTimeout:
+            handler.next(error);
             break;
           case DioErrorType.response:
             if (error.response?.statusCode == 401) {
@@ -48,6 +51,7 @@ class AppDio with DioMixin implements Dio {
             }
             break;
           case DioErrorType.cancel:
+            handler.next(error);
             break;
           case DioErrorType.other:
             if (error.response?.data is List) {

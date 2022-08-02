@@ -19,6 +19,7 @@ class ItemProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final numberFormat =  NumberFormat.currency(symbol: NumberFormat().simpleCurrencySymbol(shop?.currencyId?[1]), decimalDigits: 2);
     return CustomCard(
       borderRadiusValue: size_4_r,
       backgroundColor: Colors.white,
@@ -91,12 +92,13 @@ class ItemProduct extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: size_3_w, vertical: size_2_w),
               child: Text(
+                  //numberFormat.format(product.lst_price)
                   LocaleKeys.product_price.tr(namedArgs: {
+                  'money': product.lst_price
+                      ?.toStringAsFixed(2) ??
+                  '',
                     'currency': NumberFormat()
-                        .simpleCurrencySymbol(shop?.currencyId?[1]),
-                    'money': product.lst_price
-                        ?.toStringAsFixed(shop?.currencyId?[0]) ??
-                        ''
+                        .simpleCurrencySymbol(shop?.currencyId?[1])
                   }),
                   style: TextStyle(
                       fontSize: text_12,

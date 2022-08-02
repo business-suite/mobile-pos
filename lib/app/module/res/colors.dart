@@ -144,4 +144,6 @@ const kColorFF4C4C= Color(0xffFF4C4C);
 const kColorA85959 = Color(0xffA85959);
 const kColorF3BBBB = Color(0xffF3BBBB);
 const kColor000000  = Color(0xff000000);
+const kColorTextNormal  = Color(0xff495057);
+const kColorF8F9FA  = Color(0xffF8F9FA);
 

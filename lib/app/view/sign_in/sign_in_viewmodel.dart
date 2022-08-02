@@ -26,10 +26,10 @@ class SignInViewModel extends BaseViewModel {
   UserSharePref userSharePref = getIt<UserSharePref>();
   final emailFC = FocusNode();
   final passwordFC = FocusNode();
-  String email = 'admin';
-  String password = 'admin';
-  var emailController = TextEditingController(text: 'admin');
-  var passController = TextEditingController(text: 'admin');
+  String email = 'software@gusrix.com';
+  String password = 'v6%*uvVG%k2D!b65';
+  var emailController = TextEditingController(text: 'software@gusrix.com');
+  var passController = TextEditingController(text: 'v6%*uvVG%k2D!b65');
   LoginResponse? _loginResponse;
 
   set loginResponse(LoginResponse? loginResponse) {
@@ -41,7 +41,7 @@ class SignInViewModel extends BaseViewModel {
   SignInViewModel(this._dataRepo);
 
   bool get validate =>
-      /*Utils.isEmail(email.trim()) &&*/ password.isNotEmpty && password.length > 4;
+      Utils.isEmail(email.trim()) && password.isNotEmpty && password.length > 4;
 
   onChangeEmail(String value) {
     this.email = value;
@@ -98,28 +98,28 @@ class SignInViewModel extends BaseViewModel {
     final subscript = _dataRepo
         //.callKW(POS_CATEGORY, SEARCH_READ, kwargs: kwargs, )
         .authenticate(email, password, F.odooDatabase)
-        .doOnData((r) {
-      loginResponse = LoginResponse.fromJson(r);
-    }).doOnError((e, stacktrace) {
-      if (e is DioError)
-        loginResponse = LoginResponse.fromJson(e.response?.data.trim());
-    }).doOnListen(() {
+        .doOnListen(() {
       EasyLoading.show();
     }).doOnDone(() {
       EasyLoading.dismiss();
-    }).listen((_) {
-      if (loginResponse?.result != null) {
-        if (loginResponse?.result!.uid == null) {
-          gotoAuthenticationPage();
+    }).listen((r) {
+      loginResponse = LoginResponse.fromJson(r);
+      try {
+        if (loginResponse?.result != null) {
+          if (loginResponse?.result!.uid == null) {
+            gotoAuthenticationPage();
+          } else {
+            userSharePref.saveUser(loginResponse?.result);
+            gotoHomePage();
+          }
         } else {
-          userSharePref.saveUser(loginResponse?.result);
-          gotoHomePage();
+          ToastUtil.errorToast(LocaleKeys.msg_login_failed.tr());
         }
-      } else {
-        ToastUtil.errorToast(LocaleKeys.msg_login_failed.tr());
+      } catch (e) {
+        _navigationService.gotoErrorPage(message: r is DioError && r.message.isNotEmpty ? r.message.toString() : LocaleKeys.an_unexpected_error_has_occurred.tr());
+      } finally {
+        notifyListeners();
       }
-    }, onError: (e) {
-      _navigationService.gotoErrorPage();
     });
     addSubscription(subscript);
   }

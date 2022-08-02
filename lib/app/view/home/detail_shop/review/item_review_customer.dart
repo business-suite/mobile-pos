@@ -6,12 +6,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../../../model/detail_review_oder.dart';
+import 'detail_item_review_customer.dart';
+
 class ItemReview extends StatelessWidget {
+  List<DetailReview> detailReviews;
   Review item;
   VoidCallback onClickItem;
 
   ItemReview({
     Key? key,
+    required this.detailReviews,
     required this.item,
     required this.onClickItem,
   }) : super(key: key);
@@ -97,6 +102,32 @@ class ItemReview extends StatelessWidget {
               ),
             ),
           ),
+        ),
+
+        Padding(
+          padding: EdgeInsets.only(right: size_250_w),
+          child: Text(
+            LocaleKeys.s00041.tr(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: kColor6F6F6F,
+              fontWeight: FontWeight.w300,
+              fontSize: text_18,
+            ),
+          ),
+        ),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: detailReviews.length,
+          itemBuilder: (context, index) =>
+              Material(
+                color: kColorf0eeee,
+                child: DetailItemReview(
+                  item: detailReviews[index],
+                  onClickItem: () => onClickItem,
+                ),
+              ),
         ),
       ],
     );

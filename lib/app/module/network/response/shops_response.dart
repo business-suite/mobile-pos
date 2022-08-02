@@ -1,6 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../model/session_info.dart';
+import '../../../../generated/locale_keys.g.dart';
 import 'base_response.dart';
 
 part 'shops_response.g.dart';
@@ -23,21 +24,17 @@ class ShopsResponse extends BaseResponse {
   Map<String, dynamic> toJson() => _$ShopsResponseToJson(this);
 }
 
-
 @JsonSerializable()
 class ShopsResult {
   int? length;
   List<Shop>? records;
 
-  ShopsResult({
-    this.length,
-    this.records});
+  ShopsResult({this.length, this.records});
 
   factory ShopsResult.fromJson(Map<String, dynamic> json) =>
       _$ShopsResultFromJson(json);
 
   Map<String, dynamic> toJson() => _$ShopsResultToJson(this);
-
 }
 
 class Shop {
@@ -54,7 +51,8 @@ class Shop {
     this.posSessionDuration,
     this.currencyId,
     this.numberOfOpenedSession,
-    this.lastSessionClosingCash,});
+    this.lastSessionClosingCash,
+  });
 
   Shop.fromJson(dynamic json) {
     id = json['id'];
@@ -67,20 +65,22 @@ class Shop {
     posSessionUsername = json['pos_session_username'];
     posSessionState = json['pos_session_state'];
     posSessionDuration = json['pos_session_duration'];
-    currencyId = json['currency_id'] != null ? json['currency_id'].cast<dynamic>() : [];
+    currencyId =
+        json['currency_id'] != null ? json['currency_id'].cast<dynamic>() : [];
     numberOfOpenedSession = json['number_of_opened_session'];
     lastSessionClosingCash = json['last_session_closing_cash'];
   }
+
   int? id;
-  bool? currentUserId;
-  bool? cashControl;
+  dynamic? currentUserId;
+  dynamic? cashControl;
   String? name;
-  bool? currentSessionId;
-  bool? currentSessionState;
-  String? lastSessionClosingDate;
-  bool? posSessionUsername;
-  bool? posSessionState;
-  String? posSessionDuration;
+  dynamic? currentSessionId;
+  dynamic? currentSessionState;
+  dynamic? lastSessionClosingDate;
+  dynamic? posSessionUsername;
+  dynamic? posSessionState;
+  dynamic? posSessionDuration;
   List<dynamic>? currencyId;
   int? numberOfOpenedSession;
   double? lastSessionClosingCash;
@@ -103,4 +103,23 @@ class Shop {
     return map;
   }
 
+  String getCurrentSessionState() {
+    switch (currentSessionState) {
+      case 'opened':
+        return LocaleKeys.continue_selling.tr();
+      case 'opening_control':
+        return LocaleKeys.open_session_pascal.tr();
+      default:
+        return LocaleKeys.new_selling.tr();
+    }
+  }
+
+  String getPosSessionState() {
+    switch (posSessionState) {
+      case 'opening_control':
+        return LocaleKeys.opening_control.tr();
+      default:
+        return '';
+    }
+  }
 }

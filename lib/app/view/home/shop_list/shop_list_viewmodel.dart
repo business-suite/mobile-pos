@@ -1,7 +1,13 @@
+import 'dart:async';
+
+import 'package:business_suite_mobile_pos/app/module/network/response/shops_response.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/config.dart';
 import '../../../module/common/extension.dart';
@@ -11,16 +17,19 @@ import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/network/response/shops_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
-import '../../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 
 class ShopListViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref userSharePref = getIt<UserSharePref>();
-  bool canLoadMore = false;
-  bool _loading = false;
 
+  double endReachedThreshold = 200;
+  bool isLoading = true;
+  bool canLoadMore = true;
+  LoadingState loadingState = LoadingState.LOADING;
   List<Shop> shops = [];
+
+  final ScrollController scrollController = ScrollController();
 
   ShopListViewModel(this._dataRepo);
 
@@ -33,14 +42,14 @@ class ShopListViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  bool get loading => _loading;
-
-  set loading(bool loading) {
-    _loading = loading;
-    notifyListeners();
-  }
-
-  void getShops() async {
+  void getShopsApi() async {
+    if (shops.length == shopsResponse?.result?.length) {
+      canLoadMore = false;
+      isLoading = false;
+      notifyListeners();
+      return;
+    }
+    isLoading = true;
     var fields = [
       "current_user_id",
       "cash_control",
@@ -62,26 +71,48 @@ class ShopListViewModel extends BaseViewModel {
             limit: LIMIT_SHOP,
             sort: '',
             context: userSharePref.getUser()?.userContext?.toJson())
-        .doOnData((r) {
-      shopsResponse = ShopsResponse.fromJson(r);
-    }).doOnError((e, stacktrace) {
-      if (e is DioError)
-        shopsResponse = ShopsResponse.fromJson(e.response?.data.trim());
-    }).doOnListen(() {
-      EasyLoading.show();
-    }).doOnDone(() {
-      EasyLoading.dismiss();
-    }).listen((_) {
-      if (shopsResponse?.result != null) {
-        shops = shopsResponse?.result?.records ?? [];
+        .listen((r) {
+      try {
+        shopsResponse = ShopsResponse.fromJson(r);
+        if (shopsResponse?.result != null) {
+          loadingState = LoadingState.DONE;
+          if (shopsResponse?.result?.records?.length ==
+              shopsResponse?.result?.length) {
+            canLoadMore = false;
+          }
+          shops.addAll(shopsResponse?.result?.records ?? []);
+        }
+      } catch (e) {
+        print(e);
+        if (loadingState != LoadingState.ERROR) {
+          loadingState = LoadingState.ERROR;
+        }
+        _navigationService.gotoErrorPage(message: r is DioError && r.message.isNotEmpty ? r.message.toString() : LocaleKeys.an_unexpected_error_has_occurred.tr());
+      } finally {
+        isLoading = false;
         notifyListeners();
-      } else {
-        _navigationService.gotoErrorPage();
       }
-    }, onError: (e) {
-      _navigationService.gotoErrorPage();
     });
     addSubscription(subscript);
+  }
+
+  refreshData() {
+    isLoading = true;
+    canLoadMore = true;
+    loadingState = LoadingState.LOADING;
+    shops.clear();
+    notifyListeners();
+    getShopsApi();
+  }
+
+  void onScroll() {
+    if (!scrollController.hasClients || isLoading) return;
+    final thresholdReached =
+        scrollController.position.extentAfter < endReachedThreshold;
+    if (thresholdReached) {
+      // Load more!
+      getShopsApi();
+    }
   }
 
   void onClickItem() {

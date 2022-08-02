@@ -91,6 +91,9 @@ abstract class  LocaleKeys {
   static const keep_session_open = 'keep_session_open';
   static const close_session = 'close_session';
   static const continue_selling = 'continue_selling';
+  static const new_selling = 'new_selling';
+  static const opening_control = 'opening_control';
+  static const open_session_pascal = 'open_session_pascal';
   static const closing_control = 'closing_control';
   static const open_session = 'open_session';
   static const opening_cash_control = 'opening_cash_control';
@@ -240,5 +243,14 @@ abstract class  LocaleKeys {
   static const reporting_orders = 'reporting_orders';
   static const settings = 'settings';
   static const do_you_want_to_log_out = 'do_you_want_to_log_out';
+  static const last_closing_date = 'last_closing_date';
+  static const last_closing_cash = 'last_closing_cash';
+  static const balance = 'balance';
+  static const server_internal_error = 'server_internal_error';
+  static const unauthorized_access_is_denied_due_to_invalid_credentials = 'unauthorized_access_is_denied_due_to_invalid_credentials';
+  static const forbidden_you_dont_have_permission_to_access_on_this_server = 'forbidden_you_dont_have_permission_to_access_on_this_server';
+  static const page_not_found = 'page_not_found';
+  static const server_unavailable = 'server_unavailable';
+  static const no_internet_connection = 'no_internet_connection';
 
 }

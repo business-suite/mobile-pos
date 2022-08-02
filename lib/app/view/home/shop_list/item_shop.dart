@@ -21,7 +21,7 @@ class ItemShop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(size_6_w),
+      margin: EdgeInsets.all(size_8_w),
       color: Colors.white,
       child: Ink(
         child: InkWell(
@@ -36,7 +36,7 @@ class ItemShop extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Align(
                         child: Text(
@@ -67,112 +67,136 @@ class ItemShop extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 8.0,
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 10.0,
-                      height: 10.0,
-                    ),
-                    Card(
-                      color: kColor71639E,
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: size_8_w, vertical: size_6_w),
-                          child: Text(
-                            'Continue Selling',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: text_11,
-                            ),
-                          ),
-                        ),
+                if (shop.getPosSessionState().isNotEmpty)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: size_10_w, vertical: size_6_w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(size_2_r),
+                        color: kColorPrimary,
                       ),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                      height: 10.0,
-                    ),
-                    Container(
                       child: Padding(
-                        padding: EdgeInsets.only(left: 20),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Last Closing Date',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                              ),
-                            ),
-                            Text(
-                              'Last Closing Cash',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                              ),
-                            ),
-                            Text(
-                              'Balance',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                              ),
-                            ),
-                          ],
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size_4_w, vertical: size_2_w),
+                        child: Text(
+                          shop.getPosSessionState(),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: text_11,
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 50.0,
-                      height: 10.0,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Text(
-                          dateTimeFromString(shop.lastSessionClosingDate),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
+                  ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: size_10_w),
+                  child: Row(
+                    children: <Widget>[
+                      Card(
+                        margin: EdgeInsets.zero,
+                        elevation: 0.0,
+                        color: kColor71639E,
+                        child: Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: size_8_w, vertical: size_6_w),
+                            child: Text(
+                              shop.getCurrentSessionState(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: text_11,
+                              ),
+                            ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 23),
-                          child: Text(
-                            LocaleKeys.product_price.tr(namedArgs: {
-                              'currency': NumberFormat()
-                                  .simpleCurrencySymbol(shop.currencyId?[1]),
-                              'money': shop.lastSessionClosingCash
-                                      ?.toStringAsFixed(shop.currencyId?[0]) ??
-                                  ''
-                            }),
+                      ),
+
+                      SizedBox(
+                        width: 10.0,
+                        height: 10.0,
+                      ),
+                      if( dateTimeFromString(shop.lastSessionClosingDate).isNotEmpty)
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                LocaleKeys.last_closing_date.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: kColorTextNormal,
+                                  fontSize: 10,
+                                ),
+                              ),
+                              Text(
+                                LocaleKeys.last_closing_cash.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: kColorTextNormal,
+                                  fontSize: 10,
+                                ),
+                              ),
+                              Text(
+                                LocaleKeys.balance.tr(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: kColorTextNormal,
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 50.0,
+                        height: 10.0,
+                      ),
+                      if( dateTimeFromString(shop.lastSessionClosingDate).isNotEmpty)
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            dateTimeFromString(shop.lastSessionClosingDate),
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 10,
                             ),
                           ),
-                        ),
-                        Text(
-                          '',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 10,
+                          Padding(
+                            padding: EdgeInsets.only(right: 23),
+                            child: Text(
+                              LocaleKeys.product_price.tr(namedArgs: {
+                              'money': shop.lastSessionClosingCash
+                                  ?.toStringAsFixed(2) ??
+                              '',
+                                'currency': NumberFormat()
+                                    .simpleCurrencySymbol(shop.currencyId?[1]),
+
+                              }),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Text(
+                            '',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
