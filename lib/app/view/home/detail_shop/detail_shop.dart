@@ -185,9 +185,9 @@ class _DetailShopState extends State<_DetailShopContent> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
-    detailShopViewModel.scrollController.addListener(() {
+  /*  detailShopViewModel.scrollController.addListener(() {
       detailShopViewModel.onScroll();
-    });
+    });*/
     shop = getIt<UserSharePref>().getShop();
     detailShopViewModel.getProductsApi();
     detailShopViewModel.getCategoryProductsApi();

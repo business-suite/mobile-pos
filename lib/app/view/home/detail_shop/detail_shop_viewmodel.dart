@@ -41,7 +41,8 @@ class DetailShopViewModel extends BaseViewModel {
 
   CategoryProductResponse? _categoryProductResponse;
 
-  set categoryProductResponse(CategoryProductResponse? categoryProductResponse) {
+  set categoryProductResponse(
+      CategoryProductResponse? categoryProductResponse) {
     _categoryProductResponse = categoryProductResponse;
     notifyListeners();
   }
@@ -217,6 +218,7 @@ class DetailShopViewModel extends BaseViewModel {
     canLoadMore = false;
     loadingState = LoadingState.LOADING;
     products.clear();
+    allProducts.clear();
     notifyListeners();
     getProductsApi();
     getCategoryProductsApi();
@@ -238,26 +240,36 @@ class DetailShopViewModel extends BaseViewModel {
   }
 
   changeMenu(int index) {
-    if(categoryProducts.isEmpty) return;
+    if (categoryProducts.isEmpty) return;
     lastIndexMenu = index;
-    if(lastIndexMenu > categoryProducts.length) lastIndexMenu = 0;
-    isHome = false;
-    products = allProducts
-        .where((element) =>
-            element.pos_categ_id is List<dynamic> &&
-            categoryProducts.isNotEmpty &&
-            element.pos_categ_id[0] == categoryProducts[lastIndexMenu].id)
-        .toList();
-    scrollToTop();
-    notifyListeners();
+    if (lastIndexMenu > categoryProducts.length) lastIndexMenu = 0;
+    try {
+      isHome = false;
+      products.clear();
+      products = allProducts
+          .where((element) =>
+              element.pos_categ_id is List<dynamic> &&
+              categoryProducts.isNotEmpty &&
+              element.pos_categ_id[0] == categoryProducts[lastIndexMenu].id)
+          .toList();
+      if (products.length > 5) scrollToTop();
+      notifyListeners();
+    } catch (e) {
+      if (loadingState != LoadingState.ERROR) {
+        loadingState = LoadingState.ERROR;
+      }
+      notifyListeners();
+      //EasyLoading.dismiss();
+      _navigationService.gotoErrorPage();
+    }
   }
 
-  scrollToTop() {
+  void scrollToTop() {
     if (scrollController.hasClients) {
       scrollController.animateTo(
         0.0,
-        duration: const Duration(milliseconds: 0),
-        curve: Curves.ease,
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeOut,
       );
     }
   }
