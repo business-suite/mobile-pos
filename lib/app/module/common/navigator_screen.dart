@@ -108,7 +108,7 @@ class NavigationService {
     pushAndRemoveUntilWithFade(SplashPage());
   }
 
-  gotoErrorPage({String? message}) {
+  openErrorPage({String? message}) {
     pushAndRemoveUntilWithFade(ErrorPage(
       message: message,
     ));

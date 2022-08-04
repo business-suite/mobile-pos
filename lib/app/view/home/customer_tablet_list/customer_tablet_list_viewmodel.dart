@@ -179,11 +179,11 @@ class CustomerTabletListViewModel extends BaseViewModel {
   void onClickItem() {
     ToastUtil.showToast('Test');
   }
-  gotoCustomerListpage(){
+  openCustomerListpage(){
     _navigationService.pushScreenWithFade(CustomerTabletListPage());
   }
 
-  gotoAddCustomerPage(){
+  openAddCustomerPage(){
     getIt<NavigationService>().pushScreenWithFade(AddCustomerPage());
   }
 }

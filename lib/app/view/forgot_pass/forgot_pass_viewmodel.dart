@@ -13,7 +13,7 @@ import '../../module/local_storage/shared_pref_manager.dart';
 import '../../model/session_info.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
-import '../home/detail_shop/detail_shop.dart';
+import '../home/detail_shop/product_page.dart';
 import '../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 
 class ForgotPassViewModel extends BaseViewModel {

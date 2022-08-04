@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:business_suite_mobile_pos/app/module/network/response/shops_response.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/product_page.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:rxdart/rxdart.dart';
 
 import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
@@ -18,7 +17,7 @@ import '../../../module/network/response/shops_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 
-class ShopListViewModel extends BaseViewModel {
+class ShopsViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref userSharePref = getIt<UserSharePref>();
@@ -32,7 +31,7 @@ class ShopListViewModel extends BaseViewModel {
 
   final ScrollController scrollController = ScrollController();
 
-  ShopListViewModel(this._dataRepo);
+  ShopsViewModel(this._dataRepo);
 
   ShopsResponse? _shopsResponse;
 
@@ -81,7 +80,10 @@ class ShopListViewModel extends BaseViewModel {
             canLoadMore = false;
           }
           shops.addAll(shopsResponse?.result?.records ?? []);
-          loadingState = LoadingState.DONE;
+          if (shops.isEmpty)
+            loadingState = LoadingState.EMPTY;
+          else
+            loadingState = LoadingState.DONE;
           notifyListeners();
         }
       } catch (e) {
@@ -89,7 +91,10 @@ class ShopListViewModel extends BaseViewModel {
         if (loadingState != LoadingState.ERROR) {
           loadingState = LoadingState.ERROR;
         }
-        _navigationService.gotoErrorPage(message: r is DioError && r.message.isNotEmpty ? r.message.toString() : LocaleKeys.an_unexpected_error_has_occurred.tr());
+        _navigationService.openErrorPage(
+            message: r is DioError && r.message.isNotEmpty
+                ? r.message.toString()
+                : LocaleKeys.an_unexpected_error_has_occurred.tr());
       } finally {
         isLoading = false;
         notifyListeners();
@@ -121,8 +126,8 @@ class ShopListViewModel extends BaseViewModel {
     ToastUtil.showToast('Test');
   }
 
-  gotoDetailShop() async {
+  openDetailShop() async {
     removeFocus(_navigationService.navigatorKey.currentContext!);
-    _navigationService.pushScreenWithFade(DetailShopPage());
+    _navigationService.pushScreenWithFade(ProductPage());
   }
 }

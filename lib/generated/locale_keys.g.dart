@@ -252,5 +252,7 @@ abstract class  LocaleKeys {
   static const page_not_found = 'page_not_found';
   static const server_unavailable = 'server_unavailable';
   static const no_internet_connection = 'no_internet_connection';
+  static const there_are_no_products_in_this_category = 'there_are_no_products_in_this_category';
+  static const there_are_no_shops = 'there_are_no_shops';
 
 }

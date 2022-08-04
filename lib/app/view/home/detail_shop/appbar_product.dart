@@ -14,7 +14,7 @@ import '../../widget_utils/avatar_profile_circle.dart';
 import '../closing_control/bottom_sheet_closing_control.dart';
 import '../opening_cash_control/popup_opening_cash_control.dart';
 
-class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
+class AppBarProduct extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
   final bool enableCopyPaste;
   final int badgeCount;
@@ -24,7 +24,7 @@ class AppBarShop extends StatelessWidget implements PreferredSizeWidget {
   VoidCallback? onClickAvatar;
   VoidCallback? onClickTicKet;
 
-  AppBarShop(
+  AppBarProduct(
       {Key? key,
       this.iconLeft,
       this.iconRight,

@@ -16,7 +16,7 @@ import '../../../module/res/colors.dart';
 import '../../../module/res/dimens.dart';
 import '../../../module/res/text.dart';
 import '../../../viewmodel/base_viewmodel.dart';
-import 'detail_shop_viewmodel.dart';
+import 'product_viewmodel.dart';
 
 void openPopupBillRemove() {
   BuildContext context =
@@ -28,7 +28,7 @@ void openPopupBillRemove() {
         return PopupQuotationOrderPage();
       });
 }
-class PopupQuotationOrderPage extends PageProvideNode<DetailShopViewModel> {
+class PopupQuotationOrderPage extends PageProvideNode<ProductViewModel> {
   PopupQuotationOrderPage({Key? key,}) : super(key: key, params: []);
 
   @override
@@ -38,9 +38,9 @@ class PopupQuotationOrderPage extends PageProvideNode<DetailShopViewModel> {
 }
 
 class PopupQuotationOrderContent extends StatefulWidget {
-  final DetailShopViewModel _detailShopViewModel;
+  final ProductViewModel _productViewModel;
 
-  PopupQuotationOrderContent(this._detailShopViewModel);
+  PopupQuotationOrderContent(this._productViewModel);
 
 
   @override
@@ -49,14 +49,14 @@ class PopupQuotationOrderContent extends StatefulWidget {
 }
 
 class _PopupQuotationOrderContentState extends State<PopupQuotationOrderContent> {
-  DetailShopViewModel get detailShopViewModel => widget._detailShopViewModel;
+  ProductViewModel get productViewModel => widget._productViewModel;
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       backgroundColor: Colors.black26.withOpacity(0.5),
-      body: Consumer<DetailShopViewModel>(builder: (context,value, child){
+      body: Consumer<ProductViewModel>(builder: (context,value, child){
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

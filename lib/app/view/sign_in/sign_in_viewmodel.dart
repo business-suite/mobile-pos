@@ -107,16 +107,16 @@ class SignInViewModel extends BaseViewModel {
       try {
         if (loginResponse?.result != null) {
           if (loginResponse?.result!.uid == null) {
-            gotoAuthenticationPage();
+            openAuthenticationPage();
           } else {
             userSharePref.saveUser(loginResponse?.result);
-            gotoHomePage();
+            openHomePage();
           }
         } else {
           ToastUtil.errorToast(LocaleKeys.msg_login_failed.tr());
         }
       } catch (e) {
-        _navigationService.gotoErrorPage(message: r is DioError && r.message.isNotEmpty ? r.message.toString() : LocaleKeys.an_unexpected_error_has_occurred.tr());
+        _navigationService.openErrorPage(message: r is DioError && r.message.isNotEmpty ? r.message.toString() : LocaleKeys.an_unexpected_error_has_occurred.tr());
       } finally {
         notifyListeners();
       }
@@ -126,16 +126,16 @@ class SignInViewModel extends BaseViewModel {
 
 
 
-  void gotoAuthenticationPage() async {
+  void openAuthenticationPage() async {
     _navigationService
         .pushReplacementScreenWithSlideRightIn(AuthenticationPage());
   }
 
-  void gotoHomePage() async {
+  void openHomePage() async {
     _navigationService.pushReplacementScreenWithSlideRightIn(HomePage());
   }
 
-  void gotoForgotPassPage() async {
+  void openForgotPassPage() async {
     _navigationService
         .pushReplacementScreenWithSlideRightIn(ForgotPasswordPage());
   }

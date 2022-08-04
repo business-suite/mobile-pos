@@ -34,8 +34,8 @@ class Category {
 
   int? id;
   String? name;
-  bool? parent_id;
-  List<dynamic>? child_id;
+  dynamic parent_id;
+  dynamic child_id;
   String? write_date;
 
   factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);

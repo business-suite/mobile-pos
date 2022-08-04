@@ -3,25 +3,25 @@ import 'package:json_annotation/json_annotation.dart';
 import '../../../../flavors.dart';
 import 'base_response.dart';
 
-part 'detail_shop_response.g.dart';
+part 'products_response.g.dart';
 
 @JsonSerializable(genericArgumentFactories: true)
-class DetailShopResponse extends BaseResponse {
+class ProductsResponse extends BaseResponse {
   @JsonKey(defaultValue: [])
   List<Product>? result;
 
 
-  DetailShopResponse({
+  ProductsResponse({
     String? jsonrpc,
     int? id,
     Error? error,
     this.result,
   }) : super(jsonrpc: jsonrpc, id: id, error: error);
 
-  factory DetailShopResponse.fromJson(Map<String, dynamic> json) =>
-      _$DetailShopResponseFromJson(json);
+  factory ProductsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ProductsResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DetailShopResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ProductsResponseToJson(this);
 
 }
 
@@ -73,7 +73,7 @@ class Product {
   String? type;
 
 
-  String getImageUrl() {
+  String getImageProduct() {
     return '${F
         .baseUrl}/web/image?model=product.product&field=image_256&id=${id}&write_date=${write_date}&unique=1';
   }

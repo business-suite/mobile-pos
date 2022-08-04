@@ -47,7 +47,7 @@ class DataRepository {
       userSharePref.clearUser();
       getIt<NavigationService>().pushAndRemoveUntilWithFade(IntroPage());
     }, onError: (e) {
-      _navigationService.gotoErrorPage();
+      _navigationService.openErrorPage();
     });
   }
 

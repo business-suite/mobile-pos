@@ -259,5 +259,7 @@
   "forbidden_you_dont_have_permission_to_access_on_this_server": "Forbidden\nYou don't have permission to access on this server",
   "page_not_found": "Page Not Found",
   "server_unavailable": "Server Unavailable",
-  "no_internet_connection": "No Internet Connection"
+  "no_internet_connection": "No Internet Connection",
+  "there_are_no_products_in_this_category": "There are no products in this category",
+  "there_are_no_shops": "There are no shops"
 }

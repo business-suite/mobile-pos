@@ -9,7 +9,7 @@ part 'shops_response.g.dart';
 @JsonSerializable(genericArgumentFactories: true)
 class ShopsResponse extends BaseResponse {
   @JsonKey(defaultValue: null)
-  ShopsResult? result;
+  ShopResult? result;
 
   ShopsResponse({
     String? jsonrpc,
@@ -25,16 +25,16 @@ class ShopsResponse extends BaseResponse {
 }
 
 @JsonSerializable()
-class ShopsResult {
+class ShopResult {
   int? length;
   List<Shop>? records;
 
-  ShopsResult({this.length, this.records});
+  ShopResult({this.length, this.records});
 
-  factory ShopsResult.fromJson(Map<String, dynamic> json) =>
-      _$ShopsResultFromJson(json);
+  factory ShopResult.fromJson(Map<String, dynamic> json) =>
+      _$ShopResultFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ShopsResultToJson(this);
+  Map<String, dynamic> toJson() => _$ShopResultToJson(this);
 }
 
 class Shop {

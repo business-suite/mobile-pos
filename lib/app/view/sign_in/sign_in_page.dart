@@ -53,79 +53,83 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
       transparentStatusBar: 0.0,
       title: LocaleKeys.sign_in.tr(),
       hideBackButton: false,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: size_26_w,
-            vertical: size_50_h,
-          ),
-          child: Column(
-            children: [
-              Container(
-                //height: size_174_h,
-                child: Column(
-                  children: [
-                    OutlineTextFormField(
-                      controller: signInViewModel.emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      focusNode: signInViewModel.emailFC,
-                      hintText: LocaleKeys.email.tr(),
-                      onChanged: (value) =>
-                          signInViewModel.onChangeEmail(value),
-                      validator: (value) => signInViewModel.invalidEmail(value),
-                      textInputAction: TextInputAction.next,
-                    ),
-                    SizedBox(
-                      height: size_28_h,
-                    ),
-                    OutlineTextFormField(
-                      controller: signInViewModel.passController,
-                      keyboardType: TextInputType.visiblePassword,
-                      focusNode: signInViewModel.passwordFC,
-                      hintText: LocaleKeys.password.tr(),
-                      obscureText: true,
-                      onChanged: (value) =>
-                          signInViewModel.onChangePassword(value),
-                      validator: (value) => signInViewModel.passwordValidator(
-                          value, LocaleKeys.password.tr()),
-                      textInputAction: TextInputAction.done,
-                      onFieldSubmitted: (_) => signInViewModel.signIn(),
-                    ),
-                  ],
+      body: ScrollConfiguration(
+        behavior: const ScrollBehavior().copyWith(overscroll: false),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: size_26_w,
+              vertical: size_50_h,
+            ),
+            child: Column(
+              children: [
+                Container(
+                  //height: size_174_h,
+                  child: Column(
+                    children: [
+                      OutlineTextFormField(
+                        controller: signInViewModel.emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        focusNode: signInViewModel.emailFC,
+                        hintText: LocaleKeys.email.tr(),
+                        onChanged: (value) =>
+                            signInViewModel.onChangeEmail(value),
+                        validator: (value) =>
+                            signInViewModel.invalidEmail(value),
+                        textInputAction: TextInputAction.next,
+                      ),
+                      SizedBox(
+                        height: size_28_h,
+                      ),
+                      OutlineTextFormField(
+                        controller: signInViewModel.passController,
+                        keyboardType: TextInputType.visiblePassword,
+                        focusNode: signInViewModel.passwordFC,
+                        hintText: LocaleKeys.password.tr(),
+                        obscureText: true,
+                        onChanged: (value) =>
+                            signInViewModel.onChangePassword(value),
+                        validator: (value) => signInViewModel.passwordValidator(
+                            value, LocaleKeys.password.tr()),
+                        textInputAction: TextInputAction.done,
+                        onFieldSubmitted: (_) => signInViewModel.signIn(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TouchableOpacity(
-                      onPressed: () {
-                        //TODO: go to Forgot password
-                        signInViewModel.gotoForgotPassPage();
-                      },
-                      child: Text(
-                        LocaleKeys.forgot_password_question.tr(),
-                        textAlign: TextAlign.right,
-                        style:
-                            TextStyle(fontSize: text_16, color: kColorPrimary),
+                Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TouchableOpacity(
+                        onPressed: () {
+                          //TODO: go to Forgot password
+                          signInViewModel.openForgotPassPage();
+                        },
+                        child: Text(
+                          LocaleKeys.forgot_password_question.tr(),
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                              fontSize: text_16, color: kColorPrimary),
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: size_20_h,
-                  ),
-                  Consumer<SignInViewModel>(
-                    builder: (context, value, child) {
-                      return FilledButton(
-                        text: LocaleKeys.sign_in.tr().toUpperCase(),
-                        enable: value.validate,
-                        onPress: () => signInViewModel.signIn(),
-                      );
-                    },
-                  )
-                ],
-              )
-            ],
+                    SizedBox(
+                      height: size_20_h,
+                    ),
+                    Consumer<SignInViewModel>(
+                      builder: (context, value, child) {
+                        return FilledButton(
+                          text: LocaleKeys.sign_in.tr().toUpperCase(),
+                          enable: value.validate,
+                          onPress: () => signInViewModel.signIn(),
+                        );
+                      },
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -15,7 +15,8 @@ import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import 'customer_tablet_list_viewmodel.dart';
 
-class CustomerTabletListPage extends PageProvideNode<CustomerTabletListViewModel> {
+class CustomerTabletListPage
+    extends PageProvideNode<CustomerTabletListViewModel> {
   CustomerTabletListPage({Key? key}) : super(key: key, params: []);
 
   @override
@@ -30,11 +31,13 @@ class CustomerTabletListContent extends StatefulWidget {
   CustomerTabletListContent(this._customerListViewModel);
 
   @override
-  State<CustomerTabletListContent> createState() => _CustomerTabletListContentState();
+  State<CustomerTabletListContent> createState() =>
+      _CustomerTabletListContentState();
 }
 
 class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
-  CustomerTabletListViewModel get customerListViewModel => widget._customerListViewModel;
+  CustomerTabletListViewModel get customerListViewModel =>
+      widget._customerListViewModel;
 
   FocusNode node1 = FocusNode();
 
@@ -55,9 +58,10 @@ class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
+        onClickAvatar: () => getIt<NavigationService>().signOut(),
       ),
-      body: Consumer<CustomerTabletListViewModel>(builder: (context, value, child) {
+      body: Consumer<CustomerTabletListViewModel>(
+          builder: (context, value, child) {
         return Container(
           color: kColorBackground,
           child: Column(
@@ -95,10 +99,10 @@ class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
                     ),
                     //add button
                     Padding(
-                      padding: const EdgeInsets.only(left:10 ),
+                      padding: const EdgeInsets.only(left: 10),
                       child: InkWell(
                         onTap: () {
-                            customerListViewModel.gotoAddCustomerPage();
+                          customerListViewModel.openAddCustomerPage();
                         },
                         child: Container(
                           height: size_40_w,
@@ -125,8 +129,10 @@ class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
                       child: Container(
                         height: size_35_w,
                         child: Padding(
-                          padding:
-                              EdgeInsets.only(left: size_10_w,right: size_5_w,bottom: size_7_w),
+                          padding: EdgeInsets.only(
+                              left: size_10_w,
+                              right: size_5_w,
+                              bottom: size_7_w),
                           child: Material(
                             color: kWhite,
                             borderRadius: BorderRadius.circular(size_100_r),
@@ -138,10 +144,12 @@ class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
                               decoration: InputDecoration(
                                 fillColor: kWhite,
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(size_100_r),
+                                  borderRadius:
+                                      BorderRadius.circular(size_100_r),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(size_100_r),
+                                  borderRadius:
+                                      BorderRadius.circular(size_100_r),
                                   borderSide: BorderSide(
                                     color: kColor2947C3,
                                   ),
@@ -159,7 +167,8 @@ class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
 
                     //database button
                     Padding(
-                      padding: EdgeInsets.only(left: size_10_w,right: size_10_w),
+                      padding:
+                          EdgeInsets.only(left: size_10_w, right: size_10_w),
                       child: InkWell(
                         // onTap: () {
                         //   getIt<NavigationService>().back();
@@ -246,19 +255,22 @@ class _CustomerTabletListContentState extends State<CustomerTabletListContent> {
               ),
               //ListView
               Expanded(
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: value.customers.length,
-                    itemBuilder: (context, index) => Container(
-                      height: size_40_w,
-                      width: double.infinity,
-                      color: index % 2 == 0 ? kColorE6E6E6 : kColorF7F7F7,
-                      child: ItemCustomer(
-                        item: value.customers[index],
-                        onClickItem: () {},
+                child: ScrollConfiguration(
+                  behavior: const ScrollBehavior().copyWith(overscroll: false),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: value.customers.length,
+                      itemBuilder: (context, index) => Container(
+                        height: size_40_w,
+                        width: double.infinity,
+                        color: index % 2 == 0 ? kColorE6E6E6 : kColorF7F7F7,
+                        child: ItemCustomer(
+                          item: value.customers[index],
+                          onClickItem: () {},
+                        ),
                       ),
                     ),
                   ),

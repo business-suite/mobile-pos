@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'detail_shop_response.dart';
+part of 'products_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DetailShopResponse _$DetailShopResponseFromJson(Map<String, dynamic> json) =>
-    DetailShopResponse(
+ProductsResponse _$ProductsResponseFromJson(Map<String, dynamic> json) =>
+    ProductsResponse(
       jsonrpc: json['jsonrpc'] as String?,
       id: json['id'] as int?,
       error: json['error'] == null ? null : Error.fromJson(json['error']),
@@ -17,7 +17,7 @@ DetailShopResponse _$DetailShopResponseFromJson(Map<String, dynamic> json) =>
           [],
     );
 
-Map<String, dynamic> _$DetailShopResponseToJson(DetailShopResponse instance) =>
+Map<String, dynamic> _$ProductsResponseToJson(ProductsResponse instance) =>
     <String, dynamic>{
       'jsonrpc': instance.jsonrpc,
       'id': instance.id,

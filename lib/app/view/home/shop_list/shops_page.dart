@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'dart:async';
-
-import 'package:business_suite_mobile_pos/app/view/home/shop_list/appbar_shop_list.dart';
+import 'package:business_suite_mobile_pos/app/view/home/shop_list/appbar_shops.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -14,33 +12,34 @@ import '../../../module/common/config.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
+import '../../empty/empty_page.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../../widget_utils/custom/default_loading_progress.dart';
 import '../../widget_utils/custom/loadmore.dart';
 import 'item_shop.dart';
-import 'shop_list_viewmodel.dart';
+import 'shops_viewmodel.dart';
 
-class ShopListPage extends PageProvideNode<ShopListViewModel> {
-  ShopListPage({Key? key}) : super(key: key, params: []);
+class ShopsPage extends PageProvideNode<ShopsViewModel> {
+  ShopsPage({Key? key}) : super(key: key, params: []);
 
   @override
   Widget buildContent(BuildContext context) {
-    return ShopListContent(viewModel);
+    return ShopsContent(viewModel);
   }
 }
 
-class ShopListContent extends StatefulWidget {
-  final ShopListViewModel _shopListViewModel;
+class ShopsContent extends StatefulWidget {
+  final ShopsViewModel _shopListViewModel;
 
-  ShopListContent(this._shopListViewModel);
+  ShopsContent(this._shopListViewModel);
 
   @override
-  State<ShopListContent> createState() => _ShopListContentState();
+  State<ShopsContent> createState() => _ShopsContentState();
 }
 
-class _ShopListContentState extends State<ShopListContent> with SingleTickerProviderStateMixin {
-  ShopListViewModel get shopListViewModel => widget._shopListViewModel;
-
+class _ShopsContentState extends State<ShopsContent>
+    with SingleTickerProviderStateMixin {
+  ShopsViewModel get shopListViewModel => widget._shopListViewModel;
 
   @override
   void initState() {
@@ -57,7 +56,7 @@ class _ShopListContentState extends State<ShopListContent> with SingleTickerProv
     return BaseScaffoldSafeArea(
       transparentStatusBar: 0.2,
       backgroundColor: kColorF8F9FA,
-      customAppBar: AppBarShopList(
+      customAppBar: AppBarShops(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
         onClickAvatar: () => getIt<NavigationService>().signOut(),
@@ -119,8 +118,7 @@ class _ShopListContentState extends State<ShopListContent> with SingleTickerProv
                             ),
                             label: Text(LocaleKeys.group_by.tr(),
                                 style: TextStyle(
-                                    fontSize: text_12,
-                                    color: Colors.black87)),
+                                    fontSize: text_12, color: Colors.black87)),
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                                 primary: Colors.white, elevation: 0),
@@ -135,50 +133,54 @@ class _ShopListContentState extends State<ShopListContent> with SingleTickerProv
           ),
           //body
           Expanded(
-            child: Consumer<ShopListViewModel>(
+            child: Consumer<ShopsViewModel>(
               builder: (context, value, child) {
                 switch (value.loadingState) {
                   case LoadingState.LOADING:
                     return BuildProgressLoading();
+                  case LoadingState.EMPTY:
+                    return EmptyWidget(
+                      onRefresh: () {
+                        value.refreshData();
+                        return value.completer.future;
+                      },
+                      imgEmpty: 'assets/images/img_empty_shop.svg',
+                      emptyText: LocaleKeys.there_are_no_shops.tr(),
+                    );
                   case LoadingState.DONE:
-                    return Container(
-                      // color: kColorFF193053,
-                      child: value.shops.isEmpty
-                          ? Container()
-                          : RefreshIndicator(
-                              onRefresh: () {
-                                value.refreshData();
-                                return value.completer.future;
-                              },
-                              child: CustomScrollView(
-                                physics: AlwaysScrollableScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                controller: value.scrollController,
-                                slivers: <Widget>[
-                                  SliverList(
-                                    delegate: SliverChildBuilderDelegate(
-                                      (context, index) {
-                                        return ItemShop(
-                                          shop: value.shops[index],
-                                          onClickItem: () {
-                                            value.userSharePref
-                                                .saveShop(value.shops[index]);
-                                            value.gotoDetailShop();
-                                          },
-                                        );
-                                      },
-                                      childCount: value.shops.length,
-                                    ),
-                                  ),
-                                  SliverToBoxAdapter(
-                                    child: value.canLoadMore && value.isLoading
-                                        ? BuildLoadMore()
-                                        : SizedBox(),
-                                  ),
-                                ],
+                    return RefreshIndicator(
+                        color: kColorPrimary,
+                        onRefresh: () {
+                          value.refreshData();
+                          return value.completer.future;
+                        },
+                        child: CustomScrollView(
+                          physics: AlwaysScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          controller: value.scrollController,
+                          slivers: <Widget>[
+                            SliverList(
+                              delegate: SliverChildBuilderDelegate(
+                                (context, index) {
+                                  return ItemShop(
+                                    shop: value.shops[index],
+                                    onClickItem: () {
+                                      value.userSharePref
+                                          .saveShop(value.shops[index]);
+                                      value.openDetailShop();
+                                    },
+                                  );
+                                },
+                                childCount: value.shops.length,
                               ),
                             ),
-                    );
+                            SliverToBoxAdapter(
+                              child: value.canLoadMore && value.isLoading
+                                  ? BuildLoadMore()
+                                  : SizedBox(),
+                            ),
+                          ],
+                        ));
                   default:
                     return Container();
                 }

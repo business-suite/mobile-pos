@@ -13,7 +13,7 @@ ShopsResponse _$ShopsResponseFromJson(Map<String, dynamic> json) =>
       error: json['error'] == null ? null : Error.fromJson(json['error']),
       result: json['result'] == null
           ? null
-          : ShopsResult.fromJson(json['result'] as Map<String, dynamic>),
+          : ShopResult.fromJson(json['result'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ShopsResponseToJson(ShopsResponse instance) =>
@@ -24,14 +24,14 @@ Map<String, dynamic> _$ShopsResponseToJson(ShopsResponse instance) =>
       'result': instance.result,
     };
 
-ShopsResult _$ShopsResultFromJson(Map<String, dynamic> json) => ShopsResult(
+ShopResult _$ShopResultFromJson(Map<String, dynamic> json) => ShopResult(
       length: json['length'] as int?,
       records: (json['records'] as List<dynamic>?)
           ?.map((e) => Shop.fromJson(e))
           .toList(),
     );
 
-Map<String, dynamic> _$ShopsResultToJson(ShopsResult instance) =>
+Map<String, dynamic> _$ShopResultToJson(ShopResult instance) =>
     <String, dynamic>{
       'length': instance.length,
       'records': instance.records,

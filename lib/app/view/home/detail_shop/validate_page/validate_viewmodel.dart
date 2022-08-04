@@ -59,7 +59,7 @@ class ValidateViewModel extends BaseViewModel {
   }
 
 
-  gotoOrderListpage(){
+  openOrderListpage(){
     _navigationService.pushScreenWithFade(OrderListPage());
   }
 

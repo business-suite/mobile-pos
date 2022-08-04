@@ -137,7 +137,7 @@ class ReviewViewModel extends BaseViewModel {
   }
 
 
-  gotoOrderListpage(){
+  openOrderListpage(){
     _navigationService.pushScreenWithFade(OrderListPage());
   }
 

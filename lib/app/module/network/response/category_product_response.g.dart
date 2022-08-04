@@ -30,8 +30,8 @@ Map<String, dynamic> _$CategoryProductResponseToJson(
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       id: json['id'] as int?,
       name: json['name'] as String?,
-      parent_id: json['parent_id'] as bool?,
-      child_id: json['child_id'] as List<dynamic>?,
+      parent_id: json['parent_id'],
+      child_id: json['child_id'],
       write_date: json['write_date'] as String?,
     );
 

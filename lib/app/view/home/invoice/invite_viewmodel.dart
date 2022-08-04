@@ -55,7 +55,7 @@ class InVoiceViewModel extends BaseViewModel {
     ToastUtil.showToast('Test');
   }
 
-  gotoOrderListpage() {
+  openOrderListpage() {
     _navigationService.pushScreenWithFade(OrderListPage());
   }
 }

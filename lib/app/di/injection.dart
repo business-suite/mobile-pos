@@ -1,6 +1,6 @@
 import 'package:business_suite_mobile_pos/app/view/authentication/authentication_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/add_customer/add_customer_viewmodel.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/product_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
@@ -20,7 +20,7 @@ import '../view/home/invoice/invite_viewmodel.dart';
 import '../view/home/opening_cash_control/opening_cash_viewmodel.dart';
 import '../view/home/order_list/order_list_viewmodel.dart';
 import '../view/home/pay/pay_viewmodel.dart';
-import '../view/home/shop_list/shop_list_viewmodel.dart';
+import '../view/home/shop_list/shops_viewmodel.dart';
 import '../view/intro/intro_viewmodel.dart';
 import '../view/sign_in/sign_in_viewmodel.dart';
 import '../view/splash/splash_viewmodel.dart';
@@ -65,11 +65,11 @@ Future<void> configureDependencies() async {
   getIt.registerFactory<HomeViewModel>(
       () => HomeViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactory<ShopListViewModel>(
-      () => ShopListViewModel(getIt<DataRepository>()));
+  getIt.registerFactory<ShopsViewModel>(
+      () => ShopsViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactory<DetailShopViewModel>(
-      () => DetailShopViewModel(getIt<DataRepository>()));
+  getIt.registerFactory<ProductViewModel>(
+      () => ProductViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<PayViewModel>(
       () => PayViewModel(getIt<DataRepository>()));

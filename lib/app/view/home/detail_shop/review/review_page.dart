@@ -1,5 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/product_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/item_review_customer.dart';
 import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -21,7 +21,7 @@ import '../../../widget_utils/base_scaffold_safe_area.dart';
 import '../../../widget_utils/custom/custom_card.dart';
 import '../../info/bottom_sheet_product_info.dart';
 import '../../pay/pay_page.dart';
-import '../appbar_shop.dart';
+import '../appbar_product.dart';
 import 'review_item_keyboard.dart';
 
 class ReviewPage extends PageProvideNode<ReviewViewModel> {
@@ -41,19 +41,18 @@ class ReviewContent extends StatefulWidget {
   @override
   State<ReviewContent> createState() => _ReviewContentState();
 }
-class _ReviewContentState extends State<ReviewContent> {
 
+class _ReviewContentState extends State<ReviewContent> {
   bool _hasBeenPressed = false;
   bool _hasBeenTextInfo = false;
 
   bool _hasBeenQuotationOrder = false;
   bool _hasBeenTextQuotatiOrder = false;
 
-
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
-      getIt<NavigationService>().pushAndRemoveUntilWithFade(DetailShopPage());
+      getIt<NavigationService>().pushAndRemoveUntilWithFade(ProductPage());
     });
     super.initState();
   }
@@ -68,10 +67,10 @@ class _ReviewContentState extends State<ReviewContent> {
     return BaseScaffoldSafeArea(
       transparentStatusBar: 0.2,
       backgroundColor: kColorf0eeee,
-      customAppBar: AppBarShop(
+      customAppBar: AppBarProduct(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
+        onClickAvatar: () => getIt<NavigationService>().signOut(),
       ),
       body: Consumer<ReviewViewModel>(builder: (context, value, child) {
         return Stack(
@@ -115,54 +114,59 @@ class _ReviewContentState extends State<ReviewContent> {
             //   ),
             // ),
             Padding(
-              padding:  EdgeInsets.only(top: size_1_w,bottom: size_360_w),
-              child: SingleChildScrollView(
-                physics: AlwaysScrollableScrollPhysics(),
-                child: Column(
-                  children: [
-                    ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: value.reviews.length,
-                      itemBuilder: (context, index) => ItemReview(
-                        detailReviews: value.detailreviews,
-                        item: value.reviews[index],
-                        onClickItem: () => value.onClickItem,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: size_180_w,top: size_10_w),
-                      child: Container(
-                        height: size_2_w,
-                        width: size_130_w,
-                        color: kColor777777,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: size_180_w),
-                      child: Text(
-                        LocaleKeys.total_review.tr(),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: kColor6F6F6F,
-                          fontWeight: FontWeight.w500,
-                          fontSize: text_20,
+              padding: EdgeInsets.only(top: size_1_w, bottom: size_360_w),
+              child: ScrollConfiguration(
+                behavior: const ScrollBehavior().copyWith(overscroll: false),
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: value.reviews.length,
+                        itemBuilder: (context, index) => ItemReview(
+                          detailReviews: value.detailreviews,
+                          item: value.reviews[index],
+                          onClickItem: () => value.onClickItem,
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: size_180_w, bottom: size_50_w),
-                      child: Text(
-                        LocaleKeys.taxes_review.tr(),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: kColor6F6F6F,
-                          fontWeight: FontWeight.w300,
-                          fontSize: text_15,
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: size_180_w, top: size_10_w),
+                        child: Container(
+                          height: size_2_w,
+                          width: size_130_w,
+                          color: kColor777777,
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: EdgeInsets.only(left: size_180_w),
+                        child: Text(
+                          LocaleKeys.total_review.tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kColor6F6F6F,
+                            fontWeight: FontWeight.w500,
+                            fontSize: text_20,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: size_180_w, bottom: size_50_w),
+                        child: Text(
+                          LocaleKeys.taxes_review.tr(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kColor6F6F6F,
+                            fontWeight: FontWeight.w300,
+                            fontSize: text_15,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -187,11 +191,13 @@ class _ReviewContentState extends State<ReviewContent> {
                           child: Row(
                             children: [
                               Expanded(
-                                flex:1,
+                                flex: 1,
                                 child: Card(
-                                  color: _hasBeenPressed ? Colors.black : kColorE2E2E2,
+                                  color: _hasBeenPressed
+                                      ? Colors.black
+                                      : kColorE2E2E2,
                                   elevation: 1,
-                                  shape:  RoundedRectangleBorder(
+                                  shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       color: kColorBFBFBF,
                                     ),
@@ -204,12 +210,10 @@ class _ReviewContentState extends State<ReviewContent> {
                                         setState(() {
                                           _hasBeenPressed = !_hasBeenPressed;
                                           _hasBeenTextInfo = !_hasBeenTextInfo;
-
                                         });
                                         prductInfoBottomSheet(
                                             onCloseClick: null,
-                                          statusBarHeight: statusBarHeight
-                                        );
+                                            statusBarHeight: statusBarHeight);
                                       },
                                       child: Row(
                                         mainAxisAlignment:
@@ -219,7 +223,9 @@ class _ReviewContentState extends State<ReviewContent> {
                                           Icon(
                                             Icons.info_outlined,
                                             size: size_20_w,
-                                            color: _hasBeenTextInfo ? Colors.white : kColor555555,
+                                            color: _hasBeenTextInfo
+                                                ? Colors.white
+                                                : kColor555555,
                                           ),
                                           SizedBox(
                                             width: size_6_w,
@@ -227,7 +233,9 @@ class _ReviewContentState extends State<ReviewContent> {
                                           Text(
                                             LocaleKeys.info.tr(),
                                             style: TextStyle(
-                                              color: _hasBeenTextInfo ? Colors.white : kColor555555,
+                                              color: _hasBeenTextInfo
+                                                  ? Colors.white
+                                                  : kColor555555,
                                               fontSize: text_20,
                                             ),
                                           ), // text
@@ -286,7 +294,9 @@ class _ReviewContentState extends State<ReviewContent> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: size_10_w),
                           child: Card(
-                            color: _hasBeenQuotationOrder ? Colors.black : kColorE2E2E2,
+                            color: _hasBeenQuotationOrder
+                                ? Colors.black
+                                : kColorE2E2E2,
                             elevation: 0.0,
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
@@ -295,15 +305,15 @@ class _ReviewContentState extends State<ReviewContent> {
                             ),
                             child: Ink(
                               child: InkWell(
-                                //goto order list page
+                                //open order list page
                                 onTap: () {
-                                  reviewViewModel.gotoOrderListpage();
+                                  reviewViewModel.openOrderListpage();
                                   setState(() {
-                                    _hasBeenQuotationOrder = !_hasBeenQuotationOrder;
-                                    _hasBeenTextQuotatiOrder = !_hasBeenTextQuotatiOrder;
-
+                                    _hasBeenQuotationOrder =
+                                        !_hasBeenQuotationOrder;
+                                    _hasBeenTextQuotatiOrder =
+                                        !_hasBeenTextQuotatiOrder;
                                   });
-
                                 },
                                 child: SizedBox(
                                   width: double.infinity,
@@ -313,14 +323,18 @@ class _ReviewContentState extends State<ReviewContent> {
                                     children: <Widget>[
                                       SvgPicture.asset(
                                         'assets/icons/ic_chain.svg',
-                                        color: _hasBeenTextQuotatiOrder ? Colors.white : kColor555555,
+                                        color: _hasBeenTextQuotatiOrder
+                                            ? Colors.white
+                                            : kColor555555,
                                         height: size_18_w,
                                       ),
                                       SizedBox(width: size_6_w),
                                       Text(
                                         LocaleKeys.quotation_order.tr(),
                                         style: TextStyle(
-                                          color: _hasBeenTextQuotatiOrder ? Colors.white : kColor555555,
+                                          color: _hasBeenTextQuotatiOrder
+                                              ? Colors.white
+                                              : kColor555555,
                                           fontSize: text_20,
                                         ),
                                       ),

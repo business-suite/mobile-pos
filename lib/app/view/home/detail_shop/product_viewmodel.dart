@@ -16,11 +16,11 @@ import '../../../module/common/config.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/network/response/category_product_response.dart';
-import '../../../module/network/response/detail_shop_response.dart';
+import '../../../module/network/response/products_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 
-class DetailShopViewModel extends BaseViewModel {
+class ProductViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   GlobalKey<SliderDrawerState> keySlider = GlobalKey<SliderDrawerState>();
@@ -37,7 +37,7 @@ class DetailShopViewModel extends BaseViewModel {
   LoadingState loadingState = LoadingState.LOADING;
   List<Product> products = [];
   List<Product> allProducts = [];
-  List<Category> categoryProducts = [];
+  List<Category> categories = [];
 
   CategoryProductResponse? _categoryProductResponse;
 
@@ -50,14 +50,14 @@ class DetailShopViewModel extends BaseViewModel {
   CategoryProductResponse? get categoryProductResponse =>
       _categoryProductResponse;
 
-  DetailShopResponse? _detailShopResponse;
+  ProductsResponse? _productsResponse;
 
-  set detailShopResponse(DetailShopResponse? detailShopResponse) {
-    _detailShopResponse = detailShopResponse;
+  set detailShopResponse(ProductsResponse? productsResponse) {
+    _productsResponse = productsResponse;
     notifyListeners();
   }
 
-  DetailShopResponse? get detailShopResponse => _detailShopResponse;
+  ProductsResponse? get productsResponse => _productsResponse;
 
   final List<Bill> bills = [
     Bill(
@@ -102,9 +102,9 @@ class DetailShopViewModel extends BaseViewModel {
         status: 'Ongoing'),
   ];
 
-  DetailShopViewModel(this._dataRepo);
+  ProductViewModel(this._dataRepo);
 
-  Future<void> getCategoryProductsApi() async {
+  Future<void> getCategoriesApi() async {
     SessionInfo? sessionInfo = userSharePref.getUser();
     Map<String, dynamic> kwargs = <String, dynamic>{};
     kwargs.putIfAbsent('context', () => sessionInfo?.userContext);
@@ -121,8 +121,8 @@ class DetailShopViewModel extends BaseViewModel {
       try {
         categoryProductResponse = CategoryProductResponse.fromJson(r);
         if (categoryProductResponse?.result != null) {
-          categoryProducts.clear();
-          categoryProducts.addAll(categoryProductResponse?.result ?? []);
+          categories.clear();
+          categories.addAll(categoryProductResponse?.result ?? []);
           changeMenu(lastIndexMenu);
           loadingState = LoadingState.DONE;
           notifyListeners();
@@ -132,7 +132,7 @@ class DetailShopViewModel extends BaseViewModel {
         if (loadingState != LoadingState.ERROR) {
           loadingState = LoadingState.ERROR;
         }
-        _navigationService.gotoErrorPage(
+        _navigationService.openErrorPage(
             message: r is DioError && r.message.isNotEmpty
                 ? r.message.toString()
                 : LocaleKeys.an_unexpected_error_has_occurred.tr());
@@ -189,9 +189,9 @@ class DetailShopViewModel extends BaseViewModel {
     )
         .listen((r) {
       try {
-        detailShopResponse = DetailShopResponse.fromJson(r);
-        if (detailShopResponse?.result != null) {
-          allProducts.addAll(detailShopResponse?.result ?? []);
+        detailShopResponse = ProductsResponse.fromJson(r);
+        if (productsResponse?.result != null) {
+          allProducts.addAll(productsResponse?.result ?? []);
           changeMenu(lastIndexMenu);
           //loadingState = LoadingState.DONE;
           notifyListeners();
@@ -201,7 +201,7 @@ class DetailShopViewModel extends BaseViewModel {
         if (loadingState != LoadingState.ERROR) {
           loadingState = LoadingState.ERROR;
         }
-        _navigationService.gotoErrorPage(
+        _navigationService.openErrorPage(
             message: r is DioError && r.message.isNotEmpty
                 ? r.message.toString()
                 : LocaleKeys.an_unexpected_error_has_occurred.tr());
@@ -217,11 +217,10 @@ class DetailShopViewModel extends BaseViewModel {
     isLoading = true;
     canLoadMore = false;
     loadingState = LoadingState.LOADING;
-    products.clear();
     allProducts.clear();
     notifyListeners();
     getProductsApi();
-    getCategoryProductsApi();
+    getCategoriesApi();
   }
 
   void onScroll() {
@@ -240,27 +239,23 @@ class DetailShopViewModel extends BaseViewModel {
   }
 
   changeMenu(int index) {
-    if (categoryProducts.isEmpty) return;
+    if (categories.isEmpty) return;
     lastIndexMenu = index;
-    if (lastIndexMenu > categoryProducts.length) lastIndexMenu = 0;
+    if (lastIndexMenu > categories.length) lastIndexMenu = 0;
     try {
       isHome = false;
-      products.clear();
       products = allProducts
           .where((element) =>
               element.pos_categ_id is List<dynamic> &&
-              categoryProducts.isNotEmpty &&
-              element.pos_categ_id[0] == categoryProducts[lastIndexMenu].id)
+                  categories.isNotEmpty &&
+              element.pos_categ_id[0] == categories[lastIndexMenu].id)
           .toList();
+      if(products.isEmpty) loadingState = LoadingState.EMPTY;
+      else loadingState = LoadingState.DONE;
       if (products.length > 5) scrollToTop();
       notifyListeners();
     } catch (e) {
-      if (loadingState != LoadingState.ERROR) {
-        loadingState = LoadingState.ERROR;
-      }
-      notifyListeners();
-      //EasyLoading.dismiss();
-      _navigationService.gotoErrorPage();
+      _navigationService.openErrorPage();
     }
   }
 

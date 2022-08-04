@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../module/network/response/detail_shop_response.dart';
+import '../../../module/network/response/products_response.dart';
 import '../../../module/network/response/shops_response.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/bottom_gradient_black_to_white.dart';
@@ -36,7 +36,7 @@ class ItemProduct extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               child: FadeInImage.assetNetwork(
                 placeholder: 'assets/images/placeholder.jpg',
-                image: product.getImageUrl(),
+                image: product.getImageProduct(),
                 fit: BoxFit.fitHeight,
                 width: size_150_w,
                 height: size_150_w,

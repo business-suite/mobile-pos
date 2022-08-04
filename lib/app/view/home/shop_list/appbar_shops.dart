@@ -1,11 +1,11 @@
-import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/image_holder.dart';
 import 'package:flutter/material.dart';
+
 import '../../../module/network/network_util.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
 import '../../widget_utils/avatar_profile_circle.dart';
 
-class AppBarShopList extends StatelessWidget implements PreferredSizeWidget {
+class AppBarShops extends StatelessWidget implements PreferredSizeWidget {
   final Widget? iconLeft, iconRight;
   final bool enableCopyPaste;
   final int badgeCount;
@@ -14,7 +14,7 @@ class AppBarShopList extends StatelessWidget implements PreferredSizeWidget {
   final Function? rightIconOnPress;
   VoidCallback? onClickAvatar;
 
-  AppBarShopList({
+  AppBarShops({
     Key? key,
     this.iconLeft,
     this.iconRight,

@@ -8,7 +8,7 @@ import '../../module/common/navigator_screen.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
-import '../home/detail_shop/detail_shop.dart';
+import '../home/detail_shop/product_page.dart';
 
 class SplashViewModel extends BaseViewModel {
   final DataRepository _dataRepo;

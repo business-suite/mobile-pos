@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_if_null_operators
 
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
+import 'package:business_suite_mobile_pos/app/view/home/detail_shop/product_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
