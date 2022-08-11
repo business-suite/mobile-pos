@@ -1,11 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-import 'package:business_suite_mobile_pos/app/module/event_bus/event_bus.dart';
 import 'package:business_suite_mobile_pos/app/view/home/coins_bills/coins_bills_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/coins_bills/item_coins_bills.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
-import 'package:business_suite_mobile_pos/main.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
@@ -44,16 +43,16 @@ class PopupCoInsBills extends StatefulWidget {
 }
 
 class _PopupCoInsBillsState extends State<PopupCoInsBills> {
-
   ConInsBillsViewModel get conInsBillsViewModel => widget._conInsBillsViewModel;
 
   @override
   void initState() {
-    eventBus.on<CloseScreenSettleOrder>().listen((event) {
+    /*eventBus.on<CloseScreenSettleOrder>().listen((event) {
       getIt<NavigationService>().back();
-    });
+    });*/
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -94,61 +93,65 @@ class _PopupCoInsBillsState extends State<PopupCoInsBills> {
               Expanded(
                 child: Stack(
                   children: [
-                    SingleChildScrollView(
-                      physics: BouncingScrollPhysics(),
-                      child: Container(
-                        padding: EdgeInsets.all(size_5_w),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size_20_w, bottom: size_100_w),
-                                    child: ListView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount:
-                                          conInsBillsViewModel.prices.length,
-                                      itemBuilder: (context, index) =>
-                                          ItemCoInsBills(
-                                        item:
-                                            conInsBillsViewModel.prices[index],
-                                        onClickItem: () {},
+                    ScrollConfiguration(
+                      behavior:
+                          const ScrollBehavior().copyWith(overscroll: false),
+                      child: SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child: Container(
+                          padding: EdgeInsets.all(size_5_w),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size_20_w, bottom: size_100_w),
+                                      child: ListView.builder(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount:
+                                            conInsBillsViewModel.prices.length,
+                                        itemBuilder: (context, index) =>
+                                            ItemCoInsBills(
+                                          item: conInsBillsViewModel
+                                              .prices[index],
+                                          onClickItem: () {},
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size_20_w, bottom: size_50_w),
-                                    child: ListView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: conInsBillsViewModel
-                                          .priceBills.length,
-                                      itemBuilder: (context, index) =>
-                                          ItemCoInsBills(
-                                        item: conInsBillsViewModel
-                                            .priceBills[index],
-                                        onClickItem: () {},
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size_20_w, bottom: size_50_w),
+                                      child: ListView.builder(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: conInsBillsViewModel
+                                            .priceBills.length,
+                                        itemBuilder: (context, index) =>
+                                            ItemCoInsBills(
+                                          item: conInsBillsViewModel
+                                              .priceBills[index],
+                                          onClickItem: () {},
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: size_40_w,)
-
-                          ],
+                                ],
+                              ),
+                              SizedBox(
+                                height: size_40_w,
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
-
                     Container(
                       alignment: Alignment.bottomCenter,
                       child: Wrap(
@@ -163,7 +166,8 @@ class _PopupCoInsBillsState extends State<PopupCoInsBills> {
                                   child: Text(
                                     'Total \$ 0.00',
                                     style: TextStyle(
-                                        color: kColor555555, fontSize: size_18_w),
+                                        color: kColor555555,
+                                        fontSize: size_18_w),
                                   ),
                                 ),
                                 Container(

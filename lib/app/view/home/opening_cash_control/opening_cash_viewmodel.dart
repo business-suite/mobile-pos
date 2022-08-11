@@ -39,7 +39,7 @@ class OpeningCashViewModel extends BaseViewModel {
     ToastUtil.showToast('Test');
   }
 
-  gotoOrderListpage() {
+  openOrderListpage() {
     _navigationService.pushScreenWithFade(OrderListPage());
   }
 }

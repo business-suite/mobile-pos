@@ -21,8 +21,7 @@ class ErrorPage extends StatefulWidget {
 }
 
 class _ErrorPageState extends State<ErrorPage> {
-  String get message =>
-      widget.message ?? LocaleKeys.an_unexpected_error_has_occurred.tr();
+  String get message =>  widget.message ?? LocaleKeys.an_unexpected_error_has_occurred.tr();
 
   NavigationService get _navigationService => getIt<NavigationService>();
 

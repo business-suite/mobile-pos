@@ -49,13 +49,8 @@ class _SplashContentState extends State<_SplashContentPage> {
             fit: BoxFit.cover,
           ),*/
           Center(
-            child: /*SvgPicture.asset(
-              'assets/images/img_gusrix_logo.svg',
-              width: size_260_w,
-              fit: BoxFit.fitWidth,
-            ),*/
-            Image.asset(
-              'assets/images/logo.png',
+            child: SvgPicture.asset(
+              'assets/images/logo.svg',
               width: size_200_w,
               fit: BoxFit.fitWidth,
             ),

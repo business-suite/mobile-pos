@@ -15,7 +15,8 @@ import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import 'customer_phone_list_viewmodel.dart';
 
-class CustomerPhoneListPage extends PageProvideNode<CustomerPhoneListViewModel> {
+class CustomerPhoneListPage
+    extends PageProvideNode<CustomerPhoneListViewModel> {
   CustomerPhoneListPage({Key? key}) : super(key: key, params: []);
 
   @override
@@ -30,11 +31,13 @@ class CustomerPhoneListContent extends StatefulWidget {
   CustomerPhoneListContent(this._customerListViewModel);
 
   @override
-  State<CustomerPhoneListContent> createState() => _CustomerPhoneListContentState();
+  State<CustomerPhoneListContent> createState() =>
+      _CustomerPhoneListContentState();
 }
 
 class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
-  CustomerPhoneListViewModel get customerListViewModel => widget._customerListViewModel;
+  CustomerPhoneListViewModel get customerListViewModel =>
+      widget._customerListViewModel;
 
   FocusNode node1 = FocusNode();
 
@@ -55,9 +58,10 @@ class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
+        onClickAvatar: () => getIt<NavigationService>().signOut(),
       ),
-      body: Consumer<CustomerPhoneListViewModel>(builder: (context, value, child) {
+      body: Consumer<CustomerPhoneListViewModel>(
+          builder: (context, value, child) {
         return Container(
           color: kColorBackground,
           child: Column(
@@ -95,10 +99,10 @@ class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
                     ),
                     //add button
                     Padding(
-                      padding: const EdgeInsets.only(left:10 ),
+                      padding: const EdgeInsets.only(left: 10),
                       child: InkWell(
                         onTap: () {
-                            // customerListViewModel.gotoAddCustomerPage();
+                          // customerListViewModel.openAddCustomerPage();
                         },
                         child: Container(
                           height: size_40_w,
@@ -125,8 +129,10 @@ class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
                       child: Container(
                         height: size_35_w,
                         child: Padding(
-                          padding:
-                              EdgeInsets.only(left: size_10_w,right: size_5_w,bottom: size_1_w),
+                          padding: EdgeInsets.only(
+                              left: size_10_w,
+                              right: size_5_w,
+                              bottom: size_1_w),
                           child: Material(
                             color: kWhite,
                             borderRadius: BorderRadius.circular(size_100_r),
@@ -138,10 +144,12 @@ class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
                               decoration: InputDecoration(
                                 fillColor: kWhite,
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(size_100_r),
+                                  borderRadius:
+                                      BorderRadius.circular(size_100_r),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(size_100_r),
+                                  borderRadius:
+                                      BorderRadius.circular(size_100_r),
                                   borderSide: BorderSide(
                                     color: kColor2947C3,
                                   ),
@@ -159,7 +167,8 @@ class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
 
                     //database button
                     Padding(
-                      padding: EdgeInsets.only(left: size_10_w,right: size_10_w),
+                      padding:
+                          EdgeInsets.only(left: size_10_w, right: size_10_w),
                       child: InkWell(
                         // onTap: () {
                         //   getIt<NavigationService>().back();
@@ -189,21 +198,24 @@ class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
               ),
               //ListView
               Expanded(
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: InkWell(
-                    onTap: (){
-                      // getIt<NavigationService>().pushScreenWithFade(PopupQuotationOrderPage());
-                    },
-                    child: ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: value.customersphone.length,
-                      itemBuilder: (context, index) => Container(
-                        color: index % 2 == 0 ? kColorE6E6E6 : kColorF7F7F7,
-                        child: ItemPhoneCustomer(
-                          itemphone: value.customersphone[index],
+                child: ScrollConfiguration(
+                  behavior: const ScrollBehavior().copyWith(overscroll: false),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: InkWell(
+                      onTap: () {
+                        // getIt<NavigationService>().pushScreenWithFade(PopupQuotationOrderPage());
+                      },
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: value.customersphone.length,
+                        itemBuilder: (context, index) => Container(
+                          color: index % 2 == 0 ? kColorE6E6E6 : kColorF7F7F7,
+                          child: ItemPhoneCustomer(
+                            itemphone: value.customersphone[index],
                             onClickItem: () {},
+                          ),
                         ),
                       ),
                     ),

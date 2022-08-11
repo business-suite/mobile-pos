@@ -84,7 +84,7 @@ class AuthenticationViewModel extends BaseViewModel {
   submit() async {
     removeFocus(_navigationService.navigatorKey.currentContext!);
     ToastUtil.errorToast('Tính năng đang pending');
-    gotoHomePage();
+    openHomePage();
     //readRawOtpData();
   }
 
@@ -114,7 +114,7 @@ class AuthenticationViewModel extends BaseViewModel {
        String otpGen = OTP.generateTOTPCode(otp?.secret ?? '', DateTime.now().microsecond,length: otp?.digits ?? 6,interval: otp?.period ?? 30, algorithm: Algorithm.SHA1, isGoogle: true).toString();
        print('OTP Gen: $otpGen');
        if(authenCode == otpGen){
-         gotoHomePage();
+         openHomePage();
          return;
        }
       }
@@ -167,7 +167,7 @@ class AuthenticationViewModel extends BaseViewModel {
     addSubscription(subscript);
   }*/
 
-  gotoHomePage() async {
+  openHomePage() async {
     removeFocus(_navigationService.navigatorKey.currentContext!);
     _navigationService.pushReplacementScreenWithSlideRightIn(HomePage());
   }

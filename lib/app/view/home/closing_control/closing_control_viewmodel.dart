@@ -7,7 +7,7 @@ import 'package:business_suite_mobile_pos/app/module/common/toast_util.dart';
 import 'package:business_suite_mobile_pos/app/module/local_storage/shared_pref_manager.dart';
 import 'package:business_suite_mobile_pos/app/view/authentication/authentication_page.dart';
 import 'package:business_suite_mobile_pos/app/view/forgot_pass/forgot_pass_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/products_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:business_suite_mobile_pos/flavors.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -89,7 +89,7 @@ class ClosingControlViewModel extends BaseViewModel {
 
   setloginType(int loginType) => userSharePref.saveLoginType(loginType);
 
-  void signIn() async {
+  void signInApi() async {
     removeFocus(_navigationService.navigatorKey.currentContext!);
     EasyLoading.show();
     Future.delayed(
@@ -109,15 +109,15 @@ class ClosingControlViewModel extends BaseViewModel {
       },
     );
   }
-  void gotoTermOfService() {
+  void openTermOfService() {
     _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.term_of_service.tr(), url: '${F.baseUrl}/contactus')));
   }
 
-  void gotoPrivacyPolicy() {
+  void openPrivacyPolicy() {
     _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.privacy_policy.tr(), url: '${F.baseUrl}/contactus')));
   }
 
-  void gotoForgotPassPage() async {
+  void openForgotPassPage() async {
     _navigationService.pushReplacementScreenWithSlideRightIn(ForgotPasswordPage());
   }
 
@@ -138,22 +138,22 @@ class ClosingControlViewModel extends BaseViewModel {
     Map<String, dynamic> params = new Map<String, dynamic>();
     params.putIfAbsent('login_type', () => 1);
     params.putIfAbsent('twitter_id', () => twitterId);
-    _navigationService.pushScreenWithFade(DetailShopPage());
+    _navigationService.pushScreenWithFade(ProductsPage());
     /*final subscript = this.sign_in(params).listen((_) {
       if (response.success) {
         userSharePref.saveUser(response);
         userSharePref.saveTwitterId(twitterId);
         if(response.is_new_regist){
-          //new register => goto Agreement Page
+          //new register => open Agreement Page
           //_navigationService.pushReplacementScreenWithFade(DetailShopPage()());
         }else{
           _navigationService.pushReplacementScreenWithFade(HomePage());
         }
       } else {
-        _navigationService.gotoErrorPage(message: response.error_message);
+        _navigationService.openErrorPage(message: response.error_message);
       }
     }, onError: (e) {
-      _navigationService.gotoErrorPage();
+      _navigationService.openErrorPage();
     });
     this.addSubscription(subscript);*/
   }

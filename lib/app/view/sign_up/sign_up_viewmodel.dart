@@ -116,16 +116,16 @@ class SignUpViewModel extends BaseViewModel {
         userSharePref.saveUser(response);
         userSharePref.saveTwitterId(twitterId);
         if(response.is_new_regist){
-          //new register => goto Agreement Page
+          //new register => open Agreement Page
           //_navigationService.pushReplacementScreenWithFade(AgreementPage());
         }else{
           _navigationService.pushReplacementScreenWithFade(HomePage());
         }
       } else {
-        _navigationService.gotoErrorPage(message: response.error_message);
+        _navigationService.openErrorPage(message: response.error_message);
       }
     }, onError: (e) {
-      _navigationService.gotoErrorPage();
+      _navigationService.openErrorPage();
     });
     this.addSubscription(subscript);*/
   }
@@ -137,19 +137,19 @@ class SignUpViewModel extends BaseViewModel {
     // userSharePref.saveFirebaseToken(null);
   }
 
-  void gotoPrivacyPolicy() {
+  void openPrivacyPolicy() {
     _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.privacy_policy.tr(), url: '${F.baseUrl}/contactus')));
   }
 
-  void gotoTermOfService() {
+  void openTermOfService() {
     _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.term_of_service.tr(), url: '${F.baseUrl}/contactus')));
   }
   
   void signUp() {
-    gotoSignInPage();
+    openSignInPage();
   }
 
-  void gotoSignInPage() async {
+  void openSignInPage() async {
     _navigationService.pushReplacementScreenWithSlideRightIn(SignInPage());
   }
 }

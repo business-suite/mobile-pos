@@ -149,7 +149,8 @@ class ActionSheet extends StatelessWidget {
     }
 
     return Container(
-      color: CupertinoDynamicColor.resolve( colorBackground ?? _kBackgroundColor, context),
+      color: CupertinoDynamicColor.resolve(
+          colorBackground ?? _kBackgroundColor, context),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -336,11 +337,14 @@ class _CupertinoAlertContentSection extends StatelessWidget {
     }
 
     if (titleContentGroup.isEmpty) {
-      return SingleChildScrollView(
-        controller: scrollController,
-        child: const SizedBox(
-          width: 0.0,
-          height: 0.0,
+      return ScrollConfiguration(
+        behavior: const ScrollBehavior().copyWith(overscroll: false),
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: const SizedBox(
+            width: 0.0,
+            height: 0.0,
+          ),
         ),
       );
     }
@@ -369,7 +373,6 @@ class _CupertinoAlertContentSection extends StatelessWidget {
 // See _RenderCupertinoAlertActions for details about action button sizing
 // and layout.
 class _CupertinoAlertActionSection extends StatefulWidget {
-
   const _CupertinoAlertActionSection({
     Key? key,
     required this.children,
@@ -913,8 +916,8 @@ class _CupertinoAlertActionsRenderWidget extends MultiChildRenderObjectWidget {
       dividerColor:
           CupertinoDynamicColor.resolve(_kButtonDividerColor, context),
       hasCancelButton: _hasCancelButton,
-      backgroundColor:
-      _colorBackground??  CupertinoDynamicColor.resolve(_kBackgroundColor, context),
+      backgroundColor: _colorBackground ??
+          CupertinoDynamicColor.resolve(_kBackgroundColor, context),
       pressedColor: CupertinoDynamicColor.resolve(_kPressedColor, context),
     );
   }
@@ -927,8 +930,8 @@ class _CupertinoAlertActionsRenderWidget extends MultiChildRenderObjectWidget {
       ..dividerColor =
           CupertinoDynamicColor.resolve(_kButtonDividerColor, context)
       ..hasCancelButton = _hasCancelButton
-      ..backgroundColor =
-          _colorBackground??  CupertinoDynamicColor.resolve(_kBackgroundColor, context)
+      ..backgroundColor = _colorBackground ??
+          CupertinoDynamicColor.resolve(_kBackgroundColor, context)
       ..pressedColor = CupertinoDynamicColor.resolve(_kPressedColor, context);
   }
 }
@@ -1097,8 +1100,8 @@ class _RenderCupertinoAlertActions extends RenderBox
   double _computeMinIntrinsicHeightWithoutCancel(double width) {
     assert(childCount >= 2);
     if (firstChild == null) {
-        return 0.0;
-      }
+      return 0.0;
+    }
     return firstChild!.getMinIntrinsicHeight(width) +
         dividerThickness +
         (0.5 * childAfter(firstChild!)!.getMinIntrinsicHeight(width));

@@ -436,11 +436,11 @@ class CustomerPhoneListViewModel extends BaseViewModel {
   void onClickItem() {
     ToastUtil.showToast('Test');
   }
-  // gotoCustomerPhoneListpage(){
+  // openCustomerPhoneListpage(){
   //   _navigationService.pushScreenWithFade(CustomerPhoneListPage());
   // }
   //
-  // gotoAddCustomerPhonePage(){
+  // openAddCustomerPhonePage(){
   //   getIt<NavigationService>().pushScreenWithFade(AddCustomerPhonePage());
   // }
 }

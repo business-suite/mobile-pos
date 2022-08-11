@@ -14,7 +14,7 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/dimens.dart';
 import '../../../module/res/text.dart';
-import '../detail_shop/detail_shop.dart';
+import '../products/products_page.dart';
 
 void OpenPopupEmptyOrder() {
   BuildContext context =

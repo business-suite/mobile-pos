@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_if_null_operators
 
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/detail_shop.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/products_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -48,10 +48,11 @@ class BaseScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     void _onBackPress() {
-      Navigator.of(context).pop();
+      getIt<NavigationService>().back();
     }
     SystemUtils.setupStatusBar(transparentStatusBar, statusBarColor: statusBarColor);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor,
       appBar: isAppBar
           ? AppBar(
@@ -81,15 +82,9 @@ class BaseScaffold extends StatelessWidget {
               leading: hideBackButton
                   ? null
                   : IconButton(
-                      icon: InkWell(
-                        onTap: (){
-                          getIt<NavigationService>()
-                              .pushEnterFadeExitDown(DetailShopPage());
-                        },
-                        child: Icon(
-                          CupertinoIcons.back,
-                          color: kColorPrimary,
-                        ),
+                      icon: Icon(
+                        CupertinoIcons.back,
+                        color: kColorPrimary,
                       ),
                       onPressed: onBackPress ?? _onBackPress,
                     ),

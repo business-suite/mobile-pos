@@ -1,5 +1,3 @@
-
-import 'package:bouncing_widget/bouncing_widget.dart';
 import 'package:business_suite_mobile_pos/app/view/intro/intro_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,10 +10,10 @@ import '../../module/res/colors.dart';
 import '../../module/res/dimens.dart';
 import '../../viewmodel/base_viewmodel.dart';
 import '../widget_utils//boarding/message_item.dart';
-import '../widget_utils/boarding/on_boarding_animation_widget.dart';
-import '../widget_utils/buttons/outline_button.dart';
 import '../widget_utils/anims/animated_in_widget.dart';
+import '../widget_utils/boarding/on_boarding_animation_widget.dart';
 import '../widget_utils/buttons/filled_button.dart';
+import '../widget_utils/buttons/outline_button.dart';
 
 class IntroPage extends PageProvideNode<IntroViewModel> {
   IntroPage() : super();
@@ -52,11 +50,11 @@ class _IntroContentState extends State<_IntroContentPage> {
               children: [
                 OnBoardingAnimationWidget(
                     initialStep: index,
-                    url: introViewModel.onBoardingUrl[index]
-                ),
+                    url: introViewModel.onBoardingUrl[index]),
                 MessageItem(
                   onBoardingTitle: introViewModel.onBoardingTitles[index],
-                  onBoardingDescription: introViewModel.onBoardingDescriptions[index],
+                  onBoardingDescription:
+                      introViewModel.onBoardingDescriptions[index],
                 ),
               ],
             );
@@ -74,11 +72,11 @@ class _IntroContentState extends State<_IntroContentPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildBtnGetStarted(),
-          Divider(
-            height: size_12_h,
-            color: Colors.transparent,
-          ),
-          _buildBtnHaveAccount(),
+          // Divider(
+          //   height: size_12_h,
+          //   color: Colors.transparent,
+          // ),
+          // _buildBtnHaveAccount(),
           // AnimatedInWidget(
           //   order: 5,
           //   child: _onBoardingSocialButtonGroup(),
@@ -106,21 +104,23 @@ class _IntroContentState extends State<_IntroContentPage> {
   }
 
   Widget _page2() {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Column(
-        children: [
-          _onBoardingAnimationWithMessage(),
-          SizedBox(
-            height: size_10_h,
-          ),
-          _pageIndicator(),
-          _onBoardingButtonGroup(),
-        ],
+    return ScrollConfiguration(
+      behavior: const ScrollBehavior().copyWith(overscroll: false),
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            _onBoardingAnimationWithMessage(),
+            SizedBox(
+              height: size_10_h,
+            ),
+            _pageIndicator(),
+            _onBoardingButtonGroup(),
+          ],
+        ),
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,8 @@ class _IntroContentState extends State<_IntroContentPage> {
           color: kColor2F858A,
           text: LocaleKeys.on_boarding_btn_get_started.tr(),
           onPress: () {
-            value.gotoSignUp();
+            //value.openSignUp();
+            value.openInputServerPort();
           },
         );
       },
@@ -158,7 +159,7 @@ class _IntroContentState extends State<_IntroContentPage> {
           child: OutlineButton(
             text: LocaleKeys.on_boarding_btn_already_have_an_account.tr(),
             onPress: () {
-              value.gotoSignIn();
+              value.openSignIn();
             },
             color: kCBlack38,
             reversed: true,
@@ -167,5 +168,4 @@ class _IntroContentState extends State<_IntroContentPage> {
       },
     );
   }
-
 }

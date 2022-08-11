@@ -242,8 +242,8 @@ String getAvatarProfile(){
   //return '${F.baseUrl}/web/image?model=res.users&field=avatar_128&id=${sessionInfo?.uid}';
 }
 
-String dateTimeFromString(String? date,{ String format = MMddyyyy}) {
-  return date == null || date == '' ? '' : DateFormat(format).format(DateTime.parse(date)).toString();
+String dateTimeFromString(dynamic? date,{ String format = MMddyyyy}) {
+  return date == null || date == '' || date is! String ? '' : DateFormat(format).format(DateTime.parse(date)).toString();
 }
 
 class Utils {

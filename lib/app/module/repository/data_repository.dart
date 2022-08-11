@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/module/network/response/base_response.dart';
+import 'package:business_suite_mobile_pos/app/view/input_server_port/input_server_port_page.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/flutter_easyloading/flutter_easyloading.dart';
 import 'package:dio/dio.dart';
 import 'package:rxdart/rxdart.dart';
@@ -45,9 +46,9 @@ class DataRepository {
       EasyLoading.dismiss();
     }).listen((_) {
       userSharePref.clearUser();
-      getIt<NavigationService>().pushAndRemoveUntilWithFade(IntroPage());
+      getIt<NavigationService>().pushAndRemoveUntilWithFade(InputServerPortPage());
     }, onError: (e) {
-      _navigationService.gotoErrorPage();
+      _navigationService.openErrorPage();
     });
   }
 
@@ -60,6 +61,12 @@ class DataRepository {
       "context": {}
     };
     return call(API_AUTHENTICATE, params);
+  }
+
+  Stream getDatabases() {
+    var params = {
+    };
+    return call(API_DATABASE_LIST, params);
   }
 
   Stream callKW(String model, String method,

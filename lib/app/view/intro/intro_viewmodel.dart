@@ -11,7 +11,8 @@ import '../../module/common/toast_util.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
 import '../../module/repository/data_repository.dart';
 import '../../viewmodel/base_viewmodel.dart';
-import '../home/detail_shop/detail_shop.dart';
+import '../home/products/products_page.dart';
+import '../input_server_port/input_server_port_page.dart';
 import '../sign_in/sign_in_page.dart';
 
 class IntroViewModel extends BaseViewModel {
@@ -51,11 +52,15 @@ class IntroViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void gotoSignIn() {
+  void openSignIn() {
     _navigationService.pushScreenNoAnim(SignInPage());
   }
 
-  void gotoSignUp() {
+  void openInputServerPort() {
+    _navigationService.pushScreenNoAnim(InputServerPortPage());
+  }
+
+  void openSignUp() {
     _navigationService.pushScreenNoAnim(SignUpPage());
   }
 

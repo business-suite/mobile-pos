@@ -91,6 +91,9 @@ abstract class  LocaleKeys {
   static const keep_session_open = 'keep_session_open';
   static const close_session = 'close_session';
   static const continue_selling = 'continue_selling';
+  static const new_selling = 'new_selling';
+  static const opening_control = 'opening_control';
+  static const open_session_pascal = 'open_session_pascal';
   static const closing_control = 'closing_control';
   static const open_session = 'open_session';
   static const opening_cash_control = 'opening_cash_control';
@@ -199,11 +202,11 @@ abstract class  LocaleKeys {
   static const address_phone = 'address_phone';
   static const email_phone = 'email_phone';
   static const password = 'password';
-  static const forgot_password_question = 'forgot_password_question';
+  static const reset_password_question = 'reset_password_question';
   static const invalid_email = 'invalid_email';
   static const msg_is_at_least_6_characters = 'msg_is_at_least_6_characters';
   static const msg_is_required = 'msg_is_required';
-  static const forgot_password = 'forgot_password';
+  static const reset_password = 'reset_password';
   static const msg_instruction = 'msg_instruction';
   static const sent_email_reset = 'sent_email_reset';
   static const email_address = 'email_address';
@@ -240,5 +243,33 @@ abstract class  LocaleKeys {
   static const reporting_orders = 'reporting_orders';
   static const settings = 'settings';
   static const do_you_want_to_log_out = 'do_you_want_to_log_out';
+  static const last_closing_date = 'last_closing_date';
+  static const last_closing_cash = 'last_closing_cash';
+  static const balance = 'balance';
+  static const server_internal_error = 'server_internal_error';
+  static const unauthorized_access_is_denied_due_to_invalid_credentials = 'unauthorized_access_is_denied_due_to_invalid_credentials';
+  static const forbidden_you_dont_have_permission_to_access_on_this_server = 'forbidden_you_dont_have_permission_to_access_on_this_server';
+  static const page_not_found = 'page_not_found';
+  static const server_unavailable = 'server_unavailable';
+  static const no_internet_connection = 'no_internet_connection';
+  static const there_are_no_products_in_this_category = 'there_are_no_products_in_this_category';
+  static const there_are_no_shops = 'there_are_no_shops';
+  static const don_t_have_an_account = 'don_t_have_an_account';
+  static const database = 'database';
+  static const select = 'select';
+  static const manage_databases = 'manage_databases';
+  static const powered_by_odoo = 'powered_by_odoo';
+  static const odoo = 'odoo';
+  static const server = 'server';
+  static const port = 'port';
+  static const submit = 'submit';
+  static const invalid_server = 'invalid_server';
+  static const invalid_port = 'invalid_port';
+  static const server_config = 'server_config';
+  static const http_config = 'http_config';
+  static const https_config = 'https_config';
+  static const no_database = 'no_database';
+  static const select_database = 'select_database';
+  static const the_system_does_not_support_pos_please_contact_administrator_for_more_information = 'the_system_does_not_support_pos_please_contact_administrator_for_more_information';
 
 }

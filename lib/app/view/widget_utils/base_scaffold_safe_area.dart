@@ -2,6 +2,8 @@ import 'package:business_suite_mobile_pos/app/module/common/system_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../di/injection.dart';
+import '../../module/common/navigator_screen.dart';
 import '../../module/res/colors.dart';
 import '../../module/res/text.dart';
 
@@ -41,7 +43,7 @@ class BaseScaffoldSafeArea extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     void _onBackPress() {
-      Navigator.of(context).pop();
+      getIt<NavigationService>().back();
     }
     SystemUtils.setupStatusBar(transparentStatusBar);
     return Scaffold(

@@ -1,10 +1,11 @@
 import 'dart:convert';
+
+import 'package:business_suite_mobile_pos/app/module/common/extension.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../model/server_config.dart';
 import '../../model/session_info.dart';
 import '../network/response/shops_response.dart';
-
-
 
 class SharedPrefManager {
   static SharedPrefManager? _instance;
@@ -119,9 +120,9 @@ class SharedPrefManager {
   }
 }
 
-
 class UserSharePref extends SharedPrefManager {
   static const USER = 'USER';
+  static const SERVER_CONFIG = 'SERVER_CONFIG';
   static const SHOP = 'SHOP';
   static const LOAD_START_API = 'LOAD_START_API';
   static const APP_TOKEN = 'APP_TOKEN';
@@ -204,8 +205,8 @@ class UserSharePref extends SharedPrefManager {
 
   Future<void>? saveUser(SessionInfo? user) {
     if (SharedPrefManager.beforCheck()) return null;
-    return SharedPrefManager.spf!.setString(
-        USER, user != null ? json.encode(user.toJson()) : '');
+    return SharedPrefManager.spf!
+        .setString(USER, user != null ? json.encode(user.toJson()) : '');
   }
 
   Future<void>? clearUser() {
@@ -233,8 +234,8 @@ class UserSharePref extends SharedPrefManager {
 
   Future<void>? saveShop(Shop? shop) {
     if (SharedPrefManager.beforCheck()) return null;
-    return SharedPrefManager.spf!.setString(
-        SHOP, shop != null ? json.encode(shop.toJson()) : '');
+    return SharedPrefManager.spf!
+        .setString(SHOP, shop != null ? json.encode(shop.toJson()) : '');
   }
 
   Shop? getShop() {
@@ -245,8 +246,28 @@ class UserSharePref extends SharedPrefManager {
     return Shop.fromJson(data);
   }
 
+  Future<void>? saveServerConfig(ServerConfig? serverConfig) {
+    if (SharedPrefManager.beforCheck()) return null;
+    return SharedPrefManager.spf!.setString(SERVER_CONFIG,
+        serverConfig != null ? json.encode(serverConfig.toJson()) : '');
+  }
+
+  ServerConfig? getServerConfig() {
+    if (SharedPrefManager.beforCheck()) return null;
+    String jsonData = SharedPrefManager.spf!.getString(SERVER_CONFIG) ?? '';
+    if (jsonData.isEmpty) return null;
+    dynamic data = json.decode(jsonData);
+    return ServerConfig.fromJson(data);
+  }
+
+  bool isServerConfig() {
+    if (SharedPrefManager.beforCheck()) return false;
+    return getServerConfig() != null &&
+        Utils.isURL(getServerConfig()!.getBaseUrl());
+  }
+
   bool isLogin() {
     if (SharedPrefManager.beforCheck()) return false;
-    return getUser()!= null && getUser()!.uid != null;
+    return getUser() != null && getUser()!.uid != null;
   }
 }

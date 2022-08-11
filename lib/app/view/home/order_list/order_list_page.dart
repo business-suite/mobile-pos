@@ -8,11 +8,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../generated/locale_keys.g.dart';
-import '../../../../main.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
-import '../../../module/event_bus/event_bus.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
@@ -46,9 +44,9 @@ class _OrderListContentState extends State<OrderListContent> {
     node1.addListener(() {
       print(node1.hasFocus);
     });
-    eventBus.on<CloseScreenSettleOrder>().listen((event) {
+    /*eventBus.on<CloseScreenSettleOrder>().listen((event) {
       getIt<NavigationService>().back();
-    });
+    });*/
     super.initState();
   }
 
@@ -60,7 +58,7 @@ class _OrderListContentState extends State<OrderListContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: ()=> getIt<NavigationService>().signOut(),
+        onClickAvatar: () => getIt<NavigationService>().signOut(),
       ),
       body: Consumer<OrderListViewModel>(builder: (context, value, child) {
         return Container(
@@ -102,8 +100,10 @@ class _OrderListContentState extends State<OrderListContent> {
                       child: Container(
                         height: size_35_w,
                         child: Padding(
-                          padding:
-                          EdgeInsets.only(left: size_50_w,right: size_70_w,bottom: size_7_w),
+                          padding: EdgeInsets.only(
+                              left: size_50_w,
+                              right: size_70_w,
+                              bottom: size_7_w),
                           child: Material(
                             color: kWhite,
                             borderRadius: BorderRadius.circular(size_100_r),
@@ -114,7 +114,8 @@ class _OrderListContentState extends State<OrderListContent> {
                               textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(size_100_r),
+                                  borderRadius:
+                                      BorderRadius.circular(size_100_r),
                                 ),
                                 prefixIcon: Icon(
                                   Icons.search,
@@ -128,11 +129,11 @@ class _OrderListContentState extends State<OrderListContent> {
                                     color: kColor808080,
                                   ),
                                 ),
-
                                 suffixIconConstraints: BoxConstraints(
                                     maxWidth: size_25_w, maxHeight: size_15_w),
                                 focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(size_100_r),
+                                  borderRadius:
+                                      BorderRadius.circular(size_100_r),
                                   borderSide: BorderSide(
                                     color: kColor2947C3,
                                   ),
@@ -140,7 +141,7 @@ class _OrderListContentState extends State<OrderListContent> {
                                 hintText: LocaleKeys.E_g_customer.tr(),
                                 hintStyle: TextStyle(fontSize: size_14_w),
                                 contentPadding:
-                                EdgeInsets.fromLTRB(12.0, 5.0, 0, 1.0),
+                                    EdgeInsets.fromLTRB(12.0, 5.0, 0, 1.0),
                               ),
                             ),
                           ),
@@ -151,19 +152,23 @@ class _OrderListContentState extends State<OrderListContent> {
                 ),
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: InkWell(
-                    onTap: (){
-                      getIt<NavigationService>().pushScreenWithFade(PopupQuotationOrderPage());
-                    },
-                    child: ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: value.orders.length,
-                      itemBuilder: (context, index) => ItemOrder(
-                        item: value.orders[index],
-                        onClickItem: () {},
+                child: ScrollConfiguration(
+                  behavior: const ScrollBehavior().copyWith(overscroll: false),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: InkWell(
+                      onTap: () {
+                        getIt<NavigationService>()
+                            .pushScreenWithFade(PopupQuotationOrderPage());
+                      },
+                      child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: value.orders.length,
+                        itemBuilder: (context, index) => ItemOrder(
+                          item: value.orders[index],
+                          onClickItem: () {},
+                        ),
                       ),
                     ),
                   ),
