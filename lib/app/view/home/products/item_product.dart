@@ -55,10 +55,7 @@ class ItemProduct extends StatelessWidget {
           ),
           Container(
             height: 10,
-            child: BottomGradient(
-              offset: 1.7,
-              colorEnd: Colors.white.withOpacity(0.6),
-            ),
+            child: BottomGradient(offset: 0.96),
           ),
           Align(
             alignment: Alignment.bottomLeft,
@@ -69,7 +66,7 @@ class ItemProduct extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: size_4_w, vertical: size_4_w),
                     child: Text(
-                        product.display_name ?? '',
+                        product.display_name?.replaceAll('[${product.default_code}]', '').trim() ?? '',
                         softWrap: true,
                         maxLines: 2,
                         style: TextStyle(

@@ -49,7 +49,7 @@ class _ForgotPassContentState extends LifecycleState<_ForgotPasswordContentPage>
     return BaseScaffold(
       transparentStatusBar: 0.0,
       onBackPress: () => forgotPassViewModel.cancel(),
-      title: LocaleKeys.forgot_password.tr(),
+      title: LocaleKeys.reset_password.tr(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: size_26_w),
         child: Column(

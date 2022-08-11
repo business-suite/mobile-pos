@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/validate_page/validate_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold_safe_area.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ import '../../../../module/res/dimens.dart';
 import '../../../../module/res/text.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
 import '../appbar_product.dart';
-import '../product_page.dart';
+import '../products_page.dart';
 
 class ValidatePage extends PageProvideNode<ValidateViewModel> {
   ValidatePage({Key? key}) : super(key: key, params: []);
@@ -76,7 +76,7 @@ class _ValidateContenState extends State<ValidateConten> {
                       child: FlatButton(
                         onPressed: () {
                           getIt<NavigationService>()
-                              .pushEnterFadeExitDown(ProductPage());
+                              .pushEnterFadeExitDown(ProductsPage());
                         },
                         child: Row(
                           children: [

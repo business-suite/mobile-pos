@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:business_suite_mobile_pos/app/model/session_info.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/review/review_page.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,12 +16,12 @@ import '../../../model/bill.dart';
 import '../../../module/common/config.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
-import '../../../module/network/response/category_product_response.dart';
+import '../../../module/network/response/category_response.dart';
 import '../../../module/network/response/products_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 
-class ProductViewModel extends BaseViewModel {
+class ProductsViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   GlobalKey<SliderDrawerState> keySlider = GlobalKey<SliderDrawerState>();
@@ -29,7 +30,7 @@ class ProductViewModel extends BaseViewModel {
   ScrollController scrollController = ScrollController();
 
   bool isHome = false;
-  int lastIndexMenu = 0;
+  int lastId = 0;
   final Completer<void> completer = Completer<void>();
   double endReachedThreshold = 200;
   bool isLoading = true;
@@ -38,21 +39,22 @@ class ProductViewModel extends BaseViewModel {
   List<Product> products = [];
   List<Product> allProducts = [];
   List<Category> categories = [];
+  List<Category> showCategories = [];
+  //List<dynamic> startCat = [3, "Desks / Test3"];
+  List<dynamic> startCat = [-1];
 
-  CategoryProductResponse? _categoryProductResponse;
+  CategoryResponse? _categoryResponse;
 
-  set categoryProductResponse(
-      CategoryProductResponse? categoryProductResponse) {
-    _categoryProductResponse = categoryProductResponse;
+  set categoryResponse(CategoryResponse? categoryResponse) {
+    _categoryResponse = categoryResponse;
     notifyListeners();
   }
 
-  CategoryProductResponse? get categoryProductResponse =>
-      _categoryProductResponse;
+  CategoryResponse? get categoryResponse => _categoryResponse;
 
   ProductsResponse? _productsResponse;
 
-  set detailShopResponse(ProductsResponse? productsResponse) {
+  set productsResponse(ProductsResponse? productsResponse) {
     _productsResponse = productsResponse;
     notifyListeners();
   }
@@ -102,7 +104,7 @@ class ProductViewModel extends BaseViewModel {
         status: 'Ongoing'),
   ];
 
-  ProductViewModel(this._dataRepo);
+  ProductsViewModel(this._dataRepo);
 
   Future<void> getCategoriesApi() async {
     SessionInfo? sessionInfo = userSharePref.getUser();
@@ -119,11 +121,14 @@ class ProductViewModel extends BaseViewModel {
     )
         .listen((r) {
       try {
-        categoryProductResponse = CategoryProductResponse.fromJson(r);
-        if (categoryProductResponse?.result != null) {
+        categoryResponse = CategoryResponse.fromJson(r);
+        if (categoryResponse?.result != null) {
           categories.clear();
-          categories.addAll(categoryProductResponse?.result ?? []);
-          changeMenu(lastIndexMenu);
+          //categories.addAll(categoryResponse?.result ?? []);
+          print(
+              '_________________This is category list___________________________');
+          print(CategoryResponse(result: categories).toJson().toString());
+          //changeMenu(lastId);
           loadingState = LoadingState.DONE;
           notifyListeners();
         }
@@ -142,6 +147,90 @@ class ProductViewModel extends BaseViewModel {
       }
     });
     addSubscription(subscript);
+  }
+
+  final dataJson = {
+    "jsonrpc": "2.0",
+    "id": 20,
+    "result": [
+      {
+        "id": 4,
+        "name": "Drink",
+        "parent_id": [3, "Desks / Test3"],
+        "child_id": [5],
+        "write_date": "2022-08-09 09:21:14"
+      },
+      {
+        "id": 5,
+        "name": "Tes4",
+        "parent_id": [4, "Desks / Test3 / Drink"],
+        "child_id": [],
+        "write_date": "2022-08-09 09:21:59"
+      },
+      {
+        "id": 6,
+        "name": "Test5",
+        "parent_id": false,
+        "child_id": [],
+        "write_date": "2022-08-09 09:22:21"
+      },
+      {
+        "id": 2,
+        "name": "Desks",
+        "parent_id": false,
+        "child_id": [3],
+        "write_date": "2022-08-07 16:54:01"
+      },
+      {
+        "id": 1,
+        "name": "Miscellaneous",
+        "parent_id": false,
+        "child_id": [],
+        "write_date": "2022-08-07 16:54:01"
+      },
+      {
+        "id": 3,
+        "name": "Test3",
+        "parent_id": [2, "Desks"],
+        "child_id": [4],
+        "write_date": "2022-08-09 09:17:59"
+      }
+    ]
+  };
+
+  testMenu() {
+    List<Category> allCategories =
+        CategoryResponse.fromJson(dataJson).result ?? [];
+    //root menu
+    categories = allCategories
+        .where((element) => element.parent_id == false)
+        .toList()
+      ..sort((a, b) => b.id!.compareTo(a.id!));
+
+    //sub menu for root menu
+    categories.forEach((element) => element.setChildCat(getListChild(element.id!, allCategories)));
+    final json = CategoryResponse(result: showCategories).toJson();
+    print(jsonEncode(json));
+    showCategories = getCategories();
+  }
+
+  List<Category> getListChild(int id, List<Category> allCategories) {
+    List<Category> childs = allCategories.where((element) => element.parent_id is List<dynamic> && element.parent_id[0] == id).toList()..sort((a, b) => b.id!.compareTo(a.id!));
+
+    childs.forEach((element) => element.setChildCat(getListChild(element.id!, allCategories)));
+    return childs..sort((a, b) => b.id!.compareTo(a.id!));
+  }
+
+  List<Category> getCategories() {
+    List<Category> allCategories = CategoryResponse.fromJson(dataJson).result ?? [];
+    List<Category> tmpCat = [];
+    if (startCat is! List<dynamic> || startCat[0] == -1)
+      tmpCat = allCategories.where((element) => element.parent_id == false).toList();
+    else {
+
+    }
+
+    return tmpCat;
   }
 
   Future<void> getProductsApi() async {
@@ -189,10 +278,10 @@ class ProductViewModel extends BaseViewModel {
     )
         .listen((r) {
       try {
-        detailShopResponse = ProductsResponse.fromJson(r);
+        productsResponse = ProductsResponse.fromJson(r);
         if (productsResponse?.result != null) {
           allProducts.addAll(productsResponse?.result ?? []);
-          changeMenu(lastIndexMenu);
+          changeMenu(lastId);
           //loadingState = LoadingState.DONE;
           notifyListeners();
         }
@@ -214,49 +303,52 @@ class ProductViewModel extends BaseViewModel {
   }
 
   refreshData() {
-    isLoading = true;
+    /*isLoading = true;
     canLoadMore = false;
     loadingState = LoadingState.LOADING;
     allProducts.clear();
     notifyListeners();
     getProductsApi();
-    getCategoriesApi();
+    getCategoriesApi();*/
   }
 
   void onScroll() {
-    if (!scrollController.hasClients || isLoading) return;
+    /*if (!scrollController.hasClients || isLoading) return;
     final thresholdReached =
         scrollController.position.extentAfter < endReachedThreshold;
     if (thresholdReached) {
       // Load more!
       getProductsApi();
-    }
+    }*/
   }
 
   homeMenu() {
     isHome = true;
+   // startCat = [0];
     notifyListeners();
   }
 
-  changeMenu(int index) {
-    if (categories.isEmpty) return;
-    lastIndexMenu = index;
-    if (lastIndexMenu > categories.length) lastIndexMenu = 0;
+  changeMenu(int _lastId) {
+   /* if (categories.isEmpty) return;
+    lastId = _lastId;
+    if (lastId > categories.length) lastId = 0;
     try {
       isHome = false;
       products = allProducts
           .where((element) =>
               element.pos_categ_id is List<dynamic> &&
-                  categories.isNotEmpty &&
-              element.pos_categ_id[0] == categories[lastIndexMenu].id)
+              categories.isNotEmpty &&
+              element.pos_categ_id[0] == lastId)
           .toList();
-      if(products.isEmpty) loadingState = LoadingState.EMPTY;
-      else loadingState = LoadingState.DONE;
+      if (products.isEmpty)
+        loadingState = LoadingState.EMPTY;
+      else
+        loadingState = LoadingState.DONE;
       if (products.length > 5) scrollToTop();
       notifyListeners();
     } catch (e) {
       _navigationService.openErrorPage();
-    }
+    }*/
   }
 
   void scrollToTop() {

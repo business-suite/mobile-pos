@@ -7,7 +7,7 @@ import 'package:business_suite_mobile_pos/app/module/common/toast_util.dart';
 import 'package:business_suite_mobile_pos/app/module/local_storage/shared_pref_manager.dart';
 import 'package:business_suite_mobile_pos/app/view/authentication/authentication_page.dart';
 import 'package:business_suite_mobile_pos/app/view/forgot_pass/forgot_pass_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/product_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/products_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:business_suite_mobile_pos/flavors.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -89,7 +89,7 @@ class ClosingControlViewModel extends BaseViewModel {
 
   setloginType(int loginType) => userSharePref.saveLoginType(loginType);
 
-  void signIn() async {
+  void signInApi() async {
     removeFocus(_navigationService.navigatorKey.currentContext!);
     EasyLoading.show();
     Future.delayed(
@@ -138,7 +138,7 @@ class ClosingControlViewModel extends BaseViewModel {
     Map<String, dynamic> params = new Map<String, dynamic>();
     params.putIfAbsent('login_type', () => 1);
     params.putIfAbsent('twitter_id', () => twitterId);
-    _navigationService.pushScreenWithFade(ProductPage());
+    _navigationService.pushScreenWithFade(ProductsPage());
     /*final subscript = this.sign_in(params).listen((_) {
       if (response.success) {
         userSharePref.saveUser(response);

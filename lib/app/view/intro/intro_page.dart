@@ -72,11 +72,11 @@ class _IntroContentState extends State<_IntroContentPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildBtnGetStarted(),
-          Divider(
-            height: size_12_h,
-            color: Colors.transparent,
-          ),
-          _buildBtnHaveAccount(),
+          // Divider(
+          //   height: size_12_h,
+          //   color: Colors.transparent,
+          // ),
+          // _buildBtnHaveAccount(),
           // AnimatedInWidget(
           //   order: 5,
           //   child: _onBoardingSocialButtonGroup(),
@@ -143,7 +143,8 @@ class _IntroContentState extends State<_IntroContentPage> {
           color: kColor2F858A,
           text: LocaleKeys.on_boarding_btn_get_started.tr(),
           onPress: () {
-            value.openSignUp();
+            //value.openSignUp();
+            value.openInputServerPort();
           },
         );
       },

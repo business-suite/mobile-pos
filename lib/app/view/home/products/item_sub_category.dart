@@ -4,13 +4,13 @@ import 'package:business_suite_mobile_pos/app/view/widget_utils/anims/touchable_
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../../module/network/response/category_product_response.dart';
+import '../../../module/network/response/category_response.dart';
 
-class ItemMenu extends StatelessWidget {
+class ItemSubCategory extends StatelessWidget {
   Category category;
   VoidCallback onClickItem;
 
-  ItemMenu({
+  ItemSubCategory({
     Key? key,
     required this.category,
     required this.onClickItem,

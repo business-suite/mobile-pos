@@ -1,8 +1,8 @@
 import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/module/res/dimens.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/appbar_product.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/item_menu.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/item_product.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/appbar_product.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/item_category.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/item_product.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/anims/touchable_opacity.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/base_scaffold_safe_area.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -17,6 +17,7 @@ import '../../../di/injection.dart';
 import '../../../module/common/config.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
+import '../../../module/network/response/category_response.dart';
 import '../../../module/network/response/shops_response.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
@@ -25,28 +26,29 @@ import '../../widget_utils/custom/custom_sliver_grid_delegate.dart';
 import '../../widget_utils/custom/default_loading_progress.dart';
 import '../../widget_utils/custom/loadmore.dart';
 import 'item_bill.dart';
-import 'product_viewmodel.dart';
+import 'item_category_selected.dart';
+import 'products_viewmodel.dart';
 
-class ProductPage extends PageProvideNode<ProductViewModel> {
-  ProductPage({Key? key}) : super(key: key, params: []);
+class ProductsPage extends PageProvideNode<ProductsViewModel> {
+  ProductsPage({Key? key}) : super(key: key, params: []);
 
   @override
   Widget buildContent(BuildContext context) {
-    return _ProductContent(viewModel);
+    return _ProductsContent(viewModel);
   }
 }
 
-class _ProductContent extends StatefulWidget {
-  final ProductViewModel _productViewModel;
+class _ProductsContent extends StatefulWidget {
+  final ProductsViewModel _productViewModel;
 
-  _ProductContent(this._productViewModel);
+  _ProductsContent(this._productViewModel);
 
   @override
-  _DetailShopState createState() => _DetailShopState();
+  _ProductsState createState() => _ProductsState();
 }
 
 class _SliderView extends StatefulWidget {
-  final ProductViewModel productViewModel;
+  final ProductsViewModel productViewModel;
   final Function(String)? onItemClick;
 
   _SliderView({Key? key, this.onItemClick, required this.productViewModel})
@@ -57,7 +59,7 @@ class _SliderView extends StatefulWidget {
 }
 
 class _SliderViewState extends State<_SliderView> {
-  ProductViewModel get productViewModel => widget.productViewModel;
+  ProductsViewModel get productViewModel => widget.productViewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -182,9 +184,9 @@ class _SliderViewState extends State<_SliderView> {
   }
 }
 
-class _DetailShopState extends State<_ProductContent>
+class _ProductsState extends State<_ProductsContent>
     with SingleTickerProviderStateMixin {
-  ProductViewModel get productViewModel => widget._productViewModel;
+  ProductsViewModel get productViewModel => widget._productViewModel;
   Shop? shop;
 
   @override
@@ -194,8 +196,71 @@ class _DetailShopState extends State<_ProductContent>
       productViewModel.onScroll();
     });*/
     shop = getIt<UserSharePref>().getShop();
-    productViewModel.getProductsApi();
-    productViewModel.getCategoriesApi();
+    productViewModel.testMenu();
+    productViewModel.getCategories();
+    /*productViewModel.getProductsApi();
+    productViewModel.getCategoriesApi();*/
+  }
+
+  /*testMenu() {
+    //root menu
+    //categories = allCategories.where((element) => element.parent_id == false).toList();
+    //sub menu for root menu
+    categories.forEach((element) =>
+        element.setChildCat(getListChild(element.id!, allCategories)));
+  }
+
+  List<Category> getListChild(int id, List<Category> allCategories) {
+    List<Category> childs = allCategories
+        .where((element) =>
+            element.parent_id is List<dynamic> && element.parent_id[0] == id)
+        .toList();
+    childs.forEach((element) =>
+        element.setChildCat(getListChild(element.id!, allCategories)));
+    return childs;
+  }
+*/
+  Widget _buildRootCat(List<dynamic> startCat, List<Category> categories) {
+    return Container(
+      height: size_50_w,
+      child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: categories.length,
+          itemBuilder: (context, index) => _buildChildCat(startCat[0], categories[index])),
+    );
+  }
+
+  Widget _buildChildCat(int startId, Category category) {
+    if(category == null) return Container();
+    return Container(
+      height: size_50_w,
+      child: Row(children: [
+        _buildItem(startId, category),
+        category.childCategories == null || category.childCategories!.isEmpty ? Container() : ListView.builder(
+            scrollDirection: Axis.horizontal,
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: category.childCategories?.length,
+            itemBuilder: (context, index) => _buildChildCat(startId, category.childCategories![index]))
+      ],),
+    );
+  }
+
+  Widget _buildItem(int startId, Category category) {
+    if(category == null) return Container();
+    if (startId == -1 || category.parent_id == false)
+      return ItemCategory(
+          category: category,
+          onClickItem: () {
+            productViewModel.changeMenu(category.id ?? 0);
+          });
+   else  return ItemCategorySelected(
+        category: category,
+        onClickItem: () {
+          productViewModel.changeMenu(category.id ?? 0);
+        });
   }
 
   @override
@@ -223,7 +288,7 @@ class _DetailShopState extends State<_ProductContent>
             productViewModel.keySlider.currentState!.closeSlider();
           },
         ),
-        child: Consumer<ProductViewModel>(builder: (context, value, child) {
+        child: Consumer<ProductsViewModel>(builder: (context, value, child) {
           return Container(
             color: kColorBackground,
             child: Column(
@@ -252,59 +317,20 @@ class _DetailShopState extends State<_ProductContent>
                         ),
                       ),
                       Expanded(
-                        flex: 1,
-                        child: value.isHome
-                            ? ScrollConfiguration(
-                                behavior: const ScrollBehavior()
-                                    .copyWith(overscroll: false),
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  physics: BouncingScrollPhysics(),
-                                  child: Container(
-                                    height: size_50_w,
-                                    padding: EdgeInsets.only(left: size_6_w),
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: value.categories.length,
-                                      itemBuilder: (context, index) => ItemMenu(
-                                        category: value.categories[index],
-                                        onClickItem: () {
-                                          productViewModel.changeMenu(index);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/icons/ic_next.svg',
-                                    height: size_50_w,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        left: size_8_w, right: size_12_w),
-                                    child: Text(
-                                      value.categories.length >
-                                              value.lastIndexMenu
-                                          ? value
-                                                  .categories[
-                                                      value.lastIndexMenu]
-                                                  .name ??
-                                              ''
-                                          : '',
-                                      style: TextStyle(
-                                          color: Colors.black38,
-                                          fontSize: text_14),
-                                    ),
-                                  ),
-                                  Container(width: 1.0, color: kColorc7c7c7),
-                                ],
+                          flex: 1,
+                          child: ScrollConfiguration(
+                            behavior: const ScrollBehavior()
+                                .copyWith(overscroll: false),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              physics: BouncingScrollPhysics(),
+                              child: Container(
+                                height: size_50_w,
+                                padding: EdgeInsets.only(left: size_6_w),
+                                child: _buildRootCat(productViewModel.startCat, value.showCategories),
                               ),
-                      )
+                            ),
+                          ))
                     ],
                   ),
                 ),
@@ -318,7 +344,7 @@ class _DetailShopState extends State<_ProductContent>
                 Expanded(
                   child: Stack(
                     children: [
-                      Consumer<ProductViewModel>(
+                      Consumer<ProductsViewModel>(
                         builder: (context, value, child) {
                           switch (value.loadingState) {
                             case LoadingState.LOADING:

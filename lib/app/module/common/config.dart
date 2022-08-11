@@ -33,6 +33,11 @@ const String ODOO_DB = 'businesssuite_pos';
 
 
 // API
+const String API_SIGN_UP = '/web/login';
+const String API_RESET_PASSWORD = '/web/reset_password';
+const String API_DATABASE_LIST = '/web/database/list';
+const String API_MANAGE_DATABASE = '/web/database/manager';
+const String API_POWERED_ODOO = 'https://www.odoo.com';
 const String API_AUTHENTICATE = '/web/session/authenticate';
 const String API_LOGIN_WEB = '/web/login';
 const String API_TWO_FACTOR_AUTHENTICATE = '/web/login/totp?redirect=%2Fweb%3F';
@@ -52,6 +57,7 @@ const String SHOPS = "pos.config";
 const int LIMIT_SHOP = 80;
 const String POS_CATEGORY = "pos.category";
 const String POS_PRODUCT = "product.product";
+  const String CHECK_MODULE = "ir.module.module";
 
 
 

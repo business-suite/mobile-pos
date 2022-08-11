@@ -1,3 +1,6 @@
+import 'package:business_suite_mobile_pos/app/module/local_storage/shared_pref_manager.dart';
+
+import 'app/di/injection.dart';
 import 'app/module/common/config.dart';
 
 enum Flavor {
@@ -26,11 +29,11 @@ class F {
   static String get baseUrl {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
-        return BASE_URL;
+        return getIt<UserSharePref>().getServerConfig()?.getBaseUrl() ?? '';
       case Flavor.PRODUCTION:
-        return BASE_URL;
+        return getIt<UserSharePref>().getServerConfig()?.getBaseUrl() ?? '';
       default:
-        return BASE_URL;
+        return getIt<UserSharePref>().getServerConfig()?.getBaseUrl() ?? '';
     }
   }
 
@@ -59,7 +62,7 @@ class F {
   }
 
   //Odoo database
-  static String get odooDatabase {
+  /*static String get odooDatabase {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
         return ODOO_DB;
@@ -68,6 +71,5 @@ class F {
       default:
         return ODOO_DB;
     }
-  }
-
+  }*/
 }

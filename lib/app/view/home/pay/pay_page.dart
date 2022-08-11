@@ -1,4 +1,4 @@
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/validate_page/validate_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/validate_page/validate_page.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/custom_card.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
@@ -13,8 +13,8 @@ import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
-import '../detail_shop/appbar_product.dart';
-import '../detail_shop/review/review_page.dart';
+import '../products/appbar_product.dart';
+import '../products/review/review_page.dart';
 import '../popup_empty_order/popup_empty_order.dart';
 import 'item_keyboard.dart';
 import 'pay_viewmodel.dart';

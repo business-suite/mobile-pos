@@ -1,5 +1,6 @@
 import 'package:business_suite_mobile_pos/app/view/widget_utils/touchable_opacity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../module/res/colors.dart';
@@ -15,12 +16,20 @@ class OutlineTextFormField extends StatefulWidget {
   final void Function(String)? onFieldSubmitted;
   final TextInputAction textInputAction;
   final TextInputType? keyboardType;
+
+   List<TextInputFormatter>? inputformatter;
   final FocusNode? focusNode;
   final FocusNode? nextFocusNode;
   final bool readOnly;
   final String? Function(String?)? validator;
+  final bool? isShowLable;
+  final Color? colorBorder;
+  final Color? colorFocusBorder;
+  final Color? colorDisableBorder;
+  final Color? colorBackground;
+  final Widget? widgetSuffix;
 
-  const OutlineTextFormField({
+   OutlineTextFormField({
     Key? key,
     this.hintText,
     this.obscureText = false,
@@ -34,6 +43,12 @@ class OutlineTextFormField extends StatefulWidget {
     this.nextFocusNode,
     this.readOnly = false,
     this.validator,
+    this.isShowLable,
+    this.colorBorder,
+    this.colorDisableBorder,
+    this.colorFocusBorder,
+    this.colorBackground,
+    this.widgetSuffix, this.inputformatter,
   }) : super(key: key);
 
   @override
@@ -52,55 +67,64 @@ class _OutlineTextFormFieldState extends State<OutlineTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    final hintTextStyle = Theme.of(context)
-        .textTheme
-        .bodyText1
-        ?.copyWith(fontSize: text_16, fontWeight: FontWeight.normal, color: Colors.black.withOpacity(0.6));
-    final textStyle = Theme.of(context)
-        .textTheme
-        .bodyText1
-        ?.copyWith(fontSize: text_16, fontWeight: FontWeight.normal, );
+    final hintTextStyle = Theme.of(context).textTheme.bodyText1?.copyWith(
+        fontSize: text_16,
+        fontWeight: FontWeight.normal,
+        color: Colors.black.withOpacity(0.6));
+    final textStyle = Theme.of(context).textTheme.bodyText1?.copyWith(
+          fontSize: text_16,
+          fontWeight: FontWeight.normal,
+        );
     return Stack(
       children: [
         Container(
             alignment: Alignment.center,
-            //color: Colors.blue,
+            color: widget.colorBackground ?? Colors.transparent,
             child: TextFormField(
+              inputFormatters: widget.inputformatter,
               decoration: InputDecoration(
                 hintText: widget.hintText,
                 labelStyle: TextStyle(color: Colors.black.withOpacity(0.6)),
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(color: kCGrey136),
+                  borderSide:
+                      BorderSide(color: widget.colorBorder ?? kColorCED4DA),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: kColorPrimary),
+                  borderSide: BorderSide(
+                      color: widget.colorFocusBorder ?? kColorPrimary),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: widget.colorBorder ?? kColorCED4DA),
                 ),
                 hintStyle: hintTextStyle,
-                labelText: widget.hintText,
+                labelText: widget.isShowLable ?? true ? widget.hintText : null,
                 isDense: true,
-                suffixIcon: widget.obscureText == true
-                    ? TouchableOpacity(
-                        onPressed: () {
-                          setState(() {
-                            isShowPassword = !isShowPassword;
-                          });
-                        },
-                        child: SvgPicture.asset(
-                          isShowPassword
-                              ? 'assets/icons/ic_eye.svg'
-                              : 'assets/icons/ic_eye_off.svg',
-                          width: size_22_w,
-                          height: size_22_w,
-                          color: kColor89000000,
-                        ),
-                      )
-                    : null,
+                suffixIcon: widget.widgetSuffix ??
+                    (widget.obscureText == true
+                        ? TouchableOpacity(
+                            onPressed: () {
+                              setState(() {
+                                isShowPassword = !isShowPassword;
+                              });
+                            },
+                            child: SvgPicture.asset(
+                              isShowPassword
+                                  ? 'assets/icons/ic_eye.svg'
+                                  : 'assets/icons/ic_eye_off.svg',
+                              width: size_22_w,
+                              height: size_22_w,
+                              color: kColor89000000,
+                            ),
+                          )
+                        : null),
                 contentPadding: EdgeInsets.symmetric(
                   vertical: size_14_h,
                   horizontal: size_10_w,
                 ),
                 disabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: kCGrey136),
+                  borderSide: BorderSide(
+                      color: widget.colorDisableBorder ?? kColorCED4DA),
                 ),
               ),
               keyboardType: widget.keyboardType,

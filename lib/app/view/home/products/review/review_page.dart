@@ -1,7 +1,7 @@
 import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/product_page.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/item_review_customer.dart';
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/review/review_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/products_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/review/item_review_customer.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/review/review_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +52,7 @@ class _ReviewContentState extends State<ReviewContent> {
   @override
   void initState() {
     eventBus.on<CloseScreenSettleOrder>().listen((event) {
-      getIt<NavigationService>().pushAndRemoveUntilWithFade(ProductPage());
+      getIt<NavigationService>().pushAndRemoveUntilWithFade(ProductsPage());
     });
     super.initState();
   }

@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'category_product_response.dart';
+part of 'category_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CategoryProductResponse _$CategoryProductResponseFromJson(
-        Map<String, dynamic> json) =>
-    CategoryProductResponse(
+CategoryResponse _$CategoryResponseFromJson(Map<String, dynamic> json) =>
+    CategoryResponse(
       jsonrpc: json['jsonrpc'] as String?,
       id: json['id'] as int?,
       error: json['error'] == null ? null : Error.fromJson(json['error']),
@@ -18,8 +17,7 @@ CategoryProductResponse _$CategoryProductResponseFromJson(
           [],
     );
 
-Map<String, dynamic> _$CategoryProductResponseToJson(
-        CategoryProductResponse instance) =>
+Map<String, dynamic> _$CategoryResponseToJson(CategoryResponse instance) =>
     <String, dynamic>{
       'jsonrpc': instance.jsonrpc,
       'id': instance.id,
@@ -33,6 +31,9 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       parent_id: json['parent_id'],
       child_id: json['child_id'],
       write_date: json['write_date'] as String?,
+      childCategories: (json['childCategories'] as List<dynamic>?)
+          ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
@@ -41,4 +42,5 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'parent_id': instance.parent_id,
       'child_id': instance.child_id,
       'write_date': instance.write_date,
+      'childCategories': instance.childCategories,
     };

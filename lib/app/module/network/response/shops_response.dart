@@ -52,6 +52,7 @@ class Shop {
     this.currencyId,
     this.numberOfOpenedSession,
     this.lastSessionClosingCash,
+    this.iface_start_categ_id,
   });
 
   Shop.fromJson(dynamic json) {
@@ -65,10 +66,10 @@ class Shop {
     posSessionUsername = json['pos_session_username'];
     posSessionState = json['pos_session_state'];
     posSessionDuration = json['pos_session_duration'];
-    currencyId =
-        json['currency_id'] != null ? json['currency_id'].cast<dynamic>() : [];
+    currencyId = json['currency_id'] != null ? json['currency_id'].cast<dynamic>() : [];
     numberOfOpenedSession = json['number_of_opened_session'];
     lastSessionClosingCash = json['last_session_closing_cash'];
+    iface_start_categ_id = json['iface_start_categ_id'];
   }
 
   int? id;
@@ -84,6 +85,7 @@ class Shop {
   List<dynamic>? currencyId;
   int? numberOfOpenedSession;
   double? lastSessionClosingCash;
+  dynamic? iface_start_categ_id;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

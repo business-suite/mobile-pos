@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_if_null_operators
 
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/product_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/products_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -52,6 +52,7 @@ class BaseScaffold extends StatelessWidget {
     }
     SystemUtils.setupStatusBar(transparentStatusBar, statusBarColor: statusBarColor);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor,
       appBar: isAppBar
           ? AppBar(

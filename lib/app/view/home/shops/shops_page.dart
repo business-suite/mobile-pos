@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'package:business_suite_mobile_pos/app/view/home/shop_list/appbar_shops.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +13,7 @@ import '../../empty/empty_page.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../../widget_utils/custom/default_loading_progress.dart';
 import '../../widget_utils/custom/loadmore.dart';
+import 'appbar_shops.dart';
 import 'item_shop.dart';
 import 'shops_viewmodel.dart';
 
@@ -46,7 +44,7 @@ class _ShopsContentState extends State<ShopsContent>
     shopListViewModel.scrollController.addListener(() {
       shopListViewModel.onScroll();
     });
-    shopListViewModel.getShopsApi();
+    shopListViewModel.checkModulePOSApi();
     super.initState();
   }
 

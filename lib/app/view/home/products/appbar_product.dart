@@ -1,4 +1,4 @@
-import 'package:business_suite_mobile_pos/app/view/home/detail_shop/cash_in_out_shop/cash_in_out_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/products/cash_in_out_shop/cash_in_out_page.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/image_holder.dart';
 import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
