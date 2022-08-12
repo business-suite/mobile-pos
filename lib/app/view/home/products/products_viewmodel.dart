@@ -41,7 +41,7 @@ class ProductsViewModel extends BaseViewModel {
   List<Category> categories = [];
   List<Category> showCategories = [];
   //List<dynamic> startCat = [3, "Desks / Test3"];
-  List<dynamic> startCat = [-1];
+  int startCat = 3;
 
   CategoryResponse? _categoryResponse;
 
@@ -224,10 +224,10 @@ class ProductsViewModel extends BaseViewModel {
   List<Category> getCategories() {
     List<Category> allCategories = CategoryResponse.fromJson(dataJson).result ?? [];
     List<Category> tmpCat = [];
-    if (startCat is! List<dynamic> || startCat[0] == -1)
+    if (startCat == -1)
       tmpCat = allCategories.where((element) => element.parent_id == false).toList();
     else {
-
+      tmpCat = categories.where((element) => element.id == startCat).toList();
     }
 
     return tmpCat;
@@ -373,4 +373,5 @@ class ProductsViewModel extends BaseViewModel {
     bills.removeAt(index);
     notifyListeners();
   }
+
 }

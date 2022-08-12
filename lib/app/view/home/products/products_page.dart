@@ -220,7 +220,7 @@ class _ProductsState extends State<_ProductsContent>
     return childs;
   }
 */
-  Widget _buildRootCat(List<dynamic> startCat, List<Category> categories) {
+  Widget _buildRootCat(int startCat, List<Category> categories) {
     return Container(
       height: size_50_w,
       child: ListView.builder(
@@ -228,7 +228,7 @@ class _ProductsState extends State<_ProductsContent>
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: categories.length,
-          itemBuilder: (context, index) => _buildChildCat(startCat[0], categories[index])),
+          itemBuilder: (context, index) => _buildChildCat(startCat, categories[index])),
     );
   }
 
