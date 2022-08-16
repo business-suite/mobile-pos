@@ -88,7 +88,7 @@ class _SliderViewState extends State<_SliderView> {
                       horizontal: size_1_w, vertical: size_1_w),
                   child: InkWell(
                     onTap: () {
-                      productViewModel.keySlider.currentState!.closeSlider();
+                      productViewModel.keySlider.currentState?.closeSlider();
                     },
                     child: Container(
                       alignment: Alignment.topLeft,
@@ -140,7 +140,7 @@ class _SliderViewState extends State<_SliderView> {
                     width: size_100_w,
                     child: FlatButton(
                       onPressed: () {
-                        productViewModel.keySlider.currentState!.closeSlider();
+                        productViewModel.keySlider.currentState?.closeSlider();
                       },
                       child: Text(
                         LocaleKeys.new_order.tr(),
@@ -163,7 +163,7 @@ class _SliderViewState extends State<_SliderView> {
                 physics: BouncingScrollPhysics(),
                 child: InkWell(
                   onTap: () {
-                    productViewModel.keySlider.currentState!.closeSlider();
+                    productViewModel.keySlider.currentState?.closeSlider();
                   },
                   child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
@@ -265,227 +265,231 @@ class _ProductsState extends State<_ProductsContent>
 
   @override
   Widget build(BuildContext context) {
-    return BaseScaffoldSafeArea(
-      transparentStatusBar: 0.2,
-      backgroundColor: Colors.white70,
-      customAppBar: AppBar(
-        toolbarHeight: 0.0,
-      ),
-      body: SliderDrawer(
-        key: productViewModel.keySlider,
-        appBar: AppBarProduct(
-          badgeCount: 1,
-          onClickAvatar: () => getIt<NavigationService>().signOut(),
-          onClickTicKet: () {
-            productViewModel.keySlider.currentState!.openSlider();
-          },
-          avatarUrl: getAvatarProfile(),
+    return GestureDetector(
+      onTap: () =>  productViewModel.keySlider.currentState?.closeSlider(),
+      child: BaseScaffoldSafeArea(
+        transparentStatusBar: 0.2,
+        backgroundColor: Colors.white70,
+        customAppBar: AppBar(
+          toolbarHeight: 0.0,
         ),
-        sliderOpenSize: 179,
-        slider: _SliderView(
-          productViewModel: productViewModel,
-          onItemClick: (title) {
-            productViewModel.keySlider.currentState!.closeSlider();
-          },
-        ),
-        child: Consumer<ProductsViewModel>(builder: (context, value, child) {
-          return Container(
-            color: kColorBackground,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                //List tab title product
-                Container(
-                  width: double.infinity,
-                  height: size_50_w,
-                  color: kColorD3D3D3,
-                  padding: EdgeInsets.only(left: size_6_w),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-                      TouchableOpacity(
-                        onPressed: () {
-                          productViewModel.homeMenu();
-                        },
-                        child: Container(
-                          child: SvgPicture.asset(
-                            'assets/icons/ic_home.svg',
-                            height: size_24_w,
-                            width: size_24_w,
-                            color: Colors.black38,
+        body: SliderDrawer(
+          key: productViewModel.keySlider,
+          appBar: AppBarProduct(
+            badgeCount: 1,
+            onClickAvatar: () => getIt<NavigationService>().signOut(),
+            onClickTicKet: () {
+              productViewModel.keySlider.currentState?.openSlider();
+            },
+            avatarUrl: getAvatarProfile(),
+          ),
+
+          sliderOpenSize: 179,
+          slider: _SliderView(
+            productViewModel: productViewModel,
+            onItemClick: (title) {
+              productViewModel.keySlider.currentState?.closeSlider();
+            },
+          ),
+          child: Consumer<ProductsViewModel>(builder: (context, value, child) {
+            return Container(
+              color: kColorBackground,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  //List tab title product
+                  Container(
+                    width: double.infinity,
+                    height: size_50_w,
+                    color: kColorD3D3D3,
+                    padding: EdgeInsets.only(left: size_6_w),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        TouchableOpacity(
+                          onPressed: () {
+                            productViewModel.homeMenu();
+                          },
+                          child: Container(
+                            child: SvgPicture.asset(
+                              'assets/icons/ic_home.svg',
+                              height: size_24_w,
+                              width: size_24_w,
+                              color: Colors.black38,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                          flex: 1,
-                          child: ScrollConfiguration(
-                            behavior: const ScrollBehavior()
-                                .copyWith(overscroll: false),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              physics: BouncingScrollPhysics(),
-                              child: Container(
-                                height: size_50_w,
-                                padding: EdgeInsets.only(left: size_6_w),
-                                child: _buildRootCat(productViewModel.startCat, value.showCategories),
+                        Expanded(
+                            flex: 1,
+                            child: ScrollConfiguration(
+                              behavior: const ScrollBehavior()
+                                  .copyWith(overscroll: false),
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                physics: BouncingScrollPhysics(),
+                                child: Container(
+                                  height: size_50_w,
+                                  padding: EdgeInsets.only(left: size_6_w),
+                                  child: _buildRootCat(productViewModel.startCat, value.showCategories),
+                                ),
                               ),
-                            ),
-                          ))
-                    ],
+                            ))
+                      ],
+                    ),
                   ),
-                ),
 
-                //Divider green below tab title product
-                Container(
-                  height: size_2_w,
-                  color: Colors.green,
-                ),
+                  //Divider green below tab title product
+                  Container(
+                    height: size_2_w,
+                    color: Colors.green,
+                  ),
 
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Consumer<ProductsViewModel>(
-                        builder: (context, value, child) {
-                          switch (value.loadingState) {
-                            case LoadingState.LOADING:
-                              return BuildProgressLoading();
-                            case LoadingState.EMPTY:
-                              return EmptyWidget(
-                                onRefresh: () {
-                                  value.refreshData();
-                                  return value.completer.future;
-                                },
-                                imgEmpty: 'assets/images/img_empty_product.svg',
-                                emptyText: LocaleKeys
-                                    .there_are_no_products_in_this_category
-                                    .tr(),
-                              );
-                            case LoadingState.DONE:
-                              return RefreshIndicator(
-                                  color: kColorPrimary,
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        Consumer<ProductsViewModel>(
+                          builder: (context, value, child) {
+                            switch (value.loadingState) {
+                              case LoadingState.LOADING:
+                                return BuildProgressLoading();
+                              case LoadingState.EMPTY:
+                                return EmptyWidget(
                                   onRefresh: () {
                                     value.refreshData();
                                     return value.completer.future;
                                   },
-                                  child: CustomScrollView(
-                                    shrinkWrap: true,
-                                    physics:
-                                        const AlwaysScrollableScrollPhysics(),
-                                    scrollDirection: Axis.vertical,
-                                    controller: value.scrollController,
-                                    slivers: <Widget>[
-                                      SliverPadding(
-                                        padding: EdgeInsets.only(
-                                            left: size_6_w,
-                                            right: size_6_w,
-                                            top: size_6_w,
-                                            bottom: size_106_w),
-                                        sliver: SliverGrid(
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                                                  crossAxisCount: 2,
-                                                  crossAxisSpacing: size_6_w,
-                                                  mainAxisSpacing: size_6_w,
-                                                  height: size_150_w),
-                                          delegate: SliverChildBuilderDelegate(
-                                            (context, index) => ItemProduct(
-                                              shop: shop,
-                                              product: value.products[index],
+                                  imgEmpty: 'assets/images/img_empty_product.svg',
+                                  emptyText: LocaleKeys
+                                      .there_are_no_products_in_this_category
+                                      .tr(),
+                                );
+                              case LoadingState.DONE:
+                                return RefreshIndicator(
+                                    color: kColorPrimary,
+                                    onRefresh: () {
+                                      value.refreshData();
+                                      return value.completer.future;
+                                    },
+                                    child: CustomScrollView(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(),
+                                      scrollDirection: Axis.vertical,
+                                      controller: value.scrollController,
+                                      slivers: <Widget>[
+                                        SliverPadding(
+                                          padding: EdgeInsets.only(
+                                              left: size_6_w,
+                                              right: size_6_w,
+                                              top: size_6_w,
+                                              bottom: size_106_w),
+                                          sliver: SliverGrid(
+                                            gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                                                    crossAxisCount: 2,
+                                                    crossAxisSpacing: size_6_w,
+                                                    mainAxisSpacing: size_6_w,
+                                                    height: size_150_w),
+                                            delegate: SliverChildBuilderDelegate(
+                                              (context, index) => ItemProduct(
+                                                shop: shop,
+                                                product: value.products[index],
+                                              ),
+                                              childCount: value.products.length,
                                             ),
-                                            childCount: value.products.length,
                                           ),
                                         ),
-                                      ),
-                                      SliverToBoxAdapter(
-                                        child: value.canLoadMore
-                                            ? BuildLoadMore()
-                                            : SizedBox(),
-                                      ),
-                                    ],
-                                  ));
-                            default:
-                              return Container();
-                          }
-                        },
-                      ),
+                                        SliverToBoxAdapter(
+                                          child: value.canLoadMore
+                                              ? BuildLoadMore()
+                                              : SizedBox(),
+                                        ),
+                                      ],
+                                    ));
+                              default:
+                                return Container();
+                            }
+                          },
+                        ),
 
-                      //Button PAY + REVIEW
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          height: size_100_w,
-                          alignment: Alignment.bottomLeft,
-                          padding: EdgeInsets.all(size_1_w),
-                          color: kColorCACACA,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: FlatButton(
-                                  color: kColor6EC89B,
-                                  onPressed: () {
-                                    value.openPayPage();
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: size_20_w),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          LocaleKeys.pay.tr(),
-                                          style: TextStyle(
-                                              fontSize: text_24,
-                                              color: Colors.white),
-                                        ),
-                                        Text(
-                                          '\$143.39',
-                                          style: TextStyle(color: Colors.white),
-                                        )
-                                      ],
+                        //Button PAY + REVIEW
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            height: size_100_w,
+                            alignment: Alignment.bottomLeft,
+                            padding: EdgeInsets.all(size_1_w),
+                            color: kColorCACACA,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: FlatButton(
+                                    color: kColor6EC89B,
+                                    onPressed: () {
+                                      value.openPayPage();
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: size_20_w),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            LocaleKeys.pay.tr(),
+                                            style: TextStyle(
+                                                fontSize: text_24,
+                                                color: Colors.white),
+                                          ),
+                                          Text(
+                                            '\$143.39',
+                                            style: TextStyle(color: Colors.white),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                width: size_1_w,
-                                color: kColorCACACA,
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: FlatButton(
-                                  color: Colors.white,
-                                  onPressed: () {
-                                    value.openReviewPage();
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: size_20_w),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          LocaleKeys.review.tr(),
-                                          style: TextStyle(
-                                              fontSize: text_24,
-                                              color: kColor6EC89B),
-                                        ),
-                                        Text(
-                                          '4 items',
-                                          style: TextStyle(color: kColor6EC89B),
-                                        )
-                                      ],
+                                Container(
+                                  width: size_1_w,
+                                  color: kColorCACACA,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: FlatButton(
+                                    color: Colors.white,
+                                    onPressed: () {
+                                      value.openReviewPage();
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: size_20_w),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            LocaleKeys.review.tr(),
+                                            style: TextStyle(
+                                                fontSize: text_24,
+                                                color: kColor6EC89B),
+                                          ),
+                                          Text(
+                                            '4 items',
+                                            style: TextStyle(color: kColor6EC89B),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          );
-        }),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            );
+          }),
+        ),
       ),
     );
   }

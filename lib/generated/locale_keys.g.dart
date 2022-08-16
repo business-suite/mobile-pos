@@ -231,6 +231,7 @@ abstract class  LocaleKeys {
   static const total_review = 'total_review';
   static const press_the_back_button_to_exit = 'press_the_back_button_to_exit';
   static const company_name = 'company_name';
+  static const company = 'company';
   static const product_price = 'product_price';
   static const log_out = 'log_out';
   static const cancel = 'cancel';
@@ -271,5 +272,7 @@ abstract class  LocaleKeys {
   static const no_database = 'no_database';
   static const select_database = 'select_database';
   static const the_system_does_not_support_pos_please_contact_administrator_for_more_information = 'the_system_does_not_support_pos_please_contact_administrator_for_more_information';
+  static const to_close = 'to_close';
+  static const create = 'create';
 
 }

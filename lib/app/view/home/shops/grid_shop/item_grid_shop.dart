@@ -2,17 +2,17 @@ import 'package:business_suite_mobile_pos/app/view/widget_utils/anims/touchable_
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../generated/locale_keys.g.dart';
-import '../../../module/common/extension.dart';
-import '../../../module/network/response/shops_response.dart';
-import '../../../module/res/style.dart';
-import '../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
+import '../../../../../generated/locale_keys.g.dart';
+import '../../../../module/common/extension.dart';
+import '../../../../module/network/response/shops_response.dart';
+import '../../../../module/res/style.dart';
+import '../../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
 
-class ItemShop extends StatelessWidget {
+class ItemGridShop extends StatelessWidget {
   Shop shop;
   VoidCallback onClickItem;
 
-  ItemShop({
+  ItemGridShop({
     Key? key,
     required this.shop,
     required this.onClickItem,
@@ -78,10 +78,10 @@ class ItemShop extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: size_10_w, vertical: size_6_w),
+                      margin: EdgeInsets.only(left: size_10_w, right: size_10_w, bottom: size_10_w),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(size_2_r),
-                        color: kColorPrimary,
+                        color: shop.getColorPosSessionState(),
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(

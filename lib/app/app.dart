@@ -1,4 +1,5 @@
 import 'package:business_suite_mobile_pos/app/view/home/products/products_page.dart';
+import 'package:business_suite_mobile_pos/app/view/home/shops/shops_page.dart';
 import 'package:business_suite_mobile_pos/app/view/splash/splash_page.dart';
 import 'package:business_suite_mobile_pos/app/view/widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -53,8 +54,8 @@ class _AppState extends State<App> {
         title: F.title,
         //hide badge debug
         debugShowCheckedModeBanner: false,
-        //home: SplashPage(),
-        home: ProductsPage(),
+        home: SplashPage(),
+        //home: ShopsPage(),
         //home: HomePage(),
         // home: PopupPercentageContent(),
         //   home: CustomerListPage(),

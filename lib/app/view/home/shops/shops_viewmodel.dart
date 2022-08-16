@@ -27,6 +27,8 @@ class ShopsViewModel extends BaseViewModel {
 
   final Completer<void> completer = Completer<void>();
   double endReachedThreshold = 200;
+  bool isGrid = true;
+  bool isSelectAll = false;
   bool hasPosModule = false;
   bool isLoading = true;
   bool canLoadMore = true;
@@ -137,7 +139,10 @@ class ShopsViewModel extends BaseViewModel {
       "pos_session_duration",
       "currency_id",
       "number_of_opened_session",
-      "last_session_closing_cash"
+      "last_session_closing_cash",
+      "iface_start_categ_id",
+      "company_id",
+
     ];
     final subscript = _dataRepo
         .searchRead(SHOPS,
@@ -197,6 +202,16 @@ class ShopsViewModel extends BaseViewModel {
       // Load more!
       getShopsApi();
     }
+  }
+
+  void changeListUI(){
+    isGrid = !isGrid;
+    notifyListeners();
+  }
+
+  void onSelectChange(bool? value){
+    isSelectAll = value ?? false;
+    notifyListeners();
   }
 
   void onClickItem() {

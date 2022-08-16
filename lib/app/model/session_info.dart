@@ -1,45 +1,50 @@
 class SessionInfo {
   SessionInfo({
-      this.uid,
-      this.isSystem,
-      this.isAdmin,
-      this.userContext,
-      this.db,
-      this.serverVersion,
-      this.serverVersionInfo,
-      this.supportUrl,
-      this.name,
-      this.username,
-      this.partnerDisplayName,
-      this.companyId,
-      this.partnerId,
-      this.webbaseurl,
-      this.activeIdsLimit,
-      this.profileSession,
-      this.profileCollectors,
-      this.profileParams,
-      this.maxFileUploadSize,
-      this.homeActionId,
-      this.cacheHashes,
-      this.currencies,
-      this.userCompanies,
-      this.showEffect,
-      this.displaySwitchCompanyMenu,
-      this.userId,
-      this.maxTimeBetweenKeysInMs,
-      this.tourDisable,
-      this.notificationType,
-      this.odoobotInitialized,
-      this.iapCompanyEnrich,});
+    this.uid,
+    this.isSystem,
+    this.isAdmin,
+    this.userContext,
+    this.db,
+    this.serverVersion,
+    this.serverVersionInfo,
+    this.supportUrl,
+    this.name,
+    this.username,
+    this.partnerDisplayName,
+    this.companyId,
+    this.partnerId,
+    this.webbaseurl,
+    this.activeIdsLimit,
+    this.profileSession,
+    this.profileCollectors,
+    this.profileParams,
+    this.maxFileUploadSize,
+    this.homeActionId,
+    this.cacheHashes,
+    this.currencies,
+    this.userCompanies,
+    this.showEffect,
+    this.displaySwitchCompanyMenu,
+    this.userId,
+    this.maxTimeBetweenKeysInMs,
+    this.tourDisable,
+    this.notificationType,
+    this.odoobotInitialized,
+    this.iapCompanyEnrich,
+  });
 
   SessionInfo.fromJson(dynamic json) {
     uid = json['uid'];
     isSystem = json['is_system'];
     isAdmin = json['is_admin'];
-    userContext = json['user_context'] != null ? UserContext.fromJson(json['user_context']) : null;
+    userContext = json['user_context'] != null
+        ? UserContext.fromJson(json['user_context'])
+        : null;
     db = json['db'];
     serverVersion = json['server_version'];
-    serverVersionInfo = json['server_version_info'] != null ? json['server_version_info'].cast<dynamic>() : [];
+    serverVersionInfo = json['server_version_info'] != null
+        ? json['server_version_info'].cast<dynamic>()
+        : [];
     supportUrl = json['support_url'];
     name = json['name'];
     username = json['username'];
@@ -53,9 +58,15 @@ class SessionInfo {
     profileParams = json['profile_params'];
     maxFileUploadSize = json['max_file_upload_size'];
     homeActionId = json['home_action_id'];
-    cacheHashes = json['cache_hashes'] != null ? CacheHashes.fromJson(json['cache_hashes']) : null;
-    currencies = json['currencies'] != null ? Currencies.fromJson(json['currencies']) : null;
-    userCompanies = json['user_companies'] != null ? UserCompanies.fromJson(json['user_companies']) : null;
+    cacheHashes = json['cache_hashes'] != null
+        ? CacheHashes.fromJson(json['cache_hashes'])
+        : null;
+    currencies = json['currencies'] != null
+        ? Currencies.fromJson(json['currencies'])
+        : null;
+    userCompanies = json['user_companies'] != null
+        ? UserCompanies.fromJson(json['user_companies'])
+        : null;
     showEffect = json['show_effect'];
     displaySwitchCompanyMenu = json['display_switch_company_menu'];
     userId = json['user_id'] != null ? json['user_id'].cast<dynamic>() : [];
@@ -65,6 +76,7 @@ class SessionInfo {
     odoobotInitialized = json['odoobot_initialized'];
     iapCompanyEnrich = json['iap_company_enrich'];
   }
+
   dynamic? uid;
   bool? isSystem;
   bool? isAdmin;
@@ -140,13 +152,11 @@ class SessionInfo {
     map['iap_company_enrich'] = iapCompanyEnrich;
     return map;
   }
-
 }
-
 
 class UserCompanies {
   UserCompanies({
-      this.currentCompany,
+    this.currentCompany,
       this.allowedCompanies,});
 
   UserCompanies.fromJson(dynamic json) {
@@ -190,8 +200,8 @@ class AllowedCompanies {
 
 class A1 {
   A1({
-      this.id,
-      this.name,
+    this.id,
+    this.name,
       this.sequence,});
 
   A1.fromJson(dynamic json) {
@@ -210,19 +220,19 @@ class A1 {
     map['sequence'] = sequence;
     return map;
   }
-
 }
-
 
 class Currencies {
   Currencies({
-      this.c1,
-      this.c2,});
+    this.c1,
+    this.c2,
+  });
 
   Currencies.fromJson(dynamic json) {
     c1 = json['1'] != null ? C1.fromJson(json['1']) : null;
     c2 = json['2'] != null ? C2.fromJson(json['2']) : null;
   }
+
   C1? c1;
   C2? c2;
 
@@ -236,21 +246,21 @@ class Currencies {
     }
     return map;
   }
-
 }
-
 
 class C2 {
   C2({
-      this.symbol,
-      this.position,
-      this.digits,});
+    this.symbol,
+    this.position,
+    this.digits,
+  });
 
   C2.fromJson(dynamic json) {
     symbol = json['symbol'];
     position = json['position'];
     digits = json['digits'] != null ? json['digits'].cast<int>() : [];
   }
+
   String? symbol;
   String? position;
   List<int>? digits;
@@ -262,21 +272,21 @@ class C2 {
     map['digits'] = digits;
     return map;
   }
-
 }
-
 
 class C1 {
   C1({
-      this.symbol,
-      this.position,
-      this.digits,});
+    this.symbol,
+    this.position,
+    this.digits,
+  });
 
   C1.fromJson(dynamic json) {
     symbol = json['symbol'];
     position = json['position'];
     digits = json['digits'] != null ? json['digits'].cast<int>() : [];
   }
+
   String? symbol;
   String? position;
   List<int>? digits;
@@ -288,16 +298,15 @@ class C1 {
     map['digits'] = digits;
     return map;
   }
-
 }
-
 
 class CacheHashes {
   CacheHashes({
-      this.translations,
-      this.loadMenus,
-      this.qweb,
-      this.assetsDiscussPublic,});
+    this.translations,
+    this.loadMenus,
+    this.qweb,
+    this.assetsDiscussPublic,
+  });
 
   CacheHashes.fromJson(dynamic json) {
     translations = json['translations'];
@@ -305,6 +314,7 @@ class CacheHashes {
     qweb = json['qweb'];
     assetsDiscussPublic = json['assets_discuss_public'];
   }
+
   String? translations;
   String? loadMenus;
   String? qweb;
@@ -318,23 +328,25 @@ class CacheHashes {
     map['assets_discuss_public'] = assetsDiscussPublic;
     return map;
   }
-
 }
-
 
 class UserContext {
   UserContext({
-      this.lang,
-      this.tz,
-      this.uid,
-      this.allowedCompanyIds,});
+    this.lang,
+    this.tz,
+    this.uid,
+    this.allowedCompanyIds,
+  });
 
   UserContext.fromJson(dynamic json) {
     lang = json['lang'];
     tz = json['tz'];
     uid = json['uid'];
-    allowedCompanyIds = json['allowed_company_ids'] != null ? json['allowed_company_ids'].cast<int>() : [];
+    allowedCompanyIds = json['allowed_company_ids'] != null
+        ? json['allowed_company_ids'].cast<int>()
+        : [];
   }
+
   String? lang;
   String? tz;
   int? uid;
@@ -348,5 +360,4 @@ class UserContext {
     map['allowed_company_ids'] = allowedCompanyIds;
     return map;
   }
-
 }

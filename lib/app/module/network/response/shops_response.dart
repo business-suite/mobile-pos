@@ -1,7 +1,12 @@
+import 'dart:ffi';
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../generated/locale_keys.g.dart';
+import '../../res/style.dart';
 import 'base_response.dart';
 
 part 'shops_response.g.dart';
@@ -67,6 +72,7 @@ class Shop {
     posSessionState = json['pos_session_state'];
     posSessionDuration = json['pos_session_duration'];
     currencyId = json['currency_id'] != null ? json['currency_id'].cast<dynamic>() : [];
+    companyId = json['company_id'];
     numberOfOpenedSession = json['number_of_opened_session'];
     lastSessionClosingCash = json['last_session_closing_cash'];
     iface_start_categ_id = json['iface_start_categ_id'];
@@ -83,6 +89,7 @@ class Shop {
   dynamic? posSessionState;
   dynamic? posSessionDuration;
   List<dynamic>? currencyId;
+  dynamic? companyId;
   int? numberOfOpenedSession;
   double? lastSessionClosingCash;
   dynamic? iface_start_categ_id;
@@ -100,8 +107,10 @@ class Shop {
     map['pos_session_state'] = posSessionState;
     map['pos_session_duration'] = posSessionDuration;
     map['currency_id'] = currencyId;
+    map['company_id'] = companyId;
     map['number_of_opened_session'] = numberOfOpenedSession;
     map['last_session_closing_cash'] = lastSessionClosingCash;
+    map['iface_start_categ_id'] = iface_start_categ_id;
     return map;
   }
 
@@ -120,8 +129,22 @@ class Shop {
     switch (posSessionState) {
       case 'opening_control':
         return LocaleKeys.opening_control.tr();
+      case 'opened':
+        return LocaleKeys.to_close.tr();
       default:
         return '';
     }
+  }
+
+  Color getColorPosSessionState() {
+    int? duration = int.tryParse(posSessionDuration);
+    if(duration == null) return Colors.transparent;
+    else if(duration > 3) return kColordc3545;
+    else return kColorffac00;
+  }
+
+  String getCompanyName(){
+    if(companyId == null || companyId is! List) return '';
+    else return companyId[1];
   }
 }

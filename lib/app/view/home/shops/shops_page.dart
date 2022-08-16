@@ -1,6 +1,8 @@
+import 'package:business_suite_mobile_pos/app/view/home/shops/list_shop/item_list_shop.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../generated/locale_keys.g.dart';
@@ -10,11 +12,12 @@ import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/res/style.dart';
 import '../../empty/empty_page.dart';
+import '../../widget_utils/anims/touchable_opacity.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../../widget_utils/custom/default_loading_progress.dart';
 import '../../widget_utils/custom/loadmore.dart';
 import 'appbar_shops.dart';
-import 'item_shop.dart';
+import 'grid_shop/item_grid_shop.dart';
 import 'shops_viewmodel.dart';
 
 class ShopsPage extends PageProvideNode<ShopsViewModel> {
@@ -66,7 +69,7 @@ class _ShopsContentState extends State<ShopsContent>
         children: [
           //appbar2
           Container(
-            height: size_40_w,
+            height: size_46_w,
             color: Colors.white,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,11 +77,48 @@ class _ShopsContentState extends State<ShopsContent>
               children: <Widget>[
                 SizedBox(
                   width: size_10_w,
-                  height: size_10_w,
                 ),
-                Text(
-                  LocaleKeys.point_of_sale.tr(),
-                  style: TextStyle(color: Colors.black, fontSize: 15),
+                Row(
+                  children: [
+                    Container(
+                        height: size_32_w,
+                        decoration: BoxDecoration(
+                          color: kColor71639e,
+                          borderRadius: BorderRadius.circular(size_2_r),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: size_10_w),
+                          child: Center(
+                            child: Text(
+                              LocaleKeys.create.tr(),
+                              style: TextStyle(
+                                  fontSize: text_12, color: Colors.white),
+                            ),
+                          ),
+                        )),
+                    Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: size_1_w,
+                            color: kColorBFBFBF,
+                          ),
+                          borderRadius: BorderRadius.circular(size_2_r),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: size_10_w, vertical: size_6_w),
+                          child: Container(
+                            height: size_18_w,
+                            width: size_18_w,
+                            child: SvgPicture.asset(
+                              'assets/icons/ic_download.svg',
+                              width: size_18_w,
+                              height: size_18_w,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        )),
+                  ],
                 ),
                 Expanded(
                   flex: 1,
@@ -87,41 +127,60 @@ class _ShopsContentState extends State<ShopsContent>
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Container(
-                        height: 20.0,
-                        color: Colors.white,
+                        height: size_20_w,
                         child: ElevatedButton.icon(
                           icon: Icon(
                             Icons.filter_alt,
                             size: size_18_w,
-                            color: Colors.black38,
+                            color: Colors.black54,
                           ),
                           label: Text(LocaleKeys.filters.tr(),
                               style: TextStyle(
                                   fontSize: text_12, color: Colors.black87)),
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.white, elevation: 0),
+                              primary: Colors.white,
+                              elevation: 0,
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: size_6_w)),
                         ),
                       ),
                       Container(
                         height: size_20_w,
-                        color: Colors.white,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: size_1_w),
-                          child: ElevatedButton.icon(
-                            icon: Icon(
-                              Icons.table_rows,
-                              size: size_18_w,
-                              color: Colors.black38,
-                            ),
-                            label: Text(LocaleKeys.group_by.tr(),
-                                style: TextStyle(
-                                    fontSize: text_12, color: Colors.black87)),
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.white, elevation: 0),
+                        child: ElevatedButton.icon(
+                          icon: Icon(
+                            Icons.table_rows,
+                            size: size_18_w,
+                            color: Colors.black54,
                           ),
+                          label: Text(LocaleKeys.group_by.tr(),
+                              style: TextStyle(
+                                  fontSize: text_12, color: Colors.black87)),
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              elevation: 0,
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: size_6_w)),
                         ),
+                      ),
+                      TouchableOpacity(
+                        onPressed: () => shopListViewModel.changeListUI(),
+                        child: Consumer<ShopsViewModel>(
+                            builder: (context, value, child) {
+                          return Container(
+                            height: size_18_w,
+                            width: size_18_w,
+                            child: SvgPicture.asset(
+                              value.isGrid
+                                  ? 'assets/icons/ic_gridview.svg'
+                                  : 'assets/icons/ic_listview.svg',
+                              width: size_18_w,
+                              height: size_18_w,
+                              color: Colors.black54,
+                            ),
+                          );
+                        }),
                       ),
                     ],
                   ),
@@ -129,6 +188,90 @@ class _ShopsContentState extends State<ShopsContent>
               ],
             ),
           ),
+
+          Consumer<ShopsViewModel>(builder: (context, value, child) {
+            if (value.isGrid) {
+              return Container();
+            } else {
+              return Container(
+                color: kColorE6E6E6,
+                height: size_40_w,
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    //text Point of Sale
+                    Expanded(
+                      flex: 1,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: size_36_w,
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Transform.scale(
+                                  scale: 0.8,
+                                  child: Checkbox(
+                                    side: BorderSide(
+                                        color: Colors.black54, width: size_2_w),
+                                    checkColor: Colors.white,
+                                    fillColor:
+                                        MaterialStateProperty.all(kColor875a7b),
+                                    hoverColor: kColor875a7b,
+                                    value: value.isSelectAll,
+                                    onChanged: (bool? value) =>
+                                        shopListViewModel.onSelectChange(value),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: double.infinity,
+                              width: size_1_w,
+                              color: kColordfdfdf,
+                            ),
+                            SizedBox(
+                              width: size_6_w,
+                            ),
+                            Text(
+                              LocaleKeys.point_of_sale.tr(),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: text_14,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: double.infinity,
+                      width: size_1_w,
+                      color: kColordfdfdf,
+                    ),
+                    //text Company
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: size_6_w),
+                        child: Text(
+                          LocaleKeys.company.tr(),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: text_14,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+          }),
+
           //body
           Expanded(
             child: Consumer<ShopsViewModel>(
@@ -152,33 +295,63 @@ class _ShopsContentState extends State<ShopsContent>
                           value.refreshData();
                           return value.completer.future;
                         },
-                        child: CustomScrollView(
-                          physics: AlwaysScrollableScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          controller: value.scrollController,
-                          slivers: <Widget>[
-                            SliverList(
-                              delegate: SliverChildBuilderDelegate(
-                                (context, index) {
-                                  return ItemShop(
-                                    shop: value.shops[index],
-                                    onClickItem: () {
-                                      value.userSharePref
-                                          .saveShop(value.shops[index]);
-                                      value.openDetailShop();
-                                    },
-                                  );
-                                },
-                                childCount: value.shops.length,
-                              ),
-                            ),
-                            SliverToBoxAdapter(
-                              child: value.canLoadMore && value.isLoading
-                                  ? BuildLoadMore()
-                                  : SizedBox(),
-                            ),
-                          ],
-                        ));
+                        child: value.isGrid
+                            ? CustomScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                controller: value.scrollController,
+                                slivers: <Widget>[
+                                  SliverList(
+                                    delegate: SliverChildBuilderDelegate(
+                                      (context, index) {
+                                        return ItemGridShop(
+                                          shop: value.shops[index],
+                                          onClickItem: () {
+                                            value.userSharePref
+                                                .saveShop(value.shops[index]);
+                                            value.openDetailShop();
+                                          },
+                                        );
+                                      },
+                                      childCount: value.shops.length,
+                                    ),
+                                  ),
+                                  SliverToBoxAdapter(
+                                    child: value.canLoadMore && value.isLoading
+                                        ? BuildLoadMore()
+                                        : SizedBox(),
+                                  ),
+                                ],
+                              )
+                            : CustomScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                controller: value.scrollController,
+                                slivers: <Widget>[
+                                  SliverList(
+                                    delegate: SliverChildBuilderDelegate(
+                                      (context, index) {
+                                        return ItemListShop(
+                                          index: index,
+                                          shop: value.shops[index],
+                                          onClickItem: () {
+                                            value.userSharePref
+                                                .saveShop(value.shops[index]);
+                                            value.openDetailShop();
+                                          },
+                                          onCheckItem: (bool value) {},
+                                        );
+                                      },
+                                      childCount: value.shops.length,
+                                    ),
+                                  ),
+                                  SliverToBoxAdapter(
+                                    child: value.canLoadMore && value.isLoading
+                                        ? BuildLoadMore()
+                                        : SizedBox(),
+                                  ),
+                                ],
+                              ));
                   default:
                     return Container();
                 }

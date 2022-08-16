@@ -238,6 +238,7 @@
   "total_review": "Total: $ 402.90",
   "press_the_back_button_to_exit": "Press the back button to exit",
   "company_name": "Company Name",
+  "company": "Company",
   "product_price": "{money} {currency}",
   "log_out": "Log Out",
   "cancel": "Cancel",
@@ -278,5 +279,7 @@
   "https_config": "https://{server}:{port}",
   "no_database": "No database",
   "select_database": "Select Database",
-  "the_system_does_not_support_pos_please_contact_administrator_for_more_information": "The system does not support POS.\nPlease contact administrator for more information."
+  "the_system_does_not_support_pos_please_contact_administrator_for_more_information": "The system does not support POS.\nPlease contact administrator for more information.",
+  "to_close": "To Close",
+  "create": "Create"
 }
