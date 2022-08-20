@@ -26,16 +26,16 @@ class F {
   }
 
   //Base URL
-  static String get baseUrl {
+ /* static String get baseUrl {
     switch (appFlavor) {
       case Flavor.DEVELOPMENT:
-        return getIt<UserSharePref>().getServerConfig()?.getBaseUrl() ?? '';
+        return getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? '';
       case Flavor.PRODUCTION:
-        return getIt<UserSharePref>().getServerConfig()?.getBaseUrl() ?? '';
+        return getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? '';
       default:
-        return getIt<UserSharePref>().getServerConfig()?.getBaseUrl() ?? '';
+        return getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? '';
     }
-  }
+  }*/
 
   //Host
   static String get host {

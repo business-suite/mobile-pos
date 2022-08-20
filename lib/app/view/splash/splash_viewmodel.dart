@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/view/choose_account/choose_account_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_page.dart';
 import 'package:business_suite_mobile_pos/app/view/input_server_port/input_server_port_page.dart';
 import 'package:business_suite_mobile_pos/app/view/intro/intro_page.dart';
@@ -25,9 +26,9 @@ class SplashViewModel extends BaseViewModel {
         }
         if (userSharePref.isLogin()) {
           _navigationService.pushReplacementScreenWithFade(HomePage());
-        } else if (!userSharePref.isServerConfig()) {
+        } else if (userSharePref.hasLoginConfig()) {
           _navigationService
-              .pushReplacementScreenWithFade(InputServerPortPage());
+              .pushReplacementScreenWithFade(ChooseAccountPage());
         } else {
           _navigationService.pushReplacementScreenWithFade(IntroPage());
         }

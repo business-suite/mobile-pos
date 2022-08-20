@@ -13,24 +13,23 @@ import '../common/navigator_screen.dart';
 import '../local_storage/shared_pref_manager.dart';
 import 'network_util.dart';
 
-final dio = AppDio.getInstance();
+var dio = AppDio.getInstance();
 
 // ignore: prefer_mixin
 class AppDio with DioMixin implements Dio {
   AppDio._([BaseOptions? options]) {
     options = BaseOptions(
-      baseUrl: F.baseUrl,
+      baseUrl: getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? '',
       contentType: 'application/json',
       connectTimeout: CONNECT_TIMEOUT,
       sendTimeout: WRITE_TIMEOUT,
       receiveTimeout: READ_TIMEOUT,
     );
-
     this.options = options;
     interceptors.clear();
     interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) async {
-        final appToken = getIt<UserSharePref>().getAppToken();
+        //final appToken = getIt<UserSharePref>().getAppToken();
         options.headers.addAll(headers);
         handler.next(options);
       },
@@ -54,9 +53,7 @@ class AppDio with DioMixin implements Dio {
             handler.next(error);
             break;
           case DioErrorType.other:
-            if (error.response?.data is List) {
-              handler.next(error);
-            }
+            handler.next(error);
             return;
         }
       },

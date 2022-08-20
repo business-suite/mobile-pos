@@ -9,6 +9,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../../flavors.dart';
 import '../../di/injection.dart';
+import '../../view/choose_account/choose_account_page.dart';
 import '../../view/intro/intro_page.dart';
 import '../common/config.dart';
 import '../common/extension.dart';
@@ -25,7 +26,7 @@ class DataRepository {
 
   //must to call api login web to get Csrt Token
   Future<Response> webGetCsrfToken(String api) async {
-    return await Dio().get('${F.baseUrl}$api');
+    return await Dio().get('${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}$api');
   }
 
   Future<Response> getAvatarData(String api) async {
@@ -46,7 +47,7 @@ class DataRepository {
       EasyLoading.dismiss();
     }).listen((_) {
       userSharePref.clearUser();
-      getIt<NavigationService>().pushAndRemoveUntilWithFade(InputServerPortPage());
+      getIt<NavigationService>().pushAndRemoveUntilWithFade(ChooseAccountPage());
     }, onError: (e) {
       _navigationService.openErrorPage();
     });

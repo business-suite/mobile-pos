@@ -281,5 +281,10 @@
   "select_database": "Select Database",
   "the_system_does_not_support_pos_please_contact_administrator_for_more_information": "The system does not support POS.\nPlease contact administrator for more information.",
   "to_close": "To Close",
-  "create": "Create"
+  "create": "Create",
+  "something_is_not_right": "Something is not right!",
+  "please_check_your_url": "Please check your URL",
+  "please_check_your_email_or_password": "Please check your Email or Password",
+  "choose_account": "Choose Account",
+  "go_to_sign_in": "Go to Sign In"
 }

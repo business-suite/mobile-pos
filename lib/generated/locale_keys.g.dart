@@ -274,5 +274,10 @@ abstract class  LocaleKeys {
   static const the_system_does_not_support_pos_please_contact_administrator_for_more_information = 'the_system_does_not_support_pos_please_contact_administrator_for_more_information';
   static const to_close = 'to_close';
   static const create = 'create';
+  static const something_is_not_right = 'something_is_not_right';
+  static const please_check_your_url = 'please_check_your_url';
+  static const please_check_your_email_or_password = 'please_check_your_email_or_password';
+  static const choose_account = 'choose_account';
+  static const go_to_sign_in = 'go_to_sign_in';
 
 }

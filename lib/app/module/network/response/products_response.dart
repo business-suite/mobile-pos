@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../flavors.dart';
+import '../../../di/injection.dart';
+import '../../local_storage/shared_pref_manager.dart';
 import 'base_response.dart';
 
 part 'products_response.g.dart';
@@ -74,8 +76,7 @@ class Product {
 
 
   String getImageProduct() {
-    return '${F
-        .baseUrl}/web/image?model=product.product&field=image_256&id=${id}&write_date=${write_date}&unique=1';
+    return '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/web/image?model=product.product&field=image_256&id=${id}&write_date=${write_date}&unique=1';
   }
 
 

@@ -10,6 +10,7 @@ import 'package:get_it/get_it.dart';
 import '../module/common/navigator_screen.dart';
 import '../module/local_storage/shared_pref_manager.dart';
 import '../module/repository/data_repository.dart';
+import '../view/choose_account/choose_account_viewmodel.dart';
 import '../view/forgot_pass/forgot_pass_viewmodel.dart';
 import '../view/home/closing_control/closing_control_viewmodel.dart';
 import '../view/home/coins_bills/coins_bills_viewmodel.dart';
@@ -51,8 +52,10 @@ Future<void> configureDependencies() async {
   getIt.registerFactory<IntroViewModel>(
       () => IntroViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactory<SignInViewModel>(
-      () => SignInViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactoryParam<SignInViewModel, List<dynamic>, dynamic>(
+          (param1, _) => //no need param2
+          SignInViewModel(getIt<DataRepository>(),databaseList: param1[0]));
 
   getIt.registerFactory<SignUpViewModel>(
       () => SignUpViewModel(getIt<DataRepository>()));
@@ -66,8 +69,11 @@ Future<void> configureDependencies() async {
   getIt.registerFactory<HomeViewModel>(
       () => HomeViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactory<ShopsViewModel>(
-      () => ShopsViewModel(getIt<DataRepository>()));
+  getIt.registerFactory<InputServerPortViewModel>(
+      () => InputServerPortViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<ChooseAccountViewModel>(
+          () => ChooseAccountViewModel(getIt<DataRepository>()));
 
   getIt.registerFactory<ProductsViewModel>(
       () => ProductsViewModel(getIt<DataRepository>()));
@@ -99,9 +105,6 @@ Future<void> configureDependencies() async {
   getIt.registerFactory<InVoiceViewModel>(
       () => InVoiceViewModel(getIt<DataRepository>()));
 
-  getIt.registerFactory<InputServerPortViewModel>(
-      () => InputServerPortViewModel(getIt<DataRepository>()));
-
   getIt.registerFactory<ConInsBillsViewModel>(
           () => ConInsBillsViewModel(getIt<DataRepository>()));
 
@@ -111,6 +114,9 @@ Future<void> configureDependencies() async {
 
   getIt.registerFactory<OpeningCashViewModel>(
           () => OpeningCashViewModel(getIt<DataRepository>()));
+
+  getIt.registerFactory<ShopsViewModel>(
+          () => ShopsViewModel(getIt<DataRepository>()));
 
   getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, dynamic>(
       (param1, _) => //no need param2

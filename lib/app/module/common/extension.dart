@@ -238,7 +238,7 @@ extension EmailValidate on String {
 
 String getAvatarProfile(){
   SessionInfo? sessionInfo = getIt<UserSharePref>().getUser();
-  return '${F.baseUrl}/web/image/res.users/${sessionInfo?.uid}/avatar_128';
+  return '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/web/image/res.users/${sessionInfo?.uid}/avatar_128';
   //return '${F.baseUrl}/web/image?model=res.users&field=avatar_128&id=${sessionInfo?.uid}';
 }
 

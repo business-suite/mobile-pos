@@ -110,11 +110,11 @@ class ClosingControlViewModel extends BaseViewModel {
     );
   }
   void openTermOfService() {
-    _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.term_of_service.tr(), url: '${F.baseUrl}/contactus')));
+    _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.term_of_service.tr(), url: '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/contactus')));
   }
 
   void openPrivacyPolicy() {
-    _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.privacy_policy.tr(), url: '${F.baseUrl}/contactus')));
+    _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(title: LocaleKeys.privacy_policy.tr(), url: '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/contactus')));
   }
 
   void openForgotPassPage() async {

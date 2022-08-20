@@ -155,4 +155,5 @@ const kColorffac00  = Color(0xffffac00);
 const kColordfdfdf  = Color(0xffdfdfdf);
 const kColorFCFCFC  = Color(0xffFCFCFC);
 const kColor71639e  = Color(0xff71639e);
+const kColor28a745  = Color(0xff28a745);
 

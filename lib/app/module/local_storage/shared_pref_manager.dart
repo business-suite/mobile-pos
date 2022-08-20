@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:business_suite_mobile_pos/app/module/common/extension.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../model/server_config.dart';
+import '../../model/login_config.dart';
+import '../../model/login_data.dart';
 import '../../model/session_info.dart';
 import '../network/response/shops_response.dart';
 
@@ -122,7 +122,6 @@ class SharedPrefManager {
 
 class UserSharePref extends SharedPrefManager {
   static const USER = 'USER';
-  static const SERVER_CONFIG = 'SERVER_CONFIG';
   static const SHOP = 'SHOP';
   static const LOAD_START_API = 'LOAD_START_API';
   static const APP_TOKEN = 'APP_TOKEN';
@@ -132,6 +131,8 @@ class UserSharePref extends SharedPrefManager {
   static const TWITTER_ID = 'TWITTER_ID';
   static const APPLE_ID = 'APPLE_ID';
   static const APPLE_USER_NAME = 'APPLE_USER_NAME';
+  static const LOGIN_CONFIG = 'LOGIN_CONFIG';
+  static const LOGIN_DATA_LIST = 'LOGIN_DATA_LIST';
 
   Future<void>? saveFirebaseToken(String? value) {
     if (SharedPrefManager.beforCheck()) return null;
@@ -210,8 +211,7 @@ class UserSharePref extends SharedPrefManager {
   }
 
   Future<void>? clearUser() {
-    if (SharedPrefManager.beforCheck()) return null;
-    return SharedPrefManager.spf!.clear();
+    saveUser(null);
   }
 
   SessionInfo? getUser() {
@@ -222,15 +222,41 @@ class UserSharePref extends SharedPrefManager {
     return SessionInfo.fromJson(data);
   }
 
-  Future<void>? setLoadStartAPI(bool isAllow) {
+  Future<void>? saveLoginDataList(LoginData? loginDataList) {
     if (SharedPrefManager.beforCheck()) return null;
-    return SharedPrefManager.spf!.setBool(LOAD_START_API, isAllow);
+    return SharedPrefManager.spf!.setString(LOGIN_DATA_LIST,
+        loginDataList != null ? json.encode(loginDataList.toJson()) : '');
   }
 
-  bool getLoadStartAPI() {
-    if (SharedPrefManager.beforCheck()) return false;
-    return SharedPrefManager.spf!.getBool(LOAD_START_API) ?? false;
+  LoginData? getLoginDataList() {
+    if (SharedPrefManager.beforCheck()) return null;
+    String jsonData = SharedPrefManager.spf!.getString(LOGIN_DATA_LIST) ?? '';
+    if (jsonData.isEmpty) return null;
+    dynamic data = json.decode(jsonData);
+    return LoginData.fromJson(data);
   }
+
+
+  Future<void>? saveLoginConfig(LoginConfig? loginConfig) {
+    if (SharedPrefManager.beforCheck()) return null;
+    return SharedPrefManager.spf!.setString(LOGIN_CONFIG,
+        loginConfig != null ? json.encode(loginConfig.toJson()) : '');
+  }
+
+  LoginConfig? getLoginConfig() {
+    if (SharedPrefManager.beforCheck()) return null;
+    String jsonData = SharedPrefManager.spf!.getString(LOGIN_CONFIG) ?? '';
+    if (jsonData.isEmpty) return null;
+    dynamic data = json.decode(jsonData);
+    return LoginConfig.fromJson(data);
+  }
+
+  bool hasLoginConfig() {
+    if (SharedPrefManager.beforCheck()) return false;
+    return getLoginDataList() != null &&
+        getLoginDataList()?.data.isNotEmpty == true;
+  }
+
 
   Future<void>? saveShop(Shop? shop) {
     if (SharedPrefManager.beforCheck()) return null;
@@ -246,25 +272,6 @@ class UserSharePref extends SharedPrefManager {
     return Shop.fromJson(data);
   }
 
-  Future<void>? saveServerConfig(ServerConfig? serverConfig) {
-    if (SharedPrefManager.beforCheck()) return null;
-    return SharedPrefManager.spf!.setString(SERVER_CONFIG,
-        serverConfig != null ? json.encode(serverConfig.toJson()) : '');
-  }
-
-  ServerConfig? getServerConfig() {
-    if (SharedPrefManager.beforCheck()) return null;
-    String jsonData = SharedPrefManager.spf!.getString(SERVER_CONFIG) ?? '';
-    if (jsonData.isEmpty) return null;
-    dynamic data = json.decode(jsonData);
-    return ServerConfig.fromJson(data);
-  }
-
-  bool isServerConfig() {
-    if (SharedPrefManager.beforCheck()) return false;
-    return getServerConfig() != null &&
-        Utils.isURL(getServerConfig()!.getBaseUrl());
-  }
 
   bool isLogin() {
     if (SharedPrefManager.beforCheck()) return false;

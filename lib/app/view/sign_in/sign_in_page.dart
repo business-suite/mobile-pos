@@ -17,7 +17,8 @@ import '../widget_utils/outline_text_form_field.dart';
 import 'sign_in_viewmodel.dart';
 
 class SignInPage extends PageProvideNode<SignInViewModel> {
-  SignInPage() : super();
+  List<dynamic> databaseList = [];
+  SignInPage({this.databaseList = const []}) : super(params: [databaseList]);
 
   @override
   Widget buildContent(BuildContext context) {
@@ -39,7 +40,6 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
 
   @override
   void initState() {
-    signInViewModel.getDatabasesApi();
     super.initState();
   }
 
@@ -262,7 +262,9 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
                 ),
               ),
             ),
-            Positioned(
+
+            //Manage Database | Powered by Odoo
+            /*Positioned(
               left: 0.0,
               right: 0.0,
               bottom: 0.0,
@@ -310,7 +312,7 @@ class _SignInContentState extends LifecycleState<_SignInContentPage> {
                   ),
                 ),
               ),
-            )
+            )*/
           ],
         ),
       ),
