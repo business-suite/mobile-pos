@@ -136,8 +136,17 @@ class SignInViewModel extends BaseViewModel {
     }).doOnDone(() {
       EasyLoading.dismiss();
     }).listen((r) async {
-      loginResponse = LoginResponse.fromJson(r);
       try {
+        //access denied
+        if(r is DioError && r.message.isNotEmpty){
+          if(r.message == 'Access Denied')
+            SnackBarUtil.showSnack(
+              title: LocaleKeys.something_is_not_right.tr(),
+              message: LocaleKeys.please_check_your_email_or_password.tr(),
+              snackType: SnackType.ERROR);
+          return;
+        }
+        loginResponse = LoginResponse.fromJson(r);
         if (loginResponse?.result != null) {
           if (loginResponse?.result!.uid == null) {
             openAuthenticationPage();
@@ -167,6 +176,7 @@ class SignInViewModel extends BaseViewModel {
               snackType: SnackType.ERROR);
         }
       } catch (e) {
+
         _navigationService.openErrorPage(
             message: r is DioError && r.message.isNotEmpty
                 ? r.message.toString()

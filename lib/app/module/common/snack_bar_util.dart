@@ -73,8 +73,8 @@ class SnackBarUtil {
     String? message,
   }) {
     //dimiss();
-    Flushbar? flush;
-    flush = Flushbar<bool>(
+   late Flushbar flush;
+    flush = Flushbar<bool?>(
       borderRadius: BorderRadius.circular(size_4_r),
       titleText: Text(
         title ?? LocaleKeys.an_unexpected_error_has_occurred.tr(),
@@ -105,7 +105,7 @@ class SnackBarUtil {
       icon: _buildIcon(snackType!),
       mainButton: TouchableOpacity(
         onPressed: () {
-          flush?.dismiss(true);
+          flush.dismiss(true);
         },
         child: SvgPicture.asset(
           'assets/icons/ic_close_thin.svg',

@@ -87,8 +87,8 @@ class ChooseAccountViewModel extends BaseViewModel {
     }).doOnDone(() {
       EasyLoading.dismiss();
     }).listen((r) {
-      loginResponse = LoginResponse.fromJson(r);
       try {
+        loginResponse = LoginResponse.fromJson(r);
         if (loginResponse?.result != null) {
           if (loginResponse?.result!.uid == null) {
             openAuthenticationPage();
