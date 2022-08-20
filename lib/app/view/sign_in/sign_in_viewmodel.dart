@@ -72,7 +72,7 @@ class SignInViewModel extends BaseViewModel {
   }
 
   String? invalidEmail(String? value) {
-    return value == null || !Utils.isEmail(value.trim())
+    return value?.isEmpty == true  /*|| !Utils.isEmail(value.trim())*/
         ? LocaleKeys.invalid_email.tr()
         : null;
   }

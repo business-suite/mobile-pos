@@ -156,23 +156,20 @@ Future _call(String url, params) async {
   if (cookie.isNotEmpty) {
     headers['Cookie'] = cookie;
   }
-
+  String message = '';
   try {
     Response response = await dio.post(url,
         data: json.encode(payload), options: Options(headers: headers));
     updateSessionIdFromCookies(response);
     var result = response.data;
     if (result['error'] != null) {
-      if (result['error']['code'] == 100) {
-        // session expired
-        getIt<UserSharePref>().saveAppToken(null);
-        throw Exception(LocaleKeys.session_expired.tr());
-      }
+     message = handleOdooError(result);
+      return DioError(requestOptions: RequestOptions(path: url), error:  message);
     }
     return response.data;
   } on DioError catch (err) {
     print(err);
-    String message = dispatchFailure(getIt<NavigationService>().context, err);
+    message = dispatchFailure(getIt<NavigationService>().context, err);
     return DioError(requestOptions: RequestOptions(path: url), error: message);
   }
 }
@@ -212,4 +209,19 @@ String dispatchFailure(BuildContext context, dynamic e) {
     //ToastUtil.showToast(message);
   }
   return message;
+}
+
+
+String handleOdooError(var result) {
+  var message = result['error']['message'];
+  var code = result['error']['code'];
+  switch(code){
+    case 100: // session expired
+      getIt<UserSharePref>().saveAppToken(null);
+      return LocaleKeys.session_expired.tr();
+    case 200:
+     return result['error']['data']['message'];
+    default:
+      return LocaleKeys.an_unexpected_error_has_occurred.tr();
+  }
 }
