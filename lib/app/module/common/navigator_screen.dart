@@ -1,14 +1,18 @@
 
 import 'package:business_suite_mobile_pos/app/module/repository/data_repository.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../../flavors.dart';
+import '../../../generated/locale_keys.g.dart';
 import '../../di/injection.dart';
 import '../../view/error/error_page.dart';
-import '../../view/widget_utils/dialog/dialog_log_out_app.dart';
+import '../../view/widget_utils/dialog/dialog_general_two_action.dart';
 import '../../view/intro/intro_page.dart';
 import '../../view/splash/splash_page.dart';
 import '../local_storage/shared_pref_manager.dart';
+import '../res/style.dart';
 
 class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey =
@@ -108,8 +112,9 @@ class NavigationService {
     pushAndRemoveUntilWithFade(SplashPage());
   }
 
-  openErrorPage({String? message}) {
+  openErrorPage({String? title, String? message}) {
     pushAndRemoveUntilWithFade(ErrorPage(
+      title: title,
       message: message,
     ));
   }
@@ -122,9 +127,11 @@ class NavigationService {
     showDialog(
         context: navigatorKey.currentContext!,
         builder: (BuildContext context) {
-          return DialogExitApp(
-            funcExit: () {
-              dimiss();
+          return DialogGeneralTwoAction(
+            title: F.title,
+            message: LocaleKeys.do_you_want_to_log_out.tr(),
+            textOk: LocaleKeys.log_out.tr(),
+            onOkClick: () {
               getIt<DataRepository>().logout();
             },
           );

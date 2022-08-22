@@ -66,14 +66,15 @@ class SnackBarUtil {
         throw UnimplementedError();
     }
   }
-
+  static Flushbar? flush;
   static void showSnack({
     SnackType? snackType = SnackType.INFO,
     String? title,
     String? message,
   }) {
-    //dimiss();
-   late Flushbar flush;
+    dimiss();
+   //late Flushbar flush;
+    flush?.dismiss(true);
     flush = Flushbar<bool?>(
       borderRadius: BorderRadius.circular(size_4_r),
       titleText: Text(
@@ -105,7 +106,7 @@ class SnackBarUtil {
       icon: _buildIcon(snackType!),
       mainButton: TouchableOpacity(
         onPressed: () {
-          flush.dismiss(true);
+          flush?.dismiss(true);
         },
         child: SvgPicture.asset(
           'assets/icons/ic_close_thin.svg',

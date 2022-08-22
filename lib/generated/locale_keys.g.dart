@@ -279,5 +279,13 @@ abstract class  LocaleKeys {
   static const please_check_your_email_or_password = 'please_check_your_email_or_password';
   static const choose_account = 'choose_account';
   static const go_to_sign_in = 'go_to_sign_in';
+  static const delete_account = 'delete_account';
+  static const do_you_want_to_delete_account = 'do_you_want_to_delete_account';
+  static const odoo_server_error = 'odoo_server_error';
+  static const no_account = 'no_account';
+  static const email_info = 'email_info';
+  static const server_info = 'server_info';
+  static const database_info = 'database_info';
+  static const can_t_connect_to_server = 'can_t_connect_to_server';
 
 }

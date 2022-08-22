@@ -48,7 +48,8 @@ class SignInViewModel extends BaseViewModel {
   SignInViewModel(this._dataRepo, {this.databaseList = const []});
 
   bool get validate =>
-      Utils.isEmail(email.trim()) &&
+      /*Utils.isEmail(email.trim()) &&*/
+      email.isNotEmpty &&
       password.isNotEmpty &&
       password.length > 4 &&
       database.isNotEmpty;
@@ -138,9 +139,8 @@ class SignInViewModel extends BaseViewModel {
     }).listen((r) async {
       try {
         //access denied
-        if(r is DioError && r.message.isNotEmpty){
-          if(r.message == 'Access Denied')
-            SnackBarUtil.showSnack(
+        if(r is DioError && r.message.isNotEmpty && r.message == 'Access Denied'){
+          SnackBarUtil.showSnack(
               title: LocaleKeys.something_is_not_right.tr(),
               message: LocaleKeys.please_check_your_email_or_password.tr(),
               snackType: SnackType.ERROR);
@@ -161,7 +161,7 @@ class SignInViewModel extends BaseViewModel {
             await userSharePref.saveLoginConfig(loginConfig);
             //save login data
             LoginData loginData = userSharePref.getLoginDataList() ?? LoginData(data: []);
-            if (loginData.data.isEmpty || findAccount(loginConfig, loginData.data) == -1) {
+            if (loginData.data.isEmpty || findAccount(loginConfig, loginData.data) == 0) {
               loginData.data.add(loginConfig);
               await userSharePref.saveLoginDataList(loginData);
             }
@@ -176,7 +176,6 @@ class SignInViewModel extends BaseViewModel {
               snackType: SnackType.ERROR);
         }
       } catch (e) {
-
         _navigationService.openErrorPage(
             message: r is DioError && r.message.isNotEmpty
                 ? r.message.toString()
@@ -189,7 +188,7 @@ class SignInViewModel extends BaseViewModel {
   }
 
   int findAccount(LoginConfig loginConfig, List<LoginConfig> list) {
-    return list.indexOf(loginConfig);
+    return list.where((element) => element == loginConfig).toList().length;
   }
 
   void openAuthenticationPage() async {
@@ -214,7 +213,7 @@ class SignInViewModel extends BaseViewModel {
         '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}$API_RESET_PASSWORD');
     _navigationService.pushScreenWithSlideUp(WebviewPage(WebviewParam(
         title: LocaleKeys.reset_password.tr(),
-        url: 'http://34.159.226.218:8069/web/reset_password')));
+        url: '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}$API_RESET_PASSWORD')));
   }
 
   void openManageDatabase() {

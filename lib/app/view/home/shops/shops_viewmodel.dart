@@ -39,7 +39,6 @@ class ShopsViewModel extends BaseViewModel {
 
   ShopsViewModel(this._dataRepo);
 
-
   CheckModuleResponse? _checkModuleResponse;
 
   set checkModuleResponse(CheckModuleResponse? checkModuleResponse) {
@@ -68,17 +67,17 @@ class ShopsViewModel extends BaseViewModel {
     ];
 
     Map<String, dynamic>? context =
-    userSharePref.getUser()?.userContext?.toJson();
+        userSharePref.getUser()?.userContext?.toJson();
     context?.putIfAbsent('search_default_app', () => 1);
     context?.putIfAbsent('bin_size', () => true);
 
     final subscript = _dataRepo
         .searchRead(CHECK_MODULE,
-        domain: domain,
-        fields: fields,
-        limit: 80,
-        sort: '',
-        context: context)
+            domain: domain,
+            fields: fields,
+            limit: 80,
+            sort: '',
+            context: context)
         .listen((r) {
       try {
         checkModuleResponse = CheckModuleResponse.fromJson(r);
@@ -90,8 +89,13 @@ class ShopsViewModel extends BaseViewModel {
               break;
             }
           }
-          if(hasPosModule) getShopsApi();
-          else _navigationService.openErrorPage(message: LocaleKeys.the_system_does_not_support_pos_please_contact_administrator_for_more_information.tr());
+          if (hasPosModule)
+            getShopsApi();
+          else
+            _navigationService.openErrorPage(
+                message: LocaleKeys
+                    .the_system_does_not_support_pos_please_contact_administrator_for_more_information
+                    .tr());
           notifyListeners();
         }
       } catch (e) {
@@ -107,8 +111,6 @@ class ShopsViewModel extends BaseViewModel {
     });
     addSubscription(subscript);
   }
-
-
 
   ShopsResponse? _shopsResponse;
 
@@ -142,7 +144,6 @@ class ShopsViewModel extends BaseViewModel {
       "last_session_closing_cash",
       "iface_start_categ_id",
       "company_id",
-
     ];
     final subscript = _dataRepo
         .searchRead(SHOPS,
@@ -183,7 +184,6 @@ class ShopsViewModel extends BaseViewModel {
     addSubscription(subscript);
   }
 
-
   refreshData() {
     isLoading = true;
     canLoadMore = true;
@@ -191,7 +191,7 @@ class ShopsViewModel extends BaseViewModel {
     shops.clear();
     notifyListeners();
     checkModulePOSApi();
-   // getShopsApi();
+    // getShopsApi();
   }
 
   void onScroll() {
@@ -204,12 +204,12 @@ class ShopsViewModel extends BaseViewModel {
     }
   }
 
-  void changeListUI(){
+  void changeListUI() {
     isGrid = !isGrid;
     notifyListeners();
   }
 
-  void onSelectChange(bool? value){
+  void onSelectChange(bool? value) {
     isSelectAll = value ?? false;
     notifyListeners();
   }

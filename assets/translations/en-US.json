@@ -286,5 +286,13 @@
   "please_check_your_url": "Please check your URL",
   "please_check_your_email_or_password": "Please check your Email or Password",
   "choose_account": "Choose Account",
-  "go_to_sign_in": "Go to Sign In"
+  "go_to_sign_in": "Go to Sign In",
+  "delete_account": "Delete Account",
+  "do_you_want_to_delete_account": "Do you want to delete account \"{account_name}\"?",
+  "odoo_server_error": "Odoo Server Error",
+  "no_account": "No account found",
+  "email_info": "Email: {email}",
+  "server_info": "Server: {server}",
+  "database_info": "Database: {database}",
+  "can_t_connect_to_server": "Can't connect to server.\nPlease check your connection and try again."
 }

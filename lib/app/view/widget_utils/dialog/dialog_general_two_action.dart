@@ -6,10 +6,27 @@ import '../../../../flavors.dart';
 import '../../../../generated/locale_keys.g.dart';
 import '../../../module/res/style.dart';
 
-class DialogExitApp extends StatelessWidget {
-  VoidCallback funcExit;
+class DialogGeneralTwoAction extends StatelessWidget {
+  String? title;
+  String? message;
+  String? textCancel;
+  String? textOk;
+  Color? colorTextOk;
+  Color? colorTextCancel;
+  VoidCallback? onOkClick;
+  VoidCallback? onCancelClick;
 
-  DialogExitApp({Key? key, required this.funcExit}) : super(key: key);
+  DialogGeneralTwoAction({
+    Key? key,
+    this.title,
+    this.message,
+    this.textCancel,
+    this.textOk,
+    this.colorTextOk,
+    this.colorTextCancel,
+    this.onOkClick,
+    this.onCancelClick,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +50,23 @@ class DialogExitApp extends StatelessWidget {
               children: [
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+                    padding:
+                        EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
                     child: Text(
-                      F.title,
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: text_16),
+                      title ?? F.title,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: text_16),
                     ),
                   ),
                 ),
                 Center(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0, bottom: 30.0),
+                    padding: EdgeInsets.only(
+                        left: 30.0, right: 30.0, top: 20.0, bottom: 30.0),
                     child: Text(
-                      LocaleKeys.do_you_want_to_log_out.tr(),
+                      message ?? '',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black87,
@@ -67,17 +89,26 @@ class DialogExitApp extends StatelessWidget {
                         color: transparent,
                         elevation: 0.0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0)),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10.0)),
                         ),
                         child: InkWell(
-                          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10.0)),
-                          onTap: () => Navigator.of(context).pop(),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10.0)),
+                          onTap: () {
+                            onCancelClick?.call();
+                            Navigator.of(context).pop();
+                          },
                           child: Container(
                             height: heightButton,
                             child: Center(
                               child: Text(
-                                LocaleKeys.cancel.tr(),
-                                style: TextStyle(color: kColor027AFF, fontSize: text_16, fontWeight: FontWeight.normal),
+                                textCancel ?? LocaleKeys.dialog_cancel.tr(),
+                                style: TextStyle(
+                                  color: colorTextCancel ?? kColor027AFF,
+                                  fontSize: text_16,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
                             ),
                           ),
@@ -96,17 +127,25 @@ class DialogExitApp extends StatelessWidget {
                         color: transparent,
                         elevation: 0.0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0)),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(10.0)),
                         ),
                         child: InkWell(
-                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(10.0)),
-                          onTap: () => funcExit.call(),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(10.0)),
+                          onTap: () {
+                            onOkClick?.call();
+                            Navigator.of(context).pop();
+                          },
                           child: Container(
                             height: heightButton,
                             child: Center(
                               child: Text(
-                                LocaleKeys.log_out.tr(),
-                                style: TextStyle(color: kColorFF4136, fontSize: text_16, fontWeight: FontWeight.normal),
+                                textOk ?? LocaleKeys.dialog_ok.tr(),
+                                style: TextStyle(
+                                    color: colorTextOk ?? kColorFF4136,
+                                    fontSize: text_16,
+                                    fontWeight: FontWeight.normal),
                               ),
                             ),
                           ),

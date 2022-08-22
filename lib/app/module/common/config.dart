@@ -36,6 +36,7 @@ const String ODOO_DB = 'businesssuite_pos';
 const String API_SIGN_UP = '/web/login';
 const String API_RESET_PASSWORD = '/web/reset_password';
 const String API_DATABASE_LIST = '/web/database/list';
+const String API_SESSION_INFO = '/web/session/get_session_info';
 const String API_MANAGE_DATABASE = '/web/database/manager';
 const String API_POWERED_ODOO = 'https://www.odoo.com';
 const String API_AUTHENTICATE = '/web/session/authenticate';

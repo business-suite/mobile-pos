@@ -139,7 +139,6 @@ Future _call(String url, params) async {
     'jsonrpc': "2.0",
     'id': ++request_id,
   };
-
   String? sessionId = getIt<UserSharePref>().getAppToken();
   var cookie = '';
   String frontendLang = '';
@@ -198,7 +197,7 @@ String dispatchFailure(BuildContext context, dynamic e) {
     } else if (503 == response?.statusCode) {
       message = LocaleKeys.server_unavailable.tr();
     } else if (e.error is SocketException) {
-      message = LocaleKeys.no_internet_connection.tr();
+      message = LocaleKeys.can_t_connect_to_server.tr();
     } else {
      // message = 'Oops!!';
       message = LocaleKeys.server_internal_error.tr();
