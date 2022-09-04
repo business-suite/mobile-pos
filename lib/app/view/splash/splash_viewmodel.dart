@@ -30,7 +30,8 @@ class SplashViewModel extends BaseViewModel {
           _navigationService
               .pushReplacementScreenWithFade(ChooseAccountPage());
         } else {
-          _navigationService.pushReplacementScreenWithFade(IntroPage());
+          //_navigationService.pushReplacementScreenWithFade(IntroPage());
+          _navigationService.pushReplacementScreenWithFade(InputServerPortPage());
         }
       },
     );

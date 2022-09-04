@@ -96,36 +96,13 @@ abstract class ButtomSheetUtils {
       colorBackgroundPreview: Colors.white,
       colorPreview: Colors.white,
 
-      actions: buildWidgetActionShops(
-        onViewOrders: onViewOrders,
-        onViewSessions: onViewSessions,
-        onReportingOrders: onReportingOrders,
-        onSettings: onSettings,
-      ),
-      cancelAction: CancelAction(
-        title: Text(
-          LocaleKeys.cancel.tr(),
-        ),
-      ),
-    );
-  }
-
-  static List<BottomSheetAction> buildWidgetActionShops({
-    bool isBlocked = false,
-    bool isMuted = false,
-    bool isImagePost = false,
-    required Function() onViewOrders,
-    required Function() onViewSessions,
-    required Function() onReportingOrders,
-    required Function() onSettings,
-  }) =>
-      [
+      actions: [
         BottomSheetAction(
           title: Text(
             LocaleKeys.view_oders.tr(),
             style: TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.normal
+                color: Colors.black87,
+                fontWeight: FontWeight.normal
             ),
           ),
           onPressed: (context) => onViewOrders,
@@ -134,7 +111,7 @@ abstract class ButtomSheetUtils {
           title: Text(
             LocaleKeys.view_session.tr(),
             style: TextStyle(
-              color: Colors.black87,
+                color: Colors.black87,
                 fontWeight: FontWeight.normal
             ),
           ),
@@ -144,7 +121,7 @@ abstract class ButtomSheetUtils {
           title: Text(
             LocaleKeys.reporting_orders.tr(),
             style: TextStyle(
-              color: Colors.black87,
+                color: Colors.black87,
                 fontWeight: FontWeight.normal
             ),
           ),
@@ -154,11 +131,63 @@ abstract class ButtomSheetUtils {
           title: Text(
             LocaleKeys.settings.tr(),
             style: TextStyle(
-              color: Colors.black87,
+                color: Colors.black87,
                 fontWeight: FontWeight.normal
             ),
           ),
           onPressed: (context) => onSettings,
         ),
-      ];
+      ],
+      cancelAction: CancelAction(
+        title: Text(
+          LocaleKeys.cancel.tr(),
+        ),
+      ),
+    );
+  }
+
+
+  static void bottomSheetActionAccount(
+      BuildContext context, {
+        required Function() onViewOrders,
+        required Function() onViewSessions,
+        required Function() onReportingOrders,
+        required Function() onSettings,
+      }) {
+    showCupertinoBottomSheet(
+      context: context,
+      colorBackgroundPreview: Colors.white,
+      colorPreview: Colors.white,
+
+      actions: [
+        BottomSheetAction(
+          title: Text(
+            LocaleKeys.reporting_orders.tr(),
+            style: TextStyle(
+                color: Colors.black87,
+                fontWeight: FontWeight.normal
+            ),
+          ),
+          onPressed: (context) => onReportingOrders,
+        ),
+        BottomSheetAction(
+          title: Text(
+            LocaleKeys.settings.tr(),
+            style: TextStyle(
+                color: Colors.black87,
+                fontWeight: FontWeight.normal
+            ),
+          ),
+          onPressed: (context) => onSettings,
+        ),
+      ],
+      cancelAction: CancelAction(
+        title: Text(
+          LocaleKeys.cancel.tr(),
+        ),
+      ),
+    );
+  }
+
+
 }

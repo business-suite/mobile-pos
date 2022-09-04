@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../module/network/network_util.dart';
 import '../../../module/res/style.dart';
@@ -46,38 +47,41 @@ class AppBarShops extends StatelessWidget implements PreferredSizeWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.window),
-                    color: Colors.white,
-                    iconSize: 20,
-                    onPressed: () {},
-                  ),
                   Padding(
+                    padding: EdgeInsets.symmetric(horizontal: size_14_w),
+                    child: SvgPicture.asset(
+                      'assets/icons/ic_point_of_sale.svg',
+                      height: size_24_w,
+                      width: size_24_w,
+                      color: Colors.white,
+                    ),
+                  ),
+                  /*Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: Text(
                       'Point of Sale',
                       style: TextStyle(color: Colors.white, fontSize: text_16),
                     ),
-                  ),
+                  ),*/
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                     child: Text(
                       'Dashboard',
-                      style: TextStyle(color: Colors.white, fontSize: text_10),
+                      style: TextStyle(color: Colors.white, fontSize: text_13),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: Text(
                       'Orders',
-                      style: TextStyle(color: Colors.white, fontSize: text_10),
+                      style: TextStyle(color: Colors.white, fontSize: text_13),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
                     child: Text(
                       'Products',
-                      style: TextStyle(color: Colors.white, fontSize: text_10),
+                      style: TextStyle(color: Colors.white, fontSize: text_13),
                     ),
                   ),
                 ],

@@ -132,7 +132,7 @@ class InputServerPortViewModel extends BaseViewModel {
   void initData() {
     LoginConfig? serverConfig = userSharePref.getLoginConfig();
     protocol = serverConfig?.protocol ?? protocols[1];
-    server = serverConfig?.server ?? '34.159.226.218';
+    server = serverConfig?.server ?? '34.159.110.201';
     port = serverConfig?.port ?? '8069';
     serverController.text = server;
     portController.text = port;
