@@ -1,6 +1,8 @@
 import 'package:business_suite_mobile_pos/app/view/widget_utils/anims/touchable_opacity.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../generated/locale_keys.g.dart';
 import '../../model/login_config.dart';
 import '../../module/res/style.dart';
 import '../widget_utils/avatar_profile_circle.dart';
@@ -28,6 +30,7 @@ class ItemAccount extends StatelessWidget {
           onTap: () => onClickItem.call(),
           child: Container(
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(size_8_r),
               border: Border.all(
                 width: size_1_w,
                 color: kColorDEE2E6,
@@ -45,7 +48,7 @@ class ItemAccount extends StatelessWidget {
                     onPressed: () {},
                     child: AvatarProfileCircle(
                       avatarUrl: loginConfig.avatarUrl,
-                      size: size_40_w,
+                      size: size_50_w,
                     ),
                   ),
                   SizedBox(
@@ -58,22 +61,54 @@ class ItemAccount extends StatelessWidget {
                       children: [
                         Text(
                           loginConfig.userName ?? '',
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.start,
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: text_14,
-                            fontWeight: FontWeight.bold
-                          ),
+                              overflow: TextOverflow.ellipsis,
+                              color: Colors.black,
+                              fontSize: text_14,
+                              fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: size_2_w,),
+                        SizedBox(
+                          height: size_3_w,
+                        ),
                         Text(
-                          loginConfig.email ?? '',
-                          textAlign: TextAlign.center,
+                          LocaleKeys.email_info.tr(
+                              namedArgs: {'email': loginConfig.email ?? ''}),
+                          textAlign: TextAlign.start,
                           style: TextStyle(
-                            color: Colors.black54,
-                            fontSize: text_12,
-                            fontWeight: FontWeight.normal
-                          ),
+                              overflow: TextOverflow.ellipsis,
+                              color: Colors.black54,
+                              fontSize: text_12,
+                              fontWeight: FontWeight.normal),
+                        ),
+                        SizedBox(
+                          height: size_3_w,
+                        ),
+                        Text(
+                          LocaleKeys.server_info.tr(namedArgs: {
+                            'server': loginConfig.getBaseUrl(),
+                          }),
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              color: Colors.black54,
+                              fontSize: text_12,
+                              fontWeight: FontWeight.normal),
+                        ),
+                        SizedBox(
+                          height: size_3_w,
+                        ),
+                        Text(
+                          LocaleKeys.database_info.tr(namedArgs: {
+                            'database': loginConfig.database ?? '',
+                          }),
+                          textAlign: TextAlign.start,
+                          maxLines: 2,
+                          style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              color: Colors.black54,
+                              fontSize: text_12,
+                              fontWeight: FontWeight.normal),
                         ),
                       ],
                     ),
@@ -82,12 +117,12 @@ class ItemAccount extends StatelessWidget {
                     width: size_10_w,
                   ),
                   Container(
-                    height: size_24_w,
+                    height: size_26_w,
                     child: TouchableOpacity(
                       onPressed: () => onDeleteItem.call(),
                       child: Container(
-                        width: size_24_w,
-                        height: size_24_w,
+                        width: size_26_w,
+                        height: size_26_w,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.black26),
                         child: Center(

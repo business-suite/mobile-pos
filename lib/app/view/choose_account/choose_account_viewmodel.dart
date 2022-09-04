@@ -3,16 +3,17 @@ import 'dart:io';
 
 import 'package:business_suite_mobile_pos/app/module/common/toast_util.dart';
 import 'package:business_suite_mobile_pos/app/view/input_server_port/input_server_port_page.dart';
-import 'package:business_suite_mobile_pos/app/view/sign_in/sign_in_page.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../generated/locale_keys.g.dart';
 import '../../di/injection.dart';
 import '../../model/login_config.dart';
+import '../../model/login_data.dart';
 import '../../module/common/config.dart';
 import '../../module/common/extension.dart';
 import '../../module/common/navigator_screen.dart';
@@ -20,17 +21,18 @@ import '../../module/common/snack_bar_util.dart';
 import '../../module/local_storage/shared_pref_manager.dart';
 import '../../module/network/response/login_response.dart';
 import '../../module/repository/data_repository.dart';
+import '../../module/res/style.dart';
 import '../../viewmodel/base_viewmodel.dart';
 import '../authentication/authentication_page.dart';
 import '../home/home_page.dart';
 import '../widget_utils/custom/flutter_easyloading/src/easy_loading.dart';
+import '../widget_utils/dialog/dialog_general_two_action.dart';
 
 class ChooseAccountViewModel extends BaseViewModel {
   final DataRepository _dataRepo;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref userSharePref = getIt<UserSharePref>();
 
-  final Completer<void> completer = Completer<void>();
   double endReachedThreshold = 200;
   bool isLoading = false;
   bool canLoadMore = false;
@@ -52,6 +54,10 @@ class ChooseAccountViewModel extends BaseViewModel {
 
   Future<void> getLoginData() async {
     loginDataList = await userSharePref.getLoginDataList()?.data ?? [];
+    if (loginDataList.isEmpty)
+      loadingState = LoadingState.EMPTY;
+    else
+      loadingState = LoadingState.DONE;
     notifyListeners();
   }
 
@@ -61,6 +67,7 @@ class ChooseAccountViewModel extends BaseViewModel {
     loadingState = LoadingState.LOADING;
     loginDataList.clear();
     getLoginData();
+    notifyListeners();
   }
 
   void onScroll() {
@@ -87,8 +94,8 @@ class ChooseAccountViewModel extends BaseViewModel {
     }).doOnDone(() {
       EasyLoading.dismiss();
     }).listen((r) {
-      loginResponse = LoginResponse.fromJson(r);
       try {
+        loginResponse = LoginResponse.fromJson(r);
         if (loginResponse?.result != null) {
           if (loginResponse?.result!.uid == null) {
             openAuthenticationPage();
@@ -130,6 +137,36 @@ class ChooseAccountViewModel extends BaseViewModel {
     _navigationService.pushScreenWithFade(InputServerPortPage());
   }
 
+  void deleteAccount(LoginConfig loginConfig) {
+    showDialog(
+        context: _navigationService.navigatorKey.currentContext!,
+        builder: (BuildContext context) {
+          return DialogGeneralTwoAction(
+            title: LocaleKeys.delete_account.tr(),
+            message: LocaleKeys.do_you_want_to_delete_account.tr(namedArgs: {'account_name': loginConfig.userName ?? ''}),
+            textOk: LocaleKeys.delete.tr(),
+            onOkClick: () async {
+              EasyLoading.show();
+              loginDataList.remove(loginConfig);
+              //save login data
+              LoginData loginData =
+                  userSharePref.getLoginDataList() ?? LoginData(data: []);
+              loginData.data = loginDataList;
+              await userSharePref.saveLoginDataList(loginData);
+              Future.delayed(Duration(milliseconds: 500), () {
+                EasyLoading.dismiss();
+                if (loginDataList.isEmpty)
+                  openSignInPage();
+                else
+                  loadingState = LoadingState.DONE;
+                notifyListeners();
+                },);
+
+            },
+          );
+        });
+  }
+
   bool doubleBackToExit = false;
 
   Future<bool> onDoubleBackToExit() async {
@@ -148,5 +185,4 @@ class ChooseAccountViewModel extends BaseViewModel {
     });
     return false;
   }
-
 }

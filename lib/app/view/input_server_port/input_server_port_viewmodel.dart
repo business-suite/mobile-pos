@@ -128,6 +128,7 @@ class InputServerPortViewModel extends BaseViewModel {
     addSubscription(subscript);
   }
 
+
   void initData() {
     LoginConfig? serverConfig = userSharePref.getLoginConfig();
     protocol = serverConfig?.protocol ?? protocols[1];

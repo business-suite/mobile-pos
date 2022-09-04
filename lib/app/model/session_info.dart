@@ -100,7 +100,7 @@ class SessionInfo {
   CacheHashes? cacheHashes;
   Currencies? currencies;
   UserCompanies? userCompanies;
-  String? showEffect;
+  dynamic showEffect;
   bool? displaySwitchCompanyMenu;
   List<dynamic>? userId;
   int? maxTimeBetweenKeysInMs;

@@ -40,6 +40,7 @@ class ProductsViewModel extends BaseViewModel {
   List<Product> allProducts = [];
   List<Category> categories = [];
   List<Category> showCategories = [];
+
   //List<dynamic> startCat = [3, "Desks / Test3"];
   int startCat = 3;
 
@@ -208,24 +209,32 @@ class ProductsViewModel extends BaseViewModel {
       ..sort((a, b) => b.id!.compareTo(a.id!));
 
     //sub menu for root menu
-    categories.forEach((element) => element.setChildCat(getListChild(element.id!, allCategories)));
+    categories.forEach((element) =>
+        element.setChildCat(getListChild(element.id!, allCategories)));
     final json = CategoryResponse(result: showCategories).toJson();
     print(jsonEncode(json));
     showCategories = getCategories();
   }
 
   List<Category> getListChild(int id, List<Category> allCategories) {
-    List<Category> childs = allCategories.where((element) => element.parent_id is List<dynamic> && element.parent_id[0] == id).toList()..sort((a, b) => b.id!.compareTo(a.id!));
+    List<Category> childs = allCategories
+        .where((element) =>
+            element.parent_id is List<dynamic> && element.parent_id[0] == id)
+        .toList()
+      ..sort((a, b) => b.id!.compareTo(a.id!));
 
-    childs.forEach((element) => element.setChildCat(getListChild(element.id!, allCategories)));
+    childs.forEach((element) =>
+        element.setChildCat(getListChild(element.id!, allCategories)));
     return childs..sort((a, b) => b.id!.compareTo(a.id!));
   }
 
   List<Category> getCategories() {
-    List<Category> allCategories = CategoryResponse.fromJson(dataJson).result ?? [];
+    List<Category> allCategories =
+        CategoryResponse.fromJson(dataJson).result ?? [];
     List<Category> tmpCat = [];
     if (startCat == -1)
-      tmpCat = allCategories.where((element) => element.parent_id == false).toList();
+      tmpCat =
+          allCategories.where((element) => element.parent_id == false).toList();
     else {
       tmpCat = categories.where((element) => element.id == startCat).toList();
     }
@@ -324,12 +333,12 @@ class ProductsViewModel extends BaseViewModel {
 
   homeMenu() {
     isHome = true;
-   // startCat = [0];
+    // startCat = [0];
     notifyListeners();
   }
 
   changeMenu(int _lastId) {
-   /* if (categories.isEmpty) return;
+    /* if (categories.isEmpty) return;
     lastId = _lastId;
     if (lastId > categories.length) lastId = 0;
     try {
@@ -373,5 +382,4 @@ class ProductsViewModel extends BaseViewModel {
     bills.removeAt(index);
     notifyListeners();
   }
-
 }

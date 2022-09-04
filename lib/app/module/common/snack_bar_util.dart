@@ -66,15 +66,16 @@ class SnackBarUtil {
         throw UnimplementedError();
     }
   }
-
+  static Flushbar? flush;
   static void showSnack({
     SnackType? snackType = SnackType.INFO,
     String? title,
     String? message,
   }) {
-    //dimiss();
-    Flushbar? flush;
-    flush = Flushbar<bool>(
+    dimiss();
+   //late Flushbar flush;
+    flush?.dismiss(true);
+    flush = Flushbar<bool?>(
       borderRadius: BorderRadius.circular(size_4_r),
       titleText: Text(
         title ?? LocaleKeys.an_unexpected_error_has_occurred.tr(),

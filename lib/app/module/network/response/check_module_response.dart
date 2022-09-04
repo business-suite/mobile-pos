@@ -85,8 +85,6 @@ class Module {
   }
 
   bool isPos() {
-    return id == 311 &&
-        (state == "installed" ||
-            state == "uninstallable" && name == "point_of_sale");
+    return state == "installed" || state == "uninstallable" && name == "point_of_sale";
   }
 }
