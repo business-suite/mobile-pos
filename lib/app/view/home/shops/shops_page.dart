@@ -9,11 +9,12 @@ import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/config.dart';
 import '../../../module/common/extension.dart';
-import '../../../module/common/navigator_screen.dart';
+import '../../../module/repository/data_repository.dart';
 import '../../../module/res/style.dart';
 import '../../empty/empty_page.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
+import '../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
 import '../../widget_utils/custom/default_loading_progress.dart';
 import '../../widget_utils/custom/loadmore.dart';
 import 'appbar_shops.dart';
@@ -60,7 +61,13 @@ class _ShopsContentState extends State<ShopsContent>
       customAppBar: AppBarShops(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: () => getIt<NavigationService>().signOut(),
+        onClickAvatar: () => ButtomSheetUtils.bottomSheetActionAccount(
+          context,
+          onPreferences: () {},
+          onLogout: () {
+            getIt<DataRepository>().logout();
+          },
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,

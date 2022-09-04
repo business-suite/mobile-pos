@@ -10,9 +10,11 @@ import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
+import '../../../module/repository/data_repository.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
+import '../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
 import 'customer_phone_list_viewmodel.dart';
 
 class CustomerPhoneListPage
@@ -58,7 +60,12 @@ class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: () => getIt<NavigationService>().signOut(),
+        onClickAvatar: () =>
+            ButtomSheetUtils.bottomSheetActionAccount(
+              context,
+              onPreferences: (){},
+              onLogout: ()=>  getIt<DataRepository>().logout(),
+            ),
       ),
       body: Consumer<CustomerPhoneListViewModel>(
           builder: (context, value, child) {

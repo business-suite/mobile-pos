@@ -3,6 +3,7 @@ import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dar
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../module/res/style.dart';
@@ -44,7 +45,10 @@ abstract class ButtomSheetUtils {
             return Material(
               color: Colors.transparent,
               child: CupertinoActionSheetAction(
-                onPressed: () => action.onPressed,
+                onPressed: () {
+                  getIt<NavigationService>().back();
+                  action.onPressed.call(context);
+                } ,
                 child: Row(
                   children: [
                     if (action.leading != null) ...[
@@ -105,7 +109,7 @@ abstract class ButtomSheetUtils {
                 fontWeight: FontWeight.normal
             ),
           ),
-          onPressed: (context) => onViewOrders,
+          onPressed: (context) => onViewOrders.call(),
         ),
         BottomSheetAction(
           title: Text(
@@ -115,7 +119,7 @@ abstract class ButtomSheetUtils {
                 fontWeight: FontWeight.normal
             ),
           ),
-          onPressed: (context) => onViewSessions,
+          onPressed: (context) => onViewSessions.call(),
         ),
         BottomSheetAction(
           title: Text(
@@ -125,7 +129,7 @@ abstract class ButtomSheetUtils {
                 fontWeight: FontWeight.normal
             ),
           ),
-          onPressed: (context) => onReportingOrders,
+          onPressed: (context) => onReportingOrders.call(),
         ),
         BottomSheetAction(
           title: Text(
@@ -135,7 +139,7 @@ abstract class ButtomSheetUtils {
                 fontWeight: FontWeight.normal
             ),
           ),
-          onPressed: (context) => onSettings,
+          onPressed: (context) => onSettings.call(),
         ),
       ],
       cancelAction: CancelAction(
@@ -149,36 +153,29 @@ abstract class ButtomSheetUtils {
 
   static void bottomSheetActionAccount(
       BuildContext context, {
-        required Function() onViewOrders,
-        required Function() onViewSessions,
-        required Function() onReportingOrders,
-        required Function() onSettings,
-      }) {
+    required Function() onPreferences,
+    required Function() onLogout,
+  }) {
     showCupertinoBottomSheet(
       context: context,
       colorBackgroundPreview: Colors.white,
       colorPreview: Colors.white,
-
       actions: [
         BottomSheetAction(
           title: Text(
-            LocaleKeys.reporting_orders.tr(),
-            style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.normal
-            ),
+            LocaleKeys.preferences.tr(),
+            style:
+                TextStyle(color: Colors.black87, fontWeight: FontWeight.normal),
           ),
-          onPressed: (context) => onReportingOrders,
+          onPressed: (context) => onPreferences.call(),
         ),
         BottomSheetAction(
           title: Text(
-            LocaleKeys.settings.tr(),
-            style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.normal
-            ),
+            LocaleKeys.log_out.tr(),
+            style:
+                TextStyle(color: kColorFF4136, fontWeight: FontWeight.normal),
           ),
-          onPressed: (context) => onSettings,
+          onPressed: (context) => onLogout.call(),
         ),
       ],
       cancelAction: CancelAction(

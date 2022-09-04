@@ -10,9 +10,11 @@ import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
+import '../../../module/repository/data_repository.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
+import '../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
 
 class AddCustomerPage extends PageProvideNode<AddCustomertViewModel> {
   AddCustomerPage({Key? key}) : super(key: key, params: []);
@@ -49,7 +51,12 @@ class _AddCustomerContentState extends State<AddCustomerContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: () => getIt<NavigationService>().signOut(),
+        onClickAvatar: () =>
+            ButtomSheetUtils.bottomSheetActionAccount(
+              context,
+              onPreferences: (){},
+              onLogout: ()=>  getIt<DataRepository>().logout(),
+            ),
       ),
       body: Consumer<AddCustomertViewModel>(builder: (context, value, child) {
         return Container(

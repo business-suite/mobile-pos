@@ -9,10 +9,12 @@ import '../../../../../generated/locale_keys.g.dart';
 import '../../../../di/injection.dart';
 import '../../../../module/common/extension.dart';
 import '../../../../module/common/navigator_screen.dart';
+import '../../../../module/repository/data_repository.dart';
 import '../../../../module/res/colors.dart';
 import '../../../../module/res/dimens.dart';
 import '../../../../module/res/text.dart';
 import '../../../../viewmodel/base_viewmodel.dart';
+import '../../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
 import '../appbar_product.dart';
 import '../products_page.dart';
 
@@ -45,7 +47,12 @@ class _ValidateContenState extends State<ValidateConten> {
       customAppBar: AppBarProduct(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: () => getIt<NavigationService>().signOut(),
+        onClickAvatar: () =>
+            ButtomSheetUtils.bottomSheetActionAccount(
+              context,
+              onPreferences: (){},
+              onLogout: ()=>  getIt<DataRepository>().logout(),
+            ),
       ),
       body: Container(
         height: double.infinity,

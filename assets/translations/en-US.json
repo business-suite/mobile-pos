@@ -294,5 +294,6 @@
   "email_info": "Email: {email}",
   "server_info": "Server: {server}",
   "database_info": "Database: {database}",
-  "can_t_connect_to_server": "Can't connect to server.\nPlease check your connection and try again."
+  "can_t_connect_to_server": "Can't connect to server.\nPlease check your connection and try again.",
+  "preferences": "Preferences"
 }

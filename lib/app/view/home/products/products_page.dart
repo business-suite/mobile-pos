@@ -19,9 +19,11 @@ import '../../../module/common/extension.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/network/response/category_response.dart';
 import '../../../module/network/response/shops_response.dart';
+import '../../../module/repository/data_repository.dart';
 import '../../../module/res/style.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../../empty/empty_page.dart';
+import '../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
 import '../../widget_utils/custom/custom_sliver_grid_delegate.dart';
 import '../../widget_utils/custom/default_loading_progress.dart';
 import '../../widget_utils/custom/loadmore.dart';
@@ -277,7 +279,12 @@ class _ProductsState extends State<_ProductsContent>
           key: productViewModel.keySlider,
           appBar: AppBarProduct(
             badgeCount: 1,
-            onClickAvatar: () => getIt<NavigationService>().signOut(),
+            onClickAvatar: () =>
+                ButtomSheetUtils.bottomSheetActionAccount(
+                  context,
+                  onPreferences: (){},
+                  onLogout: ()=>  getIt<DataRepository>().logout(),
+                ),
             onClickTicKet: () {
               productViewModel.keySlider.currentState?.openSlider();
             },

@@ -287,5 +287,6 @@ abstract class  LocaleKeys {
   static const server_info = 'server_info';
   static const database_info = 'database_info';
   static const can_t_connect_to_server = 'can_t_connect_to_server';
+  static const preferences = 'preferences';
 
 }

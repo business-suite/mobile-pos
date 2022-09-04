@@ -10,9 +10,11 @@ import 'package:provider/provider.dart';
 import '../../../di/injection.dart';
 import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
+import '../../../module/repository/data_repository.dart';
 import '../../../module/res/colors.dart';
 import '../../../module/res/style.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
+import '../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
 import '../products/appbar_product.dart';
 import '../products/review/review_page.dart';
 import '../popup_empty_order/popup_empty_order.dart';
@@ -63,7 +65,12 @@ class _PayContentState extends State<PayContent> {
       customAppBar: AppBarProduct(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: () => getIt<NavigationService>().signOut(),
+        onClickAvatar: () =>
+            ButtomSheetUtils.bottomSheetActionAccount(
+              context,
+              onPreferences: (){},
+              onLogout: ()=>  getIt<DataRepository>().logout(),
+            ),
       ),
       body: Consumer<PayViewModel>(builder: (context, value, child) {
         return SizedBox(
