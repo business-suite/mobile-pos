@@ -26,11 +26,11 @@ class FilledButton extends StatelessWidget {
       onTap: !enable ? null : onPress,
       child: Ink(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0.r),
+          borderRadius: BorderRadius.circular(size_8_r),
           color: !enable ? kColorPrimaryDisable : color ?? kColorPrimary,
         ),
         child: Container(
-          height: size_48_h,
+          height: size_46_h,
           alignment: Alignment.center,
           child: Text(
             text,

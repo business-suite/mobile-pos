@@ -60,12 +60,15 @@ class _CustomerPhoneListContentState extends State<CustomerPhoneListContent> {
       customAppBar: AppBarOrderList(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: () =>
-            ButtomSheetUtils.bottomSheetActionAccount(
-              context,
-              onPreferences: (){},
-              onLogout: ()=>  getIt<DataRepository>().logout(),
-            ),
+        onClickAvatar: () => ButtomSheetUtils.bottomSheetActionAccount(
+          context,
+          onPreferences: () {
+            getIt<NavigationService>().openPreferencesPage();
+          },
+          onLogout: () {
+            getIt<DataRepository>().logout();
+          },
+        ),
       ),
       body: Consumer<CustomerPhoneListViewModel>(
           builder: (context, value, child) {

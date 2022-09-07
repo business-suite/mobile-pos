@@ -55,7 +55,7 @@ class _AppState extends State<App> {
         //hide badge debug
         debugShowCheckedModeBanner: false,
         home: SplashPage(),
-        //home: ShopsPage(),
+        //home: ProductsPage(),
         //home: HomePage(),
         // home: PopupPercentageContent(),
         //   home: CustomerListPage(),

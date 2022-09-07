@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 enum LoadingState { LOADING, DONE, ERROR, EMPTY }
+
 enum SizeStyle { SMALL, NORMAL, LARGE, SUPER }
 
 //Network Config
@@ -20,17 +21,12 @@ String getImageUrl(String path) => path;
 const String ddMMyyyy = 'dd/MM/yyyy';
 const String MMddyyyy = 'MM/dd/yyyy';
 
-
 //ACCOUNT
 const String APP_NAME = 'Business Suite Pos';
 const String BASE_URL = 'http://35.214.179.117:8069';
 const String HOST = '35.214.179.117';
 const int PORT = 8069;
 const String ODOO_DB = 'businesssuite_pos';
-
-
-
-
 
 // API
 const String API_SIGN_UP = '/web/login';
@@ -50,7 +46,7 @@ const String API_DESTROY_SESSION = '/web/session/destroy';
 const String SEARCH_READ = "search_read";
 const String READ = "read";
 const String WRITE = "write";
-//const String WRITE = "write";
+const String LOAD_VIEWS = "load_views";
 //MODEL
 const String AUTH_TOTP = "auth_totp.wizard";
 //get shops
@@ -58,8 +54,8 @@ const String SHOPS = "pos.config";
 const int LIMIT_SHOP = 80;
 const String POS_CATEGORY = "pos.category";
 const String POS_PRODUCT = "product.product";
-  const String CHECK_MODULE = "ir.module.module";
-
-
-
-
+const String CHECK_MODULE = "ir.module.module";
+const String RES_USER = "res.users";
+const String RES_LANG = "res.lang";
+const String ACCOUNT_TAX = "account.tax";
+const String PRODUCT_PRODUCT = "product.product";

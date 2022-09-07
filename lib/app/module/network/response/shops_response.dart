@@ -140,7 +140,7 @@ class Shop {
     int? duration = int.tryParse(posSessionDuration);
     if(duration == null) return Colors.transparent;
     else if(duration > 3) return kColordc3545;
-    else return kColorffac00;
+    else return kColor17a2b8;
   }
 
   String getCompanyName(){

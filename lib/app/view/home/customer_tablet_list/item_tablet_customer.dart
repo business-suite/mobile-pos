@@ -10,64 +10,72 @@ import '../../../model/customer.dart';
 class ItemCustomer extends StatelessWidget {
   Customer item;
   VoidCallback onClickItem;
+  int index;
 
   ItemCustomer({
     Key? key,
     required this.item,
     required this.onClickItem,
+    required this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          flex: 2,
-          child: Container(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: size_10_w),
-              child: Text(
-                item.name,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: kColor6F6F6F,
-                  fontWeight: FontWeight.w300,
-                  fontSize: text_13,
+    return CustomCard(
+      backgroundColor: index % 2 == 0 ? kColorE6E6E6 : kColorF7F7F7,
+      child: SizedBox(
+        height: size_40_w,
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: size_10_w),
+                  child: Text(
+                    item.name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: kColor6F6F6F,
+                      fontWeight: FontWeight.w300,
+                      fontSize: text_13,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: Padding(
-            padding: EdgeInsets.only(left: size_20_w),
-            child: Text(
-              item.date,
-              style: TextStyle(
-                color: kColor6F6F6F,
-                fontWeight: FontWeight.w300,
-                fontSize: text_12,
+            Expanded(
+              flex: 1,
+              child: Padding(
+                padding: EdgeInsets.only(left: size_20_w),
+                child: Text(
+                  item.date,
+                  style: TextStyle(
+                    color: kColor6F6F6F,
+                    fontWeight: FontWeight.w300,
+                    fontSize: text_12,
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Padding(
-            padding: EdgeInsets.only(right: size_10_w),
-            child: Text(
-              item.email,
-              style: TextStyle(
-                color: kColor6F6F6F,
-                fontSize: text_10,
-                fontWeight: FontWeight.w300,
+            Expanded(
+              flex: 3,
+              child: Padding(
+                padding: EdgeInsets.only(right: size_10_w),
+                child: Text(
+                  item.email,
+                  style: TextStyle(
+                    color: kColor6F6F6F,
+                    fontSize: text_10,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

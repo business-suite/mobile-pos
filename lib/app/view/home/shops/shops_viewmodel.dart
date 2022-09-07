@@ -4,6 +4,7 @@ import 'package:business_suite_mobile_pos/app/module/network/response/check_modu
 import 'package:business_suite_mobile_pos/app/module/network/response/shops_response.dart';
 import 'package:business_suite_mobile_pos/app/view/home/products/products_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/preferences/preferences_page.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -222,4 +223,5 @@ class ShopsViewModel extends BaseViewModel {
     removeFocus(_navigationService.navigatorKey.currentContext!);
     _navigationService.pushScreenWithFade(ProductsPage());
   }
+
 }

@@ -1,9 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:business_suite_mobile_pos/app/model/session_info.dart';
 import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/module/local_storage/shared_pref_manager.dart';
+import 'package:cached_memory_image/cached_image_base64_manager.dart';
+import 'package:cached_memory_image/cached_memory_image.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
@@ -14,6 +17,7 @@ import 'package:html/dom.dart';
 
 import '../../../flavors.dart';
 import '../../di/injection.dart';
+import '../../view/widget_utils/custom/image_holder.dart';
 import 'config.dart';
 
 ReturnType run<ReturnType>(ReturnType Function() operation) {
@@ -238,8 +242,8 @@ extension EmailValidate on String {
 
 String getAvatarProfile(){
   SessionInfo? sessionInfo = getIt<UserSharePref>().getUser();
-  return '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/web/image/res.users/${sessionInfo?.uid}/avatar_128';
-  //return '${F.baseUrl}/web/image?model=res.users&field=avatar_128&id=${sessionInfo?.uid}';
+  //return '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/web/image/res.users/${sessionInfo?.uid}/avatar_128';
+  return '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/web/image?model=res.users&field=avatar_128&id=${sessionInfo?.uid}&unique=06092022175839';
 }
 
 String dateTimeFromString(dynamic? date,{ String format = MMddyyyy}) {
@@ -249,6 +253,41 @@ String dateTimeFromString(dynamic? date,{ String format = MMddyyyy}) {
 class Utils {
   Utils._();
 
+  static printJson(dynamic json){
+    print(jsonEncode(json));
+  }
+
+  static Image imageFromBase64String(String base64String) {
+    return Image.memory(base64Decode(base64String));
+  }
+
+  static Widget imageFromByte(Uint8List? data, double width, double height) {
+    return CachedMemoryImage(
+      uniqueKey: 'app://image/1',
+      bytes: data,
+      fit: BoxFit.fitHeight,
+      width: width,
+      height: height,
+      placeholder: ImageHolder(
+        asset: 'assets/images/placeholder.jpg',
+        width: width,
+        height: height,
+      ),
+      errorWidget: ImageHolder(
+        asset: 'assets/images/placeholder.jpg',
+        width: width,
+        height: height,
+      ),
+    );
+  }
+
+  static Uint8List dataFromBase64String(String base64String) {
+    return Base64Decoder().convert(base64String);
+  }
+
+  static  String base64String(Uint8List data) {
+    return base64Encode(data);
+  }
 
   /// Returns whether a dynamic value PROBABLY
   /// has the isEmpty getter/method by checking

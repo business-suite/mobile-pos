@@ -4,6 +4,7 @@ import 'package:business_suite_mobile_pos/app/view/home/products/products_viewmo
 import 'package:business_suite_mobile_pos/app/view/home/products/validate_page/validate_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/home_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/home/popup_quotation_order_page/percentage_viewmodel.dart';
+import 'package:business_suite_mobile_pos/app/view/preferences/preferences_viewmodel.dart';
 import 'package:business_suite_mobile_pos/app/view/sign_up/sign_up_viewmodel.dart';
 import 'package:get_it/get_it.dart';
 
@@ -121,4 +122,7 @@ Future<void> configureDependencies() async {
   getIt.registerFactoryParam<WebviewViewModel, List<dynamic>, dynamic>(
       (param1, _) => //no need param2
           WebviewViewModel(webviewParam: param1[0]));
+
+  getIt.registerFactory<PreferencesViewModel>(
+          () => PreferencesViewModel(getIt<DataRepository>()));
 }

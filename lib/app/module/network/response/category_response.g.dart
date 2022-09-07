@@ -29,7 +29,9 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       id: json['id'] as int?,
       name: json['name'] as String?,
       parent_id: json['parent_id'],
-      child_id: json['child_id'],
+      child_id:
+          (json['child_id'] as List<dynamic>?)?.map((e) => e as int).toList() ??
+              [],
       write_date: json['write_date'] as String?,
       childCategories: (json['childCategories'] as List<dynamic>?)
               ?.map((e) => Category.fromJson(e as Map<String, dynamic>))

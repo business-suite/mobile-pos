@@ -25,8 +25,8 @@ class OutlineButton extends StatelessWidget {
       onTap: onPress,
       child: Container(
         constraints: BoxConstraints(
-          minWidth: 64.0,
-          minHeight: 48.0,
+          minWidth: size_64_h,
+          minHeight: size_46_h,
         ),
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(
@@ -34,7 +34,7 @@ class OutlineButton extends StatelessWidget {
           vertical: size_8_h,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(size_8_r),
           border: Border.all(
             color: reversed ? color : Colors.transparent,
           ),

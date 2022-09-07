@@ -47,12 +47,15 @@ class _ValidateContenState extends State<ValidateConten> {
       customAppBar: AppBarProduct(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: () =>
-            ButtomSheetUtils.bottomSheetActionAccount(
-              context,
-              onPreferences: (){},
-              onLogout: ()=>  getIt<DataRepository>().logout(),
-            ),
+        onClickAvatar: () => ButtomSheetUtils.bottomSheetActionAccount(
+          context,
+          onPreferences: () {
+            getIt<NavigationService>().openPreferencesPage();
+          },
+          onLogout: () {
+            getIt<DataRepository>().logout();
+          },
+        ),
       ),
       body: Container(
         height: double.infinity,
@@ -249,8 +252,11 @@ class _ValidateContenState extends State<ValidateConten> {
                             child: Column(
                               children: [
                                 Center(
-                                  child: Image.asset(
-                                    'assets/images/logo.png',
+                                  child: SvgPicture.asset(
+                                    'assets/images/logo2.svg',
+                                    width: size_20_w,
+                                    height: size_20_w,
+                                    color: kCWhite,
                                   ),
                                 ),
                                 SizedBox(

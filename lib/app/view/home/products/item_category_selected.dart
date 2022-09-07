@@ -10,10 +10,12 @@ import '../../../module/network/response/category_response.dart';
 class ItemCategorySelected extends StatelessWidget {
   Category category;
   VoidCallback onClickItem;
+  bool isLastIndex = false;
 
   ItemCategorySelected({
     Key? key,
     required this.category,
+    required this.isLastIndex,
     required this.onClickItem,
   }) : super(key: key);
 
@@ -41,6 +43,7 @@ class ItemCategorySelected extends StatelessWidget {
                 ),
               ),
             ),
+            isLastIndex ? Container(width: 1.0, color: kColor909090) : Container()
           ],
         ),
       ),

@@ -7,8 +7,9 @@ import '../../../../module/res/style.dart';
 class ItemReviewKeyBoard extends StatelessWidget {
   KeyBoard item;
   VoidCallback? onClickItem;
+  bool selected = false;
 
-  ItemReviewKeyBoard({Key? key, required this.item, this.onClickItem})
+  ItemReviewKeyBoard({Key? key, required this.item, this.onClickItem, this.selected = false})
       : super(key: key);
 
   @override
@@ -20,7 +21,7 @@ class ItemReviewKeyBoard extends StatelessWidget {
         child: item.flex == null
             ? Container(
                 decoration: BoxDecoration(
-                  color: kColorE2E2E2,
+                  color: selected ? kColor6EC89B :kColorE2E2E2,
                   borderRadius: BorderRadius.circular(1),
                 ),
                 padding: EdgeInsets.symmetric(vertical: 1),
@@ -33,7 +34,7 @@ class ItemReviewKeyBoard extends StatelessWidget {
                                 ? text_25
                                 : text_15,
                             fontWeight: FontWeight.bold,
-                            color: kColor555555,
+                            color: selected ? kWhite : kColor555555,
                           ),
                         )
                       : Image.asset(

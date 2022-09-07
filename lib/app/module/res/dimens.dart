@@ -113,6 +113,7 @@ final size_36_h = 36.0.h;
 final size_38_h = 38.0.h;
 final size_40_h = 40.0.h;
 final size_44_h = 44.0.h;
+final size_46_h = 46.0.h;
 final size_48_h = 48.0.h;
 final size_50_h = 50.0.h;
 final size_58_h = 58.0.h;

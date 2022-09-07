@@ -46,10 +46,13 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       attribute_line_ids: json['attribute_line_ids'] as List<dynamic>?,
       active: json['active'] as bool?,
       invoice_policy: json['invoice_policy'] as String?,
+      quantity: json['quantity'] as int? ?? 0,
       type: json['type'] as String?,
-    );
+    )..tax = (json['tax'] as num?)?.toDouble() ?? 0;
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
+      'quantity': instance.quantity,
+      'tax': instance.tax,
       'id': instance.id,
       'display_name': instance.display_name,
       'lst_price': instance.lst_price,

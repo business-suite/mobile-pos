@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:convert';
 
+import 'package:business_suite_mobile_pos/app/model/cart_product_data.dart';
 import 'package:business_suite_mobile_pos/app/model/session_info.dart';
 import 'package:business_suite_mobile_pos/app/view/home/pay/pay_page.dart';
 import 'package:business_suite_mobile_pos/app/view/home/products/review/review_page.dart';
@@ -14,10 +14,12 @@ import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
 import '../../../model/bill.dart';
 import '../../../module/common/config.dart';
+import '../../../module/common/extension.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
 import '../../../module/network/response/category_response.dart';
 import '../../../module/network/response/products_response.dart';
+import '../../../module/network/response/shops_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 
@@ -26,11 +28,11 @@ class ProductsViewModel extends BaseViewModel {
   NavigationService _navigationService = getIt<NavigationService>();
   GlobalKey<SliderDrawerState> keySlider = GlobalKey<SliderDrawerState>();
   UserSharePref userSharePref = getIt<UserSharePref>();
+  Shop? shop;
 
   ScrollController scrollController = ScrollController();
 
-  bool isHome = false;
-  int lastId = 0;
+  int lastId = -1;
   final Completer<void> completer = Completer<void>();
   double endReachedThreshold = 200;
   bool isLoading = true;
@@ -38,11 +40,10 @@ class ProductsViewModel extends BaseViewModel {
   LoadingState loadingState = LoadingState.LOADING;
   List<Product> products = [];
   List<Product> allProducts = [];
-  List<Category> categories = [];
+  List<Category> allCategories = [];
+  List<Category> rootCategories = [];
   List<Category> showCategories = [];
-
-  //List<dynamic> startCat = [3, "Desks / Test3"];
-  int startCat = 3;
+  CartProductData cartProductData = CartProductData(products: [], totalPrice: 0.0, totalQuantity: 0, lastIndex: -1);
 
   CategoryResponse? _categoryResponse;
 
@@ -124,12 +125,12 @@ class ProductsViewModel extends BaseViewModel {
       try {
         categoryResponse = CategoryResponse.fromJson(r);
         if (categoryResponse?.result != null) {
-          categories.clear();
-          //categories.addAll(categoryResponse?.result ?? []);
-          print(
-              '_________________This is category list___________________________');
-          print(CategoryResponse(result: categories).toJson().toString());
-          //changeMenu(lastId);
+          showCategories.clear();
+          allCategories = categoryResponse?.result ?? [];
+          //root menu
+          rootCategories =
+              allCategories.where((element) => element.parent_id is! List).toList();
+          showCategories = getCategories();
           loadingState = LoadingState.DONE;
           notifyListeners();
         }
@@ -150,96 +151,41 @@ class ProductsViewModel extends BaseViewModel {
     addSubscription(subscript);
   }
 
-  final dataJson = {
-    "jsonrpc": "2.0",
-    "id": 20,
-    "result": [
-      {
-        "id": 4,
-        "name": "Drink",
-        "parent_id": [3, "Desks / Test3"],
-        "child_id": [5],
-        "write_date": "2022-08-09 09:21:14"
-      },
-      {
-        "id": 5,
-        "name": "Tes4",
-        "parent_id": [4, "Desks / Test3 / Drink"],
-        "child_id": [],
-        "write_date": "2022-08-09 09:21:59"
-      },
-      {
-        "id": 6,
-        "name": "Test5",
-        "parent_id": false,
-        "child_id": [],
-        "write_date": "2022-08-09 09:22:21"
-      },
-      {
-        "id": 2,
-        "name": "Desks",
-        "parent_id": false,
-        "child_id": [3],
-        "write_date": "2022-08-07 16:54:01"
-      },
-      {
-        "id": 1,
-        "name": "Miscellaneous",
-        "parent_id": false,
-        "child_id": [],
-        "write_date": "2022-08-07 16:54:01"
-      },
-      {
-        "id": 3,
-        "name": "Test3",
-        "parent_id": [2, "Desks"],
-        "child_id": [4],
-        "write_date": "2022-08-09 09:17:59"
-      }
-    ]
-  };
-
-  testMenu() {
-    List<Category> allCategories =
-        CategoryResponse.fromJson(dataJson).result ?? [];
-    //root menu
-    categories = allCategories
-        .where((element) => element.parent_id == false)
-        .toList()
-      ..sort((a, b) => b.id!.compareTo(a.id!));
-
-    //sub menu for root menu
-    categories.forEach((element) =>
-        element.setChildCat(getListChild(element.id!, allCategories)));
-    final json = CategoryResponse(result: showCategories).toJson();
-    print(jsonEncode(json));
-    showCategories = getCategories();
-  }
-
-  List<Category> getListChild(int id, List<Category> allCategories) {
-    List<Category> childs = allCategories
-        .where((element) =>
-            element.parent_id is List<dynamic> && element.parent_id[0] == id)
-        .toList()
-      ..sort((a, b) => b.id!.compareTo(a.id!));
-
-    childs.forEach((element) =>
-        element.setChildCat(getListChild(element.id!, allCategories)));
-    return childs..sort((a, b) => b.id!.compareTo(a.id!));
-  }
-
   List<Category> getCategories() {
-    List<Category> allCategories =
-        CategoryResponse.fromJson(dataJson).result ?? [];
-    List<Category> tmpCat = [];
-    if (startCat == -1)
-      tmpCat =
-          allCategories.where((element) => element.parent_id == false).toList();
+    if (lastId == -1)
+      return rootCategories;
     else {
-      tmpCat = categories.where((element) => element.id == startCat).toList();
+      Category cat =
+          allCategories.firstWhere((element) => element.id == lastId);
+      return []
+        ..addAll(getListParent(cat))
+        ..addAll(getListChild(cat));
     }
+  }
 
-    return tmpCat;
+  List<Category> getListChild(Category cat) {
+    if (cat.child_id?.isEmpty == true) return [];
+    List<Category> childs = allCategories
+        .where((element) => element.id == cat.child_id![0])
+        .toList();
+
+    /*childs.forEach((element) {
+      if (element.child_id?.isEmpty == true) return;
+      element.setChildCat(getListChild(element.child_id![0], allCategories));
+    });*/
+
+    return childs;
+  }
+
+  List<Category> getListParent(Category cat) {
+    List<Category> tmp = [];
+    if (cat.parent_id is! List) return [cat];
+    List<String> tmString = cat.parent_id[1].split('/');
+    tmString.forEach((element) {
+      tmp.add(allCategories
+          .firstWhere((elementCat) => elementCat.name == element.trim()));
+    });
+    return tmp..add(cat);
   }
 
   Future<void> getProductsApi() async {
@@ -312,41 +258,53 @@ class ProductsViewModel extends BaseViewModel {
   }
 
   refreshData() {
-    /*isLoading = true;
+    isLoading = true;
     canLoadMore = false;
     loadingState = LoadingState.LOADING;
     allProducts.clear();
     notifyListeners();
     getProductsApi();
-    getCategoriesApi();*/
+    getCategoriesApi();
   }
 
   void onScroll() {
-    /*if (!scrollController.hasClients || isLoading) return;
+    if (!scrollController.hasClients || isLoading) return;
     final thresholdReached =
         scrollController.position.extentAfter < endReachedThreshold;
     if (thresholdReached) {
       // Load more!
       getProductsApi();
-    }*/
+    }
   }
 
   homeMenu() {
-    isHome = true;
-    // startCat = [0];
+    if (lastId != -1) lastId = -1;
+    showCategories = getCategories();
+    products = allProducts;
+    if (products.isEmpty)
+      loadingState = LoadingState.EMPTY;
+    else
+      loadingState = LoadingState.DONE;
+    if (products.length > 5) scrollToTop();
+    notifyListeners();
+  }
+
+  initStartCat(int startCat){
+    this.lastId = startCat;
+    changeMenu(lastId);
     notifyListeners();
   }
 
   changeMenu(int _lastId) {
-    /* if (categories.isEmpty) return;
+    if (showCategories.isEmpty) return;
     lastId = _lastId;
-    if (lastId > categories.length) lastId = 0;
+    showCategories = getCategories();
+    notifyListeners();
     try {
-      isHome = false;
       products = allProducts
           .where((element) =>
               element.pos_categ_id is List<dynamic> &&
-              categories.isNotEmpty &&
+              showCategories.isNotEmpty &&
               element.pos_categ_id[0] == lastId)
           .toList();
       if (products.isEmpty)
@@ -357,7 +315,7 @@ class ProductsViewModel extends BaseViewModel {
       notifyListeners();
     } catch (e) {
       _navigationService.openErrorPage();
-    }*/
+    }
   }
 
   void scrollToTop() {
@@ -382,4 +340,33 @@ class ProductsViewModel extends BaseViewModel {
     bills.removeAt(index);
     notifyListeners();
   }
+
+  initData(){
+    shop = getIt<UserSharePref>().getShop();
+    cartProductData = userSharePref.getCartProductData() ?? CartProductData(products: [], totalPrice: 0.0, totalQuantity: 0, lastIndex: -1);
+    notifyListeners();
+  }
+
+  addProductToCart(Product product){
+    int index = cartProductData.products.indexOf(product);
+    product.quantity += 1;
+    if(index == -1) {
+      cartProductData.products.add(product);
+      cartProductData.lastIndex = 0;
+    } else {
+      cartProductData.products[index] = product;
+      cartProductData.lastIndex = index;
+    }
+    int totalQuantity = 0;
+    double totalPrice = 0.0;
+    cartProductData.products.forEach((element) {
+      totalQuantity += element.quantity;
+      totalPrice += element.getTotalPrice();
+    });
+    cartProductData.totalQuantity = totalQuantity;
+    cartProductData.totalPrice = totalPrice;
+    userSharePref.saveCartProductData(cartProductData);
+    notifyListeners();
+  }
+
 }

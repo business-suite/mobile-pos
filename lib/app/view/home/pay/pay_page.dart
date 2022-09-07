@@ -51,6 +51,7 @@ class _PayContentState extends State<PayContent> {
 
   @override
   void initState() {
+    payViewModel.initData();
     super.initState();
   }
 
@@ -65,12 +66,15 @@ class _PayContentState extends State<PayContent> {
       customAppBar: AppBarProduct(
         badgeCount: 1,
         avatarUrl: getAvatarProfile(),
-        onClickAvatar: () =>
-            ButtomSheetUtils.bottomSheetActionAccount(
-              context,
-              onPreferences: (){},
-              onLogout: ()=>  getIt<DataRepository>().logout(),
-            ),
+        onClickAvatar: () => ButtomSheetUtils.bottomSheetActionAccount(
+          context,
+          onPreferences: () {
+            getIt<NavigationService>().openPreferencesPage();
+          },
+          onLogout: () {
+            getIt<DataRepository>().logout();
+          },
+        ),
       ),
       body: Consumer<PayViewModel>(builder: (context, value, child) {
         return SizedBox(
@@ -90,14 +94,21 @@ class _PayContentState extends State<PayContent> {
                         Padding(
                           padding: EdgeInsets.only(top: size_20_w),
                           child: Text(
-                            '\$ 0.00',
+                            LocaleKeys.product_price_pay_page.tr(namedArgs: {
+                              'money': value.cartProductData.totalPrice.toStringAsFixed(2),
+                              'currency': NumberFormat()
+                                  .simpleCurrencySymbol(value.shop?.currencyId?[1])
+                            }),
+                            maxLines: 3,
+                            textAlign: TextAlign.center,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                color: kColor43996E, fontSize: text_64),
+                                color: kColor43996E, fontSize: text_64, fontWeight: FontWeight.normal),
                           ),
                         ),
                         Padding(
                           padding:
-                              EdgeInsets.only(top: size_30_w, bottom: size_4_w),
+                              EdgeInsets.only(top: size_20_w, bottom: size_4_w),
                           child: Text(
                             LocaleKeys.please_select_a_payment_method.tr(),
                             style: TextStyle(
@@ -285,7 +296,9 @@ class _PayContentState extends State<PayContent> {
                               height: size_100_w,
                               child: FlatButton(
                                 color: kColorE2E2E2,
-                                onPressed: () {},
+                                onPressed: () {
+                                  value.openCustomerListpage();
+                                },
                                 child: Row(
                                   children: [
                                     Padding(

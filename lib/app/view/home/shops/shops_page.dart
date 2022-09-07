@@ -1,3 +1,4 @@
+import 'package:business_suite_mobile_pos/app/module/common/navigator_screen.dart';
 import 'package:business_suite_mobile_pos/app/view/home/shops/list_shop/item_list_shop.dart';
 import 'package:business_suite_mobile_pos/app/viewmodel/base_viewmodel.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -12,9 +13,11 @@ import '../../../module/common/extension.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../module/res/style.dart';
 import '../../empty/empty_page.dart';
+import '../../preferences/preferences_viewmodel.dart';
 import '../../widget_utils/anims/touchable_opacity.dart';
 import '../../widget_utils/base_scaffold_safe_area.dart';
 import '../../widget_utils/bottom_sheet/bottom_sheet_utils.dart';
+import '../../widget_utils/buttons/filled_button.dart';
 import '../../widget_utils/custom/default_loading_progress.dart';
 import '../../widget_utils/custom/loadmore.dart';
 import 'appbar_shops.dart';
@@ -63,7 +66,9 @@ class _ShopsContentState extends State<ShopsContent>
         avatarUrl: getAvatarProfile(),
         onClickAvatar: () => ButtomSheetUtils.bottomSheetActionAccount(
           context,
-          onPreferences: () {},
+          onPreferences: () {
+            getIt<NavigationService>().openPreferencesPage();
+          },
           onLogout: () {
             getIt<DataRepository>().logout();
           },
@@ -195,7 +200,6 @@ class _ShopsContentState extends State<ShopsContent>
               ],
             ),
           ),
-
           Consumer<ShopsViewModel>(builder: (context, value, child) {
             if (value.isGrid) {
               return Container();

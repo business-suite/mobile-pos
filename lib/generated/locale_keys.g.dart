@@ -288,5 +288,23 @@ abstract class  LocaleKeys {
   static const database_info = 'database_info';
   static const can_t_connect_to_server = 'can_t_connect_to_server';
   static const preferences = 'preferences';
+  static const change_my_preferences = 'change_my_preferences';
+  static const notification = 'notification';
+  static const handle_by_emails = 'handle_by_emails';
+  static const handle_in_odoo = 'handle_in_odoo';
+  static const english_uk = 'english_uk';
+  static const save = 'save';
+  static const profile_update_successfully = 'profile_update_successfully';
+  static const user_profile_btn_from_photo_library = 'user_profile_btn_from_photo_library';
+  static const user_profile_btn_take_a_photo = 'user_profile_btn_take_a_photo';
+  static const user_profile_btn_cancel = 'user_profile_btn_cancel';
+  static const msg_camera_permission_explain = 'msg_camera_permission_explain';
+  static const msg_storage_permission_explain = 'msg_storage_permission_explain';
+  static const cart_quantity = 'cart_quantity';
+  static const units_quantity = 'units_quantity';
+  static const at = 'at';
+  static const units_prices = 'units_prices';
+  static const product_price_units = 'product_price_units';
+  static const product_price_pay_page = 'product_price_pay_page';
 
 }

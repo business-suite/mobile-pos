@@ -1,12 +1,16 @@
 import 'package:business_suite_mobile_pos/app/module/common/config.dart';
 
 import '../../../di/injection.dart';
+import '../../../model/cart_product_data.dart';
 import '../../../model/keyboard.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/common/toast_util.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
+import '../../../module/network/response/shops_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
+import '../customer_phone_list/customer_phone_list_page.dart';
+import '../customer_tablet_list/customer_tablet_list_page.dart';
 import '../popup_empty_order/popup_empty_order.dart';
 import '../popup_invoice/popup_invoice.dart';
 class PayViewModel extends BaseViewModel {
@@ -14,9 +18,9 @@ class PayViewModel extends BaseViewModel {
   bool isChange = true;
   NavigationService _navigationService = getIt<NavigationService>();
   UserSharePref userSharePref = getIt<UserSharePref>();
-  bool canLoadMore = false;
-  bool _loading = false;
-  String _response = "";
+  CartProductData cartProductData = CartProductData(products: [], totalPrice: 0.0, totalQuantity: 0, lastIndex: -1);
+  Shop? shop;
+
   final computers = [
     KeyBoard(number: '1'),
     KeyBoard(number: '2'),
@@ -41,25 +45,19 @@ class PayViewModel extends BaseViewModel {
 
 
 
-  String get response => _response;
-
-  set response(String response) {
-    _response = response;
-    notifyListeners();
-  }
-
-  bool get loading => _loading;
-
-  set loading(bool loading) {
-    _loading = loading;
-    notifyListeners();
-  }
-
-
   void onClickItem(){
     ToastUtil.showToast('Test');
   }
 
+  initData(){
+    shop = getIt<UserSharePref>().getShop();
+    cartProductData = userSharePref.getCartProductData() ?? CartProductData(products: [], totalPrice: 0.0, totalQuantity: 0, lastIndex: -1);
+    notifyListeners();
+  }
+
+  openCustomerListpage(){
+    _navigationService.pushScreenWithFade(CustomerTabletListPage());
+  }
 
   void changePopup(){
     isChange =! isChange;

@@ -77,7 +77,7 @@ abstract class ButtomSheetUtils {
               ? CupertinoActionSheetAction(
                   onPressed: () => cancelAction.onPressed ?? getIt<NavigationService>().back(),
                   child: DefaultTextStyle(
-                    style: defaultTextStyle.copyWith(color: Colors.lightBlue),
+                    style: defaultTextStyle.copyWith(color: kColor007bff),
                     textAlign: TextAlign.center,
                     child: cancelAction.title,
                   ),

@@ -35,7 +35,8 @@ class Category {
   int? id;
   String? name;
   dynamic parent_id;
-  dynamic child_id;
+  @JsonKey(defaultValue: [])
+  List<int>? child_id;
   String? write_date;
   @JsonKey(defaultValue: [])
   List<Category>? childCategories;

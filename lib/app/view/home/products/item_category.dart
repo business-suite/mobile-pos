@@ -8,11 +8,13 @@ import '../../../module/network/response/category_response.dart';
 
 class ItemCategory extends StatelessWidget {
   Category category;
+  bool isLastIndex = false;
   VoidCallback onClickItem;
 
   ItemCategory({
     Key? key,
     required this.category,
+    required this.isLastIndex,
     required this.onClickItem,
   }) : super(key: key);
 
@@ -37,6 +39,7 @@ class ItemCategory extends StatelessWidget {
                 ),
               ),
             ),
+            isLastIndex ? Container(width: 1.0, color: kColorc7c7c7) : Container()
           ],
         ),
       ),

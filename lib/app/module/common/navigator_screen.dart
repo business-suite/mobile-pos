@@ -1,4 +1,4 @@
-
+import 'package:business_suite_mobile_pos/app/module/common/extension.dart';
 import 'package:business_suite_mobile_pos/app/module/repository/data_repository.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +8,13 @@ import '../../../flavors.dart';
 import '../../../generated/locale_keys.g.dart';
 import '../../di/injection.dart';
 import '../../view/error/error_page.dart';
-import '../../view/widget_utils/dialog/dialog_general_two_action.dart';
-import '../../view/intro/intro_page.dart';
+import '../../view/preferences/preferences_page.dart';
 import '../../view/splash/splash_page.dart';
-import '../local_storage/shared_pref_manager.dart';
-import '../res/style.dart';
+import '../../view/widget_utils/dialog/dialog_general_two_action.dart';
 
 class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey =
-  new GlobalKey<NavigatorState>();
+      new GlobalKey<NavigatorState>();
   int currentHomeIndex = -1;
   int allNotificationTabIndexFromPush = -1;
   int myPageGameTitileIdFromPush = -1;
@@ -49,26 +47,24 @@ class NavigationService {
     return navigatorKey.currentState?.push(
       PageRouteBuilder(
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            if (animation.status == AnimationStatus.reverse) {
-              //do your dismiss animation here
-              return SlideTransition(
-                  position: new Tween<Offset>(
-                    begin: const Offset(0.0, 1.0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                  child: child);
-            } else {
-              return
-                FadeTransition(
-                  opacity: animation,
-                  child: child,
-                );
-            }
-          },
-          pageBuilder: (BuildContext context, Animation animation,
+        if (animation.status == AnimationStatus.reverse) {
+          //do your dismiss animation here
+          return SlideTransition(
+              position: new Tween<Offset>(
+                begin: const Offset(0.0, 1.0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child);
+        } else {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        }
+      }, pageBuilder: (BuildContext context, Animation animation,
               Animation secondaryAnimation) {
-            return widget;
-          }),
+        return widget;
+      }),
     );
   }
 
@@ -90,7 +86,7 @@ class NavigationService {
   Future<dynamic>? pushAndRemoveUntilWithFade(Widget widget) {
     return navigatorKey.currentState?.pushAndRemoveUntil(
       PageTransition(type: PageTransitionType.fade, child: widget),
-          (route) => false,
+      (route) => false,
     );
   }
 
@@ -123,7 +119,7 @@ class NavigationService {
     navigatorKey.currentState?.pop();
   }
 
-  void signOut(){
+  void signOut() {
     showDialog(
         context: navigatorKey.currentContext!,
         builder: (BuildContext context) {
@@ -136,6 +132,11 @@ class NavigationService {
             },
           );
         });
+  }
+
+  openPreferencesPage() async {
+    removeFocus(navigatorKey.currentContext!);
+    pushScreenWithFade(PreferencesPage());
   }
 
   dimiss() {

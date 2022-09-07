@@ -189,7 +189,6 @@ class _SliderViewState extends State<_SliderView> {
 class _ProductsState extends State<_ProductsContent>
     with SingleTickerProviderStateMixin {
   ProductsViewModel get productViewModel => widget._productViewModel;
-  Shop? shop;
 
   @override
   void initState() {
@@ -197,11 +196,14 @@ class _ProductsState extends State<_ProductsContent>
     /*  productViewModel.scrollController.addListener(() {
       productViewModel.onScroll();
     });*/
-    shop = getIt<UserSharePref>().getShop();
-    productViewModel.testMenu();
-    productViewModel.getCategories();
-    /*productViewModel.getProductsApi();
-    productViewModel.getCategoriesApi();*/
+    productViewModel.initData();
+
+    productViewModel.getProductsApi();
+    productViewModel.getCategoriesApi();
+
+    productViewModel.initStartCat(productViewModel.shop?.iface_start_categ_id is List
+        ? productViewModel.shop?.iface_start_categ_id[0]
+        : -1);
   }
 
   /*testMenu() {
@@ -226,49 +228,68 @@ class _ProductsState extends State<_ProductsContent>
     return Container(
       height: size_50_w,
       child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          physics: NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: categories.length,
-          itemBuilder: (context, index) => _buildChildCat(startCat, categories[index])),
+        scrollDirection: Axis.horizontal,
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: categories.length,
+        itemBuilder: (context, index) => _buildChildCat(
+            startCat, categories[index], index == categories.length - 1),
+      ),
     );
   }
 
-  Widget _buildChildCat(int startId, Category category) {
-    if(category == null) return Container();
+  Widget _buildChildCat(int startId, Category category, bool isLastIndex) {
+    if (category == null) return Container();
     return Container(
       height: size_50_w,
-      child: Row(children: [
-        _buildItem(startId, category),
-        category.childCategories == null || category.childCategories!.isEmpty ? Container() : ListView.builder(
+      child: Row(
+        children: [
+          _buildItem(
+              startId,
+              category,
+              isLastIndex &&
+                  (category.childCategories == null ||
+                      category.childCategories!.isEmpty)),
+          /*category.childCategories == null || category.childCategories!.isEmpty
+              ? Container()
+              :*/
+          ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: category.childCategories?.length,
-            itemBuilder: (context, index) => _buildChildCat(startId, category.childCategories![index]))
-      ],),
+            itemBuilder: (context, index) => _buildChildCat(
+                startId,
+                category.childCategories![index],
+                index == category.childCategories!.length - 1),
+          )
+        ],
+      ),
     );
   }
 
-  Widget _buildItem(int startId, Category category) {
-    if(category == null) return Container();
-    if (startId == -1 || category.parent_id == false)
+  Widget _buildItem(int startId, Category category, bool isLastIndex) {
+    if (category == null) return Container();
+    if (startId == -1)
       return ItemCategory(
           category: category,
+          isLastIndex: isLastIndex,
           onClickItem: () {
-            productViewModel.changeMenu(category.id ?? 0);
+            productViewModel.changeMenu(category.id ?? -1);
           });
-   else  return ItemCategorySelected(
-        category: category,
-        onClickItem: () {
-          productViewModel.changeMenu(category.id ?? 0);
-        });
+    else
+      return ItemCategorySelected(
+          category: category,
+          isLastIndex: isLastIndex,
+          onClickItem: () {
+            productViewModel.changeMenu(category.id ?? -1);
+          });
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () =>  productViewModel.keySlider.currentState?.closeSlider(),
+      onTap: () => productViewModel.keySlider.currentState?.closeSlider(),
       child: BaseScaffoldSafeArea(
         transparentStatusBar: 0.2,
         backgroundColor: Colors.white70,
@@ -279,18 +300,20 @@ class _ProductsState extends State<_ProductsContent>
           key: productViewModel.keySlider,
           appBar: AppBarProduct(
             badgeCount: 1,
-            onClickAvatar: () =>
-                ButtomSheetUtils.bottomSheetActionAccount(
-                  context,
-                  onPreferences: (){},
-                  onLogout: ()=>  getIt<DataRepository>().logout(),
-                ),
+            onClickAvatar: () => ButtomSheetUtils.bottomSheetActionAccount(
+              context,
+              onPreferences: () {
+                getIt<NavigationService>().openPreferencesPage();
+              },
+              onLogout: () {
+                getIt<DataRepository>().logout();
+              },
+            ),
             onClickTicKet: () {
               productViewModel.keySlider.currentState?.openSlider();
             },
             avatarUrl: getAvatarProfile(),
           ),
-
           sliderOpenSize: 179,
           slider: _SliderView(
             productViewModel: productViewModel,
@@ -327,20 +350,22 @@ class _ProductsState extends State<_ProductsContent>
                           ),
                         ),
                         Expanded(
-                            flex: 1,
-                            child: ScrollConfiguration(
-                              behavior: const ScrollBehavior()
-                                  .copyWith(overscroll: false),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                physics: BouncingScrollPhysics(),
-                                child: Container(
-                                  height: size_50_w,
-                                  padding: EdgeInsets.only(left: size_6_w),
-                                  child: _buildRootCat(productViewModel.startCat, value.showCategories),
-                                ),
+                          flex: 1,
+                          child: ScrollConfiguration(
+                            behavior: const ScrollBehavior()
+                                .copyWith(overscroll: false),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              physics: BouncingScrollPhysics(),
+                              child: Container(
+                                height: size_50_w,
+                                padding: EdgeInsets.only(left: size_6_w),
+                                child: _buildRootCat(
+                                    value.lastId, value.showCategories),
                               ),
-                            ))
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -365,7 +390,8 @@ class _ProductsState extends State<_ProductsContent>
                                     value.refreshData();
                                     return value.completer.future;
                                   },
-                                  imgEmpty: 'assets/images/img_empty_product.svg',
+                                  imgEmpty:
+                                      'assets/images/img_empty_product.svg',
                                   emptyText: LocaleKeys
                                       .there_are_no_products_in_this_category
                                       .tr(),
@@ -397,10 +423,15 @@ class _ProductsState extends State<_ProductsContent>
                                                     crossAxisSpacing: size_6_w,
                                                     mainAxisSpacing: size_6_w,
                                                     height: size_150_w),
-                                            delegate: SliverChildBuilderDelegate(
+                                            delegate:
+                                                SliverChildBuilderDelegate(
                                               (context, index) => ItemProduct(
-                                                shop: shop,
+                                                shop: value.shop,
                                                 product: value.products[index],
+                                                onClickItem: () {
+                                                  value.addProductToCart(
+                                                      value.products[index]);
+                                                },
                                               ),
                                               childCount: value.products.length,
                                             ),
@@ -447,8 +478,17 @@ class _ProductsState extends State<_ProductsContent>
                                                 color: Colors.white),
                                           ),
                                           Text(
-                                            '\$143.39',
-                                            style: TextStyle(color: Colors.white),
+                                            LocaleKeys.product_price
+                                                .tr(namedArgs: {
+                                              'money': value.cartProductData
+                                                      .totalPrice
+                                                      .toStringAsFixed(2),
+                                              'currency': NumberFormat()
+                                                  .simpleCurrencySymbol(
+                                                      value.shop?.currencyId?[1])
+                                            }),
+                                            style:
+                                                TextStyle(color: Colors.white),
                                           )
                                         ],
                                       ),
@@ -477,8 +517,15 @@ class _ProductsState extends State<_ProductsContent>
                                                 color: kColor6EC89B),
                                           ),
                                           Text(
-                                            '4 items',
-                                            style: TextStyle(color: kColor6EC89B),
+                                            LocaleKeys.cart_quantity.tr(
+                                                namedArgs: {
+                                                  'quantity': value
+                                                          .cartProductData
+                                                          .totalQuantity
+                                                          .toString()
+                                                }),
+                                            style:
+                                                TextStyle(color: kColor6EC89B),
                                           )
                                         ],
                                       ),

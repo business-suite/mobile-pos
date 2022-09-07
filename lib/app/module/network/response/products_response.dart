@@ -50,8 +50,14 @@ class Product {
     this.attribute_line_ids,
     this.active,
     this.invoice_policy,
+    required this.quantity,
     this.type,});
 
+
+  @JsonKey(defaultValue: 0)
+  int quantity = 0;
+  @JsonKey(defaultValue: 0)
+  double tax = 0.0;
   int? id;
   String? display_name;
   double? lst_price;
@@ -75,8 +81,13 @@ class Product {
   String? type;
 
 
+  double getTotalPrice(){
+    return quantity* lst_price!;
+  }
+
+
   String getImageProduct() {
-    return '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/web/image?model=product.product&field=image_256&id=${id}&write_date=${write_date}&unique=1';
+    return '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/web/image?model=product.product&field=image_128&id=${id}&write_date=${write_date}&unique=1';
   }
 
 

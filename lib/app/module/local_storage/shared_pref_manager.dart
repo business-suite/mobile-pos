@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../model/cart_product_data.dart';
 import '../../model/login_config.dart';
 import '../../model/login_data.dart';
 import '../../model/session_info.dart';
@@ -133,6 +134,7 @@ class UserSharePref extends SharedPrefManager {
   static const APPLE_USER_NAME = 'APPLE_USER_NAME';
   static const LOGIN_CONFIG = 'LOGIN_CONFIG';
   static const LOGIN_DATA_LIST = 'LOGIN_DATA_LIST';
+  static const CART_PRODUCT = 'CART_PRODUCT';
 
   Future<void>? saveFirebaseToken(String? value) {
     if (SharedPrefManager.beforCheck()) return null;
@@ -276,5 +278,20 @@ class UserSharePref extends SharedPrefManager {
   bool isLogin() {
     if (SharedPrefManager.beforCheck()) return false;
     return getUser() != null && getUser()!.uid != null;
+  }
+
+
+  Future<void>? saveCartProductData(CartProductData? cartProductData) {
+    if (SharedPrefManager.beforCheck()) return null;
+    return SharedPrefManager.spf!.setString(CART_PRODUCT,
+        cartProductData != null ? json.encode(cartProductData.toJson()) : '');
+  }
+
+  CartProductData? getCartProductData() {
+    if (SharedPrefManager.beforCheck()) return null;
+    String jsonData = SharedPrefManager.spf!.getString(CART_PRODUCT) ?? '';
+    if (jsonData.isEmpty) return null;
+    dynamic data = json.decode(jsonData);
+    return CartProductData.fromJson(data);
   }
 }

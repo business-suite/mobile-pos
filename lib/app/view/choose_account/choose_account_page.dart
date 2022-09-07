@@ -144,14 +144,15 @@ class _ChooseAccountContentState extends State<ChooseAccountContent>
 
               //Button goto sign in
               Positioned(
-                  // draw a red marble
-                  bottom: size_30_w,
-                  left: size_26_w,
-                  right: size_26_w,
-                  child: FilledButton(
-                    text: LocaleKeys.go_to_sign_in.tr().toUpperCase(),
-                    onPress: () => chooseAccountViewModel.openSignInPage(),
-                  ))
+                // draw a red marble
+                bottom: size_30_w,
+                left: size_26_w,
+                right: size_26_w,
+                child: FilledButton(
+                  text: LocaleKeys.go_to_sign_in.tr().toUpperCase(),
+                  onPress: () => chooseAccountViewModel.openSignInPage(),
+                ),
+              ),
             ],
           ),
         ));
