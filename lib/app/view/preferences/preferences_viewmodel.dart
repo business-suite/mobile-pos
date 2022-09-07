@@ -246,8 +246,7 @@ class PreferencesViewModel extends BaseViewModel {
                 ? r.message.toString()
                 : LocaleKeys.an_unexpected_error_has_occurred.tr());
       } finally {
-        //EasyLoading.dismiss();
-        notifyListeners();
+        EasyLoading.dismiss();
       }
     });
     addSubscription(subscript);

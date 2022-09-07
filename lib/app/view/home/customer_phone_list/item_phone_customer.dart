@@ -6,8 +6,6 @@ import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../model/customer.dart';
-
 class ItemPhoneCustomer extends StatelessWidget {
   CustomerPhone itemphone;
   VoidCallback onClickItem;

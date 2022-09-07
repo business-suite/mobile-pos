@@ -78,60 +78,55 @@ class _CustomerTabletListContentState extends State<CustomerTabletListContent>
           },
         ),
       ),
-      body:
-
-          //body
-          Expanded(
-        child: Consumer<CustomerTabletListViewModel>(
-          builder: (context, value, child) {
-            switch (value.loadingState) {
-              case LoadingState.LOADING:
-                return BuildProgressLoading();
-              case LoadingState.EMPTY:
-                return EmptyWidget(
+      body: Consumer<CustomerTabletListViewModel>(
+        builder: (context, value, child) {
+          switch (value.loadingState) {
+            case LoadingState.LOADING:
+              return BuildProgressLoading();
+            case LoadingState.EMPTY:
+              return EmptyWidget(
+                onRefresh: () {
+                  value.refreshData();
+                  return value.completer.future;
+                },
+                imgEmpty: 'assets/images/img_empty_shop.svg',
+                emptyText: LocaleKeys.there_are_no_customers.tr(),
+              );
+            case LoadingState.DONE:
+              return RefreshIndicator(
+                  color: kColorPrimary,
                   onRefresh: () {
                     value.refreshData();
                     return value.completer.future;
                   },
-                  imgEmpty: 'assets/images/img_empty_shop.svg',
-                  emptyText: LocaleKeys.there_are_no_shops.tr(),
-                );
-              case LoadingState.DONE:
-                return RefreshIndicator(
-                    color: kColorPrimary,
-                    onRefresh: () {
-                      value.refreshData();
-                      return value.completer.future;
-                    },
-                    child: CustomScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      controller: value.scrollController,
-                      slivers: <Widget>[
-                        SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              return ItemCustomer(
-                                index: index,
-                                item: value.customers[index],
-                                onClickItem: () {},
-                              );
-                            },
-                            childCount: value.customers.length,
-                          ),
+                  child: CustomScrollView(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    controller: value.scrollController,
+                    slivers: <Widget>[
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            return ItemCustomer(
+                              index: index,
+                              item: value.customers[index],
+                              onClickItem: () {},
+                            );
+                          },
+                          childCount: value.customers.length,
                         ),
-                        SliverToBoxAdapter(
-                          child: value.canLoadMore && value.isLoading
-                              ? BuildLoadMore()
-                              : SizedBox(),
-                        ),
-                      ],
-                    ));
-              default:
-                return Container();
-            }
-          },
-        ),
+                      ),
+                      SliverToBoxAdapter(
+                        child: value.canLoadMore && value.isLoading
+                            ? BuildLoadMore()
+                            : SizedBox(),
+                      ),
+                    ],
+                  ));
+            default:
+              return Container();
+          }
+        },
       ),
     );
   }

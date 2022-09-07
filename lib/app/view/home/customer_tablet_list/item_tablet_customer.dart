@@ -5,7 +5,8 @@ import 'package:business_suite_mobile_pos/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../model/customer.dart';
+import '../../../module/network/response/customers_response.dart';
+
 
 class ItemCustomer extends StatelessWidget {
   Customer item;
@@ -34,7 +35,7 @@ class ItemCustomer extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(left: size_10_w),
                   child: Text(
-                    item.name,
+                    item.name ?? '',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: kColor6F6F6F,
@@ -50,7 +51,7 @@ class ItemCustomer extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(left: size_20_w),
                 child: Text(
-                  item.date,
+                  item.zip ?? '',
                   style: TextStyle(
                     color: kColor6F6F6F,
                     fontWeight: FontWeight.w300,
@@ -64,7 +65,7 @@ class ItemCustomer extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(right: size_10_w),
                 child: Text(
-                  item.email,
+                  item.email ?? '',
                   style: TextStyle(
                     color: kColor6F6F6F,
                     fontSize: text_10,

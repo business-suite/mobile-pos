@@ -303,5 +303,6 @@
   "at": " at ",
   "units_prices": "{quantity} Units",
   "product_price_units": "{money} {currency}/Units",
-  "product_price_pay_page": "{money}\n{currency}"
+  "product_price_pay_page": "{money}\n{currency}",
+  "there_are_no_customers": "There are no customers"
 }

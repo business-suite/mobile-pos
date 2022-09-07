@@ -2,7 +2,6 @@ import 'package:business_suite_mobile_pos/app/model/customer_add_country.dart';
 import 'package:flutter/material.dart';
 
 import '../../../di/injection.dart';
-import '../../../model/customer.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/common/toast_util.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';

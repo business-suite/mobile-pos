@@ -306,5 +306,6 @@ abstract class  LocaleKeys {
   static const units_prices = 'units_prices';
   static const product_price_units = 'product_price_units';
   static const product_price_pay_page = 'product_price_pay_page';
+  static const there_are_no_customers = 'there_are_no_customers';
 
 }

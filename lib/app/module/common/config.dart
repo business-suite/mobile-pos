@@ -47,6 +47,7 @@ const String SEARCH_READ = "search_read";
 const String READ = "read";
 const String WRITE = "write";
 const String LOAD_VIEWS = "load_views";
+const String GET_PRODUCT_INFO_POS = "get_product_info_pos";
 //MODEL
 const String AUTH_TOTP = "auth_totp.wizard";
 //get shops
@@ -58,4 +59,5 @@ const String CHECK_MODULE = "ir.module.module";
 const String RES_USER = "res.users";
 const String RES_LANG = "res.lang";
 const String ACCOUNT_TAX = "account.tax";
+const String RES_PARTNER = "res.partner";
 const String PRODUCT_PRODUCT = "product.product";

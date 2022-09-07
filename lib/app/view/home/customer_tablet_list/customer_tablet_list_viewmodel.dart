@@ -1,15 +1,18 @@
 import 'dart:async';
 
 import 'package:business_suite_mobile_pos/app/view/home/customer_tablet_list/customer_tablet_list_page.dart';
+import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../../generated/locale_keys.g.dart';
 import '../../../di/injection.dart';
-import '../../../model/customer.dart';
+import '../../../model/session_info.dart';
 import '../../../module/common/config.dart';
 import '../../../module/common/navigator_screen.dart';
 import '../../../module/common/toast_util.dart';
 import '../../../module/local_storage/shared_pref_manager.dart';
-import '../../../module/network/response/shops_response.dart';
+import '../../../module/network/response/customers_response.dart';
 import '../../../module/repository/data_repository.dart';
 import '../../../viewmodel/base_viewmodel.dart';
 import '../add_customer/add_customer_page.dart';
@@ -51,56 +54,34 @@ class CustomerTabletListViewModel extends BaseViewModel {
   }
 
 
-  CustomerRes? _shopsResponse;
+  CustomersResponse? _customersResponse;
 
-  ShopsResponse? get shopsResponse => _shopsResponse;
+  CustomersResponse? get customersResponse => _customersResponse;
 
-  set shopsResponse(ShopsResponse? shopsResponse) {
-    _shopsResponse = shopsResponse;
+  set customersResponse(CustomersResponse? customersResponse) {
+    _customersResponse = customersResponse;
     notifyListeners();
   }
 
   void getCustomersApi() async {
-    if (customers.length == shopsResponse?.result?.length) {
+    if (customers.length == customersResponse?.result?.length) {
       canLoadMore = false;
       isLoading = false;
       notifyListeners();
       return;
     }
     isLoading = true;
-    var fields = [
-      "current_user_id",
-      "cash_control",
-      "name",
-      "current_session_id",
-      "current_session_state",
-      "last_session_closing_date",
-      "pos_session_username",
-      "pos_session_state",
-      "pos_session_duration",
-      "currency_id",
-      "number_of_opened_session",
-      "last_session_closing_cash",
-      "iface_start_categ_id",
-      "company_id",
-    ];
+    SessionInfo? sessionInfo = userSharePref.getUser();
+    Map<String, dynamic> kwargs = <String, dynamic>{};
+    kwargs.putIfAbsent('context', () => sessionInfo?.userContext);
     final subscript = _dataRepo
-        .searchRead(SHOPS,
-        domain: [],
-        fields: fields,
-        limit: LIMIT_SHOP,
-        sort: '',
-        context: userSharePref.getUser()?.userContext?.toJson())
+        .callKW(RES_PARTNER, SEARCH_READ, kwargs: kwargs, )
         .listen((r) {
       try {
-        shopsResponse = ShopsResponse.fromJson(r);
-        if (shopsResponse?.result != null) {
-          if (shopsResponse?.result?.records?.length ==
-              shopsResponse?.result?.length) {
-            canLoadMore = false;
-          }
-          shops.addAll(shopsResponse?.result?.records ?? []);
-          if (shops.isEmpty)
+        customersResponse = CustomersResponse.fromJson(r);
+        if (customersResponse?.result != null) {
+          customers.addAll(customersResponse?.result ?? []);
+          if (customers.isEmpty)
             loadingState = LoadingState.EMPTY;
           else
             loadingState = LoadingState.DONE;
