@@ -5,7 +5,7 @@ enum LoadingState { LOADING, DONE, ERROR, EMPTY }
 enum SizeStyle { SMALL, NORMAL, LARGE, SUPER }
 
 //Network Config
-const int CONNECT_TIMEOUT = 3000;
+const int CONNECT_TIMEOUT = 10000;
 const int WRITE_TIMEOUT = 3000;
 const int READ_TIMEOUT = 3000;
 

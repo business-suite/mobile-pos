@@ -9,7 +9,6 @@ class CustomersResponse extends BaseResponse {
   @JsonKey(defaultValue: [])
   List<Customer>? result;
 
-
   CustomersResponse({
     String? jsonrpc,
     int? id,
@@ -21,82 +20,47 @@ class CustomersResponse extends BaseResponse {
       _$CustomersResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$CustomersResponseToJson(this);
-
 }
 
+@JsonSerializable()
 class Customer {
-  Customer({
-    this.id,
-    this.name,
-    this.street,
-    this.city,
-    this.stateId,
-    this.countryId,
-    this.vat,
-    this.lang,
-    this.phone,
-    this.zip,
-    this.mobile,
-    this.email,
-    this.barcode,
-    this.writeDate,
-    this.propertyAccountPositionId,
-    this.propertyProductPricelist,});
+  dynamic barcode;
+  dynamic city;
+  List<dynamic>? country_id;
+  dynamic email;
+  dynamic id;
+  dynamic lang;
+  dynamic mobile;
+  dynamic name;
+  dynamic phone;
+  dynamic property_account_position_id;
+  List<dynamic>? property_product_pricelist;
+  List<dynamic>? state_id;
+  dynamic street;
+  dynamic vat;
+  dynamic write_date;
+  dynamic zip;
 
-  Customer.fromJson(dynamic json) {
-    id = json['id'];
-    name = json['name'];
-    street = json['street'];
-    city = json['city'];
-    stateId = json['state_id'] != null ? json['state_id'].cast<num>() : [];
-    countryId = json['country_id'] != null ? json['country_id'].cast<num>() : [];
-    vat = json['vat'];
-    lang = json['lang'];
-    phone = json['phone'];
-    zip = json['zip'];
-    mobile = json['mobile'];
-    email = json['email'];
-    barcode = json['barcode'];
-    writeDate = json['write_date'];
-    propertyAccountPositionId = json['property_account_position_id'];
-    propertyProductPricelist = json['property_product_pricelist'] != null ? json['property_product_pricelist'].cast<num>() : [];
-  }
-  num? id;
-  String? name;
-  String? street;
-  String? city;
-  List<num>? stateId;
-  List<num>? countryId;
-  bool? vat;
-  String? lang;
-  String? phone;
-  String? zip;
-  bool? mobile;
-  String? email;
-  bool? barcode;
-  String? writeDate;
-  bool? propertyAccountPositionId;
-  List<num>? propertyProductPricelist;
+  Customer(
+      {this.barcode,
+      this.city,
+      this.country_id,
+      this.email,
+      this.id,
+      this.lang,
+      this.mobile,
+      this.name,
+      this.phone,
+      this.property_account_position_id,
+      this.property_product_pricelist,
+      this.state_id,
+      this.street,
+      this.vat,
+      this.write_date,
+      this.zip});
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['name'] = name;
-    map['street'] = street;
-    map['city'] = city;
-    map['state_id'] = stateId;
-    map['country_id'] = countryId;
-    map['vat'] = vat;
-    map['lang'] = lang;
-    map['phone'] = phone;
-    map['zip'] = zip;
-    map['mobile'] = mobile;
-    map['email'] = email;
-    map['barcode'] = barcode;
-    map['write_date'] = writeDate;
-    map['property_account_position_id'] = propertyAccountPositionId;
-    map['property_product_pricelist'] = propertyProductPricelist;
-    return map;
-  }
+  factory Customer.fromJson(Map<String, dynamic> json) =>
+      _$CustomerFromJson(json);
 
+  Map<String, dynamic> toJson() => _$CustomerToJson(this);
 }

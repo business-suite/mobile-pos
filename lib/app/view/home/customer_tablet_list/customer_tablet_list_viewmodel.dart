@@ -74,6 +74,24 @@ class CustomerTabletListViewModel extends BaseViewModel {
     SessionInfo? sessionInfo = userSharePref.getUser();
     Map<String, dynamic> kwargs = <String, dynamic>{};
     kwargs.putIfAbsent('context', () => sessionInfo?.userContext);
+    kwargs.putIfAbsent('domain', () => []);
+    kwargs.putIfAbsent('fields', () => [
+      "name",
+      "street",
+      "city",
+      "state_id",
+      "country_id",
+      "vat",
+      "lang",
+      "phone",
+      "zip",
+      "mobile",
+      "email",
+      "barcode",
+      "write_date",
+      "property_account_position_id",
+      "property_product_pricelist"
+    ]);
     final subscript = _dataRepo
         .callKW(RES_PARTNER, SEARCH_READ, kwargs: kwargs, )
         .listen((r) {
