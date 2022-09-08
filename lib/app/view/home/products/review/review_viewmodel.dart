@@ -11,9 +11,9 @@ import '../../../../model/cart_product_data.dart';
 import '../../../../model/keyboard.dart';
 import '../../../../model/session_info.dart';
 import '../../../../module/common/navigator_screen.dart';
-import '../../../../module/common/toast_util.dart';
 import '../../../../module/event_bus/event_bus.dart';
 import '../../../../module/local_storage/shared_pref_manager.dart';
+import '../../../../module/network/response/product_info_response.dart';
 import '../../../../module/network/response/products_response.dart';
 import '../../../../module/network/response/shops_response.dart';
 import '../../../../module/network/response/taxes_response.dart';
@@ -30,6 +30,8 @@ class ReviewViewModel extends BaseViewModel {
       products: [], totalPrice: 0.0, totalQuantity: 0, lastIndex: -1);
   Shop? shop;
   List<Tax> taxes = [];
+  ProductInfo? productInfo;
+  double statusBarHeight = 0.0;
 
   final computers = [
     KeyBoard(number: 'Customer', sizeStyle: SizeStyle.SMALL),
@@ -120,19 +122,69 @@ class ReviewViewModel extends BaseViewModel {
     _navigationService.pushScreenWithFade(CustomerTabletListPage());
   }
 
+  ProductInfoResponse? _productInfoResponse;
+
+  ProductInfoResponse? get productInfoResponse => _productInfoResponse;
+
+  set productInfoResponse(ProductInfoResponse? productInfoResponse) {
+    _productInfoResponse = productInfoResponse;
+    notifyListeners();
+  }
+
+  void getProductInfo() async {
+    int lastIndex = cartProductData.lastIndex;
+    Product product = cartProductData.products[lastIndex];
+    SessionInfo? sessionInfo = userSharePref.getUser();
+    Map<String, dynamic> kwargs = <String, dynamic>{};
+    kwargs.putIfAbsent('context', () => sessionInfo?.userContext);
+    var args = [
+      [product.id],
+      product.lst_price,
+      product.quantity,
+      1
+    ];
+    EasyLoading.show();
+    final subscript = _dataRepo
+        .callKW(PRODUCT_PRODUCT, GET_PRODUCT_INFO_POS,
+            kwargs: kwargs, args: args)
+        .listen((r) {
+      try {
+        productInfoResponse = ProductInfoResponse.fromJson(r);
+        if (productInfoResponse?.result != null) {
+          productInfo = productInfoResponse?.result!;
+          prductInfoBottomSheet(
+            onCloseClick: () {},
+            statusBarHeight: statusBarHeight,
+            productInfo: productInfo!,
+            product: cartProductData.products[lastIndex],
+          );
+          notifyListeners();
+        }
+      } catch (e) {
+        print(e);
+        _navigationService.openErrorPage(
+            message: r is DioError && r.message.isNotEmpty
+                ? r.message.toString()
+                : LocaleKeys.an_unexpected_error_has_occurred.tr());
+      } finally {
+        EasyLoading.dismiss();
+        notifyListeners();
+      }
+    });
+    addSubscription(subscript);
+  }
+
   openProductInfoBottomsheet(double statusBarHeight) {
-    if(cartProductData.products.isNotEmpty)
-    prductInfoBottomSheet(
-        onCloseClick: null,
-        statusBarHeight: statusBarHeight);
+    this.statusBarHeight = statusBarHeight;
+    notifyListeners();
+    if (cartProductData.products.isNotEmpty) getProductInfo();
   }
 
   refundOrder() {
-    if(cartProductData.products.isNotEmpty)
-    userSharePref.saveCartProductData(null);
+    if (cartProductData.products.isNotEmpty)
+      userSharePref.saveCartProductData(null);
     backToProductPage();
   }
-
 
   backToProductPage() {
     getIt<NavigationService>().back();
@@ -140,11 +192,10 @@ class ReviewViewModel extends BaseViewModel {
   }
 
   int selectQtyDicsPrince = 4; //Qty postion
-  onChangeQtyDicsPrince(int index){
-      selectQtyDicsPrince = index;
-      notifyListeners();
+  onChangeQtyDicsPrince(int index) {
+    selectQtyDicsPrince = index;
+    notifyListeners();
   }
-
 
   TaxesResponse? _taxesResponse;
 
@@ -159,27 +210,26 @@ class ReviewViewModel extends BaseViewModel {
     SessionInfo? sessionInfo = userSharePref.getUser();
     Map<String, dynamic> kwargs = <String, dynamic>{};
     kwargs.putIfAbsent('context', () => sessionInfo?.userContext);
-    kwargs.putIfAbsent('fields', () => [
-      "name",
-      "amount",
-      "price_include",
-      "include_base_amount",
-      "is_base_affected",
-      "amount_type",
-      "children_tax_ids"
-    ]);
-    kwargs.putIfAbsent('domain', () => [
-      [
-        "company_id",
-        "=",
-        sessionInfo?.companyId ?? 1
-      ]
-    ]);
+    kwargs.putIfAbsent(
+        'fields',
+        () => [
+              "name",
+              "amount",
+              "price_include",
+              "include_base_amount",
+              "is_base_affected",
+              "amount_type",
+              "children_tax_ids"
+            ]);
+    kwargs.putIfAbsent(
+        'domain',
+        () => [
+              ["company_id", "=", sessionInfo?.companyId ?? 1]
+            ]);
 
     EasyLoading.show();
-    final subscript = _dataRepo
-        .callKW(ACCOUNT_TAX, SEARCH_READ, kwargs: kwargs)
-        .listen((r) {
+    final subscript =
+        _dataRepo.callKW(ACCOUNT_TAX, SEARCH_READ, kwargs: kwargs).listen((r) {
       try {
         taxesResponse = TaxesResponse.fromJson(r);
         if (taxesResponse?.result != null) {
@@ -201,40 +251,12 @@ class ReviewViewModel extends BaseViewModel {
     addSubscription(subscript);
   }
 
-  addTaxToProduct(){
-      if(taxes.isEmpty) return;
-      taxes.forEach((element) {
-        int index = cartProductData.products.indexWhere((elementProduct) => elementProduct.id == element.id);
-        cartProductData.products[index].tax = element.amount! * 0.01;
-      });
-  }
-}
-
-class ReviewItemtViewModel extends BaseViewModel {
-  final DataRepository _repo;
-  NavigationService _navigationService = getIt<NavigationService>();
-  UserSharePref userSharePref = getIt<UserSharePref>();
-  bool canLoadMore = false;
-  bool _loading = false;
-  String _response = "";
-
-  ReviewItemtViewModel(this._repo);
-
-  String get response => _response;
-
-  set response(String response) {
-    _response = response;
-    notifyListeners();
-  }
-
-  bool get loading => _loading;
-
-  set loading(bool loading) {
-    _loading = loading;
-    notifyListeners();
-  }
-
-  void onClickItem() {
-    ToastUtil.showToast('Test');
+  addTaxToProduct() {
+    if (taxes.isEmpty) return;
+    taxes.forEach((element) {
+      int index = cartProductData.products
+          .indexWhere((elementProduct) => elementProduct.id == element.id);
+      cartProductData.products[index].tax = element.amount! * 0.01;
+    });
   }
 }

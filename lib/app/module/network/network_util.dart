@@ -130,7 +130,7 @@ void updateSessionIdFromCookies(Response response, {bool auth = false}) {
   }
 }
 
-var headers = {"Content-Type": "application/json"};
+var headers = {"Content-Type": "application/json", "Keep-Alive": "timeout=5, max=1000", "Connection": "Keep-Alive"};
 
 Future _call(String url, params) async {
   var payload = {

@@ -85,6 +85,10 @@ class Product {
     return quantity* lst_price!;
   }
 
+  double getTotalCost(){
+    return quantity* standard_price!;
+  }
+
 
   String getImageProduct() {
     return '${getIt<UserSharePref>().getLoginConfig()?.getBaseUrl() ?? ''}/web/image?model=product.product&field=image_128&id=${id}&write_date=${write_date}&unique=1';

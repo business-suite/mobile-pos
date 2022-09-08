@@ -83,115 +83,40 @@ class _ReviewContentState extends State<ReviewContent> {
         ),
       ),
       body: Consumer<ReviewViewModel>(builder: (context, value, child) {
-        return Stack(
-          children: [
-            //List order
-            value.cartProductData.products.isEmpty
-                ? SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        left: size_16_w,
-                        right: size_16_w,
-                        top: size_50_w,
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(bottom: size_5_w),
-                              child: SvgPicture.asset(
-                                'assets/icons/ic_shopping_cart.svg',
-                                color: kColorDDDDDD,
-                                height: size_80_w,
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(bottom: size_5_w),
-                              child: Padding(
-                                padding: EdgeInsets.only(right: size_10_w),
-                                child: Text(
-                                  LocaleKeys.this_order_is_empty.tr(),
-                                  style: TextStyle(
-                                      color: kColorDDDDDD, fontSize: text_20),
-                                ),
-                              ),
-                            ),
-                          ],
+        return Expanded(
+          flex: 1,
+          child: Stack(
+            children: [
+              //List order
+              value.cartProductData.products.isEmpty
+                  ? SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: size_16_w,
+                          right: size_16_w,
+                          top: size_50_w,
                         ),
-                      ),
-                    ),
-                  )
-                : Padding(
-                    padding: EdgeInsets.only(bottom: size_360_w),
-                    child: Expanded(
-                      child: ScrollConfiguration(
-                        behavior:
-                            const ScrollBehavior().copyWith(overscroll: false),
-                        child: SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
+                        child: Center(
                           child: Column(
-                            children: [
-                              ListView.builder(
-                                padding: EdgeInsets.only(top: size_10_w),
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount:
-                                    value.cartProductData.products.length,
-                                itemBuilder: (context, index) =>
-                                    ItemReviewProduct(
-                                  isSelected:
-                                      value.cartProductData.lastIndex == index,
-                                  item: value.cartProductData.products[index],
-                                  onClickItem: () => value.onClickItem(index),
-                                  shop: value.shop,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.only(bottom: size_5_w),
+                                child: SvgPicture.asset(
+                                  'assets/icons/ic_shopping_cart.svg',
+                                  color: kColorDDDDDD,
+                                  height: size_80_w,
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: size_180_w, top: size_10_w),
-                                child: Container(
-                                  height: size_2_w,
-                                  width: size_160_w,
-                                  color: kColor777777,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: size_180_w, top: size_6_w),
-                                child: Text(
-                                  LocaleKeys.total_review.tr(namedArgs: {
-                                    'money': value.cartProductData.totalPrice
-                                        .toStringAsFixed(2),
-                                    'currency': NumberFormat()
-                                        .simpleCurrencySymbol(
-                                            value.shop?.currencyId?[1])
-                                  }),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: kCBlack,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: text_18,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: size_180_w, bottom: size_50_w),
-                                child: Text(
-                                  LocaleKeys.taxes_review.tr(namedArgs: {
-                                    'money': 0
-                                        .toStringAsFixed(2),
-                                    'currency': NumberFormat()
-                                        .simpleCurrencySymbol(
-                                            value.shop?.currencyId?[1])
-                                  }),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: text_15,
+                              Container(
+                                padding: EdgeInsets.only(bottom: size_5_w),
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: size_10_w),
+                                  child: Text(
+                                    LocaleKeys.this_order_is_empty.tr(),
+                                    style: TextStyle(
+                                        color: kColorDDDDDD, fontSize: text_20),
                                   ),
                                 ),
                               ),
@@ -199,468 +124,549 @@ class _ReviewContentState extends State<ReviewContent> {
                           ),
                         ),
                       ),
+                    )
+                  : ScrollConfiguration(
+                  behavior:
+                      const ScrollBehavior().copyWith(overscroll: false),
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: size_360_w),
+                      child: Column(
+                        children: [
+                          ListView.builder(
+                                padding: EdgeInsets.only(top: size_10_w),
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount:
+                                value.cartProductData.products.length,
+                            itemBuilder: (context, index) =>
+                                ItemReviewProduct(
+                              isSelected:
+                                  value.cartProductData.lastIndex == index,
+                              item: value.cartProductData.products[index],
+                              onClickItem: () => value.onClickItem(index),
+                              shop: value.shop,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: size_180_w, top: size_10_w),
+                            child: Container(
+                              height: size_2_w,
+                              width: size_160_w,
+                              color: kColor777777,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: size_180_w, top: size_6_w),
+                            child: Text(
+                              LocaleKeys.total_review.tr(namedArgs: {
+                                'money': value.cartProductData.totalPrice
+                                    .toStringAsFixed(2),
+                                'currency': NumberFormat()
+                                    .simpleCurrencySymbol(
+                                        value.shop?.currencyId?[1])
+                              }),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: kCBlack,
+                                fontWeight: FontWeight.bold,
+                                fontSize: text_18,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: size_180_w, ),
+                            child: Text(
+                              LocaleKeys.taxes_review.tr(namedArgs: {
+                                'money': 0
+                                    .toStringAsFixed(2),
+                                'currency': NumberFormat()
+                                    .simpleCurrencySymbol(
+                                        value.shop?.currencyId?[1])
+                              }),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.normal,
+                                fontSize: text_15,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Wrap(
-                children: <Widget>[
-                  //Keyboard
-                  Container(
-                    color: kColor6EC89B,
-                    height: size_3_w,
                   ),
-                  Container(
-                    color: kColorE2E2E2,
-                    child: Wrap(
-                      /* mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,*/
-                      children: [
-                        //Button Info & Refund
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal:size_10_w, vertical: size_6_w),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Card(
-                                  color:kColorE2E2E2,
-                                  elevation: 0.0,
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      color: kColorBFBFBF,
-                                    ),
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      value.openProductInfoBottomsheet(statusBarHeight);
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(vertical: size_10_w),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          // icon
-                                          Icon(
-                                            Icons.info_outlined,
-                                            size: size_20_w,
-                                            color: kColor555555,
-                                          ),
-                                          SizedBox(
-                                            width: size_6_w,
-                                          ),
-                                          Text(
-                                            LocaleKeys.info.tr(),
-                                            style: TextStyle(
-                                              color:  kColor555555,
-                                              fontSize: text_20,
-                                            ),
-                                          ), // text
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: size_10_w,
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Card(
-                                  color: kColorE2E2E2,
-                                  elevation: 0.0,
-                                  shape: RoundedRectangleBorder(
-                                    side: BorderSide(
-                                      color: kColorBFBFBF,
-                                    ),
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                        value.refundOrder();
-                                    },
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: size_10_w),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.refresh,
-                                            size: size_20_w,
-                                            color: kColor555555,
-                                          ),
-                                          SizedBox(
-                                            width: size_6_w,
-                                          ),
-                                          // icon
-                                          Text(
-                                            LocaleKeys.refund.tr(),
-                                            style: TextStyle(
-                                              color: kColor555555,
-                                              fontSize: text_20,
-                                            ),
-                                          ), // text
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        //quotation/oder
-                        /*Padding(
-                          padding: EdgeInsets.symmetric(horizontal: size_10_w),
-                          child: Card(
-                            color: _hasBeenQuotationOrder
-                                ? Colors.black
-                                : kColorE2E2E2,
-                            elevation: 0.0,
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                color: kColorBFBFBF,
-                              ),
-                            ),
-                            child: Ink(
-                              child: InkWell(
-                                //open order list page
-                                onTap: () {
-                                  reviewViewModel.openOrderListpage();
-                                  setState(() {
-                                    _hasBeenQuotationOrder =
-                                        !_hasBeenQuotationOrder;
-                                    _hasBeenTextQuotatiOrder =
-                                        !_hasBeenTextQuotatiOrder;
-                                  });
-                                },
-                                child: SizedBox(
-                                  width: double.infinity,
-                                  height: size_40_w,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      SvgPicture.asset(
-                                        'assets/icons/ic_chain.svg',
-                                        color: _hasBeenTextQuotatiOrder
-                                            ? Colors.white
-                                            : kColor555555,
-                                        height: size_18_w,
-                                      ),
-                                      SizedBox(width: size_6_w),
-                                      Text(
-                                        LocaleKeys.quotation_order.tr(),
-                                        style: TextStyle(
-                                          color: _hasBeenTextQuotatiOrder
-                                              ? Colors.white
-                                              : kColor555555,
-                                          fontSize: text_20,
-                                        ),
-                                      ),
-                                      // text
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),*/
-
-                        //smallkeybroad
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal:size_14_w),
-                          child: CustomCard(
-                            borderRadiusValue: 0,
-                            shadow: Shadow.none,
-                            padding: EdgeInsets.all(size_1_r),
-                            backgroundColor: kColorBFBFBF,
-                            child: StaggeredGrid.count(
-                              crossAxisCount: 6,
-                              mainAxisSpacing: 1,
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Wrap(
+                  children: <Widget>[
+                    //Keyboard
+                    Container(
+                      color: kColor6EC89B,
+                      height: size_3_w,
+                    ),
+                    Container(
+                      color: kColorE2E2E2,
+                      child: Wrap(
+                        /* mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,*/
+                        children: [
+                          //Button Info & Refund
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal:size_10_w, vertical: size_6_w),
+                            child:
+                            StaggeredGrid.count(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 0.32,
                               crossAxisSpacing: 1,
                               children: [
                                 //customer
                                 StaggeredGridTile.count(
-                                  crossAxisCellCount: 2,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[0],
-                                    onClickItem: () {
-                                      value.openCustomerListpage();
-                                    },
-                                  ),
+                                  crossAxisCellCount: 1,
+                                  mainAxisCellCount: 0.32,
+                                  child: Card(
+                                    color:kColorE2E2E2,
+                                    elevation: 0.0,
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color: kColorBFBFBF,
+                                      ),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        value.openProductInfoBottomsheet(statusBarHeight);
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(vertical: size_10_w),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            // icon
+                                            Icon(
+                                              Icons.info_outlined,
+                                              size: size_20_w,
+                                              color: kColor555555,
+                                            ),
+                                            SizedBox(
+                                              width: size_6_w,
+                                            ),
+                                            Text(
+                                              LocaleKeys.info.tr(),
+                                              style: TextStyle(
+                                                color:  kColor555555,
+                                                fontSize: text_20,
+                                              ),
+                                            ), // text
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  )
                                 ),
                                 //1
                                 StaggeredGridTile.count(
                                   crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[1],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-                                //2
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[2],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-                                //3
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[3],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-                                //Qty
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    selected: value.selectQtyDicsPrince == 4,
-                                    item: value.computers[4],
-                                    onClickItem: () => value.onChangeQtyDicsPrince(4),
-                                  ),
-                                ),
-
-                                //payment chiếm 2 hàng 2 cột
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 2,
-                                  mainAxisCellCount: 2,
-                                  child: Ink(
-                                    child: InkWell(
-                                      onTap: () => value.onClickItem,
-                                      child: Container(
-                                        decoration:
-                                            BoxDecoration(color: kColorE2E2E2),
-                                        child: SizedBox(
-                                          width: size.width / 2,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              ClipOval(
-                                                child: Material(
-                                                  color: kColor565656,
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      getIt<NavigationService>()
-                                                          .pushScreenWithFade(
-                                                              PayPage());
-                                                    },
-                                                    child: SizedBox(
-                                                      width: size_56_w,
-                                                      height: size_56_w,
-                                                      child: Icon(
-                                                        Icons.arrow_forward_ios,
-                                                        color: kCWhite,
-                                                        size: size_36_w,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ), // icon
-                                              Text(
-                                                LocaleKeys.payment.tr(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: kColor555555,
-                                                  fontSize: text_15,
-                                                ),
-                                              ), // text
-                                            ],
-                                          ),
-                                        ),
+                                  mainAxisCellCount: 0.32,
+                                  child: Card(
+                                    color: kColorE2E2E2,
+                                    elevation: 0.0,
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        color: kColorBFBFBF,
                                       ),
                                     ),
-                                  ),
-                                ),
-
-                                //4
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[5],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //5
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[6],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //6
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[7],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //Disc
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    selected: value.selectQtyDicsPrince == 8,
-                                    item: value.computers[8],
-                                    onClickItem: () => value.onChangeQtyDicsPrince(8),
-                                  ),
-                                ),
-
-                                //7
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[9],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //8
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[10],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //9
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[11],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //Price
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    selected: value.selectQtyDicsPrince == 12,
-                                    item: value.computers[12],
-                                    onClickItem: () => value.onChangeQtyDicsPrince(12),
-                                  ),
-                                ),
-
-                                //back and icon
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 2,
-                                  mainAxisCellCount: 1,
-                                  child: Ink(
                                     child: InkWell(
                                       onTap: () {
-                                       value.backToProductPage();
+                                        value.refundOrder();
                                       },
-                                      child: Container(
-                                        decoration:
-                                            BoxDecoration(color: kColorE2E2E2),
-                                        child: SizedBox(
-                                          width: size.width / 2,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons
-                                                    .keyboard_double_arrow_left,
-                                                color: kColor626482,
-                                                size: size_15_w,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: size_10_w),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.refresh,
+                                              size: size_20_w,
+                                              color: kColor555555,
+                                            ),
+                                            SizedBox(
+                                              width: size_6_w,
+                                            ),
+                                            // icon
+                                            Text(
+                                              LocaleKeys.refund.tr(),
+                                              style: TextStyle(
+                                                color: kColor555555,
+                                                fontSize: text_20,
                                               ),
-                                              Text(
-                                                LocaleKeys.back.tr(),
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: kColor555555,
-                                                  fontSize: text_15,
-                                                ),
-                                              ), // text
-                                            ],
-                                          ),
+                                            ), // text
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-
-                                //+/-
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[13],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //0
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[14],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //.
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[15],
-                                    onClickItem: () => value.onClickItem,
-                                  ),
-                                ),
-
-                                //clear x
-                                StaggeredGridTile.count(
-                                  crossAxisCellCount: 1,
-                                  mainAxisCellCount: 1,
-                                  child: ItemReviewKeyBoard(
-                                    item: value.computers[16],
-                                    onClickItem: () =>
-                                        value.deleteProductFromCart(
-                                            value.cartProductData.lastIndex),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+
+                          //quotation/oder
+                          /*Padding(
+                            padding: EdgeInsets.symmetric(horizontal: size_10_w),
+                            child: Card(
+                              color: _hasBeenQuotationOrder
+                                  ? Colors.black
+                                  : kColorE2E2E2,
+                              elevation: 0.0,
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  color: kColorBFBFBF,
+                                ),
+                              ),
+                              child: Ink(
+                                child: InkWell(
+                                  //open order list page
+                                  onTap: () {
+                                    reviewViewModel.openOrderListpage();
+                                    setState(() {
+                                      _hasBeenQuotationOrder =
+                                          !_hasBeenQuotationOrder;
+                                      _hasBeenTextQuotatiOrder =
+                                          !_hasBeenTextQuotatiOrder;
+                                    });
+                                  },
+                                  child: SizedBox(
+                                    width: double.infinity,
+                                    height: size_40_w,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        SvgPicture.asset(
+                                          'assets/icons/ic_chain.svg',
+                                          color: _hasBeenTextQuotatiOrder
+                                              ? Colors.white
+                                              : kColor555555,
+                                          height: size_18_w,
+                                        ),
+                                        SizedBox(width: size_6_w),
+                                        Text(
+                                          LocaleKeys.quotation_order.tr(),
+                                          style: TextStyle(
+                                            color: _hasBeenTextQuotatiOrder
+                                                ? Colors.white
+                                                : kColor555555,
+                                            fontSize: text_20,
+                                          ),
+                                        ),
+                                        // text
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),*/
+
+                          //smallkeybroad
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal:size_14_w),
+                            child: CustomCard(
+                              borderRadiusValue: 0,
+                              shadow: Shadow.none,
+                              padding: EdgeInsets.all(size_1_r),
+                              backgroundColor: kColorBFBFBF,
+                              child: StaggeredGrid.count(
+                                crossAxisCount: 6,
+                                mainAxisSpacing: 1,
+                                crossAxisSpacing: 1,
+                                children: [
+                                  //customer
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 2,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[0],
+                                      onClickItem: () {
+                                        value.openCustomerListpage();
+                                      },
+                                    ),
+                                  ),
+                                  //1
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[1],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+                                  //2
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[2],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+                                  //3
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[3],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+                                  //Qty
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      selected: value.selectQtyDicsPrince == 4,
+                                      item: value.computers[4],
+                                      onClickItem: () => value.onChangeQtyDicsPrince(4),
+                                    ),
+                                  ),
+
+                                  //payment chiếm 2 hàng 2 cột
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 2,
+                                    mainAxisCellCount: 2,
+                                    child: Ink(
+                                      child: InkWell(
+                                        onTap: () => value.onClickItem,
+                                        child: Container(
+                                          decoration:
+                                              BoxDecoration(color: kColorE2E2E2),
+                                          child: SizedBox(
+                                            width: size.width / 2,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                ClipOval(
+                                                  child: Material(
+                                                    color: kColor565656,
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        getIt<NavigationService>()
+                                                            .pushScreenWithFade(
+                                                                PayPage());
+                                                      },
+                                                      child: SizedBox(
+                                                        width: size_56_w,
+                                                        height: size_56_w,
+                                                        child: Icon(
+                                                          Icons.arrow_forward_ios,
+                                                          color: kCWhite,
+                                                          size: size_36_w,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ), // icon
+                                                Text(
+                                                  LocaleKeys.payment.tr(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kColor555555,
+                                                    fontSize: text_15,
+                                                  ),
+                                                ), // text
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  //4
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[5],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //5
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[6],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //6
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[7],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //Disc
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      selected: value.selectQtyDicsPrince == 8,
+                                      item: value.computers[8],
+                                      onClickItem: () => value.onChangeQtyDicsPrince(8),
+                                    ),
+                                  ),
+
+                                  //7
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[9],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //8
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[10],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //9
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[11],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //Price
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      selected: value.selectQtyDicsPrince == 12,
+                                      item: value.computers[12],
+                                      onClickItem: () => value.onChangeQtyDicsPrince(12),
+                                    ),
+                                  ),
+
+                                  //back and icon
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 2,
+                                    mainAxisCellCount: 1,
+                                    child: Ink(
+                                      child: InkWell(
+                                        onTap: () {
+                                         value.backToProductPage();
+                                        },
+                                        child: Container(
+                                          decoration:
+                                              BoxDecoration(color: kColorE2E2E2),
+                                          child: SizedBox(
+                                            width: size.width / 2,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons
+                                                      .keyboard_double_arrow_left,
+                                                  color: kColor626482,
+                                                  size: size_15_w,
+                                                ),
+                                                Text(
+                                                  LocaleKeys.back.tr(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kColor555555,
+                                                    fontSize: text_15,
+                                                  ),
+                                                ), // text
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  //+/-
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[13],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //0
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[14],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //.
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[15],
+                                      onClickItem: () => value.onClickItem,
+                                    ),
+                                  ),
+
+                                  //clear x
+                                  StaggeredGridTile.count(
+                                    crossAxisCellCount: 1,
+                                    mainAxisCellCount: 1,
+                                    child: ItemReviewKeyBoard(
+                                      item: value.computers[16],
+                                      onClickItem: () =>
+                                          value.deleteProductFromCart(
+                                              value.cartProductData.lastIndex),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       }),
     );

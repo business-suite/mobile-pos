@@ -253,6 +253,12 @@ String dateTimeFromString(dynamic? date,{ String format = MMddyyyy}) {
 class Utils {
   Utils._();
 
+  static String concatListToString(List<dynamic> data, String mapKey) {
+    StringBuffer buffer = StringBuffer();
+    buffer.writeAll(data.map<String>((element) => element.mapKey).toList(), ', ');
+    return buffer.toString();
+  }
+
   static printJson(dynamic json){
     print(jsonEncode(json));
   }

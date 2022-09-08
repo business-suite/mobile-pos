@@ -158,6 +158,7 @@
   "furn_7777": "FURN_7777",
   "financials": "Financials",
   "replenishment": "Replenishment",
+  "attributes": "Attributes",
   "close": "Close",
   "price_excl_vat": "Price excl. VAT:",
   "cost": "Cost:",
@@ -165,8 +166,7 @@
   "public_pricelist": "Public Pricelist",
   "inventory_as_of_opening": "Inventory (as of opening)",
   "san_francisco": "- San Francisco",
-  "azure_interior": "- Azure Interior",
-  "wood_corner": "- Wood Corner",
+  "supplier_name": "- {name}:",
   "order": "Order",
   "total_price_excl_vat": "Total Price excl. VAT:",
   "total_cost": "Total Cost:",
@@ -304,5 +304,9 @@
   "units_prices": "{quantity} Units",
   "product_price_units": "{money} {currency}/Units",
   "product_price_pay_page": "{money}\n{currency}",
-  "there_are_no_customers": "There are no customers"
+  "there_are_no_customers": "There are no customers",
+  "supplier_day": "{day} Days",
+  "warehouses_unit": "{quantity} {uom} available",
+  "warehouses_forecasted": "{quantity} forecasted",
+  "product_price_percent": "{money} {currency} ({percent}%)"
 }

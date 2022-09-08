@@ -238,8 +238,7 @@ class InputServerPortState extends LifecycleState<InputServerPortContent>
                                           left: 14, right: 14),
                                       //Max height for the dropdown menu & becoming scrollable if there are more items. If you pass Null it will take max height possible for the items.
                                       dropdownDecoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(14),
+                                        borderRadius: BorderRadius.circular(14),
                                       ),
                                       dropdownElevation: 8,
                                       scrollbarRadius:
@@ -312,8 +311,7 @@ class InputServerPortState extends LifecycleState<InputServerPortContent>
                           ),
                           OutlineTextFormField(
                             isShowLable: false,
-                            controller:
-                                inputServerPortViewModel.portController,
+                            controller: inputServerPortViewModel.portController,
                             inputformatter: [
                               FilteringTextInputFormatter.digitsOnly,
                             ],

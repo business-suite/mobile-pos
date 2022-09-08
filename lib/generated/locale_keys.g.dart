@@ -160,6 +160,7 @@ abstract class  LocaleKeys {
   static const furn_7777 = 'furn_7777';
   static const financials = 'financials';
   static const replenishment = 'replenishment';
+  static const attributes = 'attributes';
   static const close = 'close';
   static const price_excl_vat = 'price_excl_vat';
   static const cost = 'cost';
@@ -167,8 +168,7 @@ abstract class  LocaleKeys {
   static const public_pricelist = 'public_pricelist';
   static const inventory_as_of_opening = 'inventory_as_of_opening';
   static const san_francisco = 'san_francisco';
-  static const azure_interior = 'azure_interior';
-  static const wood_corner = 'wood_corner';
+  static const supplier_name = 'supplier_name';
   static const order = 'order';
   static const total_price_excl_vat = 'total_price_excl_vat';
   static const total_cost = 'total_cost';
@@ -307,5 +307,9 @@ abstract class  LocaleKeys {
   static const product_price_units = 'product_price_units';
   static const product_price_pay_page = 'product_price_pay_page';
   static const there_are_no_customers = 'there_are_no_customers';
+  static const supplier_day = 'supplier_day';
+  static const warehouses_unit = 'warehouses_unit';
+  static const warehouses_forecasted = 'warehouses_forecasted';
+  static const product_price_percent = 'product_price_percent';
 
 }
